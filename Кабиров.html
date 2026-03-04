@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, Светлана!</title>
+    <style>
+        /* Сброс и базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+            background: linear-gradient(145deg, #fce4ec 0%, #ffe5e5 40%, #fff2f0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.5;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* нежные лепестки на фоне (дополнительное украшение) */
+        body::before {
+            content: "🌸";
+            font-size: 120px;
+            position: absolute;
+            top: 10px;
+            left: -30px;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+
+        body::after {
+            content: "🌹";
+            font-size: 150px;
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            opacity: 0.1;
+            transform: rotate(20deg);
+            pointer-events: none;
+        }
+
+        .card {
+            max-width: 750px;
+            width: 100%;
+            background: rgba(255, 250, 245, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 60px 60px 60px 60px;
+            box-shadow: 0 35px 65px -10px rgba(210, 110, 140, 0.4),
+                        0 0 0 2px #fff9f7 inset,
+                        0 0 0 4px #fbc1cb inset;
+            padding: 40px 30px 50px 30px;
+            text-align: center;
+            border: 2px solid #ffb6c1;
+            transition: all 0.3s ease;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* заголовок с именем */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: #ac3f5b;
+            text-shadow: 3px 3px 0 #ffd9e2, 5px 5px 0 rgba(250, 200, 190, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            word-break: break-word;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #b35f7a;
+            background: #fff2ed;
+            display: inline-block;
+            padding: 0.2rem 2rem;
+            border-radius: 60px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px #ffd9df;
+            font-weight: 400;
+            border: 1px solid #ffa5b9;
+        }
+
+        /* Контейнер для розы (изображение рисуем псевдоэлементами и emoji, но добавим и векторный подход) */
+        .rose-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 25px 0 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Большая стилизованная роза (с помощью псевдоэлементов и emoji, но добавим и яркий span) */
+        .rose-big {
+            font-size: 6rem;
+            line-height: 1;
+            filter: drop-shadow(2px 8px 15px #fbaabc);
+            display: inline-block;
+            animation: floatRose 4s ease-in-out infinite;
+        }
+
+        /* Дополнительные розочки */
+        .rose-small {
+            font-size: 3rem;
+            opacity: 0.7;
+            filter: drop-shadow(0 4px 6px #f77d9b);
+        }
+
+        @keyframes floatRose {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Текст поздравления */
+        .greeting-text {
+            font-size: 1.4rem;
+            color: #402e33;
+            background: #fff0f2d9;
+            padding: 30px 25px;
+            border-radius: 50px 50px 50px 0;
+            margin: 30px 0 30px;
+            border: 2px dashed #feb4c2;
+            box-shadow: 0 12px 25px #ffd9df;
+            text-align: left;
+            word-wrap: break-word;
+            backdrop-filter: blur(2px);
+        }
+
+        .greeting-text p {
+            margin-bottom: 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .greeting-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .greeting-text i {
+            font-size: 1.8rem;
+            color: #d84f73;
+            min-width: 45px;
+            text-align: center;
+        }
+
+        /* отдельный тёплый блок */
+        .special-wish {
+            background: #fee1d6c9;
+            border-radius: 40px 10px 40px 10px;
+            padding: 20px;
+            margin: 20px 0 10px;
+            font-size: 1.3rem;
+            color: #852f49;
+            border-left: 7px solid #ff8da1;
+            font-style: italic;
+            box-shadow: 0 4px 12px #feb1b1;
+        }
+
+        /* имя внизу */
+        .signature {
+            margin-top: 40px;
+            font-size: 1.7rem;
+            font-weight: 500;
+            color: #ad4d68;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .signature span {
+            background: #fccbd2;
+            padding: 8px 25px;
+            border-radius: 40px;
+            box-shadow: 0 4px 0 #bb7383;
+            color: #2d1219;
+            font-weight: 500;
+            font-size: 1.5rem;
+        }
+
+        /* падающие цветочки (мелкий декор) */
+        .flower-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .flower-bg div {
+            position: absolute;
+            font-size: 2.2rem;
+            opacity: 0.25;
+            animation: fall 14s linear infinite;
+            color: #eea2ad;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-20vh) rotate(0deg); opacity: 0.2; }
+            100% { transform: translateY(120vh) rotate(300deg); opacity: 0.1; }
+        }
+
+        /* разные положения и задержки */
+        .f1 { left: 5%; animation-duration: 12s; animation-delay: 0s; }
+        .f2 { left: 20%; animation-duration: 18s; animation-delay: 2s; }
+        .f3 { left: 40%; animation-duration: 15s; animation-delay: 5s; }
+        .f4 { left: 60%; animation-duration: 20s; animation-delay: 1s; }
+        .f5 { left: 80%; animation-duration: 14s; animation-delay: 3s; }
+        .f6 { left: 90%; animation-duration: 16s; animation-delay: 7s; }
+
+        /* делаем сайт совсем нежным и читаемым */
+        @media (max-width: 520px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.4rem; }
+            .greeting-text { font-size: 1.2rem; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- плавающие розочки на фоне (декор) -->
+<div class="flower-bg">
+    <div class="f1">🌹</div>
+    <div class="f2">🌺</div>
+    <div class="f3">🌸</div>
+    <div class="f4">🌷</div>
+    <div class="f5">🌹</div>
+    <div class="f6">🌼</div>
+</div>
+
+<!-- главная открытка -->
+<div class="card">
+    <h1>Светлана</h1>
+    <div class="subtitle">С 8 Марта!</div>
+
+    <!-- розы (картинка роз) исполнены с помощью эмодзи и псевдо-элементов но это и есть картинка розы в вебе) 
+         дополнительно подчеркнём что это роза + текст -->
+    <div class="rose-container">
+        <span class="rose-small">🌹</span>
+        <span class="rose-big">🌹</span>
+        <span class="rose-small">🌹</span>
+    </div>
+    <div style="font-size: 1.2rem; color:#b75674; margin-top: -5px;">букет самых нежных роз</div>
+
+    <!-- основной тёплый текст -->
+    <div class="greeting-text">
+        <p><i>🌸</i> Дорогая мамочка Светлана! В этот чудесный весенний день хочется сказать спасибо за твою бесконечную заботу, тепло и ласку. Ты — самый родной человек, и твоя улыбка освещает всё вокруг.</p>
+        <p><i>🌹</i> Пусть каждый день дарит приятные сюрпризы, а в душе всегда цветут розы. Желаю тебе крепкого здоровья, сияющих глаз и ощущения счастья. Ты заслуживаешь только самого лучшего!</p>
+        <p><i>💐</i> Спасибо за твои нежные руки, за мудрые советы и за то, что ты просто есть. Оставайся такой же молодой, красивой и вдохновенной. Мы тебя очень любим!</p>
+    </div>
+
+    <!-- дополнительный приятный блок (текст от души) -->
+    <div class="special-wish">
+        🌷 Светлана, пусть в твоей жизни будет столько радости, сколько лепестков у миллионов роз! Сияй, мечтай и знай: ты — наше солнце. С праздником, родная!
+    </div>
+
+    <!-- ещё один ряд розочек -->
+    <div style="display: flex; justify-content: center; gap: 15px; margin: 25px 0 10px; font-size: 2.5rem; color: #ff7b9c;">
+        <span style="transform: rotate(-5deg);">🌹</span>
+        <span style="transform: rotate(5deg);">🌹</span>
+        <span style="transform: rotate(-10deg);">🌹</span>
+        <span style="transform: rotate(10deg);">🌹</span>
+    </div>
+
+    <!-- подпись с любовью -->
+    <div class="signature">
+        <span>с любовью, твоя семья</span>
+        <span>❤️</span>
+    </div>
+
+    <!-- маленькое примечание: число и намёк на розы (эстетика) -->
+    <div style="margin-top: 25px; color: #b3848f; font-size: 1rem; opacity: 0.9;">
+        «Ты как эти розы — нежна, прекрасна и неповторима»
+    </div>
+</div>
+
+</body>
+</html>

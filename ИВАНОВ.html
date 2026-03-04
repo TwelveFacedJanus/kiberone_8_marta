@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, мама Юля!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fce4e4 0%, #ffe9f4 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Весенний декор */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.15"><path fill="%23ff9eaa" d="M26.4,18.5c-2.3,0.8-4.3,2.7-5.1,5.1c-0.9-2.4-2.9-4.3-5.3-5.1c2.4-0.8,4.3-2.8,5.1-5.2C21.9,13.7,24,15.7,26.4,18.5z"/><path fill="%23f7b2b2" d="M66.6,75.9c-2.3,0.9-4.1,2.9-4.8,5.3c-0.9-2.5-2.9-4.4-5.3-5.3c2.4-0.9,4.3-2.9,5.1-5.3C62.4,70.8,64.4,73,66.6,75.9z"/><path fill="%23ffc1cc" d="M83.2,27.4c-3.3,1.2-6,4-7.2,7.4c-1.4-3.5-4.2-6.2-7.7-7.4c3.4-1.3,6.1-4.1,7.3-7.6C77,21.8,79.8,24.8,83.2,27.4z"/><path fill="%23ffb3b3" d="M14.8,70.3c-3,1.1-5.4,3.6-6.5,6.7c-1.2-3.2-3.8-5.7-7-6.8c3.2-1.1,5.7-3.7,6.8-6.9C9.2,65.2,11.8,68,14.8,70.3z"/></svg>');
+            background-repeat: repeat;
+            background-size: 80px 80px;
+            pointer-events: none;
+        }
+
+        .card {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 60px 60px 60px 60px;
+            box-shadow: 0 25px 45px rgba(235, 80, 120, 0.2),
+                        0 5px 15px rgba(0,0,0,0.05),
+                        inset 0 -2px 0 rgba(255,255,255,0.7);
+            border: 1px solid rgba(255, 220, 230, 0.6);
+            padding: 40px 30px 50px 30px;
+            position: relative;
+            z-index: 10;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+        }
+
+        /* цветы по углам */
+        .flower-corner {
+            position: absolute;
+            font-size: 42px;
+            filter: drop-shadow(2px 4px 6px rgba(232, 120, 140, 0.3));
+            z-index: 5;
+        }
+
+        .corner1 {
+            top: -15px;
+            left: -10px;
+            transform: rotate(-15deg);
+        }
+
+        .corner2 {
+            top: -20px;
+            right: -15px;
+            transform: rotate(15deg) scaleX(-1);
+        }
+
+        .corner3 {
+            bottom: -20px;
+            left: -15px;
+            transform: rotate(5deg) scaleY(-1);
+        }
+
+        .corner4 {
+            bottom: -15px;
+            right: -10px;
+            transform: rotate(-5deg) scale(-1);
+        }
+
+        /* шапка с именем */
+        .title-block {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .hello {
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            color: #b24b63;
+            text-transform: uppercase;
+            background: rgba(255, 215, 225, 0.7);
+            display: inline-block;
+            padding: 8px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            font-weight: 400;
+            border: 1px solid #ffcedb;
+            margin-bottom: 15px;
+        }
+
+        .mom-name {
+            font-size: 5rem;
+            font-weight: 800;
+            color: #a52d4e;
+            line-height: 1;
+            text-shadow: 4px 4px 0 #ffdae3, 8px 8px 15px rgba(190, 70, 100, 0.2);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            animation: softGlow 3s infinite alternate;
+        }
+
+        @keyframes softGlow {
+            0% { text-shadow: 4px 4px 0 #ffdae3, 8px 8px 20px rgba(190, 70, 100, 0.1); }
+            100% { text-shadow: 4px 4px 0 #ffc0d0, 10px 10px 25px rgba(210, 80, 120, 0.3); }
+        }
+
+        .subtitle {
+            font-size: 1.6rem;
+            color: #8f4a5c;
+            background: rgba(255, 240, 245, 0.6);
+            display: inline-block;
+            padding: 5px 30px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            font-weight: 300;
+            border: 1px dashed #ffa5b9;
+            margin-top: 5px;
+        }
+
+        /* открытка с текстом */
+        .message {
+            background: rgba(255, 250, 250, 0.8);
+            border-radius: 50px;
+            padding: 40px 30px;
+            margin: 30px 0 20px;
+            box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.8), 0 12px 20px -10px rgba(201, 120, 140, 0.3);
+            border: 2px solid white;
+        }
+
+        .message p {
+            font-size: 1.7rem;
+            font-weight: 400;
+            color: #50222e;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .message p:first-child {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+            color: #b13e5c;
+        }
+
+        .message p i {
+            font-size: 1.9rem;
+            color: #c9627d;
+            font-style: italic;
+        }
+
+        .heart-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0 10px;
+        }
+
+        .heart-line span {
+            font-size: 2.2rem;
+            line-height: 1;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .poem {
+            font-size: 1.25rem;
+            color: #64323f;
+            background: rgba(255, 215, 225, 0.3);
+            padding: 25px;
+            border-radius: 40px;
+            margin: 15px 0 30px;
+            border: 1px solid #ffe3eb;
+            white-space: pre-line;
+            line-height: 1.8;
+            text-align: center;
+            font-style: italic;
+            box-shadow: 0 4px 10px rgba(255, 190, 200, 0.3);
+        }
+
+        .poem span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .gift-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px 25px;
+            margin: 35px 0 20px;
+        }
+
+        .gift-item {
+            background: white;
+            border-radius: 30px;
+            padding: 15px 20px;
+            min-width: 140px;
+            text-align: center;
+            box-shadow: 0 8px 0 #d47e97, 0 15px 25px -8px #eba2b5;
+            border: 1px solid #fff;
+            transition: all 0.15s ease;
+        }
+
+        .gift-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 0 #c76a84, 0 20px 30px -8px #d47e97;
+        }
+
+        .gift-emoji {
+            font-size: 3rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .gift-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #962d4d;
+            background: #ffeef2;
+            border-radius: 30px;
+            padding: 5px 10px;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.5rem;
+            color: #b14b67;
+            font-weight: 300;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 12px 10px;
+            border-radius: 100px;
+            backdrop-filter: blur(4px);
+            border: 1px solid white;
+            letter-spacing: 1px;
+        }
+
+        .footer-note strong {
+            font-weight: 700;
+            color: #89263e;
+        }
+
+        /* маленькие цветочки летают */
+        .floating-flowers {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-flowers span {
+            position: absolute;
+            font-size: 1.8rem;
+            opacity: 0.35;
+            animation: float 7s infinite linear;
+            color: #f99eb5;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0vh) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        /* настройка позиций для плавающих цветов */
+        .floating-flowers span:nth-child(1) { left: 5%; bottom: -10%; animation-duration: 12s; font-size: 2.2rem; }
+        .floating-flowers span:nth-child(2) { left: 20%; bottom: -20%; animation-duration: 18s; font-size: 2.8rem; opacity: 0.2; }
+        .floating-flowers span:nth-child(3) { left: 40%; bottom: -5%; animation-duration: 14s; font-size: 2rem; }
+        .floating-flowers span:nth-child(4) { left: 75%; bottom: -15%; animation-duration: 20s; font-size: 3rem; opacity: 0.25; }
+        .floating-flowers span:nth-child(5) { left: 90%; bottom: -30%; animation-duration: 16s; font-size: 2.5rem; }
+        .floating-flowers span:nth-child(6) { left: 60%; bottom: -50%; animation-duration: 22s; font-size: 2.2rem; }
+
+        @media (max-width: 500px) {
+            .mom-name { font-size: 3.8rem; }
+            .message p { font-size: 1.4rem; }
+            .subtitle { font-size: 1.2rem; }
+            .card { padding: 30px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- плавающие цветы на заднем плане -->
+    <div class="floating-flowers">
+        <span>🌸</span>
+        <span>🌼</span>
+        <span>🌷</span>
+        <span>🌺</span>
+        <span>🌹</span>
+        <span>💐</span>
+    </div>
+
+    <!-- цветочные уголки (статичные) -->
+    <div class="flower-corner corner1">🌷🌷</div>
+    <div class="flower-corner corner2">🌹🌹</div>
+    <div class="flower-corner corner3">🌸🌸</div>
+    <div class="flower-corner corner4">🌼🌼</div>
+
+    <!-- главная карточка-поздравление -->
+    <div class="card">
+        <div class="title-block">
+            <div class="hello">С 8 марта,</div>
+            <div class="mom-name">Юлия!</div>
+            <div class="subtitle">💗 самая лучшая мама 💗</div>
+        </div>
+
+        <!-- текст внутри открытки -->
+        <div class="message">
+            <p>🌷 Дорогая мамочка Юлия! 🌷</p>
+            <p>
+                С праздником весны, тепла и цветов!<br>
+                Пусть каждый день дарит улыбки,<br>
+                А сердце всегда согревает любовь.
+            </p>
+        </div>
+
+        <!-- сердечки -->
+        <div class="heart-line">
+            <span>❤️</span> <span>🌸</span> <span>❤️</span> <span>🌸</span> <span>❤️</span>
+        </div>
+
+        <!-- небольшой стих (душевный) -->
+        <div class="poem">
+            <span>✨</span>
+            Ты — свет в окне, тепло руки,<br>
+            Ты прогоняешь прочь тоску.<br>
+            Спасибо, мама, за мечты,<br>
+            Ты лучше всех, я так люблю!<br>
+            С 8 Марта, Юля!
+        </div>
+
+        <!-- подарочный набор (эмоджи-подарки) -->
+        <div class="gift-box">
+            <div class="gift-item">
+                <span class="gift-emoji">💐</span>
+                <span class="gift-item" букет из оранжевых роз </span>
+            </div>
+            <div class="gift-item">
+                <span class="gift-emoji">🍫</span>
+                <span class="gift-text">сладкий сюрприз</span>
+            </div>
+            <div class="gift-item">
+                <span class="gift-emoji">☀️</span>
+                <span class="gift-text">море тепла</span>
+            </div>
+            <div class="gift-item">
+                <span class="gift-emoji">💗</span>
+                <span class="gift-text">объятия</span>
+            </div>
+        </div>
+
+        <!-- подпись-пожелание -->
+        <div class="footer-note">
+            🌿 <strong>Юлия</strong>, будь счастлива каждый день! 🌿
+        </div>
+    </div>
+
+    <!-- маленькая деталь: лёгкий звук весны? просто дополнительный цветок внизу -->
+    <div style="position: fixed; bottom: 5px; right: 10px; opacity: 0.3; font-size: 30px; z-index: 20;">🌷</div>
+    <div style="position: fixed; bottom: 5px; left: 10px; opacity: 0.3; font-size: 30px; z-index: 20;">🌹</div>
+</body>
+</html>

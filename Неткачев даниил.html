@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, мама Виолета!</title>
+    <style>
+        /* Сброс отступов и базовые настройки */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background-color: #ffe4ec;  /* нежный розовый фон */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            /* имитация легкой текстуры, чтобы фон не был плоским */
+            background-image: radial-gradient(circle at 30% 40%, rgba(255, 240, 245, 0.7) 0%, transparent 30%),
+                              radial-gradient(circle at 80% 70%, rgba(255, 182, 193, 0.2) 0%, transparent 40%);
+            background-blend-mode: overlay;
+        }
+
+        .card {
+            max-width: 700px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.7); /* полупрозрачный белый для мягкости */
+            backdrop-filter: blur(4px);  /* лёгкое размытие фона за карточкой */
+            border-radius: 60px 20px 60px 20px;
+            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.25), 0 8px 15px rgba(255, 20, 147, 0.2);
+            padding: 40px 30px 50px 30px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Декоративные розы на фоне карточки (псевдоэлементы) */
+        .card::before {
+            content: "🌸";
+            font-size: 140px;
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            opacity: 0.15;
+            transform: rotate(-15deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .card::after {
+            content: "🌹";
+            font-size: 180px;
+            position: absolute;
+            top: -40px;
+            right: -30px;
+            opacity: 0.15;
+            transform: rotate(20deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* контент поверх фоновых роз */
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* заголовок с именем */
+        .title {
+            font-size: 3rem;
+            font-weight: 600;
+            color: #b34180;  /* тёмно-розовый, элегантный */
+            text-shadow: 3px 3px 0 #ffb6c1, 5px 5px 0 rgba(255, 255, 255, 0.6);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            word-break: break-word;
+        }
+
+        .subtitle {
+            font-size: 1.9rem;
+            color: #d45d8b;
+            font-weight: 400;
+            margin-bottom: 20px;
+            border-bottom: 2px dashed #ffa5c3;
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        /* картинка роз (SVG-рисунок, масштабируется без потерь) */
+        .rose-image {
+            margin: 15px auto 25px;
+            max-width: 280px;
+            background: rgba(255, 240, 245, 0.5);
+            border-radius: 120px 40px 120px 40px;
+            padding: 15px 10px 10px 10px;
+            box-shadow: 0 10px 20px #ffb6c1;
+            transition: transform 0.4s ease;
+        }
+
+        .rose-image:hover {
+            transform: scale(1.02) rotate(1deg);
+        }
+
+        /* красивый векторный рисунок розы (SVG встроенный) */
+        .rose-svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 6px 8px #fba9c4);
+        }
+
+        /* приветственный текст */
+        .greeting {
+            font-size: 1.5rem;
+            color: #ac3e6b;
+            margin: 25px 0 15px;
+            font-style: italic;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 12px 20px;
+            border-radius: 50px 10px 50px 10px;
+            display: inline-block;
+            backdrop-filter: blur(2px);
+        }
+
+        .message {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: #6d3b52;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 30px 20px;
+            border-radius: 30px;
+            margin: 20px 0 30px;
+            backdrop-filter: blur(3px);
+            border: 1px solid white;
+            text-align: left;
+            font-weight: 400;
+            box-shadow: inset 0 1px 5px rgba(255,255,255,0.9), 0 10px 15px -8px #e49bb6;
+        }
+
+        .message p {
+            margin-bottom: 18px;
+            text-indent: 25px;
+        }
+
+        .message p:last-child {
+            margin-bottom: 0;
+            text-indent: 0;
+            font-weight: 450;
+            text-align: right;
+            font-size: 1.5rem;
+            color: #b3456e;
+        }
+
+        /* подпись и дата */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+            font-size: 1.2rem;
+            color: #ad5d7e;
+            border-top: 1px solid #ffc0cb;
+            padding-top: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .date {
+            background: #ffe4ed;
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 6px #fbaec8;
+        }
+
+        .signature {
+            font-size: 1.6rem;
+            font-family: 'Brush Script MT', cursive;
+            color: #b34180;
+            text-shadow: 1px 1px 2px white;
+        }
+
+        /* маленькие розочки рядом с подписью */
+        .small-rose {
+            font-size: 1.8rem;
+            line-height: 1;
+            filter: drop-shadow(0 2px 2px #ff87a5);
+        }
+
+        /* адаптация для экранов до 500px */
+        @media (max-width: 500px) {
+            .card {
+                padding: 30px 15px;
+            }
+            .title {
+                font-size: 2.5rem;
+            }
+            .subtitle {
+                font-size: 1.5rem;
+            }
+            .message {
+                font-size: 1.1rem;
+                padding: 20px 15px;
+            }
+            .greeting {
+                font-size: 1.2rem;
+            }
+            .footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="content">
+            <!-- Имя мамы с праздничным заголовком -->
+            <h1 class="title">Виолета</h1>
+            <div class="subtitle">С 8 марта!</div>
+
+            <!-- Картинка розы (SVG) с цветочным фоном -->
+            <div class="rose-image">
+                <svg class="rose-svg" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Стилизованная роза -->
+                    <g filter="url(#glow)">
+                        <!-- лепестки центральные -->
+                        <path d="M40 35 Q 35 25, 30 35 Q 25 45, 35 48 Q 38 55, 45 50 Q 55 52, 55 42 Q 60 32, 48 35 Q 45 28, 40 35" fill="#f77f9e" stroke="#d44e71" stroke-width="1.2"/>
+                        <path d="M48 35 Q 53 27, 58 35 Q 63 43, 55 48 Q 58 58, 48 55 Q 40 60, 40 50 Q 32 49, 38 42 Q 32 36, 43 37 Q 45 32, 48 35" fill="#ff99b9" stroke="#d44e71" stroke-width="1"/>
+                        <!-- внешние лепестки -->
+                        <path d="M28 42 Q 18 37, 20 50 Q 15 62, 30 60 Q 28 72, 42 65 Q 48 76, 58 65 Q 72 69, 70 55 Q 82 52, 72 42 Q 80 30, 63 32 Q 60 18, 48 27 Q 38 18, 35 32 Q 22 28, 28 42" fill="#ffb0c3" stroke="#e36a8c" stroke-width="1.5" opacity="0.9"/>
+                        <!-- листья и чашелистики -->
+                        <path d="M43 62 L 40 75 L 48 75 L 45 62" fill="#8cc084" stroke="#548235" stroke-width="1"/>
+                        <path d="M35 68 L 25 73 L 33 77 L 38 70" fill="#9bc995" stroke="#548235" stroke-width="1"/>
+                        <path d="M60 68 L 68 74 L 62 79 L 55 72" fill="#9bc995" stroke="#548235" stroke-width="1"/>
+                        <!-- стебель (изящный) -->
+                        <path d="M45 75 Q 47 85, 42 95" stroke="#548235" stroke-width="3" fill="none"/>
+                        <path d="M42 95 L 40 98 L 47 98 L 45 95" fill="#6b8e4c"/>
+                    </g>
+                    <defs>
+                        <filter id="glow" x="-5" y="-5" width="110" height="110">
+                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <!-- маленькие бутоны и блеск -->
+                    <circle cx="23" cy="45" r="4" fill="#ffb6c1" stroke="#e36a8c" stroke-width="1"/>
+                    <circle cx="73" cy="47" r="4" fill="#ffb6c1" stroke="#e36a8c" stroke-width="1"/>
+                </svg>
+            </div>
+
+            <!-- приветствие с именем -->
+            <div class="greeting">
+                🌷 Дорогая мамочка Виолета! 🌷
+            </div>
+
+            <!-- основной тёплый текст -->
+            <div class="message">
+                <p>С первым дыханием весны, с ярким солнцем и звоном капели — с Международным женским днём! Ты, как первый цветок, наполняешь жизнь светом и нежностью. Спасибо за твою заботу, тепло и бесконечную доброту.</p>
+                <p>Пусть каждый день дарит тебе улыбки, приятные сюрпризы и поводы для радости. Оставайся такой же прекрасной, вдохновенной и любимой. Пусть дома будет уютно и спокойно, а сердце согревают приятные вести от близких.</p>
+                <p>🌹 С любовью и благодарностью, твой ребёнок. 🌹</p>
+            </div>
+
+            <!-- нижняя часть с датой и подписью -->
+            <div class="footer">
+                <span class="date">8 марта 2026</span>
+                <span class="signature">
+                    <span class="small-rose">🌹</span> для Виолеты <span class="small-rose">🌹</span>
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

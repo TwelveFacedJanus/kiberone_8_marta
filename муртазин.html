@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, Земфира!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background-color: #f0d9ff; /* приятный сиреневый фон */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .card {
+            max-width: 750px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.75); /* полупрозрачный белый для мягкости */
+            backdrop-filter: blur(4px);
+            border-radius: 50px 20px 50px 20px;
+            box-shadow: 0 25px 40px rgba(128, 0, 128, 0.2), 0 10px 15px rgba(0,0,0,0.1);
+            padding: 40px 30px 50px 30px;
+            text-align: center;
+            border: 2px solid rgba(255, 220, 255, 0.7);
+            transition: 0.3s;
+        }
+
+        /* декоративная линия сирени */
+        .card h1 {
+            font-size: 2.8rem;
+            color: #5e2a7c;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-shadow: 2px 2px 10px rgba(255, 200, 255, 0.8);
+            letter-spacing: 1px;
+            word-break: break-word;
+        }
+
+        .subheader {
+            font-size: 1.6rem;
+            color: #8b4c9b;
+            margin-bottom: 20px;
+            font-style: italic;
+            border-bottom: 2px dashed #c79ad3;
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        .roses-image {
+            margin: 25px 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* svg розы — красивые, векторные, не зависят от сети */
+        .rose-icon svg {
+            width: 120px;
+            height: 120px;
+            filter: drop-shadow(0 8px 12px rgba(180, 100, 160, 0.5));
+            transition: transform 0.4s ease;
+        }
+
+        .rose-icon svg:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .greeting-text {
+            background: rgba(250, 240, 255, 0.6);
+            border-radius: 60px 20px 60px 20px;
+            padding: 30px 25px;
+            margin: 25px 0 20px;
+            border: 2px solid #f3d9ff;
+            box-shadow: inset 0 0 25px #f3e0ff;
+        }
+
+        .greeting-text p {
+            font-size: 1.4rem;
+            color: #3e2a47;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .greeting-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .signature {
+            font-size: 1.7rem;
+            color: #a05a9c;
+            font-family: 'Georgia', cursive;
+            margin-top: 25px;
+            letter-spacing: 2px;
+            border-top: 2px solid #e1b5ff;
+            padding-top: 25px;
+            font-weight: 500;
+        }
+
+        .small-note {
+            color: #7d5d8a;
+            font-size: 1.2rem;
+            background: #f2e1fa;
+            display: inline-block;
+            padding: 8px 30px;
+            border-radius: 50px;
+            margin-top: 15px;
+            box-shadow: 0 4px 8px rgba(150, 70, 150, 0.15);
+        }
+
+        /* украшение в виде маленьких цветочков */
+        .flowers {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 10px 0 15px;
+            opacity: 0.7;
+        }
+
+        .flowers span {
+            font-size: 2rem;
+            filter: drop-shadow(2px 4px 6px #caa0d0);
+        }
+
+        /* адаптация для телефонов */
+        @media (max-width: 550px) {
+            .card h1 {
+                font-size: 2.2rem;
+            }
+            .subheader {
+                font-size: 1.3rem;
+            }
+            .greeting-text p {
+                font-size: 1.2rem;
+            }
+            .signature {
+                font-size: 1.4rem;
+            }
+            .roses-image svg {
+                width: 90px;
+                height: 90px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- небольшие цветочные акценты -->
+        <div class="flowers">
+            <span>🌸</span>
+            <span>🌷</span>
+            <span>🌺</span>
+        </div>
+
+        <h1>Земфира</h1>
+        <div class="subheader">С 8 марта!</div>
+
+        <!-- картинка роз (SVG букет) -->
+        <div class="roses-image rose-icon">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- три розочки и листья, нежные сиренево-розовые тона -->
+                <!-- левая роза -->
+                <g filter="url(#glow)">
+                    <path d="M30 55 C20 45 18 30 30 25 C40 20 48 28 45 38 C42 48 35 52 30 55 Z" fill="#f9b8d4" stroke="#d96f9b" stroke-width="1.5"/>
+                    <path d="M40 45 C36 35 42 27 52 30 C60 33 58 42 52 45 C48 48 42 47 40 45 Z" fill="#ff8dbb" stroke="#c85a8f" stroke-width="1.2"/>
+                    <!-- центр розы левой -->
+                    <circle cx="45" cy="37" r="5" fill="#ffe0f0" stroke="#b34e7a" stroke-width="1"/>
+                </g>
+                <!-- правая роза -->
+                <g filter="url(#glow)">
+                    <path d="M70 50 C62 38 68 25 82 28 C92 31 88 43 80 47 C74 50 72 52 70 50 Z" fill="#f7accc" stroke="#d96095" stroke-width="1.5"/>
+                    <path d="M78 42 C73 33 82 25 92 32 C98 37 92 44 85 44 C81 44 79 43 78 42 Z" fill="#ffb2cf" stroke="#c44d7f" stroke-width="1.2"/>
+                    <circle cx="83" cy="34" r="4.5" fill="#ffe2f0" stroke="#b34477" stroke-width="1"/>
+                </g>
+                <!-- центральная роза (немного крупнее) -->
+                <g filter="url(#glow)">
+                    <path d="M52 58 C40 48 40 30 55 27 C68 24 72 40 62 48 C57 53 54 58 52 58 Z" fill="#ffb5d9" stroke="#e07ca3" stroke-width="2"/>
+                    <path d="M60 45 C54 35 65 22 78 30 C86 35 78 45 70 46 C65 47 62 46 60 45 Z" fill="#ffa0c7" stroke="#d15f90" stroke-width="1.5"/>
+                    <circle cx="65" cy="36" r="6" fill="#ffd6ea" stroke="#c64f83" stroke-width="1.2"/>
+                </g>
+                <!-- листья и стебли -->
+                <g stroke="#6b8e4c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M35 58 L28 72 L35 68 L39 75" fill="none" stroke="#558b2f" stroke-width="2"/>
+                    <path d="M55 62 L55 78 L62 73 L58 82" fill="none" stroke="#558b2f" stroke-width="2"/>
+                    <path d="M72 60 L80 75 L73 71 L78 80" fill="none" stroke="#558b2f" stroke-width="2"/>
+                </g>
+                <!-- листочки дополнительные -->
+                <path d="M27 69 Q32 64 36 67" stroke="#3f6b20" stroke-width="2" fill="none"/>
+                <path d="M58 78 Q63 73 67 77" stroke="#3f6b20" stroke-width="2" fill="none"/>
+                <path d="M78 77 Q84 71 86 78" stroke="#3f6b20" stroke-width="2" fill="none"/>
+                <!-- бутоны/мелкие розочки -->
+                <circle cx="25" cy="55" r="3" fill="#ed9ebc" stroke="#b54674" stroke-width="1"/>
+                <circle cx="75" cy="56" r="3" fill="#ed9ebc" stroke="#b54674" stroke-width="1"/>
+                <defs>
+                    <filter id="glow" x="-0.5" y="-0.5" width="2" height="2">
+                        <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+                        <feMerge>
+                            <feMergeNode in="offsetblur" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                    </filter>
+                </defs>
+            </svg>
+        </div>
+
+        <!-- основной тёплый текст -->
+        <div class="greeting-text">
+            <p>💐 Дорогая мама, Земфира! 💐</p>
+            <p>С Международным женским днём! <br> Ты — самый родной и светлый человек в моей жизни.</p>
+            <p>Пусть эта весна подарит тебе море улыбок, тепло солнца и аромат самых красивых цветов. Оставайся такой же нежной, мудрой и прекрасной.</p>
+            <p>Спасибо тебе за всё, за твою заботу и бесконечную любовь. Ты — мой главный источник вдохновения.</p>
+            <p style="font-size:1.6rem; margin-top:25px;">🌷🌷🌷</p>
+        </div>
+
+        <!-- подпись от того, кто дарит (от лица ребёнка) -->
+        <div class="signature">
+            С любовью, <br> твой сын/твоя дочь 🤍
+        </div>
+
+        <div class="small-note">
+            ✨ 8 марта 2026 ✨
+        </div>
+        
+        <!-- ещё немного цветов -->
+        <div class="flowers" style="margin-top:20px;">
+            <span>🌹</span>
+            <span>🌼</span>
+            <span>🌷</span>
+        </div>
+    </div>
+</body>
+</html>

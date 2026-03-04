@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, Мама!</title>
+    <style>
+        /* Светло-красный фон и базовые сбросы */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background-color: #ffe4e1;  /* нежный, светло-красный оттенок */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        /* Основная карточка-открытка */
+        .card {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7); /* полупрозрачный белый для мягкости */
+            backdrop-filter: blur(4px);
+            border-radius: 60px 60px 40px 40px;
+            box-shadow: 0 20px 40px rgba(180, 60, 60, 0.2);
+            padding: 40px 30px 50px;
+            text-align: center;
+            border: 3px solid #fff5f0;
+            transition: 0.3s;
+        }
+
+        /* украшения — цветы и сердечки псевдоэлементами */
+        .card::before,
+        .card::after {
+            content: "🌸";
+            font-size: 32px;
+            position: absolute;
+            opacity: 0.5;
+            transform: rotate(-10deg);
+        }
+
+        .card::before {
+            top: -10px;
+            left: -10px;
+        }
+
+        .card::after {
+            content: "🌷";
+            bottom: -10px;
+            right: -10px;
+            transform: rotate(10deg);
+        }
+
+        /* имя мамы — крупно и нежно */
+        .mom-name {
+            font-size: 4rem;
+            font-weight: 500;
+            color: #b1424d;
+            text-shadow: 4px 4px 0 #ffe4e1, 6px 6px 0 rgba(255, 200, 200, 0.7);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            word-break: break-word;
+        }
+
+        /* поздравление */
+        .greeting {
+            font-size: 2.2rem;
+            color: #9f3e48;
+            margin-bottom: 20px;
+            font-style: italic;
+            border-bottom: 3px dashed #eeb6b0;
+            padding-bottom: 25px;
+        }
+
+        /* тёплый текст */
+        .message {
+            background: rgba(255, 240, 240, 0.7);
+            border-radius: 60px 20px 60px 20px;
+            padding: 30px 25px;
+            margin: 30px 0;
+            font-size: 1.5rem;
+            color: #5c2a2f;
+            border: 2px solid #ffc4c4;
+            box-shadow: inset 0 0 20px #ffdbd4;
+        }
+
+        .message p {
+            margin-bottom: 20px;
+        }
+
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+
+        .heart-sign {
+            font-size: 2rem;
+            color: #d65f6e;
+            display: inline-block;
+            animation: pulse 1.8s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        /* красивый вензель из цветов */
+        .flower-decoration {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 2.2rem;
+            filter: drop-shadow(0 8px 8px #fbb);
+            margin: 20px 0 10px;
+        }
+
+        .flower-decoration span {
+            display: inline-block;
+            transform: rotate(5deg);
+        }
+
+        .flower-decoration span:nth-child(2) {
+            transform: rotate(-8deg) scale(1.1);
+            color: #d44e5c;
+        }
+
+        .flower-decoration span:nth-child(3) {
+            transform: rotate(3deg);
+        }
+
+        /* подпись */
+        .footer-note {
+            font-size: 1.8rem;
+            color: #ac4753;
+            margin-top: 40px;
+            font-weight: 500;
+            background: #ffdbd4;
+            display: inline-block;
+            padding: 12px 35px;
+            border-radius: 50px 10px 50px 10px;
+            border: 2px solid white;
+            box-shadow: 0 10px 15px #fcc;
+        }
+
+        /* маленькие цветочки по углам (дополнительно) */
+        .tiny-flowers {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 1.8rem;
+            opacity: 0.5;
+        }
+
+        /* адаптация для экранов поменьше */
+        @media (max-width: 550px) {
+            .mom-name { font-size: 3rem; }
+            .greeting { font-size: 1.8rem; }
+            .message { font-size: 1.2rem; padding: 20px; }
+            .footer-note { font-size: 1.4rem; }
+            .card { padding: 30px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- имя мамы с любовью -->
+        <div class="mom-name">Гузель ❤️</div>
+
+        <!-- поздравление с праздником -->
+        <div class="greeting">
+            С 8 Марта!
+        </div>
+
+        <!-- цветочная гирлянда для настроения -->
+        <div class="flower-decoration">
+            <span>🌷</span>
+            <span>🌹</span>
+            <span>🌼</span>
+            <span>🌸</span>
+            <span>🌺</span>
+        </div>
+
+        <!-- душевное сообщение -->
+        <div class="message">
+            <p>
+                🌷 Мамочка Гузель, с Международным женским днём! 🌷
+            </p>
+            <p>
+                Ты — самый родной и светлый человек. Пусть каждый день<br>
+                дарит тебе нежность, улыбки и тепло. Спасибо за твою заботу,<br>
+                доброту и бесконечную любовь.
+            </p>
+            <p>
+                Желаю тебе крепкого здоровья, весеннего цветения в душе,<br>
+                радости и исполнения самых заветных желаний. Пусть вокруг<br>
+                будет много красивых цветов, приятных сюрпризов и поводов<br>
+                для счастья.
+            </p>
+            <p>
+                <span class="heart-sign">❤️</span> 
+                Ты у меня самая лучшая! 
+                <span class="heart-sign">❤️</span>
+            </p>
+        </div>
+
+        <!-- маленькие цветочки между строк (чисто для красоты) -->
+        <div class="tiny-flowers">
+            <span>✽</span>
+            <span>✾</span>
+            <span>❀</span>
+            <span>✿</span>
+            <span>❁</span>
+            <span>✽</span>
+        </div>
+
+        <!-- подпись от ребёнка (или от того, кто дарит) -->
+        <div class="footer-note">
+            С любовью, твой Амирхан 💐
+        </div>
+
+        <!-- дополнительное украшение сбоку (ненавязчивое) -->
+        <div style="margin-top: 20px; font-size: 2rem; opacity: 0.6; line-height: 1.2;">
+            🌸 ⋆｡°✩ always your child ✩°｡⋆ 🌸
+        </div>
+    </div>
+</body>
+</html>

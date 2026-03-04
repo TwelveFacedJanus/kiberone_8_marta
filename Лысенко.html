@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, Мама!</title>
+    <style>
+        /* Стили для всей страницы */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, #ffd9e8 0%, #ffb6d1 100%);
+            /* Нежный розовый градиент */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Основная карточка-конверт для контента */
+        .greeting-card {
+            max-width: 800px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            /* Полупрозрачный белый */
+            backdrop-filter: blur(8px);
+            /* Эффект матового стекла */
+            border-radius: 50px 50px 30px 30px;
+            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.3),
+                        0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px 30px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* Стили для заголовка (самое важное) */
+        h1 {
+            font-size: 3rem;
+            color: #b34180;
+            /* Темно-розовый */
+            text-shadow: 3px 3px 0 #ffe4f2;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            word-break: break-word;
+        }
+
+        /* Подзаголовок (кому посвящается) */
+        .subtitle {
+            font-size: 2rem;
+            color: #b3306b;
+            background: rgba(255, 240, 245, 0.7);
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 60px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(255, 182, 193, 0.5);
+            border: 1px solid white;
+        }
+
+        /* Красивое разделение с цветами (иконки) */
+        .flower-divider {
+            font-size: 2.5rem;
+            margin: 25px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            color: #d162a4;
+        }
+
+        .flower-divider span {
+            font-size: 2rem;
+            opacity: 0.9;
+        }
+
+        .flower-divider::before,
+        .flower-divider::after {
+            content: "🌸";
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        /* Основной текст поздравления */
+        .message {
+            font-size: 1.4rem;
+            color: #4d2e3b;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 30px 25px;
+            border-radius: 40px;
+            margin: 25px 0;
+            border: 2px dashed #ff99c8;
+            text-align: left;
+            backdrop-filter: blur(4px);
+        }
+
+        .message p {
+            margin-bottom: 15px;
+        }
+
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Стили для пожеланий (список) */
+        .wishes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0 20px;
+        }
+
+        .wish-item {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 80px;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #b34180;
+            box-shadow: 0 10px 0 #ffb3c6, 0 5px 15px rgba(255, 20, 147, 0.2);
+            border: 2px solid #fff5fa;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            flex: 0 1 auto;
+        }
+
+        .wish-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 0 #ffa0b9, 0 8px 20px rgba(255, 105, 180, 0.4);
+        }
+
+        /* Блок с подписью */
+        .signature {
+            margin-top: 40px;
+            font-size: 2rem;
+            color: #a53f6c;
+            font-style: italic;
+            border-top: 2px solid #ffc0cb;
+            padding-top: 30px;
+        }
+
+        .signature p {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        .signature .name {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #d4146b;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        /* Декоративные элементы (цветочки по углам) */
+        .decor {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 3rem;
+            opacity: 0.3;
+            rotate: -15deg;
+            z-index: -1;
+        }
+
+        .decor-right {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 4rem;
+            opacity: 0.3;
+            rotate: 15deg;
+            z-index: -1;
+        }
+
+        /* Для красивого отображения на маленьких экранах */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .message {
+                font-size: 1.2rem;
+                padding: 20px;
+            }
+
+            .wish-item {
+                font-size: 1.1rem;
+                padding: 10px 18px;
+            }
+
+            .signature {
+                font-size: 1.3rem;
+            }
+
+            .greeting-card {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Фоновые декоративные цветы (не мешают основному контенту) -->
+    <div class="decor">🌸🌷🌸</div>
+    <div class="decor-right">🌷🌺🌷</div>
+
+    <!-- Главная открытка -->
+    <div class="greeting-card">
+        <h1>С 8 Марта,</h1>
+        <div class="subtitle">Мамочка!</div>
+
+        <div class="flower-divider">
+            <span>🌷</span> <span>🌹</span> <span>🌸</span>
+        </div>
+
+        <div class="message">
+            <p>💖 Родная моя, с Международным женским днём!</p>
+            <p>💐 Ты — самый главный человек в моей жизни, и в этот весенний день хочется сказать спасибо за твою заботу, ласку и бесконечное тепло.</p>
+            <p>🌸 Пусть каждый твой день будет наполнен радостью, улыбками и приятными сюрпризами. Сияй, как солнце, и будь счастлива!</p>
+        </div>
+
+        <!-- Короткие пожелания в облачках -->
+        <div class="wishes">
+            <span class="wish-item">🌸 Здоровья</span>
+            <span class="wish-item">🌷 Счастья</span>
+            <span class="wish-item">🌹 Улыбок</span>
+            <span class="wish-item">💐 Любви</span>
+            <span class="wish-item">🌺 Весны</span>
+        </div>
+
+        <!-- Подпись -->
+        <div class="signature">
+            <p>С любовью,</p>
+            <div class="name">Твой сын Анатолий ❤️</div>
+            <!-- Здесь можно написать своё имя, например: "Твой Саша" или "Твоя Аня" -->
+        </div>
+
+        <!-- Маленькая дополнительная строчка -->
+        <div style="margin-top: 20px; font-size: 1rem; color: #cc7aa3;">
+            🌷 8 марта 2026 🌷
+        </div>
+    </div>
+</body>
+</html>

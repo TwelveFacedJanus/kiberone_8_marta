@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, мама Дина!</title>
+    <style>
+        /* Сброс отступов и базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Нежно-розовый фон */
+            background-color: #ffe4ec;
+            /* Фон с рисунком роз (прозрачный PNG) */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.15"><path fill="%23d84b6e" d="M50 30c-5-10-20-10-25 0-3 5-1 12 4 16-5 4-8 10-5 16 4 7 13 8 20 4 3 7 11 11 18 7 6-3 9-10 7-16 6-2 10-8 8-15-2-7-9-10-15-7-2-7-8-12-15-10-2 1-4 3-5 5z" /><path fill="%23b23b5c" d="M40 45c-3-2-7-1-8 2-1 3 1 6 4 7-2 2-3 5-1 7 2 2 5 2 8 1 0 3 3 6 6 5 3-1 4-5 2-7 3 0 5-3 4-6-1-3-4-4-7-3-1-3-4-5-7-4-1 0-1 1-1 1z" /></svg>');
+            /* Растягиваем фон на всю страницу */
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            /* Размер маленьких розочек */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Основная карточка с поздравлением */
+        .card {
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.85);
+            /* Полупрозрачный белый, чтобы был виден фон с розами */
+            backdrop-filter: blur(3px);
+            /* Легкое размытие фона за карточкой */
+            border-radius: 30px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 35px rgba(210, 80, 120, 0.3);
+            text-align: center;
+            border: 2px solid #ffb6c1;
+            /* Светло-розовая рамка */
+        }
+
+        /* Стили для заголовка (имя мамы) */
+        h1 {
+            font-size: 3.5rem;
+            color: #b23b5c;
+            /* Темно-розовый */
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 0 #ffd9e6;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        /* Подзаголовок "С 8 марта" */
+        .subtitle {
+            font-size: 2rem;
+            color: #d84b6e;
+            margin-bottom: 20px;
+            font-weight: 300;
+            border-bottom: 2px dashed #ffb6c1;
+            padding-bottom: 15px;
+        }
+
+        /* Красивое сердечко/цветочек */
+        .flower-divider {
+            font-size: 2rem;
+            color: #ff8da1;
+            margin: 15px 0;
+            line-height: 1;
+        }
+
+        /* Основной текст поздравления */
+        .message {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: #5d3a3a;
+            margin: 25px 0;
+            padding: 0 10px;
+            font-weight: 400;
+            background: rgba(255, 225, 235, 0.5);
+            border-radius: 50px;
+            padding: 20px;
+        }
+
+        /* Выделение имени в тексте */
+        .message strong {
+            color: #c2185b;
+            font-size: 1.5rem;
+        }
+
+        /* Стиль для подписи */
+        .signature {
+            font-size: 1.5rem;
+            color: #a8325e;
+            margin-top: 25px;
+            font-style: italic;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* Маленькие розочки в подписи */
+        .signature span {
+            font-size: 2rem;
+        }
+
+        /* Адаптация для маленьких экранов */
+        @media (max-width: 500px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .message {
+                font-size: 1.1rem;
+                padding: 15px;
+            }
+
+            .card {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Заголовок с именем -->
+        <h1>Дина</h1>
+        <div class="subtitle">С 8 марта!</div>
+
+        <!-- Декоративный разделитель из цветочков -->
+        <div class="flower-divider">
+            🌹 🌷 🌹
+        </div>
+
+        <!-- Основное поздравление -->
+        <div class="message">
+            <strong>Мамочка Дина!</strong><br><br>
+            В этот чудесный весенний день хочу пожелать тебе<br>
+            бесконечного счастья, крепкого здоровья и море улыбок!<br>
+            Твоя доброта и забота согревают меня каждый день.<br>
+            Пусть жизнь дарит только приятные сюрпризы,<br>
+            а в доме всегда царит уют и гармония.<br>
+            Оставайся такой же прекрасной и красивой 
+        </div>
+
+        <!-- Ещё один цветочный разделитель -->
+        <div class="flower-divider">
+            🌸 🌺 🌸
+        </div>
+
+        <!-- Подпись с сердечками -->
+        <div class="signature">
+            <span>🌹</span> от ульяны  <span>🌹</span>
+        </div>
+
+        <!-- Маленький намёк на то, что розы на фоне - тоже для неё -->
+        <div style="margin-top: 20px; font-size: 0.9rem; color: #c96b8b;">
+            А эти розы на фоне — для тебя!
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, мама Катя!</title>
+    <style>
+        /* Сброс отступов и базовые настройки */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Основной красный фон, если изображение не загрузится */
+            background-color: #b3002f; 
+            /* Фон с картинкой роз — нежно и празднично */
+            background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" opacity="0.2"><path d="M30 10 Q35 5 40 10 Q45 15 40 20 Q35 25 30 20 Q25 25 20 20 Q15 15 20 10 Q25 5 30 10 Z" fill="%23ffc0cb" stroke="%23ffb6c1" stroke-width="1"/><circle cx="30" cy="12" r="3" fill="%23ffe4e1"/><path d="M30 20 Q33 28 30 35 Q27 28 30 20 Z" fill="%23ffa07a" opacity="0.9"/><circle cx="35" cy="13" r="1.5" fill="%23ffd700" opacity="0.8"/><circle cx="25" cy="13" r="1.5" fill="%23ffd700" opacity="0.8"/><circle cx="30" cy="8" r="2" fill="%23ffffe0" opacity="0.7"/></svg>');
+            background-repeat: space;
+            background-size: 100px 100px;
+            background-position: 0 0;
+            padding: 20px;
+            /* Анимация для легкого мерцания "лепестков" (опционально) */
+            animation: softGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes softGlow {
+            0% { background-color: #b3002f; }
+            100% { background-color: #c2334a; }
+        }
+
+        .card {
+            max-width: 720px;
+            width: 100%;
+            background: rgba(255, 245, 240, 0.9); /* нежный персиковый с прозрачностью */
+            backdrop-filter: blur(4px); /* легкое размытие фона */
+            border-radius: 60px 20px 60px 20px;
+            box-shadow: 0 25px 50px -8px rgba(120, 0, 20, 0.5), 0 0 0 2px #ffb6c1 inset, 0 0 0 4px #ffdab9 inset;
+            padding: 40px 30px;
+            text-align: center;
+            border: 2px solid #ff99aa;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+        }
+
+        /* Стили для крупной красной розы (декоративный элемент) */
+        .big-rose {
+            font-size: 6rem;
+            line-height: 1;
+            filter: drop-shadow(0 8px 12px #a0002a);
+            margin-bottom: 15px;
+            animation: petalWave 3s infinite ease-in-out;
+            display: inline-block;
+        }
+
+        @keyframes petalWave {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(3deg) scale(1.05); }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #a80028;
+            text-shadow: 3px 3px 0 #ffccd5;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            word-break: break-word;
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            color: #d44a6c;
+            font-weight: 400;
+            background: #ffe4e9d0;
+            display: inline-block;
+            padding: 0.2rem 2rem;
+            border-radius: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px #fbaaba;
+            border: 1px solid #ff99aa;
+        }
+
+        .greeting-text {
+            font-size: 1.35rem;
+            color: #3f0018;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 25px 20px;
+            border-radius: 50px 10px 50px 10px;
+            line-height: 1.6;
+            margin: 30px 0 20px;
+            box-shadow: 0 8px 18px #d43b5b inset, 0 8px 18px #ffb6c1;
+            border-left: 6px solid #e63946;
+            border-right: 6px solid #e63946;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .greeting-text p {
+            margin-bottom: 15px;
+        }
+
+        .greeting-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .signature {
+            font-size: 2rem;
+            font-style: italic;
+            color: #b21038;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            text-align: right;
+            padding-right: 25px;
+            background: linear-gradient(90deg, transparent, #ffe2e8);
+            border-radius: 0 30px 30px 0;
+        }
+
+        .heart-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            font-size: 2rem;
+            color: #c92a4b;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .footer-note {
+            font-size: 1.1rem;
+            color: #b3445c;
+            margin-top: 20px;
+            opacity: 0.9;
+            border-top: 2px dashed #ff8da1;
+            padding-top: 15px;
+        }
+
+        /* маленькие розочки-бутоньерки */
+        .mini-rose {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M15 8 Q18 4 22 8 Q26 12 22 16 Q18 20 15 16 Q12 20 8 16 Q4 12 8 8 Q12 4 15 8Z" fill="%23ff3b4a" opacity="0.9"/><circle cx="15" cy="9" r="3" fill="%23ffdb70"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            border: none;
+        }
+
+        /* украсим заголовок с двух сторон */
+        .flower-decoration {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* Адаптация под экраны */
+        @media (max-width: 500px) {
+            .card { padding: 25px 15px; }
+            h1 { font-size: 2.4rem; }
+            .subtitle { font-size: 1.6rem; }
+            .greeting-text { font-size: 1.1rem; }
+            .big-rose { font-size: 4.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- Декоративный ряд: розы по бокам от заголовка (символично) -->
+        <div class="flower-decoration">
+            <span class="mini-rose"></span>
+            <span class="big-rose">🌹</span> <!-- красивая красная роза эмодзи -->
+            <span class="mini-rose"></span>
+        </div>
+
+        <!-- Имя мамы крупно -->
+        <h1>Мама Катя</h1>
+        <div class="subtitle">С 8 Марта!</div>
+
+        <!-- Основной тёплый текст -->
+        <div class="greeting-text">
+            <p>✨ Дорогая, любимая мамочка Катя! ✨</p>
+            <p>В этот день весны, когда даже воздух наполнен нежностью, мне хочется сказать тебе самое главное: спасибо за твоё тепло, за твои руки, которые умеют согреть одним прикосновением, и за сердце, в котором всегда найдётся место для любви.</p>
+            <p>Ты — словно этот алый фон: яркая, красивая, стойкая, но при этом невероятно нежная, как лепестки роз. Пусть каждый твой день будет таким же прекрасным, как этот праздник. Пусть вокруг цветут цветы, звучат тёплые слова и сбываются даже маленькие мечты.</p>
+            <p>🌸 Оставайся такой же лучезарной, молодой и счастливой. Мы тебя очень любим! 🌸</p>
+        </div>
+
+        <!-- Подпись с уважением -->
+        <div class="signature">
+            ❤️ Твой     сын
+        </div>
+
+        <!-- Сердечки и маленькие розочки -->
+        <div class="heart-row">
+            <span>🌷</span> <span>🌺</span> <span>❤️</span> <span>🌹</span> <span>🌷</span> <span>❤️</span> <span>🌺</span>
+        </div>
+
+        <!-- Футер с тёплой нотой -->
+        <div class="footer-note">
+            <span>🌸</span> С любовью и нежностью, 8 марта 2026 <span>🌸</span>
+        </div>
+
+        <!-- Ещё одна декоративная роза (подчеркнёт тему) -->
+        <div style="margin-top: 20px; font-size: 3rem; opacity: 0.7; line-height: 1;">🌹</div>
+    </div>
+
+    <!-- Небольшая имитация падающих лепестков (чисто декоративно) -->
+    <div style="position: fixed; top: 10px; left: 10px; pointer-events: none; opacity: 0.3; font-size: 20px;">🌹</div>
+    <div style="position: fixed; bottom: 20px; right: 20px; pointer-events: none; opacity: 0.2; font-size: 45px; transform: rotate(15deg);">🌹</div>
+    <div style="position: fixed; top: 50px; right: 50px; pointer-events: none; opacity: 0.15; font-size: 30px;">🌹</div>
+    <div style="position: fixed; bottom: 80px; left: 30px; pointer-events: none; opacity: 0.2; font-size: 40px; transform: rotate(-10deg);">🌹</div>
+</body>
+</html>

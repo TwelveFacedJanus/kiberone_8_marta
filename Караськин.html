@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, мама Анна!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fce4e4;  /* нежный розовый базовый слой */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 240, 245, 0.8) 0%, transparent 30%),
+                radial-gradient(circle at 90% 70%, rgba(255, 220, 240, 0.9) 0%, transparent 35%),
+                radial-gradient(circle at 30% 80%, #ffd9e8 0%, transparent 40%),
+                radial-gradient(circle at 70% 15%, #ffe4ec 0%, transparent 30%);
+            padding: 20px;
+            margin: 0;
+        }
+
+        .card {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 250, 250, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 60px 60px 40px 40px;
+            box-shadow: 0 25px 40px rgba(199, 21, 133, 0.15),
+                        0 0 0 2px #fff9fb inset,
+                        0 0 0 4px rgba(255, 200, 220, 0.5);
+            padding: 40px 30px 50px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        /* розочка вверху */
+        .flower-decoration {
+            margin-top: -10px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .flower-svg {
+            width: 120px;
+            height: 100px;
+            filter: drop-shadow(0 8px 12px rgba(226, 43, 147, 0.2));
+        }
+
+        .greeting {
+            font-size: 2.8rem;
+            font-weight: 500;
+            color: #a52a6b;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            text-shadow: 3px 3px 0 #ffe1f0;
+            margin-bottom: 15px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        .greeting span {
+            background: linear-gradient(145deg, #d6417e, #b3437a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            display: inline-block;
+            padding: 0 10px;
+        }
+
+        .name-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #b63e76;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            background: rgba(255, 225, 240, 0.5);
+            display: inline-block;
+            padding: 0.2em 1.2em;
+            border-radius: 100px;
+            letter-spacing: 6px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 10px rgba(255, 120, 180, 0.3);
+            border: 2px dashed #ffb3d1;
+            font-family: 'Trebuchet MS', 'Lucida Sans', sans-serif;
+        }
+
+        .message-box {
+            background: rgba(255, 240, 245, 0.7);
+            border-radius: 50px;
+            padding: 30px 25px;
+            margin: 30px 0 20px;
+            border: 3px dotted #fba9c4;
+            box-shadow: 0 15px 20px #ffd9e8;
+        }
+
+        .message-box p {
+            font-size: 1.5rem;
+            color: #6d3b5e;
+            margin-bottom: 20px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .message-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .message-box i {
+            font-size: 1.9rem;
+            color: #ce4687;
+            font-style: italic;
+            background: #fff0f5;
+            padding: 6px 25px;
+            border-radius: 40px;
+            display: inline-block;
+        }
+
+        .rose-image-container {
+            margin: 30px 0 15px;
+            position: relative;
+        }
+
+        /* рисуем розу при помощи SVG (простая, но элегантная роза на фон) */
+        .rose-bg-svg {
+            max-width: 300px;
+            width: 80%;
+            height: auto;
+            filter: drop-shadow(0 10px 15px rgba(200, 80, 130, 0.4));
+            border-radius: 50%;
+            background: radial-gradient(circle, #fff3fa 10%, #ffe4f0 80%);
+            padding: 15px;
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            font-size: 1.4rem;
+            color: #aa6085;
+            border-top: 2px solid #ffbed9;
+            padding-top: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .footer-note span {
+            background: #ffd9ec;
+            padding: 8px 25px;
+            border-radius: 50px;
+            font-weight: 500;
+            box-shadow: 0 4px 0 #d48aae;
+        }
+
+        /* маленькие розовые сердечки вокруг (псевдоэлементы) */
+        .card::before,
+        .card::after {
+            content: "🌸";
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .card::before {
+            top: -15px;
+            left: -15px;
+            transform: rotate(-15deg);
+        }
+
+        .card::after {
+            bottom: -20px;
+            right: -20px;
+            transform: rotate(15deg);
+            content: "🌷";
+        }
+
+        /* для красоты — лепестки вокруг */
+        .petal-1, .petal-2 {
+            position: absolute;
+            font-size: 4rem;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        /* дополнительный мягкий фон */
+        .card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card .bg-rose-petal {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            font-size: 180px;
+            opacity: 0.1;
+            transform: rotate(25deg);
+            pointer-events: none;
+            z-index: 0;
+            color: #ffa5c3;
+        }
+
+        .card .bg-rose-petal-left {
+            bottom: -40px;
+            left: -40px;
+            font-size: 200px;
+            opacity: 0.1;
+            position: absolute;
+            transform: rotate(-15deg);
+            pointer-events: none;
+            z-index: 0;
+            color: #fba9c4;
+        }
+
+        /* весь контент поверх фоновых украшений */
+        .card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* делаем ссылку или псевдо-кнопку нежной */
+        .signature {
+            font-size: 1.3rem;
+            color: #ad4d7a;
+            margin-top: 15px;
+            background: #fff0f7;
+            padding: 10px 30px;
+            border-radius: 40px;
+            border: 1px solid #ffb7cf;
+            display: inline-block;
+        }
+
+        /* адаптация для телефонов */
+        @media (max-width: 550px) {
+            .greeting {
+                font-size: 2.2rem;
+            }
+            .name-title {
+                font-size: 2.4rem;
+                letter-spacing: 3px;
+            }
+            .message-box p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+
+        <!-- объёмная розочка в виде svg (прозрачный фон, но здесь сама роза) -->
+        <div class="flower-decoration">
+            <svg class="flower-svg" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#softGlow)">
+                    <path d="M50 30 C 35 10, 10 20, 20 40 C 5 45, 5 65, 25 65 C 30 80, 50 80, 58 68 C 70 80, 90 75, 82 58 C 98 45, 85 25, 65 30 C 60 15, 45 15, 50 30 Z" fill="#f98bb9" opacity="0.9"/>
+                    <circle cx="45" cy="42" r="8" fill="#fb9ec9" />
+                    <circle cx="63" cy="44" r="6" fill="#ffb0cf" />
+                    <path d="M30 50 Q 40 60, 50 55" stroke="#c94f7c" stroke-width="3" fill="none" stroke-linecap="round"/>
+                </g>
+                <defs>
+                    <filter id="softGlow" x="-10" y="-10" width="120" height="100" filterUnits="userSpaceOnUse">
+                        <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
+                        <feMerge>
+                            <feMergeNode in="blur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+            </svg>
+        </div>
+
+        <!-- Текст: с 8 марта + имя Анна -->
+        <div class="greeting">
+            С <span>8 Марта</span>, 
+        </div>
+        <div class="name-title">
+            АННА
+        </div>
+
+        <!-- основной нежный блок с поздравлением (приятные слова для мамы) -->
+        <div class="message-box">
+            <p>💗 Мамочка, с праздником весны! 💗</p>
+            <p>Ты — самая прекрасная, нежная и добрая. <br> Пусть каждый день дарит тебе улыбки, <br> тепло и море цветов.</p>
+            <i>Твоя любовь согревает сильнее солнца, <br> а забота — лучший подарок судьбы.</i>
+        </div>
+
+        <!-- Картинка розы (сделанная SVG прямо в файле, но можно назвать это изображением розы на фоне) -->
+        <div class="rose-image-container">
+            <svg class="rose-bg-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- фон круга розового оттенка -->
+                <circle cx="100" cy="100" r="85" fill="#ffe4f0" stroke="#ffb6c1" stroke-width="2" stroke-dasharray="6 6"/>
+                <!-- розочка в центре -->
+                <path d="M100 70 C 75 40, 40 70, 60 95 C 30 110, 50 145, 80 135 C 95 160, 130 160, 140 130 C 175 135, 170 90, 140 85 C 155 55, 115 45, 100 70Z" fill="#f75d9f" opacity="0.9"/>
+                <circle cx="100" cy="105" r="15" fill="#ff94c2"/>
+                <circle cx="123" cy="97" r="8" fill="#ffafcf"/>
+                <circle cx="85" cy="115" r="7" fill="#ffb7cf"/>
+                <!-- листочки -->
+                <path d="M150 120 Q 170 115, 175 135" stroke="#61988e" stroke-width="5" fill="none" stroke-linecap="round"/>
+                <path d="M45 110 Q 25 115, 20 95" stroke="#61988e" stroke-width="5" fill="none" stroke-linecap="round"/>
+                <!-- тычинки -->
+                <circle cx="103" cy="89" r="4" fill="#fff9b0"/>
+                <circle cx="113" cy="99" r="3" fill="#fff9b0"/>
+                <circle cx="92" cy="103" r="3" fill="#fff9b0"/>
+            </svg>
+        </div>
+
+        <!-- маленькие слова от сердца -->
+        <div class="footer-note">
+            <span>🌸 с благодарностью и любовью 🌸</span>
+        </div>
+        <div class="signature">
+            ❀ твой ребёнок ❀
+        </div>
+
+        <!-- фоновые декорации (лепестки) в виде символов -->
+        <div class="bg-rose-petal">🌹</div>
+        <div class="bg-rose-petal-left">🌷</div>
+    </div>
+
+    <!-- дополнительный мягкий розовый фон на всё тело (уже есть) — но добавим ещё блеск -->
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; background: radial-gradient(circle at 20% 40%, #ffd9e8, transparent 50%), radial-gradient(circle at 90% 70%, #fecfdf, transparent 60%);"></div>
+</body>
+</html>

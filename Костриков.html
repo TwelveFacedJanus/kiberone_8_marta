@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, Варя! 🌷</title>
+    <style>
+        /* Сбрасываем отступы и делаем фон нежным розовым */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #ffe4ec 0%, #ffd9e8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+            /* Немного текстуры для мягкости */
+            position: relative;
+        }
+
+        /* Полупрозрачные цветочные пятна на фоне (для воздуха) */
+        body::before {
+            content: "🌸🌼🌷";
+            font-size: 120px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            opacity: 0.1;
+            white-space: nowrap;
+            transform: rotate(-10deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: "🌺🌿🌹";
+            font-size: 150px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            opacity: 0.1;
+            transform: rotate(15deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .card {
+            max-width: 720px;
+            width: 100%;
+            background: rgba(255, 250, 245, 0.75); /* полупрозрачный тёплый белый */
+            backdrop-filter: blur(10px); /* эффект матового стекла */
+            border-radius: 60px 60px 60px 60px;
+            box-shadow: 0 25px 45px rgba(240, 128, 160, 0.25),
+                        0 10px 20px rgba(255, 190, 210, 0.5),
+                        inset 0 2px 8px rgba(255, 255, 255, 0.8);
+            padding: 40px 30px 50px 30px;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            position: relative;
+            z-index: 10;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        /* Заголовок с именем */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: #b3406c;
+            text-shadow: 2px 2px 0 #ffe2f0, 4px 4px 0 rgba(255, 200, 220, 0.7);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            word-break: break-word;
+        }
+
+        .subtitle {
+            font-size: 1.7rem;
+            color: #b35f7a;
+            background: rgba(255, 245, 250, 0.7);
+            display: inline-block;
+            padding: 10px 35px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            margin-bottom: 30px;
+            border: 1px solid white;
+            box-shadow: 0 4px 12px #ffb6c190;
+            font-weight: 400;
+        }
+
+        /* Блок с поздравлением */
+        .message {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(6px);
+            padding: 25px 25px;
+            border-radius: 50px;
+            margin: 25px 0 30px 0;
+            border: 2px solid #ffffffba;
+            box-shadow: inset 0 1px 10px #fff9, 0 15px 25px #fbb6d2a0;
+        }
+
+        .message p {
+            font-size: 1.5rem;
+            line-height: 1.5;
+            color: #4d2e3b;
+            margin-bottom: 20px;
+            font-weight: 450;
+        }
+
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+
+        .signature {
+            font-size: 1.7rem;
+            font-style: italic;
+            color: #b3426b;
+            margin-top: 15px;
+            border-top: 2px dashed #ffa5c3;
+            padding-top: 20px;
+            text-align: right;
+            padding-right: 15px;
+        }
+
+        /* Картинка котёнка (SVG + цветочек) */
+        .kitten-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0 10px;
+            filter: drop-shadow(0 15px 15px #f9accf);
+        }
+
+        .kitten-card {
+            background: #ffeef4;
+            border-radius: 130px 130px 80px 80px;
+            padding: 30px 30px 20px 30px;
+            display: inline-block;
+            border: 4px solid white;
+            box-shadow: 0 5px 0 #ffb7c5;
+        }
+
+        /* Рисуем милого котёнка с цветами в CSS (просто и стильно) */
+        .kitten {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        /* голова */
+        .head {
+            position: absolute;
+            width: 130px;
+            height: 120px;
+            background: #fbe3e9;  /* нежно-рыжий */
+            border-radius: 50% 50% 45% 45%;
+            top: 20px;
+            left: 35px;
+            box-shadow: 0 8px 0 #d89faa;
+            border: 2px solid #ffb7c0;
+        }
+
+        /* ушки */
+        .ear-left, .ear-right {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background: #fbd1db;
+            border-radius: 80% 0 30% 40%;
+            transform: rotate(-15deg);
+            top: 0px;
+            left: 25px;
+            border: 2px solid #ffb7c0;
+            box-shadow: -2px -4px 0 #ffeef2 inset;
+            z-index: 5;
+        }
+        .ear-right {
+            left: 115px;
+            transform: rotate(80deg) scaleX(-1);
+            border-radius: 80% 0 30% 40%;
+        }
+
+        /* внутренняя часть уха */
+        .ear-left::after, .ear-right::after {
+            content: "";
+            position: absolute;
+            width: 25px;
+            height: 30px;
+            background: #ffd0dc;
+            border-radius: 60% 0 30% 30%;
+            top: 8px;
+            left: 7px;
+            border: 1px solid #ffa5b8;
+        }
+        .ear-right::after {
+            left: 6px;
+            top: 8px;
+        }
+
+        /* глазки */
+        .eye-left, .eye-right {
+            position: absolute;
+            width: 25px;
+            height: 30px;
+            background: white;
+            border-radius: 50%;
+            top: 55px;
+            left: 55px;
+            border: 2px solid #b3828f;
+            overflow: hidden;
+            box-shadow: 0 0 0 3px #fce3ec;
+        }
+        .eye-right {
+            left: 100px;
+        }
+
+        .pupil {
+            width: 12px;
+            height: 18px;
+            background: #7f4e5a;
+            border-radius: 50%;
+            position: relative;
+            top: 6px;
+            left: 7px;
+            transition: 0.2s;
+        }
+
+        /* носик */
+        .nose {
+            position: absolute;
+            width: 20px;
+            height: 16px;
+            background: #ff9eb5;
+            border-radius: 45% 45% 40% 40%;
+            top: 85px;
+            left: 82px;
+            border: 1px solid #a06573;
+            box-shadow: 0 3px 0 #ce889b;
+            z-index: 10;
+        }
+
+        /* ротик */
+        .mouth {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-left: 3px solid #b2546e;
+            border-bottom: 3px solid #b2546e;
+            border-radius: 0 0 0 10px;
+            top: 100px;
+            left: 80px;
+            transform: rotate(-45deg);
+        }
+
+        /* усики */
+        .whisker-left, .whisker-right {
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background: #ac7b89;
+            top: 90px;
+            left: 35px;
+            transform: rotate(-10deg);
+            border-radius: 2px;
+            opacity: 0.6;
+        }
+        .whisker-left::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background: #ac7b89;
+            top: 8px;
+            left: 2px;
+            transform: rotate(8deg);
+            border-radius: 2px;
+        }
+        .whisker-right {
+            left: 170px;
+            transform: rotate(10deg);
+        }
+        .whisker-right::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background: #ac7b89;
+            top: 8px;
+            left: -5px;
+            transform: rotate(-8deg);
+            border-radius: 2px;
+        }
+
+        /* цветочек в лапке и вокруг */
+        .flower-1, .flower-2, .flower-3 {
+            position: absolute;
+            font-size: 2.5rem;
+            filter: drop-shadow(2px 6px 6px #f598b2);
+            z-index: 20;
+        }
+        .flower-1 { bottom: -5px; left: 10px; transform: rotate(-10deg); }
+        .flower-2 { bottom: -10px; right: 0px; transform: rotate(15deg); }
+        .flower-3 { top: -5px; right: 15px; transform: rotate(25deg); }
+
+        /* "лапка" с тюльпаном */
+        .paw-flower {
+            position: absolute;
+            bottom: -20px;
+            left: 70px;
+            font-size: 3rem;
+            filter: drop-shadow(0 10px 8px #eea5b9);
+            transform: rotate(5deg);
+            z-index: 25;
+        }
+
+        /* декоративные цветочки вокруг котёнка (эмоджи) */
+        .flowers-around {
+            margin-top: 20px;
+            font-size: 2rem;
+            letter-spacing: 15px;
+            filter: drop-shadow(0 5px 5px #ffb6c1);
+        }
+
+        /* маленький текст */
+        .footnote {
+            margin-top: 35px;
+            font-size: 1.2rem;
+            color: #ad6c83;
+            background: #fff0f5cc;
+            padding: 12px 20px;
+            border-radius: 100px;
+            display: inline-block;
+            backdrop-filter: blur(4px);
+            border: 1px solid white;
+        }
+
+        /* адаптация для экранов поменьше */
+        @media (max-width: 500px) {
+            h1 { font-size: 2.8rem; }
+            .subtitle { font-size: 1.3rem; }
+            .message p { font-size: 1.2rem; }
+            .kitten { transform: scale(0.9); }
+            .card { padding: 30px 15px; }
+        }
+    </style>
+</head>
+
+    <div class="card">
+        <h1>🌸 Варя! 🌸</h1>
+        <div class="subtitle">С 8 Марта 💐</div>
+
+        <!-- Котёнок с цветами (нарисован CSS + символы) -->
+        <div class="kitten-container">
+            <div class="kitten-card">
+                <div class="kitten">
+                    <!-- Ушки -->
+                    <div class="ear-left"></div>
+                    <div class="ear-right"></div>
+                    <!-- Голова -->
+                    <div class="head">
+                        <!-- Глазки уже на месте, но внутри head их разместим абсолютно -->
+                        <div class="eye-left"><div class="pupil"></div></div>
+                        <div class="eye-right"><div class="pupil"></div></div>
+                        <div class="nose"></div>
+                        <div class="mouth"></div>
+                        <!-- Усики (вынесены отдельно, чтобы перекрывать голову) -->
+                    </div>
+                    <!-- Усики поверх -->
+                    <div class="whisker-left"></div>
+                    <div class="whisker-right"></div>
+                    
+                    <!-- Цветочки вокруг котёнка (эмодзи) -->
+                    <div class="flower-1">🌷</div>
+                    <div class="flower-2">🌼</div>
+                    <div class="flower-3">🌸</div>
+                    <div class="paw-flower">🐱🌹</div> <!-- котолапка с розой -->
+                </div>
+                <div class="flowers-around">
+                    🌺 🌷 🌼 🌻 🌹
+                </div>
+            </div>
+        </div>
+
+        <!-- Тёплый текст для Вари -->
+        <div class="message">
+            <p>✨ Дорогая Варя! ✨</p>
+            <p>Пусть этой весной твоё сердце наполняется нежностью, как лепестки первых цветов. Оставайся такой же светлой, тёплой и удивительной. Пусть каждый день дарит улыбки, маленькие радости и море вдохновения. Ты — чудесная!</p>
+            <p>💐 С праздником, с 8 Марта! 💐</p>
+            <div class="signature">с любовью, твой брат артём! ❤️</div>
+        </div>
+
+        <!-- Маленький котёнок с цветочком в лапках (символизм) -->
+        <div class="footnote">
+            🐾 маленький котёнок дарит тюльпаны именно тебе 🐾
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>С 8 Марта, мамочка! ❤️</title>
+    <style>
+        /* === ОБНУЛЕНИЕ И ОСНОВНЫЕ СТИЛИ === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            /* Нежный градиентный фон */
+            background: linear-gradient(145deg, #fff9f9 0%, #fbe9f0 50%, #fdeff2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* === КОНТЕЙНЕР ДЛЯ ЦВЕТОВ НА ФОНЕ === */
+        /* Рисуем цветы с помощью псевдоэлементов и позиционирования */
+        .flowers-bg {
+            position: fixed; /* Фиксируем на весь экран, контент будет прокручиваться поверх */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Чтобы сквозь цветы можно было нажимать кнопки */
+            z-index: 1;
+        }
+
+        /* Общий стиль для одного цветка */
+        .flower {
+            position: absolute;
+            opacity: 0.5; /* Прозрачность, чтобы текст читался */
+            animation: floatFlower 10s infinite alternate ease-in-out;
+        }
+
+        /* Разные размеры и положение цветов */
+        .flower1 { width: 120px; height: 120px; top: 5%; left: 2%; animation-duration: 14s; }
+        .flower2 { width: 100px; height: 100px; bottom: 10%; right: 3%; animation-duration: 12s; }
+        .flower3 { width: 80px; height: 80px; top: 20%; right: 15%; animation-duration: 16s; }
+        .flower4 { width: 150px; height: 150px; bottom: 20%; left: 5%; animation-duration: 18s; }
+        .flower5 { width: 90px; height: 90px; top: 60%; right: 25%; animation-duration: 11s; }
+        .flower6 { width: 110px; height: 110px; top: 75%; left: 15%; animation-duration: 15s; }
+
+        /* Рисуем сам цветок с помощью border-radius */
+        .flower::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, #ffb6c1, #ff9eb5); /* Сердцевина светлее */
+            border-radius: 70% 30% 60% 40% / 50% 60% 40% 50%; /* Неправильная форма лепестков */
+            transform: rotate(15deg);
+            box-shadow: 0 10px 20px rgba(255, 140, 170, 0.2);
+        }
+
+        /* Добавляем второй слой "лепестков" */
+        .flower::after {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, #ffe4e9, #ffc0cb);
+            border-radius: 60% 40% 70% 30% / 40% 60% 30% 70%;
+            transform: rotate(-10deg);
+            opacity: 0.9;
+        }
+
+        /* Стебельки и листики для некоторых цветов (простая линия) */
+        .flower .stem {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 70px;
+            background: linear-gradient(to bottom, #a8e6a8, #7cc97c);
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%) rotate(5deg);
+            border-radius: 2px;
+            z-index: -1;
+        }
+        .flower .stem::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 8px;
+            background: #a8e6a8;
+            bottom: 15px;
+            left: -10px;
+            border-radius: 50% 0 0 50%;
+            transform: rotate(-20deg);
+        }
+         .flower .stem::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 8px;
+            background: #a8e6a8;
+            bottom: 30px;
+            right: -10px;
+            border-radius: 0 50% 50% 0;
+            transform: rotate(20deg);
+        }
+
+        /* Анимация покачивания */
+        @keyframes floatFlower {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-25px) rotate(5deg); }
+        }
+
+        /* === ОСНОВНАЯ ОТКРЫТКА (ПОВЕРХ ЦВЕТОВ) === */
+        .card {
+            position: relative;
+            z-index: 10; /* Чтобы открытка была поверх цветов */
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7); /* Полупрозрачное стекло */
+            backdrop-filter: blur(8px); /* Эффект матового стекла */
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 50px 20px 50px 20px;
+            box-shadow: 0 20px 40px rgba(245, 155, 185, 0.25), 0 0 0 2px rgba(255, 255, 255, 0.5) inset;
+            padding: 50px 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #ac4f73; /* Приглушенный розовый */
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-shadow: 3px 3px 0 rgba(255, 230, 240, 0.8);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #b95b7a;
+            margin-bottom: 30px;
+            font-style: italic;
+            font-weight: 300;
+            border-bottom: 2px dashed #fbc1cb;
+            padding-bottom: 20px;
+        }
+
+        .message {
+            background: rgba(255, 245, 250, 0.6);
+            padding: 30px 25px;
+            border-radius: 40px 10px 40px 10px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(240, 158, 188, 0.2);
+        }
+
+        .message p {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: #63444c;
+            margin-bottom: 20px;
+        }
+
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+
+        .signature {
+            font-size: 2rem;
+            margin-top: 25px;
+            color: #c06d8b;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        /* Красивая кнопка-ссылку можно добавить */
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 15px 35px;
+            background: #ffdae0;
+            color: #a14564;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 8px 0 #e6b4c2, 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #e6b4c2, 0 8px 15px rgba(0,0,0,0.1);
+            background: #ffd0d8;
+        }
+
+        /* Адаптация для телефонов */
+        @media (max-width: 600px) {
+            .card {
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            .subtitle {
+                font-size: 1.4rem;
+            }
+            .message p {
+                font-size: 1.1rem;
+            }
+            .flower1 { width: 80px; height: 80px; }
+            .flower2 { width: 70px; height: 70px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ФОН С РИСОВАННЫМИ ЦВЕТАМИ -->
+    <div class="flowers-bg">
+        <div class="flower flower1">
+            <div class="stem"></div>
+        </div>
+        <div class="flower flower2">
+            <div class="stem"></div>
+        </div>
+        <div class="flower flower3"></div> <!-- Без стебля для разнообразия -->
+        <div class="flower flower4">
+            <div class="stem"></div>
+        </div>
+        <div class="flower flower5"></div>
+        <div class="flower flower6"></div>
+        <!-- Можно добавить еще несколько цветов -->
+    </div>
+
+    <!-- ОСНОВНАЯ ОТКРЫТКА -->
+    <div class="card">
+        <h1>С 8 марта, Мамочка!</h1>
+        <div class="subtitle">С днем весны и красоты</div>
+
+        <div class="message">
+            <p>🌷 Мамочка, любимая, родная, <br>
+            С праздником весны я поздравляю! <br>
+            Ты — мой свет в окошке и отрада, <br>
+            Лучше и дороже сердца надо.</p>
+
+            <p>🌸 Пусть улыбка не сходит с лица, <br>
+            А в душе не будет зимы и конца. <br>
+            Я тебя целую, обнимаю <br>
+            И цветы эти сердцем дарю!</p>
+            <div class="signature">Твой любящий Дима ❤️</div>
+        </div>
+
+        <!-- Маленькая кнопка для интерактива (можно убрать или заменить на фото) -->
+        <a href="#" class="btn" onclick="alert('Мамочка, я тебя очень сильно люблю! 💐'); return false;">Нажми, я тебя люблю</a>
+
+    </div>
+
+    <!-- Дополнительные маленькие цветочки, которые падают (по желанию) -->
+    <script>
+        // Можно добавить простую анимацию появления приветствия, но это не обязательно.
+        // Сайт и так работает.
+    </script>
+
+</body>
+</html>
