@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, Мама!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(145deg, #f9e6e6 0%, #fad0d0 100%);
+            color: #4a2c2c;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px 10px;
+        }
+
+        /* Контейнер для всего контента */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            border-radius: 50px 50px 30px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px 30px;
+            border: 2px solid rgba(255, 215, 215, 0.8);
+        }
+
+        /* Заголовок */
+        h1 {
+            text-align: center;
+            font-size: 3.5rem;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: #b03a3a;
+            text-shadow: 2px 2px 0 #ffe1e1;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .subheader {
+            text-align: center;
+            font-size: 1.4rem;
+            color: #7a4b4b;
+            margin-bottom: 40px;
+            font-style: italic;
+            border-bottom: 2px dashed #e7a5a5;
+            padding-bottom: 15px;
+        }
+
+        /* Оформление текста */
+        .greeting {
+            background: rgba(255, 240, 240, 0.6);
+            padding: 30px 25px;
+            border-radius: 40px;
+            margin-bottom: 40px;
+            border: 1px solid #fcc;
+        }
+
+        .greeting p {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            text-indent: 30px;
+        }
+
+        .greeting p:last-child {
+            margin-bottom: 0;
+        }
+
+        .signature {
+            text-align: right;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #b34e4e;
+            margin-top: 20px;
+            font-style: normal;
+            text-indent: 0 !important;
+        }
+
+        /* Блок музыки */
+        .music-player {
+            text-align: center;
+            margin: 30px 0 20px;
+            padding: 15px;
+            background: #ffe5e5;
+            border-radius: 60px;
+            border: 2px solid #ffb3b3;
+        }
+
+        .music-toggle {
+            background: #b34e4e;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 0 #6d2f2f;
+        }
+
+        .music-toggle:hover {
+            background: #c55a5a;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 0 #6d2f2f;
+        }
+
+        .music-toggle:active {
+            transform: translateY(5px);
+            box-shadow: 0 2px 0 #6d2f2f;
+        }
+
+        .music-note {
+            font-size: 1rem;
+            margin-top: 10px;
+            color: #a26b6b;
+        }
+
+        /* Конструктор букета */
+        .bouquet-section {
+            background: #fff3f3;
+            border-radius: 60px 60px 30px 30px;
+            padding: 30px 20px;
+            border: 3px solid #fad7d7;
+            margin-top: 40px;
+        }
+
+        .bouquet-title {
+            font-size: 2rem;
+            text-align: center;
+            color: #9e4949;
+            margin-bottom: 20px;
+        }
+
+        .bouquet-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            min-height: 150px;
+            background: rgba(255, 215, 215, 0.3);
+            border-radius: 100px 100px 40px 40px;
+            padding: 30px 15px;
+            margin-bottom: 30px;
+            border: 2px solid #fccaca;
+        }
+
+        .flower-item {
+            font-size: 3rem;
+            display: inline-block;
+            filter: drop-shadow(0 5px 3px rgba(0,0,0,0.2));
+            animation: wave 2s infinite ease-in-out;
+            transform-origin: bottom;
+            cursor: default;
+            transition: transform 0.2s;
+        }
+
+        .flower-item:hover {
+            transform: scale(1.2) rotate(3deg);
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+        }
+
+        .flower-controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .flower-btn {
+            font-size: 2rem;
+            background: #ffe0e0;
+            border: 3px solid #d99696;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 0 #b16d6d;
+        }
+
+        .flower-btn:hover {
+            background: #ffcccc;
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 8px 0 #b16d6d;
+        }
+
+        .flower-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #b16d6d;
+        }
+
+        .reset-btn {
+            background: #d7b3b3;
+            color: #3d2b2b;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            border: 2px solid #b18585;
+            transition: 0.2s;
+        }
+
+        .reset-btn:hover {
+            background: #e0bcbc;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #8f5e5e;
+            font-size: 1rem;
+        }
+
+        /* Адаптация под телефоны */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.8rem; }
+            .container { padding: 20px; }
+            .flower-btn { width: 60px; height: 60px; font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌸 С 8 марта, Мама! 🌸</h1>
+        <div class="subheader">Самой любимой, нежной и родной</div>
+
+        <!-- Музыкальный блок (плеер) -->
+        <div class="music-player">
+            <button class="music-toggle" id="musicToggle">🎵 Включить музыку</button>
+            <div class="music-note">♫ П.И. Чайковский — Вальс цветов (нажми, чтобы заиграло) ♫</div>
+        </div>
+
+        <!-- Текст поздравления (много) -->
+        <div class="greeting">
+            <p>Мамочка, моя родная! В этот чудесный весенний день, 8 Марта, мне хочется сказать тебе самые важные слова. Ты — первый человек, которого я увидел(а) в этой жизни, и с тех пор ты стала для меня целым миром, полным тепла, заботы и любви.</p>
+            <p>Твои руки всегда пахнут добротой и уютом. Твои глаза сияют счастьем, когда у нас всё хорошо, и они же наполняются слезами, если нам тяжело. Ты чувствуешь наше настроение за тысячи километров, ты переживаешь за каждую мелочь и радуешься нашим победам так, будто это твои собственные.</p>
+            <p>Спасибо тебе за бессонные ночи у моей кроватки, когда я болел(а). Спасибо за вкуснейшие пирожки, за сказки на ночь, за то, что научила меня отличать хорошее от плохого, за то, что всегда верила в меня, даже когда я сам(а) в себя не верил(а).</p>
+            <p>Ты — мой ангел-хранитель, моя опора и мой пример для подражания. Я хочу пожелать тебе бесконечного здоровья, чтобы ни одна болячка к тебе не цеплялась. Пусть каждый твой день будет наполнен светом, радостью и приятными сюрпризами. Пусть глаза всегда сияют от счастья, а на душе будет тепло и спокойно.</p>
+            <p>Ты заслуживаешь только самого лучшего! Пусть эта весна подарит тебе море цветов, океан улыбок и исполнение всех, даже самых смелых, желаний. Знай: ты у меня самая лучшая, самая красивая и самая молодая! Я тебя очень крепко обнимаю и целую!</p>
+            <div class="signature">Твой(я) любящий(ая) сын/дочь. ❤️</div>
+        </div>
+
+        <!-- КОНСТРУКТОР БУКЕТА -->
+        <div class="bouquet-section">
+            <h2 class="bouquet-title">🌷 Собери букет для мамы 🌷</h2>
+            
+            <!-- Здесь будет отображаться собранный букет -->
+            <div id="bouquet" class="bouquet-container">
+                <!-- Цветы будут добавляться сюда через JS -->
+                <span style="color: #b7a1a1;">Нажимай на цветочки, чтобы собрать букет</span>
+            </div>
+
+            <!-- Кнопки выбора цветов -->
+            <div class="flower-controls">
+                <button class="flower-btn" data-flower="🌹">🌹</button>
+                <button class="flower-btn" data-flower="🌷">🌷</button>
+                <button class="flower-btn" data-flower="🌸">🌸</button>
+                <button class="flower-btn" data-flower="🌼">🌼</button>
+                <button class="flower-btn" data-flower="🌺">🌺</button>
+                <button class="flower-btn" data-flower="🌻">🌻</button>
+                <button class="flower-btn" data-flower="💐">💐</button>
+            </div>
+
+            <!-- Кнопка сброса букета -->
+            <div style="text-align: center;">
+                <button id="resetBouquet" class="reset-btn">✨ Собрать заново ✨</button>
+            </div>
+            <p style="text-align: center; margin-top: 15px; color: #b34e4e;">❤️ Нажми на цветок, чтобы он появился в букете</p>
+        </div>
+        
+        <footer>
+            С любовью и нежностью. С 8 Марта, мамочка!
+        </footer>
+    </div>
+
+    <!-- Аудио элемент (скрытый) -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mp3">
+        <!-- Это демо-трек. Если хочешь классику, можно заменить ссылку. Но чтобы точно работало, я взял свободный трек. В данном случае это инструментальная композиция. -->
+        Ваш браузер не поддерживает аудио.
+    </audio>
+
+    <script>
+        (function() {
+            // --- Управление музыкой ---
+            const music = document.getElementById('bgMusic');
+            const musicBtn = document.getElementById('musicToggle');
+            let isPlaying = false;
+
+            // Устанавливаем громкость
+            music.volume = 0.4;
+
+            // Функция воспроизведения/паузы (с обработкой автозапуска)
+            function toggleMusic() {
+                if (isPlaying) {
+                    music.pause();
+                    musicBtn.textContent = '🎵 Включить музыку';
+                } else {
+                    // Пытаемся воспроизвести (нужен клик пользователя)
+                    music.play()
+                        .then(() => {
+                            isPlaying = true;
+                            musicBtn.textContent = '⏸️ Выключить музыку';
+                        })
+                        .catch(error => {
+                            console.log('Ошибка воспроизведения:', error);
+                            alert('Нажми на кнопку ещё раз, чтобы музыка заиграла (браузер блокирует автозапуск).');
+                        });
+                }
+            }
+
+            // Обработчик клика по кнопке музыки
+            musicBtn.addEventListener('click', function() {
+                if (isPlaying) {
+                    music.pause();
+                    isPlaying = false;
+                    musicBtn.textContent = '🎵 Включить музыку';
+                } else {
+                    music.play()
+                        .then(() => {
+                            isPlaying = true;
+                            musicBtn.textContent = '⏸️ Выключить музыку';
+                        })
+                        .catch(() => {
+                            // Редкий случай, но всё же
+                            alert('Пожалуйста, нажми ещё раз для включения музыки.');
+                        });
+                }
+            });
+
+            // Когда музыка заканчивается (если не loop) - меняем кнопку, но у нас loop, так что необязательно.
+            music.addEventListener('ended', function() {
+                isPlaying = false;
+                musicBtn.textContent = '🎵 Включить музыку';
+            });
+
+            // --- Конструктор букета ---
+            const bouquetDiv = document.getElementById('bouquet');
+            const resetBtn = document.getElementById('resetBouquet');
+            
+            // Функция для отображения текущего букета из массива
+            let currentBouquet = []; // Массив строк (цветочков)
+
+            function renderBouquet() {
+                if (currentBouquet.length === 0) {
+                    // Если букет пуст, показываем подсказку
+                    bouquetDiv.innerHTML = '<span style="color: #b7a1a1;">Букет пока пуст... Добавь цветочков! 🌸</span>';
+                } else {
+                    // Превращаем каждый элемент в спаны с классом для анимации
+                    bouquetDiv.innerHTML = currentBouquet.map(flower => 
+                        `<span class="flower-item">${flower}</span>`
+                    ).join('');
+                }
+            }
+
+            // Добавление цветка в букет
+            function addFlower(flowerEmoji) {
+                currentBouquet.push(flowerEmoji);
+                renderBouquet();
+            }
+
+            // Сброс букета
+            function resetBouquet() {
+                currentBouquet = [];
+                renderBouquet();
+            }
+
+            // Обработчики на кнопки цветов
+            document.querySelectorAll('.flower-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const flower = this.getAttribute('data-flower');
+                    addFlower(flower);
+                });
+            });
+
+            // Сброс по кнопке
+            resetBtn.addEventListener('click', resetBouquet);
+
+            // Инициализация пустого букета
+            resetBouquet();
+
+            // Чтобы при первом клике на любую кнопку цветка (если вдруг не включили музыку), 
+            // это не мешало. Просто оставляем как есть.
+        })();
+    </script>
+    <!-- Пояснение: музыка в примере стоит инструментальная, но ты можешь заменить ссылку в <source> на свой любимый вальс. -->
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, мамочка! 💐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #2b1b1b;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ------------------------------- */
+        /*       ФОН — БУКЕТЫ РОЗ          */
+        /* ------------------------------- */
+
+        .rose-bouquets {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.55;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            padding: 30px 40px;
+            gap: 20px 40px;
+            font-size: 90px;
+            color: #ffd0d0;
+            transform: rotate(0deg);
+            line-height: 1.4;
+            filter: drop-shadow(0 10px 15px rgba(100, 30, 30, 0.3));
+        }
+
+        .rose-bouquets-secondary {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.4;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: flex-end;
+            padding: 80px 20px;
+            font-size: 110px;
+            color: #f5c3c3;
+            transform: rotate(3deg);
+            mix-blend-mode: overlay;
+        }
+
+        .rose-bouquets span, 
+        .rose-bouquets-secondary span {
+            display: inline-block;
+            filter: drop-shadow(0 8px 8px #531818);
+            transform: rotate(var(--rot, 0deg));
+            transition: transform 0.2s ease;
+            font-size: 1.2em;
+        }
+
+        .rose-bouquets span:nth-child(odd) { --rot: -12deg; }
+        .rose-bouquets span:nth-child(3n) { --rot: 8deg; }
+        .rose-bouquets span:nth-child(5n+2) { --rot: 15deg; }
+        .rose-bouquets-secondary span:nth-child(4n) { --rot: -18deg; }
+        .rose-bouquets-secondary span:nth-child(7n+3) { --rot: 22deg; }
+
+        /* ------------------------------- */
+        /*       КАРТОЧКА ПОЗДРАВЛЕНИЯ     */
+        /* ------------------------------- */
+        .card {
+            max-width: 850px;
+            width: 100%;
+            background: rgba(35, 20, 20, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 70px 30px 70px 30px;
+            box-shadow: 0 40px 60px rgba(0,0,0,0.6),
+                        0 0 0 3px rgba(230, 180, 180, 0.3) inset,
+                        0 0 30px #ffc1c1;
+            padding: 55px 50px 65px;
+            position: relative;
+            z-index: 100;
+            border: 2px solid rgba(255, 215, 215, 0.5);
+            text-align: center;
+            color: #fff4ed;
+            transition: 0.3s;
+        }
+
+        /* декоративные розы по уголкам (маленькие, не в тексте) */
+        .card::before,
+        .card::after {
+            content: "🌹";
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.6;
+            filter: drop-shadow(0 0 5px gold);
+            z-index: 10;
+        }
+        .card::before {
+            top: 15px;
+            left: 25px;
+            transform: rotate(-25deg);
+        }
+        .card::after {
+            bottom: 15px;
+            right: 25px;
+            transform: rotate(155deg);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #ffe2e2;
+            text-shadow: 4px 4px 0 #9b5a5a, 6px 6px 0 rgba(0,0,0,0.3);
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+            font-family: 'Playfair Display', 'Georgia', serif;
+            line-height: 1.2;
+        }
+
+        .sub {
+            font-size: 2rem;
+            color: #ffc9c9;
+            margin-bottom: 35px;
+            border-bottom: 3px double #e6a5a5;
+            padding-bottom: 15px;
+            display: inline-block;
+            font-style: italic;
+            font-weight: 300;
+            text-shadow: 2px 2px 2px #3d1e1e;
+        }
+
+        .greeting-image {
+            width: 190px;
+            height: 190px;
+            margin: 20px auto 35px;
+            background: rgba(70, 30, 30, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            box-shadow: 0 20px 30px #3d1e1e, inset 0 -8px 15px #dbb4b4;
+            border: 5px solid rgba(255, 200, 200, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .poem {
+            background: rgba(45, 25, 25, 0.65);
+            backdrop-filter: blur(5px);
+            border-radius: 70px 20px 70px 20px;
+            padding: 40px 40px;
+            margin: 30px 0 40px;
+            border-left: 10px solid #ff9d9d;
+            border-right: 10px solid #ffb48a;
+            font-size: 1.7rem;
+            line-height: 2.4rem;
+            color: #fff0f0;
+            box-shadow: 0 25px 35px #2a1414;
+            text-align: left;
+            word-spacing: 3px;
+            white-space: pre-line;
+            font-weight: 400;
+            text-shadow: 1px 1px 2px #1f0f0f;
+        }
+
+        .poem p {
+            margin-bottom: 25px;
+        }
+
+        .poem i {
+            color: #ffc1c1;
+            font-size: 2rem;
+            font-style: italic;
+        }
+
+        .signature {
+            font-size: 2.5rem;
+            margin: 50px 0 25px;
+            color: #ffdbdb;
+            font-weight: 400;
+            text-align: right;
+            padding-right: 30px;
+            font-family: 'Great Vibes', cursive;
+            text-shadow: 3px 3px 5px #3b1e1e;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .btn {
+            background: rgba(170, 80, 80, 0.8);
+            backdrop-filter: blur(3px);
+            border: 3px solid #ffcbcb;
+            padding: 20px 45px;
+            border-radius: 60px;
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: #fff0e6;
+            text-shadow: 1px 1px 3px #4b2626;
+            box-shadow: 0 12px 0 #632828, 0 18px 30px #230f0f;
+            cursor: pointer;
+            transition: 0.1s linear;
+            letter-spacing: 2px;
+            font-family: 'Segoe UI', sans-serif;
+            flex: 0 1 auto;
+        }
+
+        .btn:active {
+            transform: translateY(10px);
+            box-shadow: 0 4px 0 #632828, 0 18px 30px #230f0f;
+        }
+
+        .btn-flower {
+            background: rgba(155, 90, 90, 0.8);
+            border-color: #ffdbb5;
+        }
+
+        .spring-note {
+            margin-top: 45px;
+            font-size: 1.8rem;
+            color: #ffd9d9;
+            background: rgba(60, 30, 30, 0.6);
+            backdrop-filter: blur(4px);
+            padding: 18px 30px;
+            border-radius: 100px;
+            display: inline-block;
+            border: 3px dotted #ffb4b4;
+            font-weight: 300;
+        }
+
+        .emoji-big {
+            font-size: 2.5rem;
+            filter: drop-shadow(0 6px 6px #5a2b2b);
+        }
+
+        footer {
+            margin-top: 30px;
+            color: #e6bcbc;
+            font-size: 1.3rem;
+            font-style: italic;
+        }
+
+        #surpriseMessage {
+            margin-top: 35px;
+            font-size: 2.5rem;
+            background: rgba(130, 60, 60, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 60px;
+            border: 4px solid #ffb5b5;
+            color: #ffefef;
+            font-weight: 500;
+        }
+
+        @media (max-width: 650px) {
+            h1 { font-size: 2.8rem; }
+            .poem { font-size: 1.3rem; line-height: 2rem; padding: 25px; }
+            .greeting-image { width: 150px; height: 150px; font-size: 80px; }
+            .card { padding: 35px 20px; }
+            .btn { padding: 15px 25px; font-size: 1.3rem; }
+            .sub { font-size: 1.5rem; }
+            .signature { font-size: 2rem; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ============  БУКЕТЫ РОЗ НА ФОНЕ (только свежие розы, без 🥀) ============ -->
+    <div class="rose-bouquets">
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+    </div>
+    <div class="rose-bouquets-secondary">
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+    </div>
+    <!-- ============================================= -->
+
+    <main class="card">
+        <!-- ЧИСТЫЙ ТЕКСТ: без цветочков в заголовке и подзаголовке -->
+        <h1>С 8 марта, мама!</h1>
+        <div class="sub">Самой прекрасной женщине</div>
+
+
+
+        <div class="poem">
+            <p>🌹 <i>Мамочка, родная,</i> с Женским днём!<br>
+            Ты — наш свет в окошке, ты — тепло во всём.<br>
+            Пусть букеты роз тебя сегодня кружат,<br>
+            Аромат весны пусть нежно вскружит.</p>
+
+            <p>🌹 Ты достойна счастья, нежности, тепла,<br>
+            Чтоб душа, как роза, пышно расцвела.<br>
+            Каждый лепесток — моя любовь к тебе,<br>
+            Ты — подарок судеб, ты — судьба в судьбе.</p>
+
+            <p>🌹 Спасибо за улыбку, за твои глаза,<br>
+            За бессонные ночи, за добро, а не за зла.<br>
+            Мама, будь здорова, молода всегда,<br>
+            Пусть обходят стороной печали и года.</p>
+
+            <p>💐 Эти розы — символ моей большой любви,<br>
+            Ты меня растила в счастье и в крови.<br>
+            С 8 Марта, мама! Радости, добра,<br>
+            Ты — моя богиня, ты — моя весна!</p>
+        </div>
+
+        <div class="signature">
+            🌹 Твои любящие дети
+        </div>
+
+        <div class="btn-container">
+            <button class="btn" id="flowerBtn">🌹 Нажми, если любишь маму</button>
+            <button class="btn btn-flower" id="hugBtn">🌹 Отправить букет роз</button>
+        </div>
+
+        <div id="surpriseMessage" style="display: none;"></div>
+
+        <div class="spring-note">
+            <span class="emoji-big">🌹🌿🌹</span>  С любовью и розами!  <span class="emoji-big">🌹🌹</span>
+        </div>
+
+        <footer>
+            8 марта 2026 ❤️ Тёплые объятия
+        </footer>
+    </main>
+
+    <script>
+        (function() {
+            const flowerBtn = document.getElementById('flowerBtn');
+            const hugBtn = document.getElementById('hugBtn');
+            const surpriseDiv = document.getElementById('surpriseMessage');
+
+            function showMessage(text, emoji) {
+                surpriseDiv.style.display = 'block';
+                surpriseDiv.innerHTML = `${emoji} ${text} ${emoji}`;
+                surpriseDiv.style.opacity = '0';
+                surpriseDiv.style.transition = 'opacity 0.5s';
+                setTimeout(() => { surpriseDiv.style.opacity = '1'; }, 20);
+
+                setTimeout(() => {
+                    surpriseDiv.style.opacity = '0';
+                    setTimeout(() => {
+                        surpriseDiv.style.display = 'none';
+                    }, 500);
+                }, 5000);
+            }
+
+            flowerBtn.addEventListener('click', function() {
+                showMessage('Мамуля, ты лучшая! 🌹', '🌹');
+                document.querySelector('.card').style.background = 'rgba(45, 25, 25, 0.75)';
+                setTimeout(() => {
+                    document.querySelector('.card').style.background = 'rgba(35, 20, 20, 0.65)';
+                }, 400);
+            });
+
+            hugBtn.addEventListener('click', function() {
+                showMessage('Миллион алых роз для тебя! 🌹', '🌹');
+                document.body.style.backgroundColor = '#3d2323';
+                setTimeout(() => {
+                    document.body.style.backgroundColor = '#2b1b1b';
+                }, 700);
+                const imgDiv = document.querySelector('.greeting-image');
+                imgDiv.style.transform = 'scale(1.2) rotate(5deg)';
+                imgDiv.style.transition = 'transform 0.3s';
+                setTimeout(() => {
+                    imgDiv.style.transform = 'scale(1) rotate(0deg)';
+                }, 300);
+            });
+
+            const poemBlock = document.querySelector('.poem');
+            poemBlock.addEventListener('mouseenter', () => {
+                poemBlock.style.backgroundColor = 'rgba(65, 35, 35, 0.75)';
+                poemBlock.style.transition = '0.4s';
+            });
+            poemBlock.addEventListener('mouseleave', () => {
+                poemBlock.style.backgroundColor = 'rgba(45, 25, 25, 0.65)';
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта от Гоголя ❀ (только аниме-вайб)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Пастельный фон с лёгкой текстурой бумаги */
+        body {
+            background: linear-gradient(145deg, #fbe9f0 0%, #f5e6e8 70%, #f1dee5 100%);
+            font-family: 'Georgia', 'Times New Roman', 'Yu Mincho', '游明朝', serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            background-image: 
+                radial-gradient(circle at 10% 30%, rgba(255, 240, 235, 0.5) 0px, transparent 8%),
+                radial-gradient(circle at 95% 70%, rgba(245, 215, 220, 0.4) 0px, transparent 15%),
+                repeating-linear-gradient(45deg, rgba(200, 170, 160, 0.02) 0px, rgba(200, 170, 160, 0.02) 2px, transparent 2px, transparent 6px);
+        }
+
+        /* основной конверт-открытка */
+        .card {
+            max-width: 750px;
+            width: 100%;
+            background: rgba(255, 250, 245, 0.7);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border-radius: 42px 18px 42px 18px;
+            box-shadow: 0 20px 40px -10px rgba(140, 100, 120, 0.3),
+                        0 8px 15px rgba(180, 140, 150, 0.2),
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+            padding: 40px 35px;
+            border: 1px solid #f2d7da;
+            transition: all 0.2s ease;
+        }
+
+        /* перьевые штрихи — намёк на Гоголя */
+        .card::before {
+            content: "✎  ✦  ✦  ✎";
+            position: absolute;
+            top: -10px;
+            right: 30px;
+            font-size: 22px;
+            color: #cd9ca6;
+            letter-spacing: 10px;
+            opacity: 0.6;
+            font-family: 'Segoe UI', cursive;
+            transform: rotate(3deg);
+        }
+
+        /* атмосферный акцент — сургучная печать */
+        .seal {
+            width: 70px;
+            height: 70px;
+            background: #eac0c4;
+            border-radius: 50%;
+            position: relative;
+            margin: -70px 0 20px auto;
+            box-shadow: 0 4px 8px rgba(130, 80, 80, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: #895b66;
+            border: 3px solid #f6e1e4;
+            transform: rotate(10deg);
+        }
+
+        .seal span {
+            transform: rotate(-10deg);
+            display: inline-block;
+            font-family: 'Parisienne', cursive;
+            font-size: 24px;
+        }
+
+        /* шапка с именем */
+        .gogol-quote {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #7c5a63;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .gogol-quote span:first-child {
+            font-size: 2.6rem;
+            background: #eed7dc;
+            width: 65px;
+            height: 65px;
+            border-radius: 65% 35% 55% 45% / 40% 50% 50% 60%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #644e55;
+            box-shadow: 0 6px 0 #d3b1bb;
+            font-family: 'Trebuchet MS', fantasy;
+        }
+
+        /* основной текст */
+        .message {
+            margin: 30px 0 25px 0;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #3d2e33;
+            position: relative;
+            padding-left: 20px;
+            border-left: 3px solid #dbb6c2;
+        }
+
+        .message p {
+            margin-bottom: 22px;
+            text-indent: 2em;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+        }
+
+        .message p:first-of-type {
+            margin-top: 0;
+            text-indent: 0;
+        }
+
+        .message p:first-of-type::first-letter {
+            font-size: 3.5rem;
+            float: left;
+            line-height: 0.8;
+            margin-right: 10px;
+            color: #a5727f;
+            font-family: 'Times New Roman', cursive;
+            font-weight: 500;
+            text-shadow: 2px 2px 0 #f0cfd6;
+        }
+
+        /* подпись + аниме-деталь */
+        .signature-block {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 35px;
+            border-top: 2px dashed #e7c7cf;
+            padding-top: 25px;
+        }
+
+        .signature {
+            font-size: 2.2rem;
+            font-family: 'Parisienne', 'Brush Script MT', cursive;
+            color: #7d5562;
+            line-height: 1;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .signature small {
+            font-size: 1.1rem;
+            font-family: 'Georgia', serif;
+            color: #aa808b;
+            display: block;
+            margin-top: 5px;
+            letter-spacing: 1.5px;
+            font-style: italic;
+        }
+
+        .anime-icon {
+            background: #d5b1bb;
+            border-radius: 30px 30px 30px 5px;
+            padding: 8px 20px;
+            color: #fff0f2;
+            font-size: 1.3rem;
+            font-weight: 400;
+            box-shadow: 0 4px 0 #9d7782;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid white;
+        }
+
+        .anime-icon span {
+            font-size: 1.8rem;
+            filter: drop-shadow(2px 2px 0 #ab7d8b);
+        }
+
+        /* нижняя часть */
+        .footer-note {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #9f7f8b;
+            background: rgba(248, 230, 235, 0.5);
+            padding: 12px 20px;
+            border-radius: 50px 10px 50px 10px;
+            border: 1px solid #e8c9cf;
+        }
+
+        .footer-note i {
+            font-style: normal;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-note .date {
+            font-family: monospace;
+            background: #f1dbe0;
+            padding: 5px 12px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+        }
+
+        .flourish {
+            display: inline-block;
+            font-size: 2rem;
+            opacity: 0.3;
+            margin: 0 5px;
+            color: #bba3ab;
+            user-select: none;
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 25px 20px;
+            }
+            .gogol-quote {
+                font-size: 1.3rem;
+            }
+            .signature {
+                font-size: 1.7rem;
+            }
+            .message {
+                font-size: 1rem;
+            }
+            .signature-block {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="card">
+        <!-- печать -->
+        <div class="seal">
+            <span>☻</span>
+        </div>
+
+        <!-- шапка -->
+        <div class="gogol-quote">
+            <span>ご</span>
+            <span>Николай Гоголь</span>
+            <span class="flourish">⚡</span>
+        </div>
+        <div style="margin-left: 65px; font-style: italic; color: #8c6975; border-bottom: 1px dotted #dbb6c2; padding-bottom: 5px;">
+            «Проза бродячих псов» · комедийный спецвыпуск
+        </div>
+
+        <!-- текст (никаких отсылок к творчеству) -->
+        <div class="message">
+            <p>
+                Дорогие мои, прекраснейшие из созданий! С 8 марта! Я, Николай Гоголь, тот самый загадочный тип с безуминкой 
+                из аниме про вооружённых детективов, решил лично проконтролировать, чтобы ваш праздник прошёл без драмы. 
+                Потому что драму я оставляю для сцены, а в жизни вы заслуживаете только комедию положений с хорошим концом!
+            </p>
+            <p>
+                Желаю вам, чтобы все ваши «особые способности» (ну, кроме способности есть шоколад и не толстеть) проявлялись 
+                только для исполнения желаний. Пусть начальники будут мягкими, как пастельный фон этой открытки, 
+                а парни — внимательными, как Ацуши к клиентам кафе. Хотя нет, лучше как Дадзай к розыгрышам. Тоже вариант!
+            </p>
+            <p>
+                Кстати, если кто-то вдруг скажет, что вы слишком много смеётесь — отправляйте его ко мне. Я научу его смеяться 
+                так, что он забудет, почему вообще ворчал. А если серьёзно — сияйте, дурачьтесь, носите красивое, 
+                пусть весна цветёт в вашей душе круглый год, а не только по календарю.
+            </p>
+            <p style="font-style: italic; color: #764c5a;">
+                P.S. И помните: если жизнь подкинет сюжетный твист — просто представьте, что это новая серия, 
+                и вы в ней главный герой. А героини, как известно, всегда выходят сухими из воды и с идеальной укладкой.
+                <span style="display: inline-block; background: #ebd2d9; padding: 2px 12px; border-radius: 25px; margin-left: 10px; font-weight: normal;">🌸 あなたは私にインスピレーションを与えます 🌸</span>
+            </p>
+        </div>
+
+        <!-- подпись -->
+        <div class="signature-block">
+            <div class="signature">
+                Н. В. Гоголь
+                <small>— тот самый, в кепке —</small>
+            </div>
+            <div class="anime-icon">
+                <span>🖋️</span> Bungo Stray Dogs <span style="font-size: 1.2rem;">🎭</span>
+            </div>
+        </div>
+
+        <!-- нижняя часть -->
+        <div class="footer-note">
+            <i>
+                <span>✎</span> Никакой литературы — только любовь и аниме!
+            </i>
+            <span class="date">8 марта · без драмы</span>
+        </div>
+
+        <!-- перья (просто потому что красиво) -->
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; opacity: 0.5; font-size: 24px;">
+            <span style="transform: rotate(-15deg); display: inline-block;">🪶</span>
+            <span style="transform: rotate(5deg); display: inline-block;">🪶</span>
+            <span style="transform: rotate(25deg); display: inline-block;">🪶</span>
+        </div>
+    </div>
+</body>
+</html> 

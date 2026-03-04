@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, мамочка! 💐</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital@1&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #f3e7ff 0%, #ffe4f0 50%, #f3d9ff 100%);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Ландыши - декоративные элементы */
+        .lily-of-the-valley {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .lily-1 {
+            bottom: 0;
+            left: 0;
+            transform: rotate(-5deg);
+        }
+
+        .lily-2 {
+            top: 20px;
+            right: 20px;
+            transform: rotate(10deg) scaleX(-1);
+        }
+
+        .lily-3 {
+            bottom: 30px;
+            right: 50px;
+            transform: rotate(15deg);
+        }
+
+        .lily-4 {
+            top: 100px;
+            left: 30px;
+            transform: rotate(-10deg);
+        }
+
+        .stem {
+            width: 3px;
+            height: 150px;
+            background: linear-gradient(to top, #6b8e4c, #8cb369);
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 30px;
+            height: 60px;
+            background: linear-gradient(135deg, #7d9e6b, #5a7d4a);
+            border-radius: 50% 50% 50% 0;
+            transform-origin: top left;
+        }
+
+        .leaf-left {
+            left: -15px;
+            top: 40px;
+            transform: rotate(-30deg);
+        }
+
+        .leaf-right {
+            right: -15px;
+            top: 70px;
+            transform: rotate(60deg) scaleX(-1);
+        }
+
+        .flowers {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+
+        .flower {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .flower::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #ffe066;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .flower-1 { transform: rotate(45deg) translateY(-5px); }
+        .flower-2 { transform: rotate(30deg) translateY(-2px); }
+        .flower-3 { transform: rotate(60deg) translateY(-3px); }
+        .flower-4 { transform: rotate(15deg) translateY(-4px); }
+        .flower-5 { transform: rotate(75deg) translateY(-1px); }
+
+        /* Основной контент */
+        .card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 40px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1),
+                        0 0 0 2px rgba(255, 255, 255, 0.5);
+            padding: 50px 40px;
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .content {
+            text-align: center;
+            color: #4a2b4a;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: #8b5e8b;
+            text-shadow: 2px 2px 15px rgba(255, 255, 255, 0.8);
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: #b47ab3;
+            font-weight: 300;
+            font-style: italic;
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.6);
+            padding-bottom: 20px;
+        }
+
+        .poem {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin: 40px 0;
+            color: #4d2e4d;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .poem p {
+            margin: 15px 0;
+            font-weight: 400;
+        }
+
+        .poem i {
+            color: #b2629e;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gallery {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .flower-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            box-shadow: 0 5px 15px rgba(210, 130, 190, 0.3);
+            transition: 0.3s;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .flower-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .signature {
+            font-size: 1.3em;
+            margin-top: 30px;
+            color: #a56ba5;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .signature span {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            color: #d46bb3;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 20px;
+            background: rgba(255, 215, 240, 0.5);
+            border-radius: 5px;
+            animation: fall 3s infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3em;
+            }
+            
+            .subtitle {
+                font-size: 1.4em;
+            }
+            
+            .poem {
+                font-size: 1em;
+                padding: 20px;
+            }
+            
+            .card {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Дополнительные декоративные элементы */
+        .sparkle {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 20px;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Декоративные ландыши -->
+    <div class="lily-of-the-valley lily-1">
+        <div class="stem">
+            <div class="leaf leaf-left"></div>
+            <div class="leaf leaf-right"></div>
+            <div class="flowers">
+                <div class="flower flower-1"></div>
+                <div class="flower flower-2"></div>
+                <div class="flower flower-3"></div>
+                <div class="flower flower-4"></div>
+                <div class="flower flower-5"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lily-of-the-valley lily-2">
+        <div class="stem">
+            <div class="leaf leaf-left"></div>
+            <div class="leaf leaf-right"></div>
+            <div class="flowers">
+                <div class="flower flower-1"></div>
+                <div class="flower flower-2"></div>
+                <div class="flower flower-3"></div>
+                <div class="flower flower-4"></div>
+                <div class="flower flower-5"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lily-of-the-valley lily-3">
+        <div class="stem">
+            <div class="leaf leaf-left"></div>
+            <div class="leaf leaf-right"></div>
+            <div class="flowers">
+                <div class="flower flower-1"></div>
+                <div class="flower flower-2"></div>
+                <div class="flower flower-3"></div>
+                <div class="flower flower-4"></div>
+                <div class="flower flower-5"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lily-of-the-valley lily-4">
+        <div class="stem">
+            <div class="leaf leaf-left"></div>
+            <div class="leaf leaf-right"></div>
+            <div class="flowers">
+                <div class="flower flower-1"></div>
+                <div class="flower flower-2"></div>
+                <div class="flower flower-3"></div>
+                <div class="flower flower-4"></div>
+                <div class="flower flower-5"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Основная открытка -->
+    <div class="card">
+        <div class="content">
+            <h1>С 8 марта,<br>мамочка!</h1>
+            <div class="subtitle">Самой любимой и нежной</div>
+            
+            <div class="poem">
+                <p>🌷 Мамочка любимая, с праздником весны!</p>
+                <p>В этот день чудесный все сбываются мечты.</p>
+                <p>Пусть подснежник нежный дарит вдохновенье,</p>
+                <p>А прекрасное весеннее настроенье</p>
+                <p><i>Окружит заботой, лаской и теплом,</i></p>
+                <p><i>Сделает счастливой каждый день и дом!</i></p>
+            </div>
+
+            <div class="gallery">
+                <div class="flower-icon">🌷</div>
+                <div class="flower-icon">🌹</div>
+                <div class="flower-icon">🌼</div>
+                <div class="flower-icon">🌸</div>
+                <div class="flower-icon">🌺</div>
+                <div class="flower-icon">🌿</div>
+            </div>
+
+            <div class="signature">
+                <span>❤️</span> С любовью, твоя семья <span>❤️</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Анимированные элементы (конфетти) -->
+    <div class="confetti">
+        <div class="confetti-piece" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="confetti-piece" style="left: 30%; animation-delay: 1s;"></div>
+        <div class="confetti-piece" style="left: 50%; animation-delay: 0.5s;"></div>
+        <div class="confetti-piece" style="left: 70%; animation-delay: 1.5s;"></div>
+        <div class="confetti-piece" style="left: 90%; animation-delay: 0.2s;"></div>
+    </div>
+
+    <!-- Добавляем мерцающие звездочки -->
+    <div class="sparkle" style="top: 10%; left: 5%;">✨</div>
+    <div class="sparkle" style="top: 20%; right: 8%; animation-delay: 0.5s;">✨</div>
+    <div class="sparkle" style="bottom: 15%; left: 12%; animation-delay: 1s;">✨</div>
+    <div class="sparkle" style="bottom: 25%; right: 15%; animation-delay: 1.5s;">✨</div>
+</body>
+</html>

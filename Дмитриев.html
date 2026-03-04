@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, мамочка!</title>
+    <style>
+        /* Обнуление и базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fce4e4 0%, #ffe9e0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            margin: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Цветочный фон (легкие полупрозрачные цветы) */
+        body::before {
+            content: "🌸🌼🌷🌺🌸🌼🌷🌺";
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 100%;
+            font-size: 70px;
+            color: rgba(255, 200, 220, 0.25);
+            white-space: nowrap;
+            pointer-events: none;
+            transform: rotate(-5deg);
+            z-index: 0;
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial circle, rgba(255, 182, 193, 0.2) 0%, transparent 70%;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Основная карточка */
+        .card {
+            position: relative;
+            z-index: 10;
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 48px 48px 48px 48px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 2px #fff9 inset, 0 0 0 4px #ffb6c1 inset;
+            padding: 32px 24px 48px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        /* Шапка с ленточкой */
+        .ribbon {
+            background: #ff8a9f;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            padding: 12px 20px;
+            border-radius: 60px;
+            display: inline-block;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 0 #b2455a, 0 10px 20px rgba(0,0,0,0.1);
+            text-transform: uppercase;
+            transform: rotate(-1deg);
+            border: 2px solid #fff3;
+        }
+
+        /* Главный заголовок */
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #aa2e4a;
+            text-shadow: 3px 3px 0 #ffc2c9, 5px 5px 0 rgba(255, 240, 240, 0.8);
+            margin-bottom: 8px;
+            line-height: 1.1;
+            word-break: break-word;
+        }
+
+        .subtitle {
+            font-size: 1.7rem;
+            color: #b34e6b;
+            font-weight: 500;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fd7e9b, #fb9a9a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Букет из эмодзи (анимация) */
+        .flower-bouquet {
+            font-size: 3.8rem;
+            line-height: 1.4;
+            filter: drop-shadow(0 8px 12px #ffb6c1);
+            margin: 8px 0 16px;
+            animation: sway 3s infinite ease-in-out;
+        }
+
+        @keyframes sway {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* Милые стихи */
+        .poem {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 80px 20px 80px 20px;
+            padding: 28px 24px;
+            margin: 28px 0 24px;
+            border: 3px dashed #ff99aa;
+            box-shadow: 0 4px 15px #ffd9e2;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #4a2c2f;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+        }
+
+        .poem p {
+            margin: 8px 0;
+        }
+
+        .poem i {
+            color: #c1446d;
+            font-style: italic;
+        }
+
+        .poem .heart {
+            font-size: 2rem;
+            display: block;
+            margin-top: 16px;
+            color: #e63968;
+        }
+
+        /* Кнопка с сюрпризом */
+        .surprise-btn {
+            background: #ff7b9c;
+            border: none;
+            color: white;
+            font-size: 1.7rem;
+            font-weight: bold;
+            padding: 20px 40px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 12px 0 #b03a5a, 0 10px 25px #ffb3c6;
+            transition: 0.08s linear;
+            margin: 30px 0 20px;
+            border: 2px solid #fff9;
+            transform: rotate(0.5deg);
+            width: auto;
+            display: inline-block;
+        }
+
+        .surprise-btn:active {
+            transform: translateY(8px);
+            box-shadow: 0 4px 0 #b03a5a, 0 10px 20px #ffb3c6;
+        }
+
+        /* Скрытое послание (появляется по клику) */
+        .secret-message {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, margin 0.3s;
+            opacity: 0;
+            background: #fff0f3;
+            border-radius: 40px 8px 40px 8px;
+            padding: 0 20px;
+            margin: 0 10px;
+            border: 2px solid #ffb2c0;
+            color: #9f3e55;
+            font-size: 1.5rem;
+            line-height: 1.6;
+            box-shadow: inset 0 0 20px #ffe2e8;
+            pointer-events: none;
+        }
+
+        .secret-message.show {
+            max-height: 300px;      /* хватит для текста */
+            opacity: 1;
+            padding: 25px 20px;
+            margin: 30px 10px 20px;
+            pointer-events: auto;
+        }
+
+        .secret-message p {
+            margin: 5px 0;
+        }
+
+        .secret-message span {
+            font-size: 2.2rem;
+            display: block;
+        }
+
+        /* Красивые стили для подписи */
+        .signature {
+            margin-top: 40px;
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: #b84b6b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            border-top: 2px solid #ffb8c9;
+            padding-top: 25px;
+        }
+
+        .signature img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 4px 10px #ffa5b9;
+        }
+
+        /* Декоративные элементы (цветочки по углам) */
+        .decor-left {
+            position: absolute;
+            bottom: -10px;
+            left: -10px;
+            font-size: 90px;
+            opacity: 0.2;
+            transform: rotate(15deg);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .decor-right {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 100px;
+            opacity: 0.2;
+            transform: rotate(-20deg);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Адаптация под маленькие экраны */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.4rem;
+            }
+            .subtitle {
+                font-size: 1.4rem;
+            }
+            .flower-bouquet {
+                font-size: 2.8rem;
+            }
+            .poem {
+                font-size: 1.1rem;
+                padding: 20px 16px;
+            }
+            .surprise-btn {
+                font-size: 1.3rem;
+                padding: 16px 28px;
+            }
+            .secret-message {
+                font-size: 1.2rem;
+            }
+            .card {
+                padding: 24px 16px 32px;
+            }
+        }
+
+        /* Доп. блеск */
+        .sparkle {
+            background: radial circle, #fff7d7 2px, transparent 3px;
+            background-size: 30px 30px;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="sparkle"></div>
+    <div class="decor-left">🌷🌸🌷</div>
+    <div class="decor-right">🌼🌺🌼</div>
+
+    <main class="card">
+        <div class="ribbon">С днём весны и красоты!</div>
+        
+        <h1>С 8 Марта,<br> мамочка!</h1>
+        <div class="subtitle">Самая лучшая и родная</div>
+
+        <!-- Анимированный букет -->
+        <div class="flower-bouquet">
+            🌸🌼🌷🌸🌼🌷🌸🌼🌷
+        </div>
+
+        <!-- Трогательные стихи -->
+        <div class="poem">
+            <p>Ты — мой свет в окошке,<br> 
+            Ты — мой тёплый лучик.<br>
+            <i>Пусть сбываются мечты</i> <br>
+            И всё будет лучше!</p>
+            <p>Спасибо за тепло и ласку,<br> 
+            За доброту и за заботу.<br>
+            Ты даришь мне свою улыбку —<br>
+            Прекрасней нет на свете взгляда!</p>
+            <div class="heart">❤️ ❤️ ❤️</div>
+        </div>
+
+        <!-- Кнопка сюрприза -->
+        <button class="surprise-btn" id="surpriseBtn">🌸 Нажми меня 🌸</button>
+
+        <!-- Скрытое сообщение, которое появляется -->
+        <div class="secret-message" id="secretMessage">
+            <p>✨ Мамуля, ты — самое дорогое, что у меня есть! ✨</p>
+            <p>🌷 Пусть каждый день будет таким же прекрасным, как ты!<br>
+            🌺 Здоровья, счастья и море цветов!<br>
+            💐 Целую крепко-крепко!</p>
+            <span>💖💐💖</span>
+        </div>
+
+        <!-- Подпись с именем (можешь изменить) -->
+        <div class="signature">
+            <span>С любовью,</span>
+            <!-- Здесь можно вставить фото или просто имя -->
+            <span style="background: #ffd2dc; padding: 8px 22px; border-radius: 50px; box-shadow: 0 4px 0 #c4778b;">Олег</span>
+            <span>🌿</span>
+        </div>
+    </main>
+
+    <script>
+        (function() {
+            // Сюрприз при клике на кнопку
+            const btn = document.getElementById('surpriseBtn');
+            const secretDiv = document.getElementById('secretMessage');
+
+            // Добавляем обработчик
+            btn.addEventListener('click', function() {
+                // Переключаем класс show
+                secretDiv.classList.toggle('show');
+
+                // Если хотим, чтобы при первом клике еще и конфетти эффект (виртуально)
+                if (secretDiv.classList.contains('show')) {
+                    // легкая вибрация кнопки (эффект)
+                    btn.style.transform = 'scale(0.95)';
+                    setTimeout(() => btn.style.transform = '', 150);
+                    
+                    // Можно добавить дополнительную анимацию на страницу, но оставим просто смену сообщения
+                    // имитация "вспышки" фона
+                    document.body.style.backgroundColor = '#fff0f0';
+                    setTimeout(() => document.body.style.backgroundColor = '', 300);
+                }
+            });
+
+            // Дополнительный эффект — при загрузке страницы легкое появление (все уже красиво)
+            // Но можно автоматически через 2 секунди показать подсказку (необязательно)
+            // Я добавлю только мигание подсказки у кнопки на мобилках? Нет, не нужно.
+            
+            // Ховер-эффект для кнопки через js необязателен (он есть в css)
+            // Но добавим маленькую "радость" — меняем текст кнопки при наведении?
+            // Не обязательно, но сделаем забавно:
+            btn.addEventListener('mouseenter', function() {
+                btn.innerText = '🌺 Ты где? Нажимай 🌺';
+            });
+            btn.addEventListener('mouseleave', function() {
+                btn.innerText = '🌸 Нажми меня 🌸';
+            });
+
+            // Также по клику можно менять цветочек
+            let bouquet = document.querySelector('.flower-bouquet');
+            if (bouquet) {
+                bouquet.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.2) rotate(5deg)';
+                    setTimeout(() => this.style.transform = '', 200);
+                });
+            }
+        })();
+    </script>
+
+    <!-- Совсем крошечный дополнительный стиль для изюминки -->
+    <style>
+        /* пусть все будет идеально */
+        .card:hover {
+            box-shadow: 0 30px 60px -10px rgba(200, 100, 120, 0.5), 0 0 0 2px #ffe7ed inset, 0 0 0 5px #ffc1cc inset;
+            transition: 0.3s;
+        }
+        .surprise-btn:hover {
+            background: #ff98b2;
+            box-shadow: 0 10px 0 #b24560, 0 12px 25px #ffb6c9;
+        }
+        .surprise-btn:active {
+            transform: translateY(8px);
+            box-shadow: 0 4px 0 #b03a5a, 0 10px 20px #ffb3c6;
+        }
+        /* чтобы красиво показывалось сообщение */
+        .secret-message.show {
+            max-height: 400px; /* запас */
+        }
+        /* подсветка текста */
+        ::selection {
+            background: #ffb7c5;
+            color: #2d0e14;
+        }
+    </style>
+</body>
+</html>

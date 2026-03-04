@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Маме на 8 марта 💐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fbc2c2 0%, #f8e0b0 70%, #c7e9c0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Падающие цветочки (очень легкий декор) */
+        body::before {
+            content: "🌸🌼🌷🌺🌻";
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+            letter-spacing: 30px;
+            animation: fall 18s linear infinite;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-50px) rotate(0deg); opacity: 0.2; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .card {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(6px);
+            border-radius: 50px 50px 40px 40px;
+            box-shadow: 0 30px 45px rgba(231, 127, 169, 0.25), 0 15px 25px rgba(0,0,0,0.1), inset 0 2px 10px rgba(255,255,240,0.8);
+            padding: 35px 30px 25px;
+            border: 3px solid rgba(255, 245, 215, 0.9);
+            transition: 0.3s;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        /* Внутреннее сияние */
+        .card-inner {
+            background: rgba(253, 247, 242, 0.6);
+            border-radius: 40px 40px 30px 30px;
+            padding: 25px 20px 15px;
+            box-shadow: inset 0 0 0 2px #fff9e6, inset 0 0 20px #ffe6d5;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 600;
+            color: #ad5a7a;
+            text-shadow: 3px 3px 0 #fce2c1, 5px 5px 0 rgba(250, 200, 190, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-family: 'Brush Script MT', 'cursive', 'Segoe UI';
+            transform: rotate(-0.5deg);
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.7rem;
+            color: #b35976;
+            background: #ffefd2;
+            display: inline-block;
+            padding: 0.3rem 2rem;
+            border-radius: 60px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 0 #e6b3af;
+            font-weight: 500;
+            border: 2px dashed #feb5b5;
+        }
+
+        .flowers-bouquet {
+            font-size: 4rem;
+            line-height: 1.3;
+            filter: drop-shadow(0 8px 10px #ffb3b3);
+            margin: 5px 0 10px;
+            animation: sway 4s ease-in-out infinite;
+            transform-origin: bottom;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(3deg); }
+            75% { transform: rotate(-3deg); }
+        }
+
+        .message {
+            background: #fffaf2;
+            padding: 30px 25px;
+            border-radius: 60px 60px 40px 40px;
+            margin: 25px 0 20px;
+            border: 4px double #ffc2c2;
+            box-shadow: inset 0 0 25px #ffe3d6, 0 12px 18px -10px #e7adad;
+        }
+
+        .message p {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #634d5c;
+            margin-bottom: 20px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.4;
+        }
+
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+
+        .heart-line {
+            font-size: 2.5rem;
+            color: #f15a7e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 10px 0;
+        }
+
+        .heart-line span {
+            font-size: 3rem;
+            line-height: 1;
+        }
+
+        .signature {
+            font-size: 2.7rem;
+            font-weight: 600;
+            color: #985f6e;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-family: 'Brush Script MT', 'cursive', sans-serif;
+            text-shadow: 1px 1px 0 white, 3px 3px 0 #feb0b0;
+            border-top: 3px dotted #ffbf9f;
+            padding-top: 25px;
+            display: inline-block;
+            width: auto;
+            padding-left: 40px;
+            padding-right: 40px;
+            background: rgba(255, 240, 220, 0.5);
+            border-radius: 80px;
+            letter-spacing: 2px;
+        }
+
+        .date-march {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            color: #9f6d7a;
+            margin: 15px 0 5px;
+            font-weight: 500;
+        }
+
+        .date-march .eight {
+            font-size: 2.5rem;
+            background: #ffcf96;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #963d5a;
+            font-weight: bold;
+            border: 3px solid white;
+        }
+
+        /* Маленькие украшения снизу */
+        .footer-spring {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 25px 0 10px;
+            font-size: 2rem;
+            opacity: 0.8;
+        }
+
+        /* Адаптация */
+        @media (max-width: 550px) {
+            h1 { font-size: 2.5rem; }
+            .message p { font-size: 1.3rem; }
+            .signature { font-size: 2.1rem; }
+            .flowers-bouquet { font-size: 3rem; }
+            .card { padding: 20px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-inner">
+            <h1>С 8 Марта, мамочка!</h1>
+            <div class="subtitle">🌷🌹  весна пришла  🌹🌷</div>
+
+            <div class="flowers-bouquet">
+                🌸🌼🌺  💐  🌻🌷🌼
+            </div>
+
+            <div class="message">
+                <p>
+                    💖 Спасибо тебе за тепло, заботу<br>
+                    и бесконечную нежность. 💖
+                </p>
+                <div class="heart-line">
+                    <span>❤️</span>  <span>🌿</span>  <span>❤️</span>
+                </div>
+                <p>
+                    Пусть каждый день дарит улыбки,<br>
+                    а сердце всегда согревает любовь!
+                </p>
+            </div>
+
+            <!-- Строка с 8 марта -->
+            <div class="date-march">
+                <span class="eight">8</span>
+                <span>🌷 Марта 🌷</span>
+                <span class="eight">8</span>
+            </div>
+
+            <!-- Твоя подпись (как ты просила) -->
+            <div class="signature">
+                ❀ твоя любящая дочь ❀
+            </div>
+
+            <!-- Немного весеннего настроения снизу -->
+            <div class="footer-spring">
+                <span>🐞</span> <span>✨</span> <span>🐦</span> <span>✨</span> <span>🐞</span>
+            </div>
+
+            <!-- Дополнительный маленький секрет внутри -->
+            <div style="font-size: 0.9rem; margin-top: 15px; color: #c38b8b; border-top: 1px dashed #feb5b5; padding-top: 12px;">
+                🌟 с наилучшими пожеланиями в этот чудесный день 🌟
+            </div>
+        </div>
+    </div>
+
+    <!-- Еще больше летающих цветов (дублируем для насыщенности) -->
+    <div style="position: fixed; bottom: 10px; left: 0; width: 100%; pointer-events: none; font-size: 25px; color: rgba(255,180,200,0.25); white-space: nowrap; text-align: center; z-index: 1;">
+        ✽ ✿ ❀ ❁ ✾ ✽ ✿ ❀ ❁ ✾
+    </div>
+</body>
+</html>

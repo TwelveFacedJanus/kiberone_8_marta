@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, любимая мамочка!</title>
+    <!-- Подключаем изящные курсивные шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;1,300;1,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #ffebf0;  /* нежный розовый фон */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 200, 220, 0.7) 0%, transparent 25%),
+                radial-gradient(circle at 90% 70%, rgba(255, 180, 200, 0.6) 0%, transparent 30%),
+                radial-gradient(circle at 30% 80%, #ffd9e6 0%, transparent 35%),
+                radial-gradient(circle at 70% 15%, #ffe4ed 0%, transparent 28%);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* декоративные пионы и розочки (символами) */
+        .flower-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            font-size: 70px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: stretch;
+            opacity: 0.25;
+            transform: rotate(5deg) scale(1.2);
+            letter-spacing: 35px;
+            color: #ff99bb;
+            text-shadow: 3px 3px 10px #ffc0cb;
+        }
+
+        .main-card {
+            position: relative;
+            z-index: 20;
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 245, 250, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 70px 30px 70px 30px;
+            box-shadow: 0 30px 50px rgba(200, 100, 150, 0.35), 0 15px 30px rgba(255, 175, 200, 0.5), inset 0 0 40px rgba(255, 255, 255, 0.8);
+            padding: 45px 40px 55px;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        /* украшаем уголки */
+        .corner-decoration {
+            position: absolute;
+            top: 15px;
+            left: 25px;
+            font-size: 40px;
+            opacity: 0.7;
+            color: #e67a9f;
+            transform: rotate(-10deg);
+            text-shadow: 2px 5px 12px #ffa5c3;
+        }
+
+        .corner-decoration2 {
+            position: absolute;
+            bottom: 15px;
+            right: 25px;
+            font-size: 48px;
+            opacity: 0.7;
+            color: #e67a9f;
+            transform: rotate(10deg);
+            text-shadow: 2px 5px 12px #ffa5c3;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5.2rem;
+            font-weight: 400;
+            text-align: center;
+            color: #a63b5e;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            text-shadow: 3px 3px 0 #ffd9e6, 5px 5px 10px rgba(180, 90, 120, 0.2);
+            letter-spacing: 2px;
+            word-break: break-word;
+        }
+
+        .subhead {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.9rem;
+            text-align: center;
+            color: #b34e71;
+            margin-bottom: 30px;
+            font-weight: 400;
+            background: rgba(255, 220, 235, 0.5);
+            display: inline-block;
+            padding: 0.3rem 2.5rem;
+            border-radius: 60px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px #ffc0cb;
+            border: 1px dashed #ffa5c3;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .flower-row {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 35px 0 30px;
+            flex-wrap: wrap;
+        }
+
+        .flower-item {
+            font-size: 3.5rem;
+            filter: drop-shadow(0 8px 12px #ffb6c1);
+            transition: transform 0.2s ease;
+            background: rgba(255, 255, 255, 0.4);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(2px);
+        }
+
+        .flower-item:hover {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        /* поэтичный блок с курсивом */
+        .poetry {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.9rem;
+            line-height: 1.6;
+            color: #781b46;
+            text-align: center;
+            margin: 40px 0 35px;
+            background: rgba(255, 240, 245, 0.7);
+            padding: 30px 25px;
+            border-radius: 90px 20px 90px 20px;
+            box-shadow: inset 0 0 30px #ffeef5, 0 15px 20px #ffc0cb;
+            border-left: 8px solid #ff98bb;
+            border-right: 8px solid #ff98bb;
+            quotes: "“" "”" "‘" "’";
+        }
+
+        .poetry p {
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .poetry p:last-child {
+            margin-bottom: 0;
+        }
+
+        .poetry p::before {
+            content: "🌷 ";
+            font-style: normal;
+            font-size: 2.2rem;
+            opacity: 0.8;
+        }
+
+        .poetry p::after {
+            content: " 🌷";
+            font-style: normal;
+            font-size: 2.2rem;
+            opacity: 0.8;
+        }
+
+        .signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            text-align: right;
+            color: #972b55;
+            margin-top: 35px;
+            padding-right: 30px;
+            text-shadow: 3px 3px 5px #fec8d8;
+            border-bottom: 3px dotted #ffb0c3;
+            padding-bottom: 15px;
+        }
+
+        .small-flowers {
+            display: flex;
+            justify-content: center;
+            gap: 10px 25px;
+            flex-wrap: wrap;
+            font-size: 2.3rem;
+            margin: 25px 0 10px;
+            color: #c44b74;
+            background: rgba(255, 220, 240, 0.5);
+            padding: 15px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+        }
+
+        .small-flowers span {
+            filter: drop-shadow(2px 4px 6px #faaac0);
+        }
+
+        .footer-note {
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            text-align: center;
+            color: #9f4d6c;
+            margin-top: 35px;
+            letter-spacing: 0.5px;
+            background: #ffe4ed;
+            padding: 12px 20px;
+            border-radius: 40px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 5px 12px #ffb7c5;
+            border: 1px solid white;
+        }
+
+        /* адаптация под экраны */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 3.8rem;
+            }
+            .subhead {
+                font-size: 1.5rem;
+            }
+            .poetry {
+                font-size: 1.5rem;
+            }
+            .signature {
+                font-size: 2.8rem;
+            }
+            .main-card {
+                padding: 30px 20px;
+            }
+            .flower-item {
+                width: 70px;
+                height: 70px;
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- полупрозрачные розочки, пионы по всему фону -->
+    <div class="flower-bg">
+        🌹 🌸 🌺 🌼 🌷 🥀 🌻 🌹 🌸 🌺 🌼 🌷 🥀 🌻 🌹 🌸 🌺 🌼 🌷 🥀
+    </div>
+
+    <!-- главная открытка -->
+    <div class="main-card">
+
+        <!-- маленькие декоративные букетики по углам (относительно карточки) -->
+        <div class="corner-decoration">🌷🌷</div>
+        <div class="corner-decoration2">🌺🌺</div>
+
+        <!-- основной заголовок курсивным шрифтом -->
+        <h1>С 8 Марта, мама!</h1>
+
+        <!-- подзаголовок тоже курсив -->
+        <div class="subhead">
+            ❀ с днём весны и красоты ❀
+        </div>
+
+        <!-- ряд крупных цветов (пионы + розочки) -->
+        <div class="flower-row">
+            <span class="flower-item">🌹</span>
+            <span class="flower-item">🌺</span>
+            <span class="flower-item">🌷</span>
+            <span class="flower-item">🥀</span>
+            <span class="flower-item">🌸</span>
+            <span class="flower-item">🌼</span>
+        </div>
+
+        <!-- Красивое поздравление в курсивном стиле (почти как стихи) -->
+        <div class="poetry">
+            <p>
+                Ты — свет в моём окне, тепло в любую стужу, <br>
+                Ты — самый нежный пион, что я в душе лелею.
+            </p>
+            <p>
+                Спасибо за заботу, ласку, добрый взгляд, <br>
+                Твои советы и объятья — лучший клад.
+            </p>
+            <p>
+                Пусть каждый день, как этот праздник, расцветает, <br>
+                Счастье и здоровье пусть тебя не покидают.
+            </p>
+        </div>
+
+        <!-- подпись с любовью (курсивный шрифт) -->
+        <div class="signature">
+            Твой любящий сын Платон!
+        </div>
+
+        <!-- дополнительная гирлянда из маленьких пионов и роз -->
+        <div class="small-flowers">
+            <span>🌹</span> <span>🌺</span> <span>🌷</span> <span>🌸</span> 
+            <span>🌼</span> <span>🥀</span> <span>🏵️</span> <span>🌻</span> 
+            <span>🪷</span> <span>🌹</span> <span>🌺</span> <span>🌷</span>
+        </div>
+
+        <!-- дополнительное тёплое пожелание -->
+        <div class="footer-note">
+            💖  Пусть твоя жизнь будет такой же прекрасной, как букет из пионов и роз!  💖
+        </div>
+
+        <!-- маленький намёк на то, что это ручная работа -->
+        <div style="text-align: center; margin-top: 25px; font-family: 'Great Vibes'; font-size: 1.9rem; color: #bf6080;">
+            ∞ с бесконечной любовью ∞
+        </div>
+    </div>
+
+</body>
+</html>

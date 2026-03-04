@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для мамы от Вани 💛</title>
+    <!-- Подключаем современные шрифты: элегантный Playfair Display и аккуратный Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* СБРОС И ОБЩИЕ СТИЛИ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 20% 30%, #fff7b0, #ffdb7c); /* ярко-нежный желтый */
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            /* Легкий декоративный паттерн из маленьких цветочков (очень прозрачный) */
+            background-image: url('data:image/svg+xml;utf8,<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" opacity="0.15"><circle cx="20" cy="20" r="6" fill="%23ffffff"/><circle cx="60" cy="30" r="8" fill="%23fff3c9"/><path d="M40 10 Q45 5 50 10 Q55 15 50 20 Q45 25 40 20 Q35 25 30 20 Q25 15 30 10 Q35 5 40 10" fill="%23ffffff"/><circle cx="70" cy="65" r="6" fill="%23ffe0b0"/><circle cx="15" cy="70" r="7" fill="%23fff0d0"/></svg>');
+            background-repeat: repeat;
+            background-size: 120px 120px;
+            position: relative;
+        }
+
+        /* ОСНОВНАЯ КАРТОЧКА (полупрозрачная, чтобы фон просвечивал) */
+        .card {
+            max-width: 850px;
+            width: 100%;
+            background: rgba(255, 250, 220, 0.5);
+            backdrop-filter: blur(6px);
+            border-radius: 70px 70px 50px 50px;
+            box-shadow: 0 30px 40px rgba(255, 160, 0, 0.25), 0 10px 20px rgba(0,0,0,0.1);
+            padding: 30px 30px 50px 30px;
+            border: 2px solid rgba(255, 235, 150, 0.9);
+            text-align: center;
+        }
+
+        /* КОНТЕЙНЕР ДЛЯ ЛЕБЕДЯ-ВОСЬМЁРКИ */
+        .swan-eight {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 15px;
+            filter: drop-shadow(0 15px 15px rgba(240, 140, 40, 0.3));
+        }
+
+        /* САМА ФИГУРА (SVG) */
+        .swan-eight svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* ТЕКСТ ПОЗДРАВЛЕНИЯ */
+        .greeting h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: #a34e0a;
+            text-shadow: 3px 3px 0 #fff1b5;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .greeting p {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: #6b3f0e;
+            background: rgba(255, 245, 200, 0.8);
+            display: inline-block;
+            padding: 10px 35px;
+            border-radius: 50px;
+            backdrop-filter: blur(2px);
+            margin-bottom: 25px;
+            box-shadow: 0 5px 10px rgba(255,180,60,0.4);
+            border: 1px solid #ffdfa0;
+        }
+
+        .message {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: #3e2c12;
+            max-width: 550px;
+            margin: 0 auto;
+            background: rgba(255, 250, 210, 0.6);
+            padding: 25px 30px;
+            border-radius: 40px;
+            font-weight: 400;
+            font-style: normal;
+            border: 1px solid #fde996;
+            backdrop-filter: blur(2px);
+        }
+
+        /* ИМЕНА — ОСОБОЕ ВЫДЕЛЕНИЕ */
+        .name-vanya {
+            font-weight: 700;
+            color: #c45d0e;
+            background: #fff0b5;
+            padding: 0 12px;
+            border-radius: 30px;
+            display: inline-block;
+            box-shadow: inset 0 -2px 0 #ffbb70;
+        }
+
+        .name-mama {
+            font-weight: 700;
+            color: #b0520c;
+            background: #ffe7a3;
+            padding: 0 12px;
+            border-radius: 30px;
+            display: inline-block;
+            box-shadow: inset 0 -2px 0 #ffb057;
+            text-transform: uppercase; /* фамилия выглядит благородно */
+            letter-spacing: 1px;
+        }
+
+        /* ДЕКОРАТИВНЫЙ НИЖНИЙ БЛОК */
+        .flowers {
+            margin-top: 30px;
+            font-size: 2.2rem;
+            opacity: 0.8;
+            letter-spacing: 12px;
+            filter: drop-shadow(0 2px 5px #ffc285);
+        }
+
+        /* АДАПТАЦИЯ ДЛЯ МАЛЕНЬКИХ ЭКРАНОВ */
+        @media (max-width: 550px) {
+            .swan-eight {
+                width: 220px;
+                height: 220px;
+            }
+            .greeting h1 {
+                font-size: 2.5rem;
+            }
+            .greeting p {
+                font-size: 1.3rem;
+            }
+            .message {
+                font-size: 1rem;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- ВОСЬМЁРКА-ЛЕБЕДЬ (SVG-графика) -->
+        <div class="swan-eight">
+            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Основной контур восьмёрки (силуэт двух лебедей) -->
+                <path d="M100 30
+                         C140 30 170 60 170 100
+                         C170 140 140 170 100 170
+                         C60 170 30 140 30 100
+                         C30 60 60 30 100 30
+                         Z"
+                      fill="#FFFCE6" stroke="#FFB649" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 6" opacity="0.95"/>
+
+                <!-- ЛЕВЫЙ ВЕРХНИЙ ЛЕБЕДЬ (шея и голова) -->
+                <path d="M58 42
+                         C38 28 22 35 18 48
+                         C14 61 26 75 39 74
+                         C48 73 54 64 56 56"
+                      fill="#FFFFFF" stroke="#FFA726" stroke-width="4" stroke-linecap="round" style="filter: drop-shadow(0 4px 4px #ffb347);"/>
+                <!-- Голова левого лебедя -->
+                <circle cx="16" cy="46" r="6" fill="white" stroke="#FFA726" stroke-width="2"/>
+                <circle cx="14" cy="44" r="2" fill="#1F1A15"/> <!-- глаз -->
+                <!-- Клюв -->
+                <polygon points="10,42 4,37 9,47" fill="#FF8C42" stroke="#D9731E" stroke-width="1"/>
+
+                <!-- ПРАВЫЙ НИЖНИЙ ЛЕБЕДЬ (шея и голова) -->
+                <path d="M144 138
+                         C162 152 180 146 185 132
+                         C190 118 177 105 164 107
+                         C155 109 149 119 147 128"
+                      fill="#FFFFFF" stroke="#FFA726" stroke-width="4" stroke-linecap="round" style="filter: drop-shadow(0 4px 4px #ffb347);"/>
+                <!-- Голова правого лебедя -->
+                <circle cx="187" cy="127" r="6" fill="white" stroke="#FFA726" stroke-width="2"/>
+                <circle cx="189" cy="125" r="2" fill="#1F1A15"/>
+                <!-- Клюв -->
+                <polygon points="194,124 200,119 194,119" fill="#FF8C42" stroke="#D9731E" stroke-width="1"/>
+
+                <!-- Изящные крылья (намёк на лебединые перья) -->
+                <path d="M80 80 Q100 70 120 85" stroke="#FFC46B" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
+                <path d="M110 135 Q128 125 145 135" stroke="#FFC46B" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
+
+                <!-- Маленькое украшение-цветок наверху -->
+                <circle cx="100" cy="22" r="9" fill="#FFE484" stroke="#FFB347" stroke-width="2"/>
+                <circle cx="100" cy="22" r="4" fill="#FFEDA3"/>
+            </svg>
+        </div>
+
+        <!-- ПОЗДРАВЛЕНИЕ С ИМЕНАМИ -->
+        <div class="greeting">
+            <h1>С 8 марта, мама!</h1>
+            <p>
+                <span class="name-mama">Свете</span> — от <span class="name-vanya">Вани</span> ❤️
+            </p>
+            <div class="message">
+                Самая родная, светлая и прекрасная!<br>
+                Спасибо за тепло, заботу и вдохновение.<br>
+                Пусть весна подарит море цветов, радости<br>
+                и нежности. Оставайся всегда такой же лучезарной!
+            </div>
+        </div>
+
+        <!-- ЦВЕТОЧНЫЙ РЯД (для праздничного настроения) -->
+        <div class="flowers">
+            🌷🌺🌼🌹🌸
+        </div>
+    </div>
+</body>
+</html>

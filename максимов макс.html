@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, мама Татьяна! 😊 от Максима</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #ffd9e6 0%, #ffe4f0 40%, #fad5e3 100%);
+            font-family: 'Segoe UI', 'Comfortaa', 'Roboto', cursive, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 🌸 ЛЕСНОЙ ПЕЙЗАЖ ВНИЗУ (стилизованные ёлочки) */
+        .forest-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            z-index: 5;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .tree {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 70px solid #7f5a4b; /* ствол */
+            position: relative;
+            margin: 0 5px;
+            filter: drop-shadow(0 5px 5px #b3826e);
+        }
+
+        .tree::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: -35px;
+            width: 0;
+            height: 0;
+            border-left: 45px solid transparent;
+            border-right: 45px solid transparent;
+            border-bottom: 90px solid #5a8f6c; /* крона */
+            z-index: 2;
+            filter: drop-shadow(0 5px 8px #3d6b4f);
+        }
+
+        .tree::after {
+            content: "";
+            position: absolute;
+            top: -90px;
+            left: -20px;
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 60px solid #7aa57e; /* верхняя часть кроны */
+            z-index: 3;
+        }
+
+        /* немножко разных оттенков для леса */
+        .tree:nth-child(odd)::before { border-bottom-color: #658d65; }
+        .tree:nth-child(odd)::after { border-bottom-color: #7fb07f; }
+        .tree:nth-child(3)::before { border-bottom-color: #4f7a5a; }
+        .tree:nth-child(4)::before { border-bottom-color: #628b62; }
+
+        /* 🌸 ПЛАВАЮЩИЕ ЦВЕТЫ */
+        .floating-flowers {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .flower-emoji {
+            position: absolute;
+            font-size: 2.8rem;
+            opacity: 0.45;
+            animation: floatFlower 16s infinite ease-in-out;
+            filter: drop-shadow(0 8px 12px #fbaac3);
+            user-select: none;
+        }
+
+        .flower-emoji:nth-child(1) { top: 10%; left: 3%; font-size: 3.2rem; animation-duration: 19s; }
+        .flower-emoji:nth-child(2) { top: 70%; left: 12%; font-size: 2.5rem; animation-duration: 14s; animation-delay: -3s; }
+        .flower-emoji:nth-child(3) { top: 25%; right: 5%; font-size: 4rem; animation-duration: 21s; animation-delay: -1s; }
+        .flower-emoji:nth-child(4) { top: 80%; right: 18%; font-size: 3rem; animation-duration: 17s; animation-delay: -8s; }
+        .flower-emoji:nth-child(5) { top: 45%; left: 25%; font-size: 3.7rem; animation-duration: 23s; opacity: 0.5; }
+        .flower-emoji:nth-child(6) { top: 15%; right: 25%; font-size: 2.8rem; animation-duration: 18s; animation-delay: -4s; }
+        .flower-emoji:nth-child(7) { top: 55%; right: 40%; font-size: 4.2rem; animation-duration: 25s; opacity: 0.3; }
+        .flower-emoji:nth-child(8) { bottom: 5%; left: 40%; font-size: 3.5rem; animation-duration: 15s; }
+        .flower-emoji:nth-child(9) { top: 35%; left: 60%; font-size: 2.3rem; animation-duration: 22s; }
+        .flower-emoji:nth-child(10) { top: 88%; right: 7%; font-size: 3rem; animation-duration: 20s; animation-delay: -12s; }
+
+        @keyframes floatFlower {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-40px) rotate(12deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* ОСНОВНАЯ ОТКРЫТКА */
+        .card {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 245, 250, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 70px 30px 70px 30px;
+            box-shadow: 0 30px 45px rgba(190, 80, 120, 0.25),
+                        0 15px 20px rgba(0, 0, 0, 0.1),
+                        inset 0 0 40px #ffeef4;
+            border: 3px solid rgba(255, 200, 220, 0.8);
+            padding: 50px 35px;
+            text-align: center;
+            z-index: 20;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 35px 55px rgba(210, 80, 130, 0.35);
+        }
+
+        /* шапка с цветочками */
+        .flower-header {
+            font-size: 3.2rem;
+            letter-spacing: 20px;
+            text-shadow: 0 0 15px #ffa5c0;
+            margin-bottom: 5px;
+            background: rgba(255, 230, 240, 0.5);
+            border-radius: 80px;
+            padding: 10px 0;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #982b4f;
+            text-shadow: 4px 4px 0 #ffd3df, 7px 7px 10px rgba(240, 130, 160, 0.4);
+            margin: 15px 0 0;
+            word-break: break-word;
+        }
+
+        .for-mom {
+            font-size: 2.5rem;
+            background: linear-gradient(145deg, #d3607e, #a53f60);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            letter-spacing: 2px;
+        }
+
+        .name-maxim {
+            font-size: 2.2rem;
+            color: #ac4d6a;
+            background: rgba(255, 235, 240, 0.8);
+            display: inline-block;
+            padding: 8px 40px;
+            border-radius: 50px;
+            margin: 15px 0 20px;
+            border: 2px solid white;
+            box-shadow: 0 5px 10px #ffb8cc;
+            font-weight: 600;
+        }
+
+        .poem-block {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 70px 15px 70px 15px;
+            padding: 30px 25px;
+            margin: 25px 0;
+            border: 2px dashed #ffa7bc;
+        }
+
+        .poem-block p {
+            font-size: 1.6rem;
+            line-height: 2.3rem;
+            color: #592c3b;
+            font-weight: 500;
+            margin: 15px 0;
+            text-shadow: 0 1px 4px white;
+        }
+
+        .poem-block p:last-child {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ba2d58;
+            margin-top: 25px;
+        }
+
+        .button-surprise {
+            background: #ffb3c6;
+            border: none;
+            font-size: 2rem;
+            font-weight: 600;
+            padding: 18px 40px;
+            border-radius: 90px;
+            color: #541e2e;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #a54563, 0 10px 20px #d77b99;
+            transition: 0.06s linear;
+            border: 2px solid #ffeef2;
+            margin: 15px 0 25px;
+            letter-spacing: 2px;
+        }
+
+        .button-surprise:active {
+            transform: translateY(8px);
+            box-shadow: 0 2px 0 #a54563, 0 8px 15px #d77b99;
+        }
+
+        .hidden-gift {
+            opacity: 0;
+            transform: scale(0.6);
+            transition: 0.3s ease-in-out;
+            font-size: 2.2rem;
+            background: #ffecf0;
+            padding: 20px;
+            border-radius: 70px;
+            margin: 10px 0;
+            border: 3px solid #ff90b5;
+            font-weight: 600;
+            color: #951f4b;
+        }
+
+        .hidden-gift.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        footer {
+            margin-top: 25px;
+            font-size: 1.3rem;
+            color: #b15d78;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.8rem; }
+            .flower-header { font-size: 2.4rem; letter-spacing: 10px; }
+            .poem-block p { font-size: 1.2rem; line-height: 1.8rem; }
+            .button-surprise { font-size: 1.5rem; padding: 15px 25px; }
+            .card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🌸 НЕЖНЫЙ ЛЕС ВНИЗУ (Ёлочки) -->
+    <div class="forest-bottom">
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+    </div>
+
+    <!-- 🌸 ПАРЯЩИЕ ЦВЕТЫ ПО ВСЕМУ ФОНУ -->
+    <div class="floating-flowers">
+        <span class="flower-emoji">🌸</span>
+        <span class="flower-emoji">🌷</span>
+        <span class="flower-emoji">🌹</span>
+        <span class="flower-emoji">🌼</span>
+        <span class="flower-emoji">🌺</span>
+        <span class="flower-emoji">🌸</span>
+        <span class="flower-emoji">🌷</span>
+        <span class="flower-emoji">🌹</span>
+        <span class="flower-emoji">🌼</span>
+        <span class="flower-emoji">🌺</span>
+    </div>
+
+    <!-- ОСНОВНАЯ ОТКРЫТКА -->
+    <div class="card">
+        <div class="flower-header">
+            🌸 🌷 🌹
+        </div>
+
+        <h1>С 8 марта</h1>
+        <div class="for-mom">мамочка Татьяна!</div>
+
+        <!-- От Максима с любовью -->
+        <div class="name-maxim">
+            от Максима 💙
+        </div>
+
+        <!-- Душевное поздравление -->
+        <div class="poem-block">
+            <p>Мамочка Таня, милая, родная,</p>
+            <p>С весной тебя сегодня поздравляю!</p>
+            <p>Пусть лес шумит, цветы вокруг цветут,</p>
+            <p>А в сердце — счастье, молодость, уют.</p>
+            <p>🌿 🌸 🌿</p>
+            <p>Ты самая чудесная на свете,</p>
+            <p>Твой Максим тебя очень-очень ценит!</p>
+        </div>
+
+        <!-- Кнопка-сюрприз (появится лесное послание) -->
+        <button class="button-surprise" id="giftBtn">🌲 Лесной сюрприз 🌲</button>
+
+        <!-- Секретное сообщение (появляется после клика) -->
+        <div id="forestMessage" class="hidden-gift">
+            🍃 Мамуля, ты мой свет! 🍃<br>
+            🌳 Лес шепчет: "Ты лучше всех!" 🌳
+        </div>
+
+        <footer>
+            с нежностью и весной 💕
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // Всё для мамы Татьяны
+            console.log("🌸 Сайт для мамы Татьяны от Максима 🎁");
+
+            const btn = document.getElementById('giftBtn');
+            const secretMsg = document.getElementById('forestMessage');
+
+            btn.addEventListener('click', function() {
+                // показываем тёплые слова
+                secretMsg.classList.add('show');
+
+                // эффект радости на кнопке
+                btn.style.transform = 'scale(0.9)';
+                setTimeout(() => btn.style.transform = 'scale(1)', 150);
+
+                // меняем текст кнопки
+                btn.textContent = '💖 Лес любит тебя 💖';
+                btn.disabled = true;
+                btn.style.opacity = 0.9;
+                btn.style.cursor = 'default';
+
+                // запускаем маленький цветочный салют
+                for (let i = 0; i < 8; i++) {
+                    launchConfetti('🌸');
+                    launchConfetti('🌷');
+                    launchConfetti('🍃');
+                    launchConfetti('🌲');
+                }
+            });
+
+            // функция для летающих эмодзи
+            function launchConfetti(emoji) {
+                const span = document.createElement('span');
+                span.textContent = emoji;
+                span.style.position = 'fixed';
+                span.style.left = Math.random() * 100 + '%';
+                span.style.bottom = '0px';
+                span.style.fontSize = (Math.random() * 35 + 20) + 'px';
+                span.style.zIndex = '9999';
+                span.style.pointerEvents = 'none';
+                span.style.opacity = '1';
+                span.style.transition = 'transform 2s ease-out, opacity 1.5s';
+                span.style.transform = 'translateY(0)';
+                document.body.appendChild(span);
+
+                setTimeout(() => {
+                    span.style.transform = `translateY(-${Math.random() * 400 + 200}px) translateX(${Math.random() * 100 - 50}px) rotate(${Math.random() * 60}deg)`;
+                    span.style.opacity = '0';
+                }, 20);
+
+                setTimeout(() => {
+                    if (span.parentNode) span.remove();
+                }, 2000);
+            }
+
+            // добавим мерцание леса (для красоты)
+            const trees = document.querySelectorAll('.tree');
+            setInterval(() => {
+                trees.forEach(tree => {
+                    if (Math.random() > 0.8) {
+                        tree.style.filter = 'brightness(1.3) drop-shadow(0 0 5px #ffb0c0)';
+                        setTimeout(() => tree.style.filter = 'none', 300);
+                    }
+                });
+            }, 800);
+        })();
+    </script>
+    <!--
+        Дорогая мама Татьяна!
+        Пусть каждый день дарит тебе весну.
+        С любовью, Максим 💙
+    -->
+</body>
+</html>

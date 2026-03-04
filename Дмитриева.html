@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, мамочка! 🌼🐱</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fff9e6 0%, #fff2d7 40%, #ffebc0 100%);
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Лапки и рыбки на фоне */
+        body::before {
+            content: "🐾🐾🐟🐾🐱🐾🐟🐾🐾";
+            position: absolute;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            font-size: 40px;
+            color: rgba(255, 200, 150, 0.25);
+            text-align: center;
+            letter-spacing: 20px;
+            pointer-events: none;
+            white-space: nowrap;
+            transform: rotate(2deg);
+            z-index: 1;
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: repeating-linear-gradient(45deg, #fde6b6 0px, #fde6b6 20px, #ffeac2 20px, #ffeac2 40px);
+            opacity: 0.5;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .card {
+            position: relative;
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 250, 235, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 70px 70px 70px 70px;
+            box-shadow: 0 30px 50px -10px rgba(255, 180, 60, 0.4), 0 0 0 3px #fffbe6 inset, 0 0 0 6px #ffd89c inset;
+            padding: 40px 30px 50px 30px;
+            z-index: 10;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 245, 200, 0.9);
+        }
+
+        /* Кошачьи ушки на карточке */
+        .card::before {
+            content: "🐱🐱";
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 50px;
+            color: #e6b87e;
+            filter: drop-shadow(0 6px 8px #f8c794);
+            background: #fff2d0;
+            padding: 5px 40px;
+            border-radius: 100px;
+            white-space: nowrap;
+            letter-spacing: 15px;
+            border: 3px solid #ffdfb0;
+            box-shadow: 0 5px 0 #dbaa6b;
+        }
+
+        .header-cats {
+            text-align: center;
+            font-size: 75px;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 8px 12px #fde0a8);
+            animation: bounce 3s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            text-align: center;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #b45f2b;
+            text-shadow: 3px 3px 0 #ffeec2, 5px 5px 0 rgba(255, 200, 120, 0.6);
+            margin-bottom: 15px;
+            word-break: break-word;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            text-align: center;
+            color: #b27a44;
+            background: #fffae9;
+            display: inline-block;
+            padding: 12px 40px;
+            border-radius: 60px;
+            margin: 0 auto 30px;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 6px 0 #ffc489, 0 8px 18px #ffdca8;
+            border: 2px solid white;
+            letter-spacing: 2px;
+        }
+
+        .greeting {
+            background: rgba(255, 245, 215, 0.7);
+            border-radius: 70px;
+            padding: 35px 25px;
+            border: 3px solid #fff6d9;
+            box-shadow: 0 8px 0 #fdc086, inset 0 2px 20px #fff2d0;
+            margin-bottom: 30px;
+        }
+
+        .greeting p {
+            font-size: 1.8rem;
+            line-height: 1.5;
+            color: #5e3a1f;
+            text-align: center;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .greeting p i {
+            color: #c9732e;
+            font-weight: 400;
+            display: block;
+            margin-top: 15px;
+            font-size: 1.7rem;
+        }
+
+        /* Ряд с котиками и цветочками */
+        .cats-flowers-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px 30px;
+            flex-wrap: wrap;
+            margin: 45px 0 25px;
+        }
+
+        .cat-item {
+            font-size: 4.5rem;
+            background: #fffae9cc;
+            padding: 12px 25px;
+            border-radius: 120px;
+            backdrop-filter: blur(4px);
+            border: 3px solid #fff4d6;
+            box-shadow: 0 10px 0 #eeb576, 0 8px 25px #fecd97;
+            transform: rotate(0deg) scale(1);
+            transition: 0.2s ease-in-out;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .cat-item:hover {
+            transform: scale(1.15) rotate(4deg);
+            background: #fffffffa;
+            box-shadow: 0 12px 0 #e6a55e, 0 15px 30px #feba7a;
+        }
+
+        /* сообщение-поздравление */
+        .message-box {
+            background: #fffef7;
+            padding: 30px 25px;
+            border-radius: 60px;
+            border: 4px dashed #fecb89;
+            margin: 35px 0 30px;
+            backdrop-filter: blur(4px);
+        }
+
+        .message-box p {
+            font-size: 2rem;
+            color: #4f351c;
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .message-box span {
+            background: #ffefcf;
+            padding: 8px 25px;
+            border-radius: 100px;
+            font-size: 1.9rem;
+            border: 2px solid #ffdbb5;
+        }
+
+        .signature {
+            text-align: right;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #b4571e;
+            text-shadow: 0 2px 5px #ffddb0;
+            margin-top: 15px;
+            border-top: 3px wavy #fec196;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .signature .cat-paw {
+            font-size: 3.4rem;
+            animation: pawWave 2s infinite;
+            filter: drop-shadow(0 0 6px #d98e4a);
+        }
+
+        @keyframes pawWave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        .date {
+            font-size: 1.4rem;
+            background: #ffefcf;
+            padding: 10px 25px;
+            border-radius: 40px;
+            color: #9e6337;
+            font-weight: 600;
+            border: 2px solid #ffdbb0;
+        }
+
+        /* кнопка-сюрприз */
+        .btn-cat {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 10px;
+            background: #fddfb0;
+            border: 4px solid white;
+            padding: 15px 45px;
+            border-radius: 50px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #6b3d16;
+            box-shadow: 0 10px 0 #cb8f4a, 0 10px 25px #ffce92;
+            cursor: pointer;
+            transition: 0.1s linear;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border: 3px solid #fff6e6;
+        }
+
+        .btn-cat:active {
+            transform: translateY(8px);
+            box-shadow: 0 2px 0 #cb8f4a, 0 8px 20px #feb16b;
+        }
+
+        /* скрытое сообщение с котиком */
+        #secretCatMessage {
+            display: none;
+            font-size: 2.1rem;
+            background: #fff5dd;
+            border-radius: 70px;
+            padding: 30px;
+            margin: 25px 0 0;
+            color: #3d2c16;
+            border: 4px solid #ffdca8;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: inset 0 -5px 0 #eebb82;
+        }
+
+        #secretCatMessage.show {
+            display: block;
+        }
+
+        /* маленькие котики и лапки по углам */
+        .decor-cat {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.3;
+            transform: rotate(5deg);
+            user-select: none;
+            z-index: 5;
+        }
+
+        .cat1 { top: 8%; left: 2%; }
+        .cat2 { bottom: 10%; right: 3%; transform: scaleX(-1); }
+        .cat3 { top: 45%; right: 5%; opacity: 0.2; font-size: 4rem; }
+
+        /* маленькие солнышки */
+        .sun-decor {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        .sun1 { top: 20%; right: 8%; }
+        .sun2 { bottom: 20%; left: 3%; }
+
+        @media (max-width: 550px) {
+            h1 { font-size: 2.5rem; }
+            .greeting p { font-size: 1.4rem; }
+            .cat-item { font-size: 3.5rem; padding: 8px 15px; }
+            .message-box p { font-size: 1.5rem; }
+            .signature { font-size: 1.8rem; }
+            .btn-cat { font-size: 1.6rem; padding: 12px 25px; }
+            .header-cats { font-size: 55px; }
+        }
+
+        @media (max-width: 380px) {
+            .card { padding: 25px 15px; }
+            h1 { font-size: 2rem; }
+            .subtitle { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Декоративные котики и солнышки на фоне -->
+    <div class="decor-cat cat1">🐱🌻</div>
+    <div class="decor-cat cat2">🐈🌸</div>
+    <div class="decor-cat cat3">😺🐾</div>
+    <div class="sun-decor sun1">☀️🐟</div>
+    <div class="sun-decor sun2">🐟☀️</div>
+
+    <!-- Главная открытка -->
+    <div class="card">
+        <div class="header-cats">
+            😻🌸🐱🌼😸🌺🐈
+        </div>
+        <h1>С 8 Марта, мамочка!</h1>
+        <div style="text-align: center;">
+            <span class="subtitle">🐾 С любовью и нежностью 🐾</span>
+        </div>
+
+        <!-- Тёплые слова -->
+        <div class="greeting">
+            <p>
+                🌼 Мамочка, милая, добрая, родная!<br>
+                🐱 Пусть весна согревает тебя своим теплом.<br>
+                🌻 Каждый день дарит улыбки, как эти котики.<br>
+                <i>— Ты лучше всех на свете! —</i>
+            </p>
+        </div>
+
+        <!-- Котики с цветами (интерактивные) -->
+        <div class="cats-flowers-row">
+            <span class="cat-item" title="Котик с тюльпаном">😺🌷</span>
+            <span class="cat-item" title="Котик с мимозой">😸🌼</span>
+            <span class="cat-item" title="Котик с розой">😽🌹</span>
+            <span class="cat-item" title="Котик с ромашкой">🙀🌸</span>
+        </div>
+
+        <!-- Текстовый блок с кото-пожеланием -->
+        <div class="message-box">
+            <p>
+                <span>🐈</span>  Мур-мур-счастья, здоровья, радости!  <span>😻</span>
+            </p>
+            <p style="font-size: 1.6rem; color:#b46f2e;">
+                Пусть в душе всегда цветёт весна, <br> а рядом будет тёплый, пушистый уют!
+            </p>
+        </div>
+
+        <!-- Кнопка с сюрпризом и котиком -->
+        <button class="btn-cat" id="catMagicBtn">🐱 Тык 🐾</button>
+        <div id="secretCatMessage">
+            🐈🐈🐈🐈🐈🐈🐈🐈🐈<br>
+            💖 Мамочка, ты самая красивая и любимая! 💖<br>
+            Пусть все твои мечты сбываются, как по волшебству!<br>
+            😽🌼😽🌼😽🌼😽🌼😽
+        </div>
+
+        <!-- Подпись с кошачьими лапками -->
+        <div class="signature">
+            <span class="cat-paw">🐾</span>
+            <span style="font-size: 2rem;">Твоя любющая дочь ❤️</span>
+            <span class="cat-paw">🐾</span>
+            <div class="date">8 марта 2025</div>
+        </div>
+    </div>
+
+    <!-- Скрипт для кото-интерактива -->
+    <script>
+        (function() {
+            const btn = document.getElementById('catMagicBtn');
+            const secretDiv = document.getElementById('secretCatMessage');
+
+            // Котики реагируют на клик
+            const catItems = document.querySelectorAll('.cat-item');
+            catItems.forEach((item) => {
+                item.addEventListener('click', function() {
+                    // временно увеличиваем и меняем цвет фона
+                    this.style.transform = 'scale(1.6) rotate(8deg)';
+                    this.style.backgroundColor = '#fff2b5';
+                    this.style.transition = '0.2s';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                        this.style.backgroundColor = '';
+                    }, 300);
+                    // дополнительный эффект "мяу" в консоль (можно и не убирать, но забавно)
+                    console.log("Мяу! 🌸");
+                });
+            });
+
+            // Магия кнопки
+            if (btn && secretDiv) {
+                btn.addEventListener('click', function() {
+                    secretDiv.classList.toggle('show');
+
+                    // меняем текст кнопки
+                    if (secretDiv.classList.contains('show')) {
+                        btn.textContent = 'Спрятать кота ✨';
+                        // маленькая вспышка цвета
+                        document.body.style.background = '#fff3d1';
+                        setTimeout(() => {
+                            document.body.style.background = ''; // возвращаем градиент
+                        }, 400);
+                    } else {
+                        btn.textContent = '🐱 Тык 🐾';
+                    }
+
+                    // активируем "лапку" в подписи
+                    const paw = document.querySelector('.cat-paw');
+                    if (paw) {
+                        paw.style.animation = 'none';
+                        paw.offsetHeight;
+                        paw.style.animation = 'pawWave 1s infinite';
+                    }
+                });
+            }
+
+            // Карточка чуть увеличивается при наведении
+            const card = document.querySelector('.card');
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'scale(1.02)';
+                card.style.transition = '0.4s ease';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
+            });
+
+            // Мяукнем при загрузке (необязательно, но мило)
+            console.log("🐈 Мяу! С 8 Марта, мамочка! 🐈");
+        })();
+    </script>
+</body>
+</html>

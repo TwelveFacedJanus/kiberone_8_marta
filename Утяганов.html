@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, мамочка!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .card {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '🌸';
+            font-size: 120px;
+            position: absolute;
+            left: -20px;
+            bottom: -20px;
+            opacity: 0.2;
+            transform: rotate(-15deg);
+        }
+        
+        .header::after {
+            content: '🌷';
+            font-size: 120px;
+            position: absolute;
+            right: -20px;
+            top: -20px;
+            opacity: 0.2;
+            transform: rotate(15deg);
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .flower-decoration {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .poem {
+            background: linear-gradient(135deg, #fff5f5 0%, #fff0f7 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #f093fb;
+        }
+        
+        .poem p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+            font-style: italic;
+            text-align: center;
+        }
+        
+        .poem p:last-child {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #f5576c;
+        }
+        
+        .qualities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .quality-item {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #f093fb, #f5576c) border-box;
+        }
+        
+        .quality-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .quality-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .gallery-item {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 2.5em;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: rotate(5deg) scale(1.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-item span {
+            display: block;
+            font-size: 0.4em;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        
+        .message {
+            text-align: center;
+            font-size: 1.4em;
+            margin: 40px 0 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            border-top: 2px dashed #f093fb;
+            border-bottom: 2px dashed #f093fb;
+        }
+        
+        .signature {
+            text-align: right;
+            font-size: 1.3em;
+            color: #666;
+            border-top: 2px solid #f0f0f0;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+        
+        .signature span {
+            color: #f5576c;
+            font-size: 1.5em;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin: 20px 0;
+        }
+        
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(245, 87, 108, 0.6);
+        }
+        
+        .button-container {
+            text-align: center;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .poem p {
+                font-size: 1em;
+            }
+        }
+        
+        .falling-flowers {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .flower {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="falling-flowers" id="flowers"></div>
+    
+    <div class="card">
+        <div class="header">
+            <h1>С 8 Марта, мамочка! 💐</h1>
+            <div class="subtitle">Самая лучшая и любимая</div>
+        </div>
+        
+        <div class="content">
+            <div class="flower-decoration">
+                🌷 🌹 🌺 🌸 🌼
+            </div>
+            
+            <div class="poem">
+                <p>
+                    Мамочка любимая, с Женским днём весенним!<br>
+                    Пусть сбываются мечты в этом настроении.<br>
+                    Ты — наш лучик света, ты — наш ангел-хранитель,<br>
+                    Самая родная, лучшая в мире учитель!
+                </p>
+                <p>
+                    Пусть глаза сияют радостью и счастьем,<br>
+                    Пусть обходят стороной все несчастья,<br>
+                    Каждый день пусть дарит только тепло,<br>
+                    Чтобы на душе всегда было светло! 💝
+                </p>
+            </div>
+            
+            <div class="qualities">
+                <div class="quality-item">
+                    <span class="quality-icon">💝</span>
+                    Добрая
+                </div>
+                <div class="quality-item">
+                    <span class="quality-icon">✨</span>
+                    Нежная
+                </div>
+                <div class="quality-item">
+                    <span class="quality-icon">🌟</span>
+                    Заботливая
+                </div>
+                <div class="quality-item">
+                    <span class="quality-icon">🌸</span>
+                    Красивая
+                </div>
+            </div>
+            
+            <div class="gallery">
+                <div class="gallery-item" onclick="alert('Ты самая лучшая мама на свете! 🌸')">
+                    🌷
+                    <span>Для мамы</span>
+                </div>
+                <div class="gallery-item" onclick="alert('Спасибо за твою любовь и заботу! 💝')">
+                    💐
+                    <span>С любовью</span>
+                </div>
+                <div class="gallery-item" onclick="alert('Будь всегда такой же прекрасной! ✨')">
+                    🌺
+                    <span>Счастья</span>
+                </div>
+            </div>
+            
+            <div class="message">
+                🌸 Спасибо, что ты у меня есть! 🌸
+            </div>
+            
+            <div class="button-container">
+                <button class="button" onclick="showSurprise()">
+                    💝 Нажми для сюрприза
+                </button>
+            </div>
+            
+            <div class="signature">
+                С любовью и нежностью,<br>
+                <span>Аймурат 💗</span>
+            </div>
+        </div>
+    </div>
+    
+    <audio id="surpriseAudio">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        // Функция для создания падающих цветов
+        function createFlowers() {
+            const container = document.getElementById('flowers');
+            const flowers = ['🌸', '🌼', '🌺', '🌷', '🌹', '💐', '🌻'];
+            
+            for (let i = 0; i < 30; i++) {
+                const flower = document.createElement('div');
+                flower.className = 'flower';
+                flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+                flower.style.left = Math.random() * 100 + '%';
+                flower.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                flower.style.animationDelay = Math.random() * 5 + 's';
+                flower.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                container.appendChild(flower);
+            }
+        }
+        
+        // Функция для сюрприза
+        function showSurprise() {
+            // Создаем всплывающее окно с поздравлением
+            const surpriseMessages = [
+                '💝 С 8 Марта, мамочка! Ты самое дорогое, что у меня есть!',
+                '🌸 Пусть каждый день дарит тебе улыбки и радость!',
+                '🌺 Ты — мой самый главный человек в жизни!',
+                '💐 Здоровья, счастья и исполнения всех мечтаний!',
+                '✨ Оставайся всегда такой же молодой и красивой!'
+            ];
+            
+            const randomMessage = surpriseMessages[Math.floor(Math.random() * surpriseMessages.length)];
+            
+            // Создаем красивое модальное окно
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                color: white;
+                padding: 30px;
+                border-radius: 20px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                z-index: 2000;
+                text-align: center;
+                font-size: 1.5em;
+                animation: popIn 0.5s ease-out;
+                max-width: 90%;
+            `;
+            
+            modal.innerHTML = `
+                <div style="font-size: 4em; margin-bottom: 20px;">🎉</div>
+                <div>${randomMessage}</div>
+                <button onclick="this.parentElement.remove()" style="
+                    margin-top: 20px;
+                    padding: 10px 30px;
+                    background: white;
+                    color: #f5576c;
+                    border: none;
+                    border-radius: 50px;
+                    font-size: 1em;
+                    cursor: pointer;
+                    font-weight: bold;
+                ">Спасибо ❤️</button>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Добавляем анимацию
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes popIn {
+                    0% { transform: translate(-50%, -50%) scale(0); }
+                    80% { transform: translate(-50%, -50%) scale(1.1); }
+                    100% { transform: translate(-50%, -50%) scale(1); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Удаляем модальное окно через 5 секунд
+            setTimeout(() => {
+                if (modal.parentElement) {
+                    modal.remove();
+                }
+            }, 5000);
+        }
+        
+        // Запускаем создание цветов при загрузке страницы
+        createFlowers();
+        
+        // Добавляем эффект при клике на карточку
+        document.querySelector('.card').addEventListener('click', function(e) {
+            if (e.target.classList.contains('gallery-item')) return;
+            
+            const heart = document.createElement('div');
+            heart.innerHTML = '💗';
+            heart.style.cssText = `
+                position: fixed;
+                left: ${e.clientX}px;
+                top: ${e.clientY}px;
+                font-size: 30px;
+                pointer-events: none;
+                animation: heartFloat 1s ease-out forwards;
+                z-index: 3000;
+            `;
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 1000);
+        });
+        
+        // Анимация для сердечек
+        const heartStyle = document.createElement('style');
+        heartStyle.innerHTML = `
+            @keyframes heartFloat {
+                0% {
+                    transform: translateY(0) scale(1);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100px) scale(1.5);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(heartStyle);
+    </script>
+</body>
+</html>
