@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта! · Матвей</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fbf7e9;  /* тёплый молочный фон */
+            font-family: 'Georgia', 'Times New Roman', 'Palatino', serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-image: radial-gradient(circle at 30% 40%, rgba(255, 215, 0, 0.03) 0%, transparent 30%),
+                              radial-gradient(circle at 80% 70%, rgba(218, 165, 32, 0.04) 0%, transparent 40%);
+        }
+
+        .card {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(255, 250, 235, 0.7); /* полупрозрачная основа */
+            backdrop-filter: blur(3px);
+            border-radius: 60px 20px 60px 20px;
+            box-shadow: 0 25px 50px -8px rgba(180, 130, 30, 0.25),
+                        0 0 0 2px rgba(255, 215, 0, 0.2) inset,
+                        0 0 0 4px rgba(255, 245, 210, 0.7) inset;
+            padding: 35px 30px 45px 30px;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(218, 165, 32, 0.3);
+        }
+
+        /* золотые акцентные уголки */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 70px;
+            height: 70px;
+            border-top: 3px solid #d4af37;
+            border-left: 3px solid #d4af37;
+            border-radius: 30px 0 0 0;
+            opacity: 0.7;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 70px;
+            height: 70px;
+            border-bottom: 3px solid #d4af37;
+            border-right: 3px solid #d4af37;
+            border-radius: 0 0 30px 0;
+            opacity: 0.7;
+        }
+
+        /* декоративные цветы (псевдоэлементы + картинки) */
+        .flower-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            border-radius: inherit;
+        }
+
+        .flower-bg span {
+            position: absolute;
+            display: block;
+            background: rgba(212, 175, 55, 0.08);
+            width: 120px;
+            height: 120px;
+            border-radius: 80% 20% 70% 30% / 35% 60% 40% 65%;
+            transform: rotate(15deg);
+            box-shadow: 0 0 15px rgba(255, 200, 0, 0.2);
+        }
+
+        .flower-bg span:nth-child(1) {
+            top: -30px;
+            right: 10px;
+            width: 180px;
+            height: 180px;
+            background: rgba(218, 165, 32, 0.05);
+            border-radius: 75% 25% 60% 40% / 40% 70% 30% 60%;
+        }
+
+        .flower-bg span:nth-child(2) {
+            bottom: 10px;
+            left: -30px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 215, 0, 0.04);
+            border-radius: 40% 60% 30% 70% / 60% 30% 70% 40%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 3.3rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            word-spacing: 8px;
+            color: #3a2e0b;
+            text-shadow: 2px 2px 0 #f3e5ab, 4px 4px 0 rgba(212, 175, 55, 0.3);
+            font-family: 'Georgia', 'Times', serif;
+            border-bottom: 2px dashed #e6c27c;
+            display: inline-block;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 span {
+            background: linear-gradient(135deg, #a77d2a, #d4af37, #f9e076);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        .names-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px 50px;
+            margin: 40px 0 25px 0;
+        }
+
+        .name-card {
+            text-align: center;
+            min-width: 160px;
+            background: rgba(255, 245, 210, 0.4);
+            padding: 15px 15px 10px 15px;
+            border-radius: 70px 20px 70px 20px;
+            box-shadow: 0 8px 20px rgba(160, 120, 20, 0.15), inset 0 0 20px rgba(255, 245, 200, 0.7);
+            border: 1px solid #ebd294;
+            transition: transform 0.2s ease;
+        }
+
+        .name-card:hover {
+            transform: scale(1.02);
+            background: rgba(255, 240, 190, 0.5);
+            border-color: #d4af37;
+        }
+
+        .name-card .relation {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #8b6e3a;
+            border-bottom: 1px solid #d4af37;
+            display: inline-block;
+            padding: 0 5px 3px 5px;
+            margin-bottom: 8px;
+            font-weight: 300;
+        }
+
+        .name-card .name {
+            font-size: 2.2rem;
+            font-weight: 500;
+            color: #4a3a1a;
+            line-height: 1.2;
+            text-shadow: 1px 1px 0 #fffaec;
+            font-family: 'Palatino', 'Georgia', serif;
+        }
+
+        .name-card .name small {
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            color: #ad8b4c;
+        }
+
+        .message {
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 100px 30px 100px 30px;
+            padding: 30px 35px;
+            margin: 35px 0 25px 0;
+            border: 1px solid #e9cf8b;
+            box-shadow: 0 10px 25px -10px #c6a34b, inset 0 0 40px rgba(255, 235, 150, 0.4);
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #2f2816;
+            text-align: center;
+            backdrop-filter: blur(2px);
+            position: relative;
+        }
+
+        .message p {
+            margin: 12px 0;
+        }
+
+        .message .gold-signature {
+            font-size: 1.9rem;
+            font-family: 'Brush Script MT', cursive, serif;
+            color: #b3882b;
+            text-shadow: 1px 1px 2px #ffeeaa;
+            margin-top: 15px;
+        }
+
+        .flowers-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 15px 20px;
+            margin-top: 20px;
+            filter: drop-shadow(0 6px 6px rgba(165, 125, 20, 0.15));
+        }
+
+        .flower-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90px;
+        }
+
+        .flower-icon {
+            font-size: 3.8rem;
+            line-height: 1;
+            filter: drop-shadow(0 8px 6px #b4914b);
+            transition: all 0.2s;
+        }
+
+        .flower-icon:hover {
+            transform: rotate(3deg) scale(1.1);
+            filter: drop-shadow(0 10px 8px #c9a34b);
+        }
+
+        .flower-label {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: #ac8c4a;
+            text-transform: uppercase;
+            margin-top: -5px;
+            background: rgba(255, 250, 225, 0.7);
+            padding: 3px 10px;
+            border-radius: 30px;
+            border: 1px solid #eedba1;
+        }
+
+        .footer-note {
+            text-align: right;
+            margin-top: 35px;
+            font-size: 1.15rem;
+            border-top: 1px dashed #d5b56b;
+            padding-top: 20px;
+            color: #5f4e2b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-note .from {
+            font-size: 1.6rem;
+            font-style: italic;
+            background: linear-gradient(145deg, #896d2b, #cfaa54);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 500;
+        }
+
+        .tiny-flowers {
+            font-size: 2rem;
+            opacity: 0.6;
+            letter-spacing: 8px;
+        }
+
+        /* адаптация для маленьких экранов */
+        @media (max-width: 650px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            .name-card .name {
+                font-size: 1.8rem;
+            }
+            .message {
+                padding: 20px 15px;
+                font-size: 1.1rem;
+            }
+            .names-section {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- декоративные цветы фоном (абстрактные) -->
+        <div class="flower-bg">
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="header">
+            <h1><span>С 8 Марта!</span></h1>
+            <div style="font-size: 1.2rem; color: #937b43; margin-top: 5px;">нежность · красота · весна</div>
+        </div>
+
+        <!-- именные блоки: мама, бабушка, сестра -->
+        <div class="names-section">
+            <div class="name-card">
+                <div class="relation">мама</div>
+                <div class="name">Елена</div>
+                <div style="color: #ad872d; font-size: 1.5rem; margin-top: 5px;">⚘</div>
+            </div>
+            <div class="name-card">
+                <div class="relation">бабушка</div>
+                <div class="name">Валентина</div>
+                <div style="color: #ad872d; font-size: 1.5rem; margin-top: 5px;">✿</div>
+            </div>
+            <div class="name-card">
+                <div class="relation">сестра</div>
+                <div class="name">Мария</div>
+                <div style="color: #ad872d; font-size: 1.5rem; margin-top: 5px;">❀</div>
+            </div>
+        </div>
+
+        <!-- основное поздравление с золотым текстом -->
+        <div class="message">
+            <p>✨ Дорогие и любимые мои женщины! ✨</p>
+            <p>С праздником весны, красоты и вдохновения!<br>
+            Пусть каждый день озаряется улыбками, а в сердце всегда цветёт нежность.<br>
+            Вы — моё золото, моя опора и радость.</p>
+            <p style="font-size: 1.5rem; color: #a98137;">Мамочка Лена, бабушка Валя, сестричка Маша —<br> вы чудесные, неповторимые, самые лучшие!</p>
+            <div class="gold-signature">с любовью, Матвей</div>
+        </div>
+
+        <!-- цветы (символы и подписи) -->
+        <div class="flowers-container">
+            <div class="flower-item">
+                <span class="flower-icon">🌷</span>
+                <span class="flower-label">тюльпан</span>
+            </div>
+            <div class="flower-item">
+                <span class="flower-icon">🌹</span>
+                <span class="flower-label">роза</span>
+            </div>
+            <div class="flower-item">
+                <span class="flower-icon">🌼</span>
+                <span class="flower-label">ромашка</span>
+            </div>
+            <div class="flower-item">
+                <span class="flower-icon">🌺</span>
+                <span class="flower-label">гибискус</span>
+            </div>
+            <div class="flower-item">
+                <span class="flower-icon">🌸</span>
+                <span class="flower-label">сакура</span>
+            </div>
+            <div class="flower-item">
+                <span class="flower-icon">🌿</span>
+                <span class="flower-label">веточка</span>
+            </div>
+        </div>
+
+        <!-- нижняя часть с авторством и декоративной строкой -->
+        <div class="footer-note">
+            <span class="tiny-flowers">⚜️ ✤ ⚜️</span>
+            <span class="from">Матвей</span>
+            <span class="tiny-flowers">⚜️ ✤ ⚜️</span>
+        </div>
+    </div>
+</body>
+</html>

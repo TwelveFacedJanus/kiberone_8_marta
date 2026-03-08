@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, Юля!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(145deg, #ffe4e4 0%, #d8e8b5 100%);
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Основная открытка с нежно-зеленым и розовым градиентом */
+        .card {
+            max-width: 950px;
+            width: 100%;
+            background: rgba(255, 245, 240, 0.35);
+            backdrop-filter: blur(10px);
+            border-radius: 80px 80px 80px 80px;
+            box-shadow: 0 35px 60px rgba(160, 110, 110, 0.3),
+                        0 15px 30px rgba(90, 70, 50, 0.2),
+                        inset 0 2px 20px rgba(255, 250, 240, 0.9);
+            padding: 50px 40px 60px;
+            text-align: center;
+            border: 5px solid rgba(255, 200, 210, 0.7);
+            position: relative;
+            z-index: 10;
+            transition: all 0.2s ease;
+        }
+
+        /* Плавающие розы на фоне */
+        .floating-roses {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-roses span {
+            position: absolute;
+            display: block;
+            font-size: 4.5rem;
+            opacity: 0.3;
+            animation: floatFlower 20s infinite ease-in-out;
+            filter: drop-shadow(0 12px 18px #dc9eb0);
+            user-select: none;
+        }
+
+        /* Разные оттенки роз и зелени */
+        .floating-roses span:nth-child(1) { top: 2%; left: 1%; animation-duration: 19s; font-size: 6rem; content: "🌹"; }
+        .floating-roses span:nth-child(2) { bottom: 8%; right: 3%; animation-duration: 23s; font-size: 7rem; opacity: 0.25; }
+        .floating-roses span:nth-child(3) { top: 18%; right: 7%; animation-duration: 26s; font-size: 5.5rem; }
+        .floating-roses span:nth-child(4) { bottom: 22%; left: 5%; animation-duration: 20s; font-size: 6.2rem; }
+        .floating-roses span:nth-child(5) { top: 55%; left: 12%; animation-duration: 29s; font-size: 5.8rem; }
+        .floating-roses span:nth-child(6) { bottom: 3%; left: 20%; animation-duration: 22s; font-size: 6.5rem; }
+        .floating-roses span:nth-child(7) { top: 12%; left: 35%; animation-duration: 25s; font-size: 6rem; }
+        .floating-roses span:nth-child(8) { bottom: 30%; right: 12%; animation-duration: 24s; font-size: 7rem; opacity: 0.2; }
+        .floating-roses span:nth-child(9) { top: 42%; right: 22%; animation-duration: 27s; font-size: 6.3rem; }
+        .floating-roses span:nth-child(10) { bottom: 45%; left: 28%; animation-duration: 28s; font-size: 5.8rem; }
+        .floating-roses span:nth-child(11) { top: 70%; right: 35%; animation-duration: 21s; font-size: 5.2rem; }
+        .floating-roses span:nth-child(12) { bottom: 55%; left: 45%; animation-duration: 30s; font-size: 6.8rem; }
+
+        @keyframes floatFlower {
+            0% { transform: translateY(0px) rotate(0deg) scale(1); }
+            50% { transform: translateY(-40px) rotate(10deg) scale(1.08); }
+            100% { transform: translateY(0px) rotate(0deg) scale(1); }
+        }
+
+        /* Имя Юля — крупно и нежно */
+        .name-title {
+            font-size: 6rem;
+            font-weight: 800;
+            background: linear-gradient(145deg, #d44e71, #b83b60);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 7px 7px 0 #ffe0e8, 9px 9px 0 rgba(160, 200, 100, 0.6);
+            letter-spacing: 6px;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .name-title span {
+            font-size: 5rem;
+            background: linear-gradient(145deg, #b8d68c, #84aa5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .sub-rose {
+            font-size: 2.2rem;
+            color: #a54262;
+            background: rgba(230, 250, 190, 0.7);
+            display: inline-block;
+            padding: 0.7rem 3.5rem;
+            border-radius: 70px;
+            backdrop-filter: blur(4px);
+            margin-bottom: 20px;
+            border: 4px solid #ffdada;
+            box-shadow: 0 10px 0 #bfa386;
+            font-weight: 500;
+        }
+
+        /* Букет из красивых роз */
+        .rose-bouquet {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 35px;
+            margin: 30px 0 35px;
+            flex-wrap: wrap;
+        }
+
+        .rose-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            filter: drop-shadow(0 18px 20px #d49aa8);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .rose-item:hover {
+            transform: translateY(-15px) rotate(-2deg) scale(1.05);
+        }
+
+        .rose-flower {
+            font-size: 7rem;
+            line-height: 1;
+            margin-bottom: -12px;
+            filter: drop-shadow(0 10px 12px #f8b0c2);
+            transition: transform 0.2s;
+        }
+
+        /* Стебель и листья для реалистичности */
+        .stem {
+            width: 10px;
+            height: 80px;
+            background: linear-gradient(145deg, #5f8a4b, #3d6e2a);
+            border-radius: 5px 5px 0 0;
+            box-shadow: 0 8px 8px rgba(40, 70, 10, 0.3);
+            margin: 0 auto 5px;
+        }
+
+        .leaf-pair {
+            display: flex;
+            gap: 25px;
+            margin-top: -15px;
+            margin-bottom: 5px;
+        }
+
+        .leaf {
+            width: 35px;
+            height: 22px;
+            background: #5e8a3c;
+            border-radius: 90% 0 70% 20%;
+            transform: rotate(-20deg);
+            box-shadow: -3px -3px 5px #3a631f;
+        }
+
+        .leaf.right {
+            transform: rotate(70deg) scaleX(-1) skewX(5deg);
+        }
+
+        .leaf.green-light {
+            background: #7fa856;
+        }
+
+        /* Текст поздравления с именем */
+        .greeting-message {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #7d2d49;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 25px 35px;
+            border-radius: 70px 30px 70px 30px;
+            border: 5px solid white;
+            box-shadow: 0 20px 25px -15px #b5798b, inset 0 2px 15px #ffeef2;
+            line-height: 1.6;
+            backdrop-filter: blur(4px);
+            margin: 20px 0 25px;
+        }
+
+        .greeting-message strong {
+            font-size: 2.6rem;
+            color: #d14e73;
+            background: rgba(200, 230, 140, 0.4);
+            padding: 0 10px;
+            border-radius: 40px;
+        }
+
+        .greeting-message span {
+            display: inline-block;
+            font-size: 2.8rem;
+            margin: 0 5px;
+            filter: drop-shadow(0 3px 3px #d88e9e);
+        }
+
+        .wishes {
+            font-size: 1.7rem;
+            color: #3f4d2e;
+            background: rgba(235, 255, 190, 0.6);
+            border-radius: 60px;
+            padding: 20px 35px;
+            margin: 25px 0 30px;
+            border: 3px solid #ffe0f0;
+            backdrop-filter: blur(4px);
+            box-shadow: inset 0 2px 15px #faf0c0, 0 15px 20px -18px #976978;
+            font-style: italic;
+        }
+
+        /* Интерактивная кнопка */
+        .btn-rose {
+            background: #f5a3b9;
+            border: none;
+            color: #4f2e3a;
+            font-size: 2rem;
+            font-weight: 700;
+            padding: 18px 50px;
+            border-radius: 70px;
+            cursor: pointer;
+            box-shadow: 0 15px 0 #a14562, 0 10px 30px #f7bacb;
+            transition: all 0.08s linear;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border: 4px solid #fff5fa;
+            margin-top: 20px;
+        }
+
+        .btn-rose:active {
+            transform: translateY(10px);
+            box-shadow: 0 5px 0 #a14562, 0 10px 30px #f7bacb;
+        }
+
+        /* Контейнер для падающих лепестков и сердечек */
+        .petal-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.7;
+            animation: fallDown 4s linear forwards;
+            color: #ff89a5;
+            filter: drop-shadow(0 0 8px #ffafc9);
+            user-select: none;
+        }
+
+        @keyframes fallDown {
+            0% { transform: translateY(-15vh) rotate(0deg); opacity: 0.9; }
+            100% { transform: translateY(120vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Нижний декор */
+        .footer-decor {
+            margin-top: 40px;
+            font-size: 1.5rem;
+            color: #aa5775;
+            border-top: 3px dotted #ffc1cc;
+            padding-top: 22px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .footer-decor span {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 8px 22px;
+            border-radius: 60px;
+            font-weight: 600;
+            box-shadow: 0 6px 0 #e4bfb0;
+            backdrop-filter: blur(2px);
+        }
+
+        /* Адаптация под мобильные */
+        @media (max-width: 600px) {
+            .name-title { font-size: 4.5rem; }
+            .name-title span { font-size: 3.8rem; }
+            .sub-rose { font-size: 1.7rem; }
+            .greeting-message { font-size: 1.5rem; }
+            .rose-flower { font-size: 5rem; }
+            .stem { height: 60px; }
+            .card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Фоновые розы (плывут) -->
+    <div class="floating-roses">
+        <span>🌹</span>
+        <span>🌹</span>
+        <span>🌹</span>
+        <span>🌹</span>
+        <span>🌹</span>
+        <span>🌹</span>
+        <span>🌹</span>
+        <span>🌹</span>
+        <span>🌹</span>
+        <span>🌹</span>
+        <span>🌹</span>
+        <span>🌹</span>
+    </div>
+
+    <!-- Главная открытка для Юли -->
+    <div class="card">
+        <!-- Имя крупно -->
+        <div class="name-title">
+            Ю <span>Л</span> Я
+        </div>
+        <div class="sub-rose">
+            🌹 с 8 Марта, прекрасная! 🌹
+        </div>
+
+        <!-- Букет роскошных роз -->
+        <div class="rose-bouquet">
+            <!-- Роза красная -->
+            <div class="rose-item">
+                <div class="rose-flower">🌹</div>
+                <div class="stem"></div>
+                <div class="leaf-pair">
+                    <div class="leaf"></div>
+                    <div class="leaf right"></div>
+                </div>
+            </div>
+            <!-- Роза розовая -->
+            <div class="rose-item">
+                <div class="rose-flower">🌹</div>
+                <div class="stem" style="background: linear-gradient(145deg, #69944b, #43752a);"></div>
+                <div class="leaf-pair">
+                    <div class="leaf green-light"></div>
+                    <div class="leaf right green-light"></div>
+                </div>
+            </div>
+            <!-- Роза белая/кремовая (используем тот же символ, но с оттенком) -->
+            <div class="rose-item">
+                <div class="rose-flower" style="filter: drop-shadow(0 8px 10px #fcc2d3);">🌹</div>
+                <div class="stem" style="background: linear-gradient(145deg, #77a357, #4c8033);"></div>
+                <div class="leaf-pair">
+                    <div class="leaf" style="background: #7caa53;"></div>
+                    <div class="leaf right" style="background: #7caa53;"></div>
+                </div>
+            </div>
+            <!-- Бутон розы (ещё одна) -->
+            <div class="rose-item">
+                <div class="rose-flower">🌹</div>
+                <div class="stem" style="background: linear-gradient(145deg, #58853d, #366b1e);"></div>
+                <div class="leaf-pair">
+                    <div class="leaf" style="background: #689a41;"></div>
+                    <div class="leaf right" style="background: #689a41;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Персональное поздравление для Юли -->
+        <div class="greeting-message">
+            <span>💗</span> Дорогая <strong>Юля</strong>! <span>💗</span><br>
+            С 8 Марта! Пусть этот день подарит море цветов,<br> улыбок и нежности.
+        </div>
+
+        <div class="wishes">
+            🌸 Желаю тебе весеннего тепла, радости, любви,<br>
+            исполнения самых заветных желаний. Оставайся<br>
+            такой же прекрасной, как эти розы! 🌸
+        </div>
+
+        <!-- Кнопка для волшебства -->
+        <button class="btn-rose" id="roseBtn">🌹 розовый дождь 🌹</button>
+
+        <!-- Декоративный футер -->
+        <div class="footer-decor">
+            <span>🌹 8 Марта 🌹</span>
+            <span>💐 Юля 💐</span>
+            <span>🌷 весна 🌷</span>
+        </div>
+    </div>
+
+    <!-- Контейнер для анимации -->
+    <div class="petal-rain" id="petalRain"></div>
+
+    <script>
+        (function() {
+            const btn = document.getElementById('roseBtn');
+            const rainContainer = document.getElementById('petalRain');
+
+            function createPetal() {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+                // разнообразные символы: лепестки, сердечки, розочки
+                const symbols = ['🌹', '🌸', '🌷', '💗', '🌺', '🌸', '🌼', '🌹', '💖', '🌸', '🌷', '🌹'];
+                petal.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDelay = (Math.random() * 1.5) + 's';
+                petal.style.fontSize = (Math.random() * 2.5 + 2) + 'rem';
+                petal.style.animationDuration = (Math.random() * 2.5 + 3) + 's';
+                rainContainer.appendChild(petal);
+
+                setTimeout(() => {
+                    petal.remove();
+                }, 5000);
+            }
+
+            btn.addEventListener('click', () => {
+                // запускаем 40 элементов
+                for (let i = 0; i < 40; i++) {
+                    setTimeout(createPetal, i * 35);
+                }
+                // меняем текст кнопки на пару секунд
+                const originalText = btn.textContent;
+                btn.textContent = '💗 с любовью для Юли 💗';
+                btn.style.background = '#fec7d5';
+                btn.style.color = '#732c46';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '#f5a3b9';
+                    btn.style.color = '#4f2e3a';
+                }, 1500);
+            });
+
+            // небольшой превью при загрузке — сразу немного лепестков
+            window.addEventListener('load', () => {
+                for (let i = 0; i < 12; i++) {
+                    setTimeout(createPetal, i * 120);
+                }
+            });
+
+            // интерактив при наведении на розы: вылетают маленькие лепестки
+            const roses = document.querySelectorAll('.rose-item');
+            roses.forEach((rose, index) => {
+                rose.addEventListener('mouseenter', (e) => {
+                    for (let s = 0; s < 6; s++) {
+                        setTimeout(() => {
+                            const mini = document.createElement('div');
+                            mini.classList.add('petal');
+                            mini.textContent = ['🌹', '🌸', '💐'][Math.floor(Math.random() * 3)];
+                            mini.style.left = (e.clientX / window.innerWidth * 100) + '%';
+                            mini.style.top = (e.clientY / window.innerHeight * 80) + '%';
+                            mini.style.fontSize = '2rem';
+                            mini.style.animationDuration = '2s';
+                            rainContainer.appendChild(mini);
+                            setTimeout(() => mini.remove(), 2000);
+                        }, s * 60);
+                    }
+                });
+            });
+        })();
+    </script>
+
+    <!-- Добавим пару дополнительных эмодзи-роз на фоне через CSS (уже есть), но украсим еще парой летящих листьев из псевдо-элементов (опционально) -->
+</body>
+</html>

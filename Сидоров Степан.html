@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, мама Елена!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #ffd1dc 0%, #ffe4e1 50%, #fff0f5 100%);
+            padding: 15px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Фоновые цветы (декор) */
+        body::before {
+            content: "🌸🌷🌹🌼🌸🌷🌹🌼";
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 100%;
+            font-size: 24px;
+            color: rgba(255, 182, 193, 0.3);
+            white-space: nowrap;
+            animation: moveFlowers 25s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes moveFlowers {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .card {
+            max-width: 750px;
+            width: 100%;
+            background: rgba(255, 250, 250, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 70px 70px 50px 50px;
+            box-shadow: 0 30px 50px rgba(219, 112, 147, 0.3),
+                        0 0 0 4px #fff9f9,
+                        0 0 0 8px #ffc0cb70;
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+            border: 2px solid white;
+        }
+
+        /* Верхняя часть с именем */
+        .hero {
+            background: linear-gradient(120deg, #ffb3c6, #ffc9d9, #ffd9e8);
+            padding: 35px 25px 20px;
+            text-align: center;
+            border-bottom: 5px dotted #ff99aa;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            color: #9f3e5c;
+            text-shadow: 4px 4px 0 #ffe2eb;
+            margin: 15px 0 5px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            word-break: break-word;
+        }
+
+        .hero h2 {
+            font-size: 2.4rem;
+            color: #b94b6f;
+            text-shadow: 2px 2px 0 #ffeef2;
+            font-weight: 600;
+            background: #ffffffb3;
+            display: inline-block;
+            padding: 10px 40px;
+            border-radius: 60px;
+            margin: 15px 0;
+            box-shadow: 0 5px 0 #ffa5b9;
+            border: 3px solid white;
+            transform: rotate(-1deg);
+        }
+
+        /* Букет цветов (особенный) */
+        .bouquet {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin: 25px 0 15px;
+            padding: 10px;
+        }
+
+        .flower-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            filter: drop-shadow(0 8px 10px #ffacc0);
+            animation: floatFlower 3.5s ease-in-out infinite;
+        }
+
+        .flower-item:nth-child(2) { animation-delay: 0.5s; }
+        .flower-item:nth-child(3) { animation-delay: 1s; }
+        .flower-item:nth-child(4) { animation-delay: 0.2s; }
+        .flower-item:nth-child(5) { animation-delay: 0.7s; }
+
+        .flower-emoji {
+            font-size: 4rem;
+            line-height: 1;
+            transition: transform 0.3s;
+        }
+
+        .flower-item:hover .flower-emoji {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .flower-stem {
+            width: 8px;
+            height: 55px;
+            background: linear-gradient(to bottom, #6b8e4c, #2f6b2f);
+            border-radius: 20px 20px 5px 5px;
+            margin-top: -10px;
+            box-shadow: 0 8px 8px #558b2f66;
+            position: relative;
+        }
+
+        .flower-stem::before {
+            content: "🌿";
+            font-size: 1.5rem;
+            position: absolute;
+            left: -15px;
+            top: 20px;
+            transform: rotate(-30deg);
+            opacity: 0.7;
+        }
+
+        @keyframes floatFlower {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Основной текст */
+        .message-block {
+            padding: 35px 35px 40px;
+            text-align: center;
+        }
+
+        .personal-message {
+            font-size: 1.8rem;
+            color: #4d2636;
+            background: #fff3f7;
+            padding: 25px 30px;
+            border-radius: 80px 80px 80px 20px;
+            margin-bottom: 30px;
+            border: 4px solid white;
+            box-shadow: 0 10px 0 #e6a0b5;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .personal-message span {
+            font-size: 2.5rem;
+            display: inline-block;
+            margin: 0 8px;
+            filter: drop-shadow(0 3px 3px #ff9eb5);
+        }
+
+        .wishes {
+            background: #ffeef4;
+            border-radius: 40px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 3px dashed #ffb0c3;
+        }
+
+        .wishes p {
+            font-size: 1.4rem;
+            color: #572c3f;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .wishes p i {
+            font-size: 2rem;
+            font-style: normal;
+        }
+
+        /* Сердечки */
+        .hearts {
+            font-size: 2rem;
+            color: #ff4d6d;
+            animation: heartbeat 1.5s ease infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            30% { transform: scale(1.2); }
+            50% { transform: scale(1.1); }
+            70% { transform: scale(1.25); }
+            100% { transform: scale(1); }
+        }
+
+        /* Кнопка с сюрпризом */
+        .surprise-btn {
+            background: #ff8aa8;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            padding: 20px 50px;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 12px 0 #b84f6b, 0 5px 30px #ffb0c6;
+            transition: 0.1s linear;
+            margin: 25px 0 20px;
+            border: 4px solid #fff5f7;
+            letter-spacing: 2px;
+        }
+
+        .surprise-btn:active {
+            transform: translateY(8px);
+            box-shadow: 0 4px 0 #b84f6b, 0 10px 30px #f598b4;
+        }
+
+        .surprise-btn:hover {
+            background: #ff7595;
+        }
+
+        #specialMessage {
+            font-size: 1.8rem;
+            color: #b34366;
+            background: #fffff2;
+            padding: 20px;
+            border-radius: 50px;
+            margin: 20px 0;
+            border: 4px solid #ffc1cc;
+            opacity: 0;
+            transition: opacity 0.6s;
+            font-weight: 600;
+            box-shadow: 0 5px 0 #fec5d0;
+        }
+
+        #specialMessage.show {
+            opacity: 1;
+        }
+
+        .footer {
+            font-size: 1.4rem;
+            color: #ac7085;
+            border-top: 3px solid #ffb6c190;
+            padding-top: 25px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer span {
+            font-size: 2rem;
+        }
+
+        /* Адаптация */
+        @media (max-width: 550px) {
+            .hero h1 { font-size: 2.4rem; }
+            .hero h2 { font-size: 1.8rem; }
+            .personal-message { font-size: 1.4rem; }
+            .flower-emoji { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="hero">
+            <!-- Красивые цветы вверху -->
+            <div class="bouquet">
+                <div class="flower-item">
+                    <div class="flower-emoji">🌷</div>
+                    <div class="flower-stem"></div>
+                </div>
+                <div class="flower-item">
+                    <div class="flower-emoji">🌹</div>
+                    <div class="flower-stem"></div>
+                </div>
+                <div class="flower-item">
+                    <div class="flower-emoji">🌼</div>
+                    <div class="flower-stem"></div>
+                </div>
+                <div class="flower-item">
+                    <div class="flower-emoji">🌸</div>
+                    <div class="flower-stem"></div>
+                </div>
+                <div class="flower-item">
+                    <div class="flower-emoji">🌺</div>
+                    <div class="flower-stem"></div>
+                </div>
+            </div>
+            
+            <h1>С 8 марта,</h1>
+            <h2>мамочка Елена! 💐</h2>
+            
+            <div style="font-size: 2.5rem; margin-top: 10px;">✨ 💮 ✨</div>
+        </div>
+
+        <div class="message-block">
+            <div class="personal-message">
+                <span>💝</span> Для самой лучшей мамы на свете! <span>💝</span>
+            </div>
+
+            <div class="wishes">
+                <p><i>🌸</i> Здоровья крепкого навека <i>🌸</i></p>
+                <p><i>🌼</i> Радости и тепла <i>🌼</i></p>
+                <p><i>🌺</i> Море улыбок и цветов <i>🌺</i></p>
+                <p><i>🌷</i> Исполнения желаний <i>🌷</i></p>
+            </div>
+
+            <!-- Специальная кнопка для мамы -->
+            <button class="surprise-btn" id="momBtn">🌹 Для Елены 🌹</button>
+            
+            <div id="specialMessage"></div>
+
+            <div class="hearts">
+                ❤️ ❤️ ❤️
+            </div>
+
+            <div class="footer">
+                <span>💐</span> С любовью и благодарностью <span>💐</span>
+            </div>
+            
+            <div style="color:#b95b7a; margin-top: 25px; font-size: 1.3rem;">
+                8 марта 2025
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const btn = document.getElementById('momBtn');
+            const messageBox = document.getElementById('specialMessage');
+            
+            // Мама Елена - специальные поздравления
+            const elenaMessages = [
+                "🌷 Мама Елена, вы — само очарование! 🌷",
+                "💖 Спасибо за вашу заботу и ласку! 💖",
+                "🌸 Пусть каждый день дарит вам счастье! 🌸",
+                "🌹 Вы самая прекрасная мама! 🌹",
+                "💐 Здоровья, радости и весеннего настроения! 💐",
+                "✨ Елена — значит «светлая», сияйте всегда! ✨",
+                "🌺 Моя мама — лучшая на свете! 🌺"
+            ];
+
+            // Функция для создания падающих лепестков (роз)
+            function createPetals() {
+                const petalEmojis = ['🌹', '🌸', '🌷', '🌼', '💮', '✨'];
+                for (let i = 0; i < 20; i++) {
+                    const petal = document.createElement('span');
+                    petal.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+                    petal.style.position = 'fixed';
+                    petal.style.left = Math.random() * 100 + '%';
+                    petal.style.top = '-50px';
+                    petal.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                    petal.style.opacity = Math.random() * 0.8 + 0.3;
+                    petal.style.pointerEvents = 'none';
+                    petal.style.zIndex = '9999';
+                    petal.style.transition = `all ${Math.random() * 3 + 3}s linear`;
+                    document.body.appendChild(petal);
+                    
+                    // Анимация падения
+                    setTimeout(() => {
+                        petal.style.transform = `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`;
+                        petal.style.opacity = '0';
+                    }, 50);
+                    
+                    // Удаление
+                    setTimeout(() => {
+                        if (petal.parentNode) petal.remove();
+                    }, 6000);
+                }
+            }
+
+            btn.addEventListener('click', function() {
+                // Выбираем случайное сообщение для мамы
+                const randomMessage = elenaMessages[Math.floor(Math.random() * elenaMessages.length)];
+                messageBox.textContent = randomMessage;
+                messageBox.classList.add('show');
+                
+                // Создаем падающие лепестки
+                createPetals();
+                
+                // Прячем сообщение через 3 секунды, но показываем новое при каждом клике
+                setTimeout(() => {
+                    messageBox.classList.remove('show');
+                }, 3200);
+            });
+
+            // Добавляем дополнительную анимацию при загрузке
+            window.addEventListener('load', function() {
+                console.log('Открытка для мамы Елены загружена! 💐');
+            });
+        })();
+    </script>
+</body>
+</html>

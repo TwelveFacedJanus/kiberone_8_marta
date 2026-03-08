@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, мамочка!</title>
+    <style>
+        /* СБРОС СТИЛЕЙ И ОСНОВНЫЕ НАСТРОЙКИ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(145deg, #ffe4ec 0%, #ffd0dd 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 15px;
+            position: relative;
+            /* Легкий узор для фона */
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 182, 193, 0.3) 0%, transparent 15%),
+                radial-gradient(circle at 90% 70%, rgba(255, 105, 180, 0.2) 0%, transparent 25%),
+                linear-gradient(145deg, #ffe4ec 0%, #ffd0dd 100%);
+        }
+
+        .card {
+            max-width: 700px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 60px 60px 40px 40px;
+            padding: 35px 30px 45px 30px;
+            box-shadow: 0 25px 45px rgba(199, 21, 133, 0.25),
+                        0 0 0 2px #fff8fb,
+                        0 0 0 5px #ffb6c1;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        /* ЗАГОЛОВОК С ИМЕНЕМ */
+        .title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #b34167;
+            margin-bottom: 5px;
+            text-shadow: 3px 3px 0 #ffd9e6;
+            letter-spacing: 1px;
+        }
+
+        .sub-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #b0306e;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 0 #ffc0cb;
+        }
+
+        .sub-title span {
+            background: #ffb3c6;
+            padding: 5px 20px;
+            border-radius: 60px;
+            display: inline-block;
+            box-shadow: 0 4px 0 #b34167;
+            color: #5e2a44;
+            font-size: 2rem;
+        }
+
+        /* ПИОНЫ (РИСУЕМ CSS) */
+        .peonies {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 25px 0 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .peony {
+            width: 90px;
+            height: 90px;
+            position: relative;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .peony:nth-child(2) {
+            animation-delay: 0.6s;
+            width: 110px;
+            height: 110px;
+        }
+        .peony:nth-child(3) {
+            animation-delay: 1.2s;
+        }
+
+        /* Лепестки */
+        .petal {
+            position: absolute;
+            width: 45px;
+            height: 55px;
+            background: #ffb3c6;
+            border-radius: 70% 30% 60% 40% / 50% 40% 60% 50%;
+            transform-origin: center;
+            box-shadow: 0 0 0 2px #ff9eb5, 0 6px 12px rgba(210, 80, 120, 0.3);
+            border: 2px solid #ffeef2;
+        }
+
+        .petal1 { transform: rotate(0deg) translate(18px, 5px); background: #ffa5b9; }
+        .petal2 { transform: rotate(60deg) translate(18px, 5px); background: #ffb8cb; }
+        .petal3 { transform: rotate(120deg) translate(18px, 5px); background: #ffa5b9; }
+        .petal4 { transform: rotate(180deg) translate(18px, 5px); background: #ffb8cb; }
+        .petal5 { transform: rotate(240deg) translate(18px, 5px); background: #ffa5b9; }
+        .petal6 { transform: rotate(300deg) translate(18px, 5px); background: #ffb8cb; }
+
+        /* Сердцевинка */
+        .center {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: #ffdb65;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 0 4px #f5a3b9, inset 0 0 10px #ffa726;
+            border: 2px solid #ffffff;
+            z-index: 10;
+        }
+
+        /* Листики */
+        .leaf {
+            position: absolute;
+            width: 25px;
+            height: 30px;
+            background: #a9d68e;
+            border-radius: 80% 0 60% 20%;
+            transform: rotate(-25deg);
+            top: 60px;
+            left: -10px;
+            box-shadow: 0 4px 6px rgba(0,80,0,0.2);
+            border: 1px solid #7aa86a;
+            z-index: 5;
+        }
+        .leaf2 {
+            transform: rotate(100deg) scaleX(-1);
+            top: 55px;
+            left: 60px;
+            background: #b2e098;
+        }
+
+        /* ТЕКСТ ПОЗДРАВЛЕНИЯ */
+        .message {
+            background: rgba(255, 240, 245, 0.8);
+            padding: 25px 20px;
+            border-radius: 50px 50px 30px 30px;
+            margin: 25px 0;
+            border: 2px dashed #ffa7b9;
+            box-shadow: inset 0 0 20px #ffe2eb;
+        }
+
+        .greeting {
+            font-size: 1.6rem;
+            color: #912f56;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .greeting-name {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #b0306e;
+            background: #ffeef2;
+            display: inline-block;
+            padding: 5px 30px;
+            border-radius: 40px;
+            margin: 10px 0;
+            box-shadow: 0 4px 0 #ffb6c1;
+            transform: rotate(-1deg);
+        }
+
+        .wish-text {
+            font-size: 1.3rem;
+            color: #5e2a44;
+            line-height: 1.6;
+            font-style: italic;
+            max-width: 500px;
+            margin: 15px auto;
+        }
+
+        .wish-text i {
+            color: #c7547a;
+        }
+
+        /* КНОПКА С СЮРПРИЗОМ */
+        .surprise-btn {
+            background: #ff9eb5;
+            border: none;
+            border-radius: 60px;
+            padding: 18px 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4d2636;
+            border-bottom: 6px solid #b34167;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            box-shadow: 0 7px 0 #b34167, 0 10px 20px rgba(180, 60, 100, 0.4);
+            margin: 20px 0 10px;
+            outline: 2px solid #ffeef2;
+        }
+
+        .surprise-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 2px 0 #b34167, 0 10px 20px rgba(180, 60, 100, 0.4);
+            border-bottom-width: 2px;
+        }
+
+        /* ДОПОЛНИТЕЛЬНЫЙ ТЕКСТ (ПОЯВЛЯЕТСЯ ПОСЛЕ НАЖАТИЯ) */
+        .extra-surprise {
+            margin-top: 20px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #b0306e;
+            background: #fff0f5;
+            padding: 20px;
+            border-radius: 40px;
+            border: 3px solid #ffb6c1;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.4s, transform 0.4s;
+            pointer-events: none;
+            box-shadow: 0 10px 20px rgba(255, 140, 170, 0.5);
+        }
+
+        .extra-surprise.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Подпись */
+        .signature {
+            margin-top: 25px;
+            font-size: 1.2rem;
+            color: #ad5f7e;
+            border-top: 2px dotted #ffb0c3;
+            padding-top: 20px;
+            text-align: right;
+            font-style: italic;
+        }
+
+        /* Анимация покачивания */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Адаптация под экраны */
+        @media (max-width: 500px) {
+            .title { font-size: 1.8rem; }
+            .sub-title { font-size: 2.2rem; }
+            .sub-title span { font-size: 1.5rem; }
+            .greeting-name { font-size: 1.8rem; }
+            .wish-text { font-size: 1.1rem; }
+            .peony { width: 70px; height: 70px; }
+            .peony:nth-child(2) { width: 90px; height: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <!-- Заголовок с именем автора (Эрнест) -->
+    <div class="title">Открытка от</div>
+    <div class="sub-title"><span>Эрнеста</span></div>
+
+    <!-- Букет пионов (нарисованы CSS) -->
+    <div class="peonies">
+        <!-- Первый пион -->
+        <div class="peony">
+            <div class="petal petal1"></div>
+            <div class="petal petal2"></div>
+            <div class="petal petal3"></div>
+            <div class="petal petal4"></div>
+            <div class="petal petal5"></div>
+            <div class="petal petal6"></div>
+            <div class="center"></div>
+            <div class="leaf"></div>
+            <div class="leaf leaf2"></div>
+        </div>
+        <!-- Второй пион (чуть крупнее) -->
+        <div class="peony">
+            <div class="petal petal1" style="background:#ffb2c2;"></div>
+            <div class="petal petal2" style="background:#ffc1d2;"></div>
+            <div class="petal petal3" style="background:#ffb2c2;"></div>
+            <div class="petal petal4" style="background:#ffc1d2;"></div>
+            <div class="petal petal5" style="background:#ffb2c2;"></div>
+            <div class="petal petal6" style="background:#ffc1d2;"></div>
+            <div class="center"></div>
+            <div class="leaf" style="top:70px; left:-5px;"></div>
+            <div class="leaf leaf2" style="top:70px; left:75px;"></div>
+        </div>
+        <!-- Третий пион -->
+        <div class="peony">
+            <div class="petal petal1"></div>
+            <div class="petal petal2"></div>
+            <div class="petal petal3"></div>
+            <div class="petal petal4"></div>
+            <div class="petal petal5"></div>
+            <div class="petal petal6"></div>
+            <div class="center"></div>
+            <div class="leaf"></div>
+            <div class="leaf leaf2"></div>
+        </div>
+    </div>
+
+    <!-- Основное поздравление для мамы -->
+    <div class="message">
+        <div class="greeting">С 8 Марта, моя родная!</div>
+        <div class="greeting-name">МАМА</div>
+        <div class="wish-text">
+            <i>Пусть в твоей жизни всегда будет место весне, нежности и цветам.  
+            Ты самая прекрасная, и эти пионы — для тебя! 🌸</i>
+        </div>
+    </div>
+
+    <!-- Кнопка, которая запускает сюрприз (JS) -->
+    <button class="surprise-btn" id="surpriseButton">🌸 Нажми на меня 🌸</button>
+
+    <!-- Скрытый сюрприз, который появляется -->
+    <div id="extraMessage" class="extra-surprise">
+        🌷🌷🌷 Спасибо, что ты есть! 🌷🌷🌷<br>
+        <span style="font-size: 1.2rem;">Обнимаю тебя крепко-крепко!</span>
+    </div>
+
+    <!-- Подпись, дополнительно подчеркиваем автора -->
+    <div class="signature">
+        С любовью, твой Эрнест ❤️
+    </div>
+</div>
+
+<script>
+    // JavaScript для интерактива: при клике появляется дополнительное поздравление
+    document.addEventListener('DOMContentLoaded', function() {
+        const button = document.getElementById('surpriseButton');
+        const extraDiv = document.getElementById('extraMessage');
+
+        button.addEventListener('click', function() {
+            // Переключаем класс show (если уже есть — убираем, если нет — показываем)
+            extraDiv.classList.toggle('show');
+
+            // Если хотим, чтобы при каждом клике текст немного менялся — можно добавить рандом
+            if (extraDiv.classList.contains('show')) {
+                // Небольшая "изюминка": меняем текст внутри, но можно оставить и постоянным
+                // (Оставляем как есть, но для интереса можно сделать массив)
+                const phrases = [
+                    '🌷 Мамочка, ты мой свет! 🌷',
+                    '🌸 Будь счастлива каждый день! 🌸',
+                    '💖 Ты лучше всех на свете! 💖',
+                    '🌺 Здоровья, радости, цветов! 🌺'
+                ];
+                // Случайная фраза (раскомментируй, если хочешь менять)
+                // let randomIndex = Math.floor(Math.random() * phrases.length);
+                // extraDiv.innerHTML = phrases[randomIndex] + '<br><span style="font-size:1.2rem;">Обнимаю!</span>';
+                // А пока оставим первый вариант, но с сердечком:
+                extraDiv.innerHTML = '🌷🌷🌷 Спасибо, что ты есть! 🌷🌷🌷<br><span style="font-size: 1.2rem;">Обнимаю тебя крепко-крепко!</span>';
+            }
+        });
+
+        // Дополнительно: можно сделать появление "лепестков" при клике, но оставим так :)
+    });
+</script>
+
+<!--
+    Пояснение: 
+    - Сайт полностью на русском, розовые тона, есть пионы (нарисованы с помощью CSS).
+    - Имя "Эрнест" и "мама" везде подписаны.
+    - При клике на кнопку появляется дополнительное сообщение.
+    - Всё в одном файле: HTML, CSS, JavaScript.
+    - Использован красивый розовый градиент, полупрозрачная карточка.
+    - Приятный бонус — цветы покачиваются.
+-->
+</body>
+</html>

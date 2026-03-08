@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сестрёнке ❤️ С 8 марта!</title>
+    <!-- Font Awesome 6 (бесплатный) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f9eef4;
+            background-image: radial-gradient(circle at 30% 40%, rgba(255, 220, 230, 0.5) 0%, transparent 25%),
+                              radial-gradient(circle at 80% 70%, rgba(210, 180, 220, 0.4) 0%, transparent 30%),
+                              linear-gradient(145deg, #fadadd 0%, #ffe4e9 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+            padding: 16px;
+            position: relative;
+        }
+
+        /* лёгкие цветочки на фоне */
+        .bg-flower {
+            position: absolute;
+            color: rgba(230, 150, 170, 0.2);
+            font-size: 5rem;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+            transform: rotate(10deg);
+        }
+
+        /* карточка-открытка */
+        .card {
+            max-width: 850px;
+            width: 100%;
+            background: rgba(255, 245, 245, 0.75);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 70px 70px 50px 50px;
+            box-shadow: 0 30px 50px rgba(170, 100, 120, 0.35),
+                        0 10px 30px rgba(255, 200, 210, 0.6),
+                        inset 0 2px 8px rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(255, 230, 235, 0.8);
+            padding: 30px 30px 45px;
+            position: relative;
+            z-index: 20;
+            transition: 0.25s;
+        }
+
+        /* шапка с именем */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 15px 25px;
+            margin-bottom: 25px;
+        }
+
+        .hero-icon {
+            font-size: 4rem;
+            color: #e598b5;
+            filter: drop-shadow(0 8px 12px #ffb6c1);
+            animation: bob 3s infinite alternate;
+        }
+
+        .hero-icon:last-child {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes bob {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-8px) rotate(3deg); }
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #b34467, #d27f96);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 4px 4px 0 #ffe2ea;
+            letter-spacing: 1px;
+            word-break: break-word;
+            text-align: center;
+        }
+
+        .hero-title i {
+            color: #f598b2;
+            font-size: 2.8rem;
+            margin: 0 8px;
+        }
+
+        /* фото-заглушка (милая картинка) */
+        .sister-avatar {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0 20px;
+        }
+
+        .avatar-circle {
+            background: #ffdae6;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px solid white;
+            box-shadow: 0 10px 0 #dc9aa8, 0 15px 25px #fbb6c6;
+            font-size: 5.2rem;
+            color: #a64262;
+            transition: 0.2s;
+        }
+
+        .avatar-circle:hover {
+            transform: scale(1.03);
+            background: #ffd0dd;
+        }
+
+        /* сообщение-поздравление */
+        .message-block {
+            background: rgba(255, 240, 240, 0.8);
+            border-radius: 80px 80px 60px 60px;
+            padding: 30px 25px;
+            margin: 20px 0 30px;
+            border: 3px solid #ffc1cf;
+            box-shadow: inset 0 -3px 0 #f5a8bb, 0 15px 20px -5px #fec5bb;
+        }
+
+        .greeting-big {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #872b4b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .greeting-big i {
+            background: white;
+            padding: 12px;
+            border-radius: 50%;
+            color: #d95b7a;
+            box-shadow: 0 5px 0 #dc869b;
+        }
+
+        .personal-message {
+            font-size: 1.5rem;
+            color: #51323f;
+            line-height: 1.6;
+            text-align: center;
+            font-weight: 400;
+            background: #ffecf0;
+            padding: 25px 20px;
+            border-radius: 50px;
+            border: 2px dashed #fbb0c0;
+        }
+
+        .personal-message strong {
+            color: #c43f68;
+            font-weight: 700;
+        }
+
+        .personal-message i {
+            color: #dd6483;
+            margin: 0 5px;
+        }
+
+        /* качества сестры (иконки) */
+        .qualities {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px 18px;
+            margin: 25px 0 20px;
+        }
+
+        .quality-badge {
+            background: #ffdae8;
+            border-radius: 60px;
+            padding: 12px 24px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #892f51;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border: 2px solid white;
+            box-shadow: 0 6px 0 #cb8b9d, 0 8px 15px #f8a5bb;
+            transition: 0.15s;
+        }
+
+        .quality-badge:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 0 #cb8b9d, 0 12px 20px #ffa7bc;
+            background: #ffe2ef;
+        }
+
+        .quality-badge i {
+            font-size: 1.8rem;
+            color: #c15577;
+        }
+
+        /* секретный комплимент (кликабельный) */
+        .secret-box {
+            background: #ffe2d6;
+            border-radius: 40px;
+            padding: 5px;
+            margin: 25px 0 20px;
+            border: 3px solid #ffb0b9;
+        }
+
+        .secret-toggle {
+            background: #fbced6;
+            border: none;
+            width: 100%;
+            padding: 18px 20px;
+            border-radius: 40px;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #4f2b3a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 2px solid #ffc3cb;
+            box-shadow: 0 5px 0 #bd7f8f;
+        }
+
+        .secret-toggle:hover {
+            background: #ffdee8;
+            transform: scale(1.01);
+            box-shadow: 0 7px 0 #bd7f8f;
+        }
+
+        .secret-toggle i {
+            font-size: 2rem;
+            color: #a5385c;
+        }
+
+        .secret-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background: #fff3f5;
+            border-radius: 30px;
+            margin-top: 0;
+        }
+
+        .secret-content.show {
+            max-height: 280px;     /* хватит для текста */
+            margin: 20px 10px 15px;
+            padding: 20px 18px;
+            border: 2px solid #ffa5bb;
+            background: #fff0f2;
+        }
+
+        .secret-message {
+            font-size: 1.5rem;
+            text-align: center;
+            color: #802f4b;
+        }
+
+        .secret-message i {
+            color: #e45d83;
+            font-size: 2rem;
+        }
+
+        .signature {
+            font-size: 1.4rem;
+            margin-top: 25px;
+            text-align: right;
+            color: #71364d;
+            border-top: 3px dotted #fbaec2;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .signature-left i {
+            color: #e6537b;
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        .signature-right {
+            font-style: italic;
+            background: #ffe3ea;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+
+        .footer-flower {
+            text-align: center;
+            margin-top: 20px;
+            color: #b4627d;
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        /* адаптация */
+        @media (max-width: 600px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .greeting-big {
+                font-size: 1.7rem;
+            }
+            .personal-message {
+                font-size: 1.2rem;
+            }
+            .quality-badge {
+                font-size: 1.1rem;
+                padding: 8px 18px;
+            }
+            .secret-toggle {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- фоновые цветочки (просто для атмосферы) -->
+<div class="bg-flower" style="top: 2%; left: 2%;">🌷</div>
+<div class="bg-flower" style="bottom: 5%; right: 1%; font-size: 7rem; opacity: 0.15;">🌸</div>
+<div class="bg-flower" style="top: 20%; right: 8%;">🌼</div>
+<div class="bg-flower" style="bottom: 15%; left: 3%; font-size: 6rem;">🌺</div>
+
+<main class="card">
+
+    <!-- Верх с именем (вставляем имя сестры) -->
+    <div class="hero">
+        <i class="fas fa-crown hero-icon" style="color: #f2b279;"></i>
+        <span class="hero-title">
+            <i class="fas fa-star"></i> Для Сестрёнки <i class="fas fa-star"></i>
+        </span>
+        <i class="fas fa-gem hero-icon" style="color: #cf8eb0;"></i>
+    </div>
+
+    <!-- Аватарка (милый значок) -->
+    <div class="sister-avatar">
+        <div class="avatar-circle">
+            <i class="fas fa-female"></i>
+        </div>
+    </div>
+
+    <!-- Главный блок с текстом -->
+    <div class="message-block">
+        <div class="greeting-big">
+            <i class="fas fa-heart"></i> С 8 марта, сестричка! <i class="fas fa-heart"></i>
+        </div>
+        <div class="personal-message">
+            <i class="fas fa-quote-left"></i> 
+            <strong>Родная</strong> моя! Ты — самое тёплое воспоминание детства 
+            и моя лучшая подруга во взрослой жизни. Пусть твоя душа всегда цветёт, 
+            как <i class="fas fa-seedling"></i> весенний сад. Желаю тебе лёгкости, 
+            вдохновения и море поводов для улыбок. 
+            <i class="fas fa-quote-right"></i>
+        </div>
+    </div>
+
+    <!-- Качества, которые я ценю (персонализированные) -->
+    <div class="qualities">
+        <span class="quality-badge"><i class="fas fa-heart"></i> Добрая</span>
+        <span class="quality-badge"><i class="fas fa-smile"></i> Весёлая</span>
+        <span class="quality-badge"><i class="fas fa-lightbulb"></i> Умная</span>
+        <span class="quality-badge"><i class="fas fa-hand-holding-heart"></i> Заботливая</span>
+        <span class="quality-badge"><i class="fas fa-paint-brush"></i> Талантливая</span>
+    </div>
+
+    <!-- Сюрпризный блок с секретным комплиментом (только для неё) -->
+    <div class="secret-box">
+        <button class="secret-toggle" id="secretBtn">
+            <i class="fas fa-lock"></i> Нажми для секрета  <i class="fas fa-chevron-down"></i>
+        </button>
+        <div id="secretContent" class="secret-content">
+            <div class="secret-message">
+                <i class="fas fa-heart" style="color: #ed6184;"></i><br>
+                Ты самая <strong>💖 удивительная 💖</strong> сестра на свете!<br>
+                Помни: я всегда рядом и очень тобой горжусь.<br>
+                🌸 Обнимаю бесконечно! 🌸
+            </div>
+        </div>
+    </div>
+
+    <!-- Подпись и дата -->
+    <div class="signature">
+        <div class="signature-left">
+            <i class="fas fa-feather-alt"></i> Твой брат, Даниил!
+        </div>
+        <div class="signature-right">
+            <i class="far fa-calendar-alt"></i> 8 марта 2026
+        </div>
+    </div>
+
+    <!-- Нижний декор -->
+    <div class="footer-flower">
+        🌷 🌹 🌸 🌼 🌺
+    </div>
+</main>
+
+<script>
+    (function() {
+        const secretButton = document.getElementById('secretBtn');
+        const secretDiv = document.getElementById('secretContent');
+
+        secretButton.addEventListener('click', function() {
+            secretDiv.classList.toggle('show');
+
+            // меняем иконку и текст в зависимости от состояния
+            if (secretDiv.classList.contains('show')) {
+                secretButton.innerHTML = '<i class="fas fa-unlock-alt"></i> Секретик открыт  <i class="fas fa-heart"></i>';
+            } else {
+                secretButton.innerHTML = '<i class="fas fa-lock"></i> Нажми для секрета  <i class="fas fa-chevron-down"></i>';
+            }
+        });
+
+        // маленькая деталь: при двойном клике на карточку падают виртуальные цветы
+        const card = document.querySelector('.card');
+        card.addEventListener('dblclick', function(e) {
+            e.stopPropagation();
+            // создадим кратковременный эффект радуги на карточке
+            card.style.transition = 'background 0.2s';
+            card.style.background = 'rgba(255, 230, 240, 0.9)';
+            setTimeout(() => {
+                card.style.background = 'rgba(255, 245, 245, 0.75)';
+            }, 300);
+            // дополнительно можно вывести в консоль (но это необязательно)
+            console.log('🌸 Лепестки летят! С праздником, сестрёнка! 🌸');
+        });
+
+        // если хотим персонализировать имя — можно легко изменить текст через JS
+        // например, установить имя из переменной
+        const sisterName = "Вики";  // <-- ВСТАВЬ ИМЯ СЕСТРЫ СЮДА (или оставь как есть)
+        const nameElement = document.querySelector('.hero-title');
+        if (sisterName && sisterName.length > 0) {
+            // обновим заголовок: оставим "Для Сестрёнки имя"
+            nameElement.innerHTML = `<i class="fas fa-star"></i> Для ${sisterName} <i class="fas fa-star"></i>`;
+        }
+    })();
+</script>
+
+<!-- Блок для смены имени (просто показать, что легко адаптировать) -->
+<!-- Можно вставить имя сразу в HTML, но через скрипт удобнее -->
+</body>
+</html>

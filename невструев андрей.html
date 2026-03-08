@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта!</title>
+    <style>
+        /* Сбрасываем стандартные отступы */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(145deg, #f9e3e0 0%, #f8d5d3 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Основная открытка */
+        .card {
+            max-width: 900px;
+            width: 100%;
+            background: #fff9f7;
+            border-radius: 50px 50px 40px 40px;
+            box-shadow: 0 25px 45px rgba(190, 110, 105, 0.3), 0 10px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            border: 2px solid #ffe5e2;
+        }
+
+        /* Декоративная лента сверху */
+        .ribbon {
+            background: #e5989b;
+            height: 15px;
+            width: 100%;
+            background: repeating-linear-gradient(45deg, #ffb4a2, #ffb4a2 20px, #e5989b 20px, #e5989b 40px);
+        }
+
+        /* Шапка с цветами */
+        .header {
+            padding: 30px 30px 20px 30px;
+            text-align: center;
+            background: #ffffff;
+            border-bottom: 3px dashed #ffcdc2;
+        }
+
+        .flowers {
+            font-size: 3.5rem;
+            line-height: 1;
+            margin-bottom: 10px;
+            filter: drop-shadow(2px 4px 6px #ffb8b0);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #b3565b;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 #ffe1db;
+            margin-bottom: 5px;
+            word-break: break-word;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #c97c7e;
+            font-style: italic;
+            background: #fff0ec;
+            display: inline-block;
+            padding: 8px 25px;
+            border-radius: 50px;
+            margin-top: 10px;
+            box-shadow: inset 0 -2px 0 #f3bec0;
+        }
+
+        /* Основная часть с поздравлениями */
+        .greetings {
+            padding: 30px 35px;
+            background: #fff9f7;
+        }
+
+        .greeting-block {
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .greeting-block:hover {
+            transform: translateX(10px);
+        }
+
+        .name {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #a56668;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 2px solid #ffd9d1;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+
+        .name span {
+            font-size: 2.5rem;
+        }
+
+        .text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #5e4a4b;
+            padding-left: 15px;
+            border-left: 5px solid #fbc4bf;
+            margin-left: 15px;
+            padding-right: 15px;
+        }
+
+        /* Особый блок для Лилии */
+        .special {
+            background: #fff1ee;
+            border-radius: 35px;
+            padding: 20px 25px;
+            margin-top: 25px;
+            border: 2px solid #ffb9b9;
+            box-shadow: 0 8px 0 #dba39a;
+        }
+
+        .special .name {
+            border-bottom-color: #e5989b;
+        }
+
+        .special .text {
+            border-left-color: #e57373;
+            font-weight: 500;
+        }
+
+        /* Подпись */
+        .signature {
+            text-align: right;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            color: #b47274;
+            border-top: 2px dotted #ffc1ba;
+            padding-top: 25px;
+        }
+
+        .signature p {
+            font-style: italic;
+            font-family: 'Georgia', cursive;
+        }
+
+        .signature .heart {
+            color: #d44e4e;
+            font-size: 2rem;
+            vertical-align: middle;
+        }
+
+        /* Цветочный декор внизу */
+        .footer-flowers {
+            background: #ffffff;
+            padding: 20px 15px;
+            text-align: center;
+            font-size: 2rem;
+            letter-spacing: 12px;
+            border-top: 2px solid #ffcfc0;
+            color: #c46b6b;
+        }
+
+        /* Адаптация для экранов */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .name {
+                font-size: 1.6rem;
+            }
+            .text {
+                font-size: 1rem;
+            }
+            .greetings {
+                padding: 20px 15px;
+            }
+            .flowers {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="ribbon"></div>
+
+    <div class="header">
+        <div class="flowers">🌷🌸🌼🌺🌹</div>
+        <h1>С 8 Марта!</h1>
+        <div class="subtitle">С праздником весны, любви и красоты</div>
+    </div>
+
+    <div class="greetings">
+        <!-- Блок для Бабушки -->
+        <div class="greeting-block">
+            <div class="name">
+                <span>🌷</span> Дорогая Бабушка!
+            </div>
+            <div class="text">
+                Спасибо за твою мудрость, тепло и бесконечную заботу. Твои руки творят уют, а сердце согревает всех вокруг. Желаю тебе крепкого здоровья, бодрости духа и чтобы каждый день радовал приятными событиями. Пусть внуки и правнуки всегда звонят и приезжают, а в доме пахнет твоими фирменными пирожками! 💐
+            </div>
+        </div>
+
+        <!-- Блок для Мамы -->
+        <div class="greeting-block">
+            <div class="name">
+                <span>🌺</span> Любимая Мамочка!
+            </div>
+            <div class="text">
+                Мама, ты мой свет в окошке и главный пример для подражания. Спасибо за твоё терпение, поддержку и нежность. В этот день желаю тебе исполнения самых заветных желаний, весеннего настроения и чтобы ты всегда чувствовала себя счастливой, здоровой и самой красивой! Мы тебя очень любим! ❤️
+            </div>
+        </div>
+
+        <!-- Блок для Сестры -->
+        <div class="greeting-block">
+            <div class="name">
+                <span>🌸</span> Милая Сестрёнка!
+            </div>
+            <div class="text">
+                С праздником, моя родная! Оставайся такой же яркой, целеустремлённой и лёгкой на подъём. Пусть у тебя всё складывается наилучшим образом, учёба/работа радует, а личная жизнь будет полна романтики и сюрпризов. Мечтай и ничего не бойся — у тебя всё получится! 🌼
+            </div>
+        </div>
+
+        <!-- Отдельный праздничный блок для Лилии Невструевой (с акцентом) -->
+        <div class="special">
+            <div class="name">
+                <span>🌹</span> Лилия Невструева!
+            </div>
+            <div class="text">
+                Лилия, с 8 Марта! Пусть это имя, прекрасное как цветок, всегда напоминает тебе о твоей уникальности и красоте. Желаю тебе весеннего цветения в душе, море улыбок, комплиментов и самых приятных неожиданностей. Будь счастлива, любима и неповторима! Пусть каждый день приносит только радость и приятные эмоции. С праздником! 💐
+            </div>
+        </div>
+
+        <!-- Подпись -->
+        <div class="signature">
+            <p>С любовью и самыми тёплыми пожеланиями, <span class="heart">❤️</span></p>
+            <p style="font-size: 1.2rem;">Ваши родные</p>
+        </div>
+    </div>
+
+    <!-- Нижний декор -->
+    <div class="footer-flowers">
+        🌷 8 Марта 🌷
+    </div>
+</div>
+
+</body>
+</html>

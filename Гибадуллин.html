@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, Лариса! 💐</title>
+    <style>
+        /* === ОБНУЛЕНИЕ И БАЗОВЫЕ СТИЛИ (ВСЁ В ОДНОМ ФАЙЛЕ) === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(145deg, #ffd9e8 0%, #ffb3c6 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* === ОСНОВНОЙ КОНТЕЙНЕР (РОЗОВОЕ СЕРДЦЕ) === */
+        .card {
+            max-width: 750px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 60px 60px 60px 60px;
+            box-shadow: 0 30px 50px rgba(255, 105, 180, 0.3),
+                        0 0 0 8px #ffc0e0 inset,
+                        0 0 0 12px #ffffff80 inset;
+            padding: 40px 35px;
+            position: relative;
+            z-index: 10;
+            border: 3px solid #ff9ebb;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        /* ИМЯ В ЗАГОЛОВКЕ — ОТ АЛАНА */
+        .from-name {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #b3406c;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0 #ffe2f0;
+        }
+
+        .from-name span {
+            font-weight: 700;
+            color: #d4145a;
+            background: #fff0f5c0;
+            padding: 0 20px 0 10px;
+            border-radius: 40px;
+            display: inline-block;
+            box-shadow: 0 4px 8px #ffb0cc;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #a1224b;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #db2e6a, #a1224b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 15px #ffa5c3;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #bd3973;
+            margin-bottom: 30px;
+            font-weight: 600;
+            border-bottom: 4px dotted #ff98bb;
+            padding-bottom: 20px;
+            display: inline-block;
+        }
+
+        /* РОЗЫ — ОСНОВНАЯ ТЕМА */
+        .roses-quote {
+            background: #ffddea90;
+            border-radius: 200px 200px 40px 40px;
+            padding: 25px 20px;
+            margin: 25px 0 30px;
+            border: 4px solid white;
+            box-shadow: 0 10px 0 #d45d8b;
+        }
+
+        .roses-quote p {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #a52d5c;
+            word-break: break-word;
+        }
+
+        .roses-quote p i {
+            color: #ff4f7e;
+            font-style: italic;
+            background: white;
+            padding: 5px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        /* ИМЕНИННИЦА */
+        .for-larisa {
+            font-size: 3.2rem;
+            font-weight: 900;
+            background: #ffb8d2;
+            color: #76002b;
+            padding: 10px 30px;
+            border-radius: 100px;
+            display: inline-block;
+            margin: 10px 0 20px;
+            box-shadow: 0 10px 0 #b33f68, 0 0 30px #ffb3d1;
+            transform: rotate(-1deg);
+            border: 3px solid white;
+        }
+
+        /* ПОЗДРАВЛЕНИЕ */
+        .message {
+            font-size: 1.5rem;
+            color: #4d1e32;
+            background: #fff3f9ee;
+            padding: 30px 25px;
+            border-radius: 40px 40px 40px 0;
+            margin: 25px 0 30px;
+            border-left: 18px solid #ff80a5;
+            box-shadow: 0 15px 0 #cb7192;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .message strong {
+            color: #d41159;
+            font-size: 1.8rem;
+        }
+
+        /* ===== ЦВЕТОЧКИ-РОЗЫ (РИСОВАННЫЕ НА CSS) ===== */
+        .flower-garden {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px 30px;
+            margin: 40px 0 25px;
+        }
+
+        /* ОДНА РОЗА (стилизация под розу) */
+        .rose-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            filter: drop-shadow(0 8px 6px #f27aa0);
+        }
+
+        .rose-bush {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: sway 4s infinite ease-in-out;
+            transform-origin: top center;
+        }
+
+        @keyframes sway {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(4deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* Бутон — главный цветочек */
+        .bud {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, #ffb7c5, #ff88b0, #f33a6a);
+            border-radius: 60% 40% 70% 30%;
+            transform: rotate(25deg);
+            box-shadow: 0 10px 12px #c9436e, 0 0 0 4px #ffeef4 inset;
+            border: 2px solid #ffcedb;
+            z-index: 5;
+            margin-bottom: -10px;
+        }
+
+        /* Лепестки вокруг бутона (имитация розы) */
+        .bud::before,
+        .bud::after {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: #ffa5c0;
+            border-radius: 70% 20% 70% 30%;
+            top: -12px;
+            left: 8px;
+            transform: rotate(-20deg);
+            box-shadow: 0 0 0 3px #ffeef4;
+            z-index: -1;
+        }
+
+        .bud::after {
+            top: 20px;
+            left: -15px;
+            width: 40px;
+            height: 40px;
+            background: #ff85af;
+            transform: rotate(60deg);
+            border-radius: 40% 60% 30% 70%;
+            box-shadow: 0 0 0 3px #ffeef4;
+        }
+
+        /* Ещё лепесток сбоку */
+        .petal-side {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #ffbed2;
+            bottom: -2px;
+            right: -14px;
+            border-radius: 80% 0 60% 20%;
+            transform: rotate(45deg);
+            border: 3px solid #fff0f6;
+            z-index: 4;
+        }
+
+        /* Стебель */
+        .stem {
+            width: 10px;
+            height: 60px;
+            background: linear-gradient(145deg, #2b7a4b, #1f5e38);
+            border-radius: 20px;
+            margin-top: -5px;
+            box-shadow: 0 5px 0 #0c3b1f;
+            border: 2px solid #9edbab;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Листья */
+        .leaf-left, .leaf-right {
+            position: absolute;
+            width: 26px;
+            height: 16px;
+            background: #278f4c;
+            border-radius: 0 80% 20% 80%;
+            transform: rotate(-35deg);
+            left: -20px;
+            top: 25px;
+            border: 2px solid #aff0c0;
+            box-shadow: 0 4px 0 #146b32;
+        }
+
+        .leaf-right {
+            left: auto;
+            right: -20px;
+            transform: rotate(45deg) scaleX(-1);
+            background: #1f8042;
+        }
+
+        /* Маленькие розочки-бутончики (доп почки) */
+        .small-bud {
+            width: 24px;
+            height: 24px;
+            background: #ff2f68;
+            border-radius: 70% 30% 60% 40%;
+            position: absolute;
+            top: -10px;
+            right: -8px;
+            border: 3px solid white;
+            transform: rotate(30deg);
+            box-shadow: 0 3px 0 #ad2152;
+        }
+
+        /* Подпись к розам */
+        .rose-label {
+            font-size: 1.2rem;
+            background: white;
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: #b82b62;
+            font-weight: 600;
+            margin-top: 8px;
+            border: 3px solid #ff9bc0;
+            box-shadow: 0 5px 0 #d45d8b;
+        }
+
+        /* === ДОПОЛНИТЕЛЬНЫЙ ДЕКОР (ЦВЕТЫ НА ФОНЕ) === */
+        .floating-roses {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-roses div {
+            position: absolute;
+            background: radial-gradient(circle, #ff99bb, #ff4477);
+            width: 30px;
+            height: 30px;
+            border-radius: 80% 20% 80% 20%;
+            opacity: 0.4;
+            box-shadow: 0 0 0 6px #ffe3ed, 0 0 20px #ff87b1;
+            transform: rotate(45deg);
+        }
+
+        /* рандомное расположение */
+        .floating-roses div:nth-child(1) { top: 5%; left: 3%; width: 60px; height: 60px; }
+        .floating-roses div:nth-child(2) { bottom: 12%; right: 1%; width: 90px; height: 90px; opacity: 0.3; background: #ffb3d0; }
+        .floating-roses div:nth-child(3) { top: 20%; right: 8%; width: 45px; height: 45px; background: #ff88b8; }
+        .floating-roses div:nth-child(4) { bottom: 25%; left: 5%; width: 75px; height: 75px; opacity: 0.45; transform: rotate(70deg); }
+        .floating-roses div:nth-child(5) { top: 70%; left: 15%; width: 40px; height: 40px; background: #ff5688; }
+
+        /* сердечки */
+        .hearts {
+            font-size: 2.2rem;
+            letter-spacing: 10px;
+            color: #ff3779;
+            filter: drop-shadow(0 0 7px hotpink);
+            margin: 10px 0;
+        }
+
+        /* подпись алана */
+        .signature {
+            font-size: 2rem;
+            margin-top: 30px;
+            color: #a52d5c;
+            background: #ffd7e6;
+            padding: 15px 25px;
+            border-radius: 60px;
+            display: inline-block;
+            border: 4px solid white;
+            font-weight: 700;
+            box-shadow: 0 8px 0 #b34d71;
+        }
+
+        .signature span {
+            font-size: 2.8rem;
+            background: white;
+            border-radius: 50%;
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            line-height: 62px;
+            margin-right: 8px;
+            color: #d0175a;
+            box-shadow: 0 0 0 3px #ffa8cb;
+        }
+
+        /* адаптация */
+        @media (max-width: 550px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .for-larisa { font-size: 2.2rem; }
+            .message { font-size: 1.2rem; }
+            .card { padding: 25px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Фоновые плавающие розочки (декор) -->
+    <div class="floating-roses">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- Главная открытка -->
+    <div class="card">
+        <!-- От Алана -->
+        <div class="from-name">
+            <span>🌷 Алан 🌷</span>
+        </div>
+
+        <!-- Заголовок с 8 марта -->
+        <h1>С 8 марта,</h1>
+        <div class="for-larisa">
+            Лариса!
+        </div>
+
+        <!-- БЛОК С РОЗАМИ (подчеркиваем, что цветочки именно розы) -->
+        <div class="roses-quote">
+            <p>🌹 <i>Ларисе — розы</i> 🌹</p>
+        </div>
+
+        <!-- НАБОР РОЗОЧЕК (сделанных на CSS) — цветочки розы для Ларисы -->
+        <div class="flower-garden">
+            <!-- Роза 1 -->
+            <div class="rose-item">
+                <div class="rose-bush">
+                    <div class="bud">
+                        <div class="petal-side"></div>
+                    </div>
+                    <div class="stem"></div>
+                    <div class="leaf-left"></div>
+                    <div class="leaf-right"></div>
+                    <div class="small-bud"></div>
+                </div>
+                <span class="rose-label">роза</span>
+            </div>
+
+            <!-- Роза 2 (чуть иной оттенок через inline style) -->
+            <div class="rose-item">
+                <div class="rose-bush" style="animation-delay:0.5s">
+                    <div class="bud" style="background: radial-gradient(circle at 30% 30%, #ffc0cb, #ff69b4, #db2e6a);"></div>
+                    <div class="stem"></div>
+                    <div class="leaf-left"></div>
+                    <div class="leaf-right"></div>
+                </div>
+                <span class="rose-label">роза</span>
+            </div>
+
+            <!-- Роза 3 -->
+            <div class="rose-item">
+                <div class="rose-bush" style="animation-delay:1s">
+                    <div class="bud" style="background: radial-gradient(circle at 20% 40%, #ffb3ba, #ff557f, #c72559);">
+                        <div class="petal-side" style="background:#ffa5c3;"></div>
+                    </div>
+                    <div class="stem"></div>
+                    <div class="leaf-left"></div>
+                    <div class="leaf-right"></div>
+                    <div class="small-bud" style="background:#fc4070;"></div>
+                </div>
+                <span class="rose-label">розочка</span>
+            </div>
+
+            <!-- Роза 4 (чуть меньше размер, но всё ещё роза) -->
+            <div class="rose-item">
+                <div class="rose-bush" style="animation-delay:1.7s">
+                    <div class="bud" style="width:55px; height:55px; background:radial-gradient(#ffb6d1, #ff3b6f);"></div>
+                    <div class="stem" style="height:50px;"></div>
+                    <div class="leaf-left"></div>
+                    <div class="leaf-right"></div>
+                </div>
+                <span class="rose-label">роза</span>
+            </div>
+        </div>
+
+        <!-- Сердечки между цветами -->
+        <div class="hearts">
+            ❤️ 💖 ❤️ 💖
+        </div>
+
+        <!-- Основное поздравление с именем Ларисы и розовой эстетикой -->
+        <div class="message">
+            🌸 <strong>Лариса!</strong> С праздником весны!<br>
+            Пусть каждый день будет усыпан лепестками счастья,<br>
+            а вокруг цветут только самые нежные розы.<br>
+            Ты заслуживаешь моря цветов и улыбок! 💐
+        </div>
+
+        <!-- Ещё немного про розы (личное от Алана) -->
+        <div style="font-size:1.7rem; background: #ffe2f0; border-radius: 40px; padding: 15px; margin: 20px 0; border: 5px double #ff70a5;">
+            🌹 Эти розы — для тебя, Лариса! 🌹
+        </div>
+
+        <!-- Подпись Алан -->
+        <div class="signature">
+            <span>🌺</span> С любовью, Алан
+        </div>
+
+        <!-- Маленький стишок про розы -->
+        <p style="margin-top: 20px; color:#952d56; font-size:1.2rem; font-style:italic; background: rgba(255,255,240,0.7); padding: 8px; border-radius: 20px;">
+            «Лариса, пусть жизнь будет как розарий — ярко, нежно и ароматно 💗»
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Маме Марии от Матвея 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 30% 30%, #ffc0cb, #ff9eb5, #ff85a2);
+            font-family: 'Segoe UI', 'Comic Sans MS', cursive, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+            animation: bgPulse 8s infinite alternate;
+        }
+
+        @keyframes bgPulse {
+            0% { background: radial-gradient(circle at 30% 30%, #ffc0cb, #ff9eb5, #ff85a2); }
+            100% { background: radial-gradient(circle at 70% 70%, #ffb7c5, #ffa5bc, #ff8eb2); }
+        }
+
+        /* Летающие сердечки (фон) */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.7;
+            color: #ff3366;
+            animation: floatHeart 8s infinite ease-in-out;
+            filter: drop-shadow(0 0 5px rgba(255, 100, 150, 0.5));
+        }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(100vh) rotate(0deg) scale(0.5); opacity: 0; }
+            20% { opacity: 0.9; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(-20vh) rotate(360deg) scale(1.5); opacity: 0; }
+        }
+
+        .heart:nth-child(1) { left: 10%; animation-duration: 9s; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 30%; animation-duration: 12s; animation-delay: 2s; font-size: 40px; }
+        .heart:nth-child(3) { left: 50%; animation-duration: 10s; animation-delay: 1s; font-size: 30px; }
+        .heart:nth-child(4) { left: 70%; animation-duration: 14s; animation-delay: 3s; }
+        .heart:nth-child(5) { left: 90%; animation-duration: 11s; animation-delay: 0.5s; font-size: 45px; }
+        .heart:nth-child(6) { left: 20%; animation-duration: 13s; animation-delay: 4s; font-size: 35px; }
+        .heart:nth-child(7) { left: 80%; animation-duration: 15s; animation-delay: 1.5s; }
+        .heart:nth-child(8) { left: 40%; animation-duration: 10s; animation-delay: 5s; font-size: 50px; }
+
+        .card {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 240, 245, 0.75);
+            backdrop-filter: blur(12px);
+            border-radius: 70px 70px 40px 40px;
+            box-shadow: 0 30px 50px rgba(200, 30, 100, 0.4), 0 0 0 6px #fff9 inset, 0 0 0 10px #ffb0c3 inset;
+            padding: 40px 30px 50px;
+            border: 3px solid white;
+            transition: transform 0.3s;
+            animation: cardGlow 3s infinite alternate;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        @keyframes cardGlow {
+            0% { box-shadow: 0 30px 50px rgba(200, 30, 100, 0.4), 0 0 0 6px #fff9 inset, 0 0 0 10px #ffb0c3 inset; }
+            100% { box-shadow: 0 40px 70px rgba(240, 50, 130, 0.6), 0 0 0 8px #ffffff inset, 0 0 0 14px #ff99bb inset; }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 3.2rem;
+            color: #a1305a;
+            text-shadow: 4px 4px 0 #ffccdd, 6px 6px 0 rgba(255, 255, 255, 0.7);
+            letter-spacing: 2px;
+            animation: bounce 2s infinite;
+            display: inline-block;
+            background: linear-gradient(45deg, #ff99bb, #ff6f91);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .subheader {
+            font-size: 2rem;
+            color: #cc2b6d;
+            background: rgba(255, 255, 255, 0.7);
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 60px;
+            margin-top: 10px;
+            border: 3px dashed #ff99cc;
+            box-shadow: 0 8px 0 #b34e7a;
+            font-weight: bold;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .message {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50px;
+            padding: 25px;
+            flex: 1 1 300px;
+            border: 4px solid white;
+            box-shadow: 0 12px 0 #ff85a8;
+            font-size: 1.5rem;
+            color: #8f2b5c;
+            line-height: 1.6;
+            backdrop-filter: blur(4px);
+            transform: rotate(0.5deg);
+            transition: 0.2s;
+        }
+
+        .message:hover {
+            transform: rotate(-0.5deg) scale(1.02);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .emoji-garden {
+            flex: 1 1 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .flowers-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 4rem;
+            filter: drop-shadow(0 10px 10px #ff77aa);
+            animation: sway 3s infinite alternate;
+        }
+
+        @keyframes sway {
+            0% { transform: rotate(-5deg); }
+            100% { transform: rotate(5deg); }
+        }
+
+        .butterflies {
+            display: flex;
+            gap: 30px;
+            font-size: 4rem;
+            animation: fly 5s infinite ease-in-out;
+        }
+
+        @keyframes fly {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(10px, -15px) rotate(5deg); }
+            50% { transform: translate(-5px, -20px) rotate(-5deg); }
+            75% { transform: translate(15px, -5px) rotate(8deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        .butterfly {
+            display: inline-block;
+            transition: 0.2s;
+            cursor: default;
+        }
+
+        .butterfly:hover {
+            transform: scale(1.3) rotate(10deg);
+            filter: drop-shadow(0 0 10px #ff44aa);
+        }
+
+        .hearts-row {
+            font-size: 3.5rem;
+            display: flex;
+            gap: 15px;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .hearts-row span {
+            transition: 0.2s;
+        }
+
+        .hearts-row span:hover {
+            transform: scale(1.3);
+            color: #ff1177;
+        }
+
+        /* Бабочки и цветочки вокруг основного блока (абсолютные внутри карточки) */
+        .decor {
+            position: relative;
+            height: 50px;
+            margin: 20px 0 10px;
+        }
+
+        .floating {
+            position: absolute;
+            font-size: 2.8rem;
+            animation: floatAround 12s infinite alternate;
+        }
+
+        @keyframes floatAround {
+            0% { transform: translate(0, 0) rotate(0); }
+            100% { transform: translate(40px, -20px) rotate(20deg); }
+        }
+
+        .floating:nth-child(1) { left: 0%; top: -20px; animation-duration: 14s; }
+        .floating:nth-child(2) { right: 0%; top: -30px; animation-duration: 10s; animation-delay: 1s; }
+        .floating:nth-child(3) { left: 20%; bottom: -20px; animation-duration: 16s; }
+        .floating:nth-child(4) { right: 20%; bottom: -10px; animation-duration: 12s; }
+
+        /* Кнопка с сюрпризом */
+        .surprise-btn {
+            background: linear-gradient(135deg, #ff88aa, #ff3d73);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            padding: 15px 35px;
+            border-radius: 50px;
+            border: 4px solid white;
+            box-shadow: 0 10px 0 #a52d5a, 0 0 20px #ff99bb;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.1s ease;
+            margin-top: 30px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            outline: none;
+            animation: btnPulse 2s infinite;
+        }
+
+        .surprise-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 0 #a52d5a, 0 0 40px #ffaacc;
+            background: linear-gradient(135deg, #ff99bb, #ff4d7a);
+        }
+
+        .surprise-btn:active {
+            transform: translateY(8px);
+            box-shadow: 0 5px 0 #a52d5a;
+        }
+
+        @keyframes btnPulse {
+            0% { box-shadow: 0 10px 0 #a52d5a, 0 0 20px #ff99bb; }
+            50% { box-shadow: 0 10px 0 #a52d5a, 0 0 40px #ffccdd; }
+        }
+
+        /* Падающие конфетти (бабочки, сердечки) при клике */
+        .confetti {
+            position: fixed;
+            top: -20px;
+            font-size: 2rem;
+            pointer-events: none;
+            z-index: 9999;
+            animation: confettiFall 2s linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #942b62;
+            font-size: 1.5rem;
+            text-shadow: 2px 2px 0 white;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Фоновые летающие сердечки -->
+    <div class="floating-hearts">
+        <div class="heart">❤️</div>
+        <div class="heart">💖</div>
+        <div class="heart">💗</div>
+        <div class="heart">💓</div>
+        <div class="heart">💕</div>
+        <div class="heart">💞</div>
+        <div class="heart">💘</div>
+        <div class="heart">💝</div>
+    </div>
+
+    <div class="card">
+        <div class="header">
+            <h1>🌸 С 8 марта, Мария! 🌸</h1>
+            <div class="subheader">от Матвея 💌</div>
+        </div>
+
+        <!-- Украшения внутри карточки (летающие бабочки/цветы) -->
+        <div class="decor">
+            <span class="floating">🦋</span>
+            <span class="floating">🌸</span>
+            <span class="floating">🦋</span>
+            <span class="floating">🌼</span>
+        </div>
+
+        <div class="content">
+            <div class="message">
+                🌷 Мамочка Мария! <br>
+                Ты самая лучшая, самая нежная и красивая. <br>
+                Пусть каждый день дарит тебе улыбки, цветы и радость! <br>
+                С любовью, твой Матвей 💖
+            </div>
+
+            <div class="emoji-garden">
+                <div class="flowers-row">
+                    <span>🌺</span>
+                    <span>🌸</span>
+                    <span>🌼</span>
+                    <span>🌷</span>
+                </div>
+                <div class="butterflies">
+                    <span class="butterfly">🦋</span>
+                    <span class="butterfly">🦋</span>
+                    <span class="butterfly">🦋</span>
+                </div>
+                <div class="hearts-row">
+                    <span>❤️</span>
+                    <span>💛</span>
+                    <span>💚</span>
+                    <span>💙</span>
+                    <span>💜</span>
+                    <span>🤍</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Кнопка для сюрприза и конфетти -->
+        <button class="surprise-btn" id="surpriseBtn">🎁 Нажми на меня 🎁</button>
+
+        <!-- Дополнительные слова -->
+        <footer>
+            💐 Пусть сбудутся все мечты! 💐
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            const surpriseBtn = document.getElementById('surpriseBtn');
+
+            // функция для создания конфетти (сердечки, цветы, бабочки)
+            function createConfetti() {
+                const emojis = ['❤️', '💖', '💗', '🌸', '🌼', '🌺', '🦋', '🦋', '💐', '🌷', '💞', '💕', '🥰', '✨'];
+                for (let i = 0; i < 35; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    // случайный эмодзи
+                    confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    // случайный горизонтальный старт
+                    confetti.style.left = Math.random() * 100 + '%';
+                    // случайная задержка
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    // случайный размер
+                    const size = 1.5 + Math.random() * 2;
+                    confetti.style.fontSize = size + 'rem';
+                    // небольшой поворот
+                    confetti.style.transform = `rotate(${Math.random() * 30}deg)`;
+                    document.body.appendChild(confetti);
+
+                    // удаляем после анимации
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 2500);
+                }
+            }
+
+            // при клике на кнопку
+            surpriseBtn.addEventListener('click', function() {
+                createConfetti();
+                // дополнительно можно изменить что-то на странице
+                surpriseBtn.textContent = '🎉 С праздником! 🎉';
+                setTimeout(() => {
+                    surpriseBtn.textContent = '🎁 Нажми на меня 🎁';
+                }, 2000);
+            });
+
+            // добавим эффект при наведении на бабочек (уже есть в css)
+
+            // эффект "дополнительные сердечки" при движении мыши (просто маленькая магия)
+            document.addEventListener('mousemove', function(e) {
+                // создаем изредка мерцание (не чаще)
+                if (Math.random() > 0.97) {
+                    const spark = document.createElement('div');
+                    spark.style.position = 'fixed';
+                    spark.style.left = e.pageX + 'px';
+                    spark.style.top = e.pageY + 'px';
+                    spark.style.fontSize = '2rem';
+                    spark.style.pointerEvents = 'none';
+                    spark.style.zIndex = '99999';
+                    spark.style.opacity = '0.7';
+                    spark.style.animation = 'floatHeart 1s forwards';
+                    spark.textContent = ['💖', '🌸', '🦋'][Math.floor(Math.random() * 3)];
+                    document.body.appendChild(spark);
+                    setTimeout(() => spark.remove(), 1000);
+                }
+            });
+
+            // также запустим маленький сюрприз при загрузке (конфетти попозже)
+            setTimeout(() => {
+                createConfetti(); // маленький конфетти-привет
+            }, 500);
+        })();
+    </script>
+
+    <!-- Добавим дополнительный стиль для конфетти, но он уже есть выше -->
+    <!-- Для красивых эффектов также используем :hover и анимации, все уже в стилях -->
+</body>
+</html>

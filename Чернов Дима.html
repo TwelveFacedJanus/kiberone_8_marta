@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, мамочка!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fff1e0 0%, #ffe4ce 70%, #ffd7b8 100%);
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* контейнер для цветов (анимация) */
+        .flower-garden {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* общий стиль для всех цветочков */
+        .flower {
+            position: absolute;
+            bottom: -10%;
+            opacity: 0.7;
+            animation: floatFlower linear infinite;
+            filter: drop-shadow(0 8px 12px rgba(255, 140, 60, 0.15));
+            transform-origin: center;
+            will-change: transform;
+        }
+
+        /* разные вариации лепестков */
+        .flower-1 {
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle at 30% 30%, #ffaa66, #ff8822);
+            border-radius: 70% 30% 60% 40% / 50% 40% 60% 50%;
+            transform: rotate(10deg);
+        }
+        .flower-2 {
+            width: 55px;
+            height: 55px;
+            background: radial-gradient(circle at 20% 20%, #ffc893, #ff9f4b);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+        .flower-3 {
+            width: 65px;
+            height: 65px;
+            background: #ffb066;
+            border-radius: 80% 20% 70% 30% / 30% 60% 40% 70%;
+            box-shadow: 0 0 0 4px #ffd7aa inset;
+        }
+        .flower-4 {
+            width: 45px;
+            height: 45px;
+            background: #ffa75e;
+            border-radius: 50% 50% 50% 50% / 60% 40% 60% 40%;
+            transform: rotate(45deg);
+            border: 2px dashed #ffcb9a;
+        }
+        .flower-5 {
+            width: 80px;
+            height: 80px;
+            background: #ffbc7c;
+            border-radius: 30% 70% 70% 30% / 30% 35% 65% 70%;
+            border: 3px dotted #ffe2c1;
+        }
+
+        /* стебли и листики */
+        .flower::after {
+            content: '';
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            width: 4px;
+            height: 60px;
+            background: linear-gradient(45deg, #9fcc9f, #6f9e6f);
+            border-radius: 2px;
+            transform: translateX(-50%) rotate(2deg);
+            z-index: -1;
+        }
+
+        /* капелька росы или маленький листик */
+        .flower::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 45%;
+            width: 12px;
+            height: 12px;
+            background: #7fba7f;
+            border-radius: 80% 0 50% 30%;
+            transform: rotate(35deg) translateY(-20px);
+            opacity: 0.8;
+        }
+
+        /* анимация подъема и вращения */
+        @keyframes floatFlower {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 0.5;
+            }
+            20% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(300deg) scale(1.2);
+                opacity: 0.1;
+            }
+        }
+
+        /* основная карточка поздравления */
+        .card {
+            background: rgba(255, 245, 235, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 60px 20px 60px 20px;
+            box-shadow: 0 30px 50px rgba(255, 140, 60, 0.25), 0 10px 20px rgba(255, 170, 120, 0.3), inset 0 2px 8px rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            width: 100%;
+            padding: 50px 40px;
+            position: relative;
+            z-index: 20;
+            border: 2px solid #ffdbbc;
+            transition: 0.3s;
+            margin: 20px;
+        }
+
+        /* декоративные полупрозрачные цветы на фоне карточки */
+        .card::before {
+            content: "🌸🌼🌺";
+            font-size: 110px;
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            opacity: 0.12;
+            transform: rotate(10deg);
+            pointer-events: none;
+            color: #ffa558;
+            filter: drop-shadow(0 0 3px #ffa64d);
+            z-index: 0;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 600;
+            color: #b35f2e;
+            text-shadow: 3px 3px 0 #ffdec2, 5px 5px 0 rgba(255, 210, 170, 0.6);
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.2;
+            position: relative;
+            z-index: 3;
+        }
+
+        .sub {
+            font-size: 2rem;
+            color: #d17a42;
+            font-weight: 400;
+            margin-bottom: 30px;
+            border-bottom: 3px dashed #ffb281;
+            padding-bottom: 15px;
+            display: inline-block;
+            font-style: italic;
+        }
+
+        .greeting {
+            font-size: 1.7rem;
+            line-height: 1.5;
+            color: #7b4d2b;
+            background: rgba(255, 235, 215, 0.7);
+            padding: 30px 30px;
+            border-radius: 70px 20px 70px 20px;
+            margin: 25px 0 30px 0;
+            box-shadow: inset 0 0 0 2px #fff6e6, 0 10px 15px -8px #ffb27a;
+            backdrop-filter: blur(4px);
+            font-weight: 500;
+            white-space: pre-line;
+            position: relative;
+            z-index: 5;
+            border: 1px solid #fec197;
+        }
+
+        .signature {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #a6511c;
+            text-align: right;
+            margin-top: 25px;
+            font-family: 'Brush Script MT', cursive, sans-serif;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 5px #ffb789;
+            position: relative;
+            z-index: 3;
+        }
+
+        .signature span {
+            background: #ffdbc4;
+            padding: 5px 25px 5px 15px;
+            border-radius: 100px 0 0 100px;
+            display: inline-block;
+        }
+
+        /* гирлянда из маленьких цветных точек */
+        .confetti-mini {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 5px 15px;
+            opacity: 0.3;
+            font-size: 28px;
+            color: #ffa55c;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* дополнительный слой цветов с разной задержкой */
+        .flower-garden .flower:nth-child(1) { left: 5%; animation-duration: 18s; animation-delay: 0s; }
+        .flower-garden .flower:nth-child(2) { left: 15%; animation-duration: 22s; animation-delay: 3s; }
+        .flower-garden .flower:nth-child(3) { left: 25%; animation-duration: 20s; animation-delay: 1s; }
+        .flower-garden .flower:nth-child(4) { left: 35%; animation-duration: 24s; animation-delay: 7s; }
+        .flower-garden .flower:nth-child(5) { left: 45%; animation-duration: 19s; animation-delay: 2s; }
+        .flower-garden .flower:nth-child(6) { left: 55%; animation-duration: 26s; animation-delay: 5s; }
+        .flower-garden .flower:nth-child(7) { left: 65%; animation-duration: 21s; animation-delay: 8s; }
+        .flower-garden .flower:nth-child(8) { left: 75%; animation-duration: 23s; animation-delay: 4s; }
+        .flower-garden .flower:nth-child(9) { left: 85%; animation-duration: 27s; animation-delay: 6s; }
+        .flower-garden .flower:nth-child(10) { left: 95%; animation-duration: 18s; animation-delay: 2s; }
+        .flower-garden .flower:nth-child(11) { left: 10%; animation-duration: 29s; animation-delay: 9s; }
+        .flower-garden .flower:nth-child(12) { left: 40%; animation-duration: 25s; animation-delay: 11s; }
+        .flower-garden .flower:nth-child(13) { left: 70%; animation-duration: 30s; animation-delay: 3s; }
+        .flower-garden .flower:nth-child(14) { left: 90%; animation-duration: 22s; animation-delay: 13s; }
+        .flower-garden .flower:nth-child(15) { left: 30%; animation-duration: 28s; animation-delay: 10s; }
+
+        /* разные размеры цветов */
+        .flower-1 { width: 70px; height: 70px; }
+        .flower-2 { width: 50px; height: 50px; }
+        .flower-3 { width: 90px; height: 90px; }
+        .flower-4 { width: 40px; height: 40px; }
+        .flower-5 { width: 110px; height: 110px; }
+
+        /* адаптация */
+        @media (max-width: 650px) {
+            h1 { font-size: 3rem; }
+            .sub { font-size: 1.7rem; }
+            .greeting { font-size: 1.3rem; padding: 20px; }
+            .signature { font-size: 1.8rem; }
+            .card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- анимированные цветы (множество!) -->
+    <div class="flower-garden">
+        <div class="flower flower-1"></div>
+        <div class="flower flower-2"></div>
+        <div class="flower flower-3"></div>
+        <div class="flower flower-4"></div>
+        <div class="flower flower-5"></div>
+        <div class="flower flower-1"></div>
+        <div class="flower flower-2"></div>
+        <div class="flower flower-3"></div>
+        <div class="flower flower-4"></div>
+        <div class="flower flower-5"></div>
+        <div class="flower flower-1"></div>
+        <div class="flower flower-2"></div>
+        <div class="flower flower-3"></div>
+        <div class="flower flower-4"></div>
+        <div class="flower flower-5"></div>
+    </div>
+
+    <!-- маленькие эмоджи-цветочки сверху (для уюта) -->
+    <div class="confetti-mini">
+        <span>🌷</span> <span>🌼</span> <span>🌸</span> <span>🌺</span> <span>🌻</span> <span>🌹</span> <span>💐</span>
+    </div>
+
+    <!-- основное поздравление -->
+    <main class="card">
+        <h1>С 8 марта, <br> мамочка!</h1>
+        <div class="sub">🌷 Любимая, родная 🌷</div>
+        
+        <div class="greeting">
+            Дорогая мама! <br><br>
+            В этот светлый весенний день хочу сказать тебе спасибо 
+            за твою бесконечную заботу, тепло и нежность. <br>
+            Ты — самый важный человек в моей жизни, мой вдохновитель 
+            и мой добрый ангел. <br><br>
+            Пусть каждый твой день будет наполнен улыбками, 
+            приятными сюрпризами и морем цветов. <br>
+            Оставайся такой же красивой, молодой и счастливой! 
+            <span style="display:block; margin-top:15px; font-size:2rem;">🌸🌼🌺</span>
+        </div>
+
+        <div class="signature">
+            <span>С любовью, твой сын Дима ❤️</span>
+        </div>
+    </main>
+
+    <!-- ещё один слой полупрозрачных цветов поверх карточки (но card выше по z-index, так что они будут за ней) 
+         но для красоты добавим легкий декор на карточку-->
+    <div style="position: fixed; bottom: 10px; left: 0; width: 100%; pointer-events: none; z-index: 10; opacity: 0.4; display: flex; justify-content: space-around; font-size: 40px; color: #ffbe85;">
+        <span>🌼</span><span>🌷</span><span>🌻</span><span>🌸</span><span>🌺</span>
+    </div>
+
+    <!-- дополнительный скрипт не нужен, вся анимация на CSS -->
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта! 💐 Для мамы Наташи и бабушки Марины</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #ffd9e8 0%, #ffb6d1 70%, #ff9eb5 100%);
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Цветочный фон (абсолютно позиционированные цветы) */
+        .flower-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* чтобы не мешать нажатию */
+            z-index: 1;
+        }
+
+        .flower {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 80% 20% 70% 30% / 40% 60% 40% 60%;
+            transform: rotate(15deg);
+            box-shadow: 0 8px 12px rgba(255, 105, 180, 0.2);
+            backdrop-filter: blur(1px);
+            border: 2px solid rgba(255, 240, 245, 0.7);
+        }
+
+        .flower::before {
+            content: '';
+            position: absolute;
+            width: 30%;
+            height: 30%;
+            background: #ffebf0;
+            border-radius: 50%;
+            top: 35%;
+            left: 35%;
+            box-shadow: 0 0 8px #ffb6c1;
+        }
+
+        /* Разные размеры и позиции цветов */
+        .f1 { width: 80px; height: 80px; top: 5%; left: 2%; background: #ffc0cb; }
+        .f2 { width: 120px; height: 120px; top: 70%; left: 85%; background: #ffb3ba; transform: rotate(40deg); }
+        .f3 { width: 60px; height: 60px; top: 40%; left: 15%; background: #ffa5b9; }
+        .f4 { width: 140px; height: 140px; top: 80%; left: 10%; background: #ffc2d1; }
+        .f5 { width: 90px; height: 90px; top: 15%; left: 80%; background: #ffd1dc; }
+        .f6 { width: 70px; height: 70px; top: 60%; left: 40%; background: #ffb7c5; transform: rotate(70deg); }
+        .f7 { width: 110px; height: 110px; top: 25%; left: 45%; background: #f9c7d3; }
+        .f8 { width: 50px; height: 50px; top: 85%; left: 70%; background: #ffa7b9; }
+        .f9 { width: 130px; height: 130px; top: 10%; left: 60%; background: #ffc0cb; opacity: 0.6; }
+        .f10{ width: 100px; height: 100px; top: 45%; left: 88%; background: #ffb0bb; }
+
+        /* Главная поздравительная карточка */
+        .card {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 245, 250, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 60px 20px 60px 20px;
+            box-shadow: 0 25px 45px rgba(255, 64, 129, 0.25),
+                        0 0 0 6px #fff9fc inset,
+                        0 0 0 8px #ffc0cb inset;
+            padding: 50px 30px 45px 30px;
+            text-align: center;
+            border: 2px solid #ffa5b9;
+            transition: all 0.3s ease;
+        }
+
+        /* Декоративные цветочки по краям карточки */
+        .card-corner-flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: #ffb7c5;
+            border-radius: 70% 30% 60% 40% / 50% 60% 40% 50%;
+            opacity: 0.7;
+            border: 2px solid white;
+        }
+        .cf1 { top: -15px; left: -15px; transform: rotate(-15deg); }
+        .cf2 { top: -15px; right: -15px; transform: rotate(45deg); background: #ffa3b8; }
+        .cf3 { bottom: -15px; left: -15px; transform: rotate(100deg); background: #ffa3b8; }
+        .cf4 { bottom: -15px; right: -15px; transform: rotate(-45deg); }
+
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #b3416d;
+            text-shadow: 3px 3px 0 #ffe4ec, 5px 5px 0 rgba(255, 182, 193, 0.5);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            word-break: break-word;
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #da5280, #b3416d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            margin-bottom: 25px;
+            border-bottom: 3px dotted #ffb0c3;
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        .names {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #9f3e63;
+            background: #fff0f5c4;
+            padding: 20px 25px;
+            border-radius: 100px 30px 100px 30px;
+            display: inline-block;
+            margin: 15px 0 25px 0;
+            box-shadow: 0 10px 20px #ffc0cb73;
+            border: 2px solid #ffb6c1;
+        }
+
+        .names span {
+            display: inline-block;
+            background: #ffe2eb;
+            padding: 8px 25px;
+            border-radius: 40px;
+            margin: 0 10px;
+            box-shadow: 0 5px 0 #ff96b4;
+            color: #a13e5e;
+            font-size: 2rem;
+        }
+
+        .verse {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 30px 25px;
+            border-radius: 50px 20px 50px 20px;
+            margin: 25px 0 30px 0;
+            border: 2px solid white;
+            box-shadow: 0 15px 25px #ffb0c370;
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #732e4a;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .verse p {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .verse i {
+            font-size: 2rem;
+            filter: drop-shadow(2px 4px 6px hotpink);
+        }
+
+        .flowers-decoration {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 30px 0 15px;
+            flex-wrap: wrap;
+        }
+
+        .flower-icon {
+            font-size: 3.2rem;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 8px 12px #ff80a5);
+        }
+
+        .flower-icon:nth-child(2) { animation-delay: 0.4s; }
+        .flower-icon:nth-child(3) { animation-delay: 0.8s; }
+        .flower-icon:nth-child(4) { animation-delay: 0.2s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(6deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .signature {
+            font-size: 2rem;
+            color: #ac4d74;
+            margin-top: 25px;
+            background: #ffdae9;
+            padding: 15px 25px;
+            border-radius: 40px 10px 40px 10px;
+            display: inline-block;
+            border: 2px solid white;
+        }
+
+        /* Кнопка (интерактив) */
+        .magic-btn {
+            background: #ffb7c5;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.6rem;
+            border-radius: 50px;
+            color: #731b41;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #b3416d, 0 10px 20px rgba(255, 105, 180, 0.4);
+            transition: 0.07s ease;
+            margin: 25px 0 10px;
+            border: 2px solid white;
+        }
+
+        .magic-btn:active {
+            transform: translateY(8px);
+            box-shadow: 0 0 0 #b3416d, 0 5px 15px hotpink;
+        }
+
+        /* адаптация для телефонов */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.4rem; }
+            .names span { font-size: 1.5rem; display: block; margin: 10px; }
+            .verse { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- фоновые цветы (объемные) -->
+<div class="flower-bg">
+    <div class="flower f1"></div>
+    <div class="flower f2"></div>
+    <div class="flower f3"></div>
+    <div class="flower f4"></div>
+    <div class="flower f5"></div>
+    <div class="flower f6"></div>
+    <div class="flower f7"></div>
+    <div class="flower f8"></div>
+    <div class="flower f9"></div>
+    <div class="flower f10"></div>
+</div>
+
+<!-- основная открытка -->
+<div class="card">
+    <!-- уголки с цветочками -->
+    <div class="card-corner-flower cf1"></div>
+    <div class="card-corner-flower cf2"></div>
+    <div class="card-corner-flower cf3"></div>
+    <div class="card-corner-flower cf4"></div>
+
+    <h1>🌸 С 8 Марта! 🌸</h1>
+    <div class="subtitle">💖 мои любимые 💖</div>
+
+    <div class="names">
+        <span>💗 мама Наташа</span>
+        <span>💗 бабушка Марина</span>
+    </div>
+
+    <!-- тёплые строки в розовом стихе -->
+    <div class="verse">
+        <p>
+            <i>🌷</i> В этот день, весь в розовом цвету <i>🌷</i>
+        </p>
+        <p>
+            <i>🌸</i> Вам дарю свою любовь и доброту <i>🌸</i>
+        </p>
+        <p>
+            <i>💐</i> Мама Наташа — яркая, как пион <i>💐</i>
+        </p>
+        <p>
+            <i>🌺</i> Бабушка Марина — нежный бутон <i>🌺</i>
+        </p>
+        <p style="font-size:1.9rem; margin-top:20px;">
+            🌹🌷🥀🌼🌸💮🏵️
+        </p>
+        <p style="font-style:italic;">
+            Пусть жизнь будет сладкой, как розовый зефир,<br>
+            и цветёт счастьем весь этот мир!
+        </p>
+    </div>
+
+    <!-- гирлянда из цветочных эмодзи (летающие) -->
+    <div class="flowers-decoration">
+        <span class="flower-icon">🌹</span>
+        <span class="flower-icon">🌷</span>
+        <span class="flower-icon">🌸</span>
+        <span class="flower-icon">🌺</span>
+        <span class="flower-icon">🌼</span>
+        <span class="flower-icon">🏵️</span>
+    </div>
+
+    <!-- маленькое интерактивное чудо (при нажатии появляются цветы) -->
+    <button class="magic-btn" id="flowerShower">✨ осыпать цветами ✨</button>
+
+    <div class="signature">
+        💞 с любовью, ваш Лев 💞
+    </div>
+</div>
+
+<script>
+    (function() {
+        const btn = document.getElementById('flowerShower');
+        btn.addEventListener('click', function(e) {
+            // создадим 20 маленьких цветочков, которые падают
+            for (let i = 0; i < 20; i++) {
+                createFloatingFlower();
+            }
+        });
+
+        function createFloatingFlower() {
+            const flowerElem = document.createElement('span');
+            flowerElem.innerHTML = ['🌸','🌷','🌹','🌺','🌼','💐','🌸','🌷'][Math.floor(Math.random() * 8)];
+            flowerElem.style.position = 'fixed';
+            flowerElem.style.left = Math.random() * 100 + '%';
+            flowerElem.style.top = '-10%';
+            flowerElem.style.fontSize = (Math.random() * 30 + 20) + 'px';
+            flowerElem.style.pointerEvents = 'none';
+            flowerElem.style.zIndex = '9999';
+            flowerElem.style.opacity = '0.9';
+            flowerElem.style.filter = 'drop-shadow(0 0 5px hotpink)';
+            flowerElem.style.transition = 'transform 3s linear, top 3s ease-in';
+            document.body.appendChild(flowerElem);
+
+            // случайное направление
+            const xMove = (Math.random() - 0.5) * 200; // смещение влево-вправо
+            const rotate = Math.random() * 360;
+
+            setTimeout(() => {
+                flowerElem.style.top = '110%';
+                flowerElem.style.transform = `translateX(${xMove}px) rotate(${rotate}deg)`;
+            }, 10);
+
+            // удалить после анимации
+            setTimeout(() => {
+                if (flowerElem.parentNode) flowerElem.remove();
+            }, 3500);
+        }
+
+        // дополнительно: при загрузке тоже подарить немного цветов
+        window.addEventListener('load', function() {
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    createFloatingFlower();
+                }, i * 200);
+            }
+        });
+    })();
+</script>
+
+<!-- маленькая деталь: заменить [Имя] на своё, если хочешь -->
+<!-- можно отредактировать текст в signature под своё имя -->
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, мамочка!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(145deg, #b0e0d6 0%, #7fc9bf 100%);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Контейнер открытки */
+        .card {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 70px 70px 70px 70px;
+            padding: 50px 45px;
+            text-align: center;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1), 
+                        0 0 0 3px rgba(255, 255, 255, 0.6);
+            max-width: 800px;
+            width: 90%;
+            margin: 30px;
+            position: relative;
+            z-index: 10;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: white;
+            text-shadow: 4px 4px 0 #5fa89d;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .subtitle {
+            font-size: 2.5rem;
+            color: white;
+            text-shadow: 3px 3px 0 #5fa89d;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .greeting {
+            font-size: 1.6rem;
+            color: white;
+            margin: 35px 0;
+            line-height: 1.7;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 30px;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            font-style: italic;
+        }
+
+        .signature {
+            font-size: 2rem;
+            color: white;
+            margin: 25px 0 35px;
+            font-weight: 600;
+            text-shadow: 3px 3px 0 #5fa89d;
+        }
+
+        /* Кнопка для музыки */
+        .music-btn {
+            background: white;
+            border: none;
+            padding: 22px 50px;
+            font-size: 1.6rem;
+            border-radius: 80px;
+            cursor: pointer;
+            color: #3f7870;
+            font-weight: bold;
+            box-shadow: 0 8px 0 #3f7870, 0 15px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.1s ease;
+            margin: 20px 0;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .music-btn:active {
+            transform: translateY(8px);
+            box-shadow: 0 0 0 #3f7870, 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .music-btn.playing {
+            background: #ffe0e7;
+            color: #b84c6a;
+            box-shadow: 0 8px 0 #b84c6a;
+        }
+
+        .music-icon {
+            font-size: 2rem;
+        }
+
+        /* Цветочки сакуры (падающие) */
+        .sakura {
+            position: absolute;
+            color: #ffb7c5;
+            font-size: 32px;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 1;
+            animation: fall linear infinite;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0.2;
+            }
+        }
+
+        /* Декоративные цветочки сакуры */
+        .sakura-decor {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,20 Q60,5 75,15 Q85,25 70,35 Q85,45 70,55 Q55,70 45,55 Q30,70 20,50 Q10,35 25,25 Q15,10 35,15 Q45,5 50,20" fill="%23ffb7c5" opacity="0.3"/><circle cx="50" cy="45" r="8" fill="%23ffa5b4" opacity="0.4"/></svg>') no-repeat center;
+            background-size: contain;
+            opacity: 0.25;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .sakura1 { top: 2%; left: 3%; transform: rotate(-10deg); }
+        .sakura2 { bottom: 2%; right: 3%; transform: rotate(20deg); width: 220px; height: 220px; }
+        .sakura3 { top: 15%; right: 8%; transform: rotate(45deg); width: 140px; height: 140px; }
+
+        /* Блок с инструкцией */
+        .instruction {
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 40px;
+            border: 2px dashed white;
+            color: white;
+            font-size: 1.2rem;
+            text-align: left;
+        }
+
+        .instruction h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .instruction ol {
+            margin-left: 25px;
+            line-height: 1.8;
+        }
+
+        .instruction code {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Контейнер для падающих цветочков (заполняется через JS) -->
+    <div id="sakura-container"></div>
+
+    <!-- Декоративные цветочки -->
+    <div class="sakura-decor sakura1"></div>
+    <div class="sakura-decor sakura2"></div>
+    <div class="sakura-decor sakura3"></div>
+
+    <!-- Главная открытка -->
+    <div class="card">
+        <h1>🌸 С 8 Марта! 🌸</h1>
+        <div class="subtitle">Мамочка, родная</div>
+        
+        <div class="greeting">
+            Спасибо за твою доброту, нежность и заботу!<br>
+            Ты самая лучшая мама на свете!<br>
+            Пусть каждый день дарит тебе радость и улыбки! 💖
+        </div>
+        
+        <div class="signature">
+            С любовью, твой Алихан ❤️
+        </div>
+
+        <!-- ПОДРОБНАЯ ИНСТРУКЦИЯ -->
+        <div class="instruction">
+
+            🌸 С праздником весны! 8 Марта 2026 🌸
+        </footer>
+    </div>
+
+    <script>
+        // СОЗДАЕМ ПАДАЮЩИЕ ЦВЕТОЧКИ САКУРЫ
+        function createSakura() {
+            const container = document.getElementById('sakura-container');
+            if (!container) return;
+            
+            for (let i = 0; i < 30; i++) {
+                const flower = document.createElement('div');
+                flower.className = 'sakura';
+                
+                // Случайный выбор символа (цветочек)
+                const flowers = ['🌸', '🌸', '🌸', '🌸', '🌸'];
+                flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                
+                // Случайные параметры анимации
+                const size = Math.floor(Math.random() * 30) + 25; // от 25 до 55px
+                const left = Math.random() * 100; // от 0% до 100%
+                const duration = Math.random() * 8 + 8; // от 8 до 16 секунд
+                const delay = Math.random() * 5; // задержка от 0 до 5 секунд
+                
+                flower.style.fontSize = size + 'px';
+                flower.style.left = left + '%';
+                flower.style.animationDuration = duration + 's';
+                flower.style.animationDelay = delay + 's';
+                
+                container.appendChild(flower);
+            }
+        }
+
+        // ЛОГИКА ДЛЯ КНОПКИ ВОСПРОИЗВЕДЕНИЯ
+        document.addEventListener('DOMContentLoaded', function() {
+            // Создаем цветочки
+            createSakura();
+            
+            // Находим элементы
+            const audio = document.getElementById('music-player');
+            const btn = document.getElementById('playMusicBtn');
+            const btnText = document.getElementById('btnText');
+            
+            // Состояние кнопки
+            let isPlaying = false;
+            
+            // Обработчик кнопки
+            btn.addEventListener('click', function() {
+                if (isPlaying) {
+                    audio.pause();
+                    btnText.textContent = 'Включить песню';
+                    btn.classList.remove('playing');
+                } else {
+                    // Пытаемся воспроизвести
+                    audio.play()
+                        .then(() => {
+                            btnText.textContent = 'Выключить песню';
+                            btn.classList.add('playing');
+                        })
+                        .catch(error => {
+                            alert('⚠️ Не удалось включить музыку! Нужно добавить ссылку на песню. Смотри инструкцию ниже.');
+                            console.error('Ошибка:', error);
+                        });
+                }
+                isPlaying = !isPlaying;
+            });
+            
+            // Когда песня закончилась
+            audio.addEventListener('ended', function() {
+                isPlaying = false;
+                btnText.textContent = 'Включить песню';
+                btn.classList.remove('playing');
+            });
+            
+            // Если ошибка загрузки аудио
+            audio.addEventListener('error', function() {
+                console.log('Аудио файл не найден');
+            });
+        });
+    </script>
+</body>
+</html>

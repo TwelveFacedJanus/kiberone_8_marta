@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Марина с 8 Марта! 💗 От Сергея</title>
+  <style>
+    /* ===== НЕЖНО-РОЗОВАЯ ГАММА ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #ffefef 0%, #ffe4ed 100%);
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #4a2e3b;
+    }
+
+    /* открытка */
+    .card {
+      max-width: 950px;
+      width: 100%;
+      background: rgba(255, 245, 250, 0.8);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 80px 40px 80px 40px;
+      box-shadow: 0 30px 45px rgba(220, 130, 170, 0.3),
+                  inset 0 0 50px #fff0f7,
+                  0 0 0 3px #ffeef4;
+      padding: 50px 40px;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #ffd9e6;
+    }
+
+    /* декоративные цветы */
+    .card::before {
+      content: "🌷🌸🌹🌺🌼💐";
+      font-size: 200px;
+      position: absolute;
+      top: -60px;
+      left: -40px;
+      opacity: 0.15;
+      transform: rotate(-10deg);
+      color: #ffb6c9;
+      white-space: nowrap;
+      z-index: 0;
+    }
+
+    .card::after {
+      content: "🎀💗💕💓💖";
+      font-size: 220px;
+      position: absolute;
+      bottom: -70px;
+      right: -50px;
+      opacity: 0.12;
+      transform: rotate(15deg);
+      color: #ffc1d4;
+      z-index: 0;
+    }
+
+    /* весь контент поверх фона */
+    .content {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ===== ИМЕННАЯ ШАПКА ===== */
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .from-name {
+      font-size: 2rem;
+      font-weight: 300;
+      background: rgba(255, 220, 240, 0.7);
+      display: inline-block;
+      padding: 12px 35px 12px 45px;
+      border-radius: 50px 20px 50px 20px;
+      color: #a53860;
+      border: 2px solid white;
+      box-shadow: 0 8px 0 #f5b0c8;
+      backdrop-filter: blur(4px);
+      margin-bottom: 20px;
+    }
+
+    .from-name strong {
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: #ba2d62;
+      margin: 0 5px;
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 12vw, 5.5rem);
+      background: linear-gradient(145deg, #d46b95, #ed97b8, #ffb3cb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .heart-name {
+      font-size: 4rem;
+      background: none;
+      -webkit-text-fill-color: #ff8db3;
+      filter: drop-shadow(0 5px 10px #ffa5c0);
+    }
+
+    .subhead {
+      font-size: 2rem;
+      color: #a03e60;
+      background: rgba(255, 240, 250, 0.7);
+      padding: 8px 30px;
+      border-radius: 60px;
+      display: inline-block;
+      border: 1px solid #ffc0d5;
+      box-shadow: 0 6px 0 #f5b7cf;
+      font-weight: 400;
+    }
+
+    /* ===== ОСОБАЯ ЗОНА ДЛЯ МАМЫ ===== */
+    .mom-spotlight {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      margin: 40px 0;
+      background: rgba(255, 235, 245, 0.6);
+      border-radius: 120px 30px 120px 30px;
+      padding: 35px 30px;
+      backdrop-filter: blur(6px);
+      border: 3px solid #ffe6f0;
+      box-shadow: 0 20px 30px #fec7db;
+    }
+
+    .photo-frame {
+      flex: 0 0 200px;
+      text-align: center;
+      font-size: 9rem;
+      background: linear-gradient(45deg, #ffc1d6, #ffd9ea);
+      border-radius: 70px 30px 70px 30px;
+      padding: 30px 15px;
+      box-shadow: 0 15px 0 #dd91b2, inset 0 -5px 10px white;
+      border: 3px solid white;
+      line-height: 1;
+    }
+
+    .mom-quote {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .mom-quote h2 {
+      font-size: 2.8rem;
+      color: #b43e68;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .mom-quote p {
+      font-size: 1.6rem;
+      background: white;
+      padding: 25px 25px;
+      border-radius: 50px 20px 50px 20px;
+      box-shadow: 0 10px 0 #f5aec9, inset 0 2px 15px #ffeef5;
+      border: 2px solid #ffb8ce;
+      color: #4f283a;
+      line-height: 1.5;
+    }
+
+    .mom-quote p strong {
+      color: #c63e6b;
+      font-size: 1.9rem;
+    }
+
+    /* ===== ПОЗДРАВЛЕНИЕ ===== */
+    .greeting-box {
+      background: rgba(255, 250, 252, 0.7);
+      backdrop-filter: blur(8px);
+      border-radius: 70px 20px 70px 20px;
+      padding: 40px 35px;
+      margin: 35px 0 30px;
+      border: 2px dashed #ffb2cc;
+      box-shadow: 0 15px 25px #fcc6db;
+    }
+
+    .greeting-box h3 {
+      font-size: 2.4rem;
+      color: #982f57;
+      text-align: center;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .greeting-text {
+      font-size: 1.7rem;
+      line-height: 1.5;
+      color: #501f35;
+      background: #ffeef7;
+      padding: 30px;
+      border-radius: 60px;
+      box-shadow: inset 0 0 30px #ffe2ef;
+      border: 2px solid white;
+      text-align: center;
+    }
+
+    .signature {
+      margin-top: 25px;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #b34069;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    /* ===== ЦВЕТОЧНАЯ ЛЕНТА ===== */
+    .flower-line {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin: 40px 0 20px;
+    }
+
+    .flower-item {
+      flex: 0 1 140px;
+      text-align: center;
+      background: rgba(255, 220, 235, 0.6);
+      padding: 25px 10px 15px;
+      border-radius: 70px 20px 70px 20px;
+      border: 2px solid white;
+      box-shadow: 0 12px 0 #e598b9, 0 12px 20px #fec0d5;
+      transition: 0.2s;
+    }
+
+    .flower-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 0 #d982aa, 0 18px 30px #feadca;
+    }
+
+    .flower-emoji {
+      font-size: 4.5rem;
+      display: block;
+      margin-bottom: 15px;
+      filter: drop-shadow(0 5px 5px #f79ec0);
+    }
+
+    .flower-item p {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #812c50;
+    }
+
+    /* ===== КНОПКА-СЮРПРИЗ ===== */
+    .surprise {
+      text-align: center;
+      margin: 40px 0 25px;
+    }
+
+    .surprise-btn {
+      background: linear-gradient(145deg, #f5a8c5, #e079a8);
+      border: none;
+      font-size: 2.2rem;
+      padding: 20px 60px;
+      border-radius: 100px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 18px 0 #9f4668, 0 15px 30px #e896b9;
+      transition: 0.1s linear;
+      border: 3px solid #ffe6f1;
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .surprise-btn:active {
+      transform: translateY(12px);
+      box-shadow: 0 8px 0 #9f4668, 0 15px 25px #d979a5;
+    }
+
+    #hiddenMessage {
+      font-size: 2rem;
+      background: #fff0f7;
+      margin-top: 25px;
+      padding: 25px;
+      border-radius: 120px;
+      color: #bc2f60;
+      border: 3px solid white;
+      box-shadow: 0 10px 0 #d996b6;
+      display: none;
+      font-weight: 600;
+      backdrop-filter: blur(4px);
+    }
+
+    #hiddenMessage.show {
+      display: block;
+      animation: lovely 0.5s ease-out;
+    }
+
+    @keyframes lovely {
+      0% { opacity: 0; transform: scale(0.3) rotate(-5deg); }
+      70% { transform: scale(1.1) rotate(2deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0); }
+    }
+
+    /* ===== ПОДВАЛ ===== */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 1.5rem;
+      color: #b8597e;
+      border-top: 3px dotted #ffbfd2;
+      padding-top: 25px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer span {
+      background: white;
+      padding: 10px 25px;
+      border-radius: 60px;
+      box-shadow: 0 5px 0 #eaaac5;
+      border: 1px solid #ffc6da;
+    }
+
+    /* адаптация */
+    @media (max-width: 650px) {
+      .card {
+        padding: 30px 20px;
+      }
+      .photo-frame {
+        font-size: 6rem;
+        flex-basis: 150px;
+      }
+      .mom-quote h2 {
+        font-size: 2.2rem;
+        justify-content: center;
+      }
+      .mom-quote p {
+        font-size: 1.3rem;
+      }
+      .greeting-text {
+        font-size: 1.4rem;
+        padding: 20px;
+      }
+      .surprise-btn {
+        font-size: 1.6rem;
+        padding: 15px 35px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="content">
+      <!-- шапка с именами: Сергей и Марина -->
+      <div class="header">
+        <div class="from-name">
+          <span>💗</span> для <strong>МАРИНЫ</strong> <span>💗</span>
+        </div>
+        <h1>
+          <span>С 8 марта,</span>
+          <span class="heart-name">🌷</span>
+        </h1>
+        <div class="subhead">
+          от Сергея с любовью 💕
+        </div>
+      </div>
+
+      <!-- персональный блок с мамой -->
+      <div class="mom-spotlight">
+        <div class="photo-frame">
+          👩‍🦰🌸
+        </div>
+        <div class="mom-quote">
+          <h2>
+            <span>💖</span> Марина <span>💖</span>
+          </h2>
+          <p>
+            <strong>Самая лучшая мама на свете!</strong><br>
+            Твоя улыбка согревает лучше солнца.
+          </p>
+        </div>
+      </div>
+
+      <!-- основное поздравление -->
+      <div class="greeting-box">
+        <h3>
+          <span>🌺</span> С праздником весны! <span>🌺</span>
+        </h3>
+        <div class="greeting-text">
+          Дорогая Марина! <br>
+          От всего сердца поздравляю тебя с 8 Марта! <br>
+          Желаю тебе бесконечного счастья, крепкого здоровья, <br>
+          море цветов, тепла и радости. <br>
+          Пусть каждый день дарит только приятные эмоции!
+        </div>
+        <div class="signature">
+          <span>🌹</span> Твой сын Сергей <span>🌹</span>
+        </div>
+      </div>
+
+      <!-- цветочная гирлянда -->
+      <div class="flower-line">
+        <div class="flower-item">
+          <span class="flower-emoji">🌷</span>
+          <p>Тюльпаны</p>
+        </div>
+        <div class="flower-item">
+          <span class="flower-emoji">🌹</span>
+          <p>Розы</p>
+        </div>
+        <div class="flower-item">
+          <span class="flower-emoji">🌸</span>
+          <p>Сакура</p>
+        </div>
+        <div class="flower-item">
+          <span class="flower-emoji">🌼</span>
+          <p>Мимоза</p>
+        </div>
+      </div>
+
+      <!-- сюрприз с кнопкой -->
+      <div class="surprise">
+        <button class="surprise-btn" id="surpriseBtn">
+          <span>🎁</span> Сюрприз <span>🎀</span>
+        </button>
+        <div id="hiddenMessage">
+          💗 Марина, ты самая прекрасная! 💗<br>
+          🌷 Пусть всё задуманное сбудется! 🌷
+        </div>
+      </div>
+
+      <!-- подвал с датой -->
+      <div class="footer">
+        <span>🌸 8 марта 2026 🌸</span>
+        <span>💖 от Сергея с нежностью 💖</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const btn = document.getElementById('surpriseBtn');
+      const msg = document.getElementById('hiddenMessage');
+
+      btn.addEventListener('click', function() {
+        msg.classList.add('show');
+
+        // через 4 секунды убираем сообщение (опционально, можно убрать)
+        setTimeout(() => {
+          msg.classList.remove('show');
+        }, 4000);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, мама! ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fbc2c2 0%, #f8e0e0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            margin: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Анимированные цветы на фоне */
+        .floating-flowers {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .flower {
+            position: absolute;
+            font-size: 2.2rem;
+            opacity: 0.4;
+            animation: float 7s infinite ease-in-out;
+            filter: drop-shadow(0 8px 12px rgba(255, 105, 180, 0.2));
+        }
+
+        .flower1 { top: 5%; left: 3%; animation-delay: 0s; transform: rotate(-10deg); }
+        .flower2 { top: 15%; right: 2%; animation-delay: 1.2s; font-size: 3rem; opacity: 0.3; }
+        .flower3 { bottom: 12%; left: 8%; animation-delay: 2.5s; font-size: 2.8rem; }
+        .flower4 { bottom: 25%; right: 12%; animation-delay: 0.8s; }
+        .flower5 { top: 40%; left: 20%; animation-delay: 3s; font-size: 2rem; opacity: 0.25; }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(8deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .card {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 60px 60px 60px 60px;
+            box-shadow: 0 40px 60px rgba(255, 99, 132, 0.3),
+                        0 10px 30px rgba(255, 182, 193, 0.5),
+                        inset 0 2px 8px rgba(255, 255, 255, 0.8);
+            padding: 32px 28px 48px;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        /* декоративные элементы */
+        .card::before {
+            content: "🌸🌿🌷";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.2rem;
+            background: rgba(255, 240, 245, 0.7);
+            padding: 0 20px;
+            border-radius: 60px;
+            letter-spacing: 12px;
+            text-shadow: 0 4px 6px #ffb6c1;
+            backdrop-filter: blur(4px);
+            border: 1px solid white;
+        }
+
+        h1 {
+            font-size: 2.9rem;
+            font-weight: 700;
+            color: #ac3f5f;
+            margin-top: 28px;
+            margin-bottom: 10px;
+            text-shadow: 4px 4px 0 #ffe4ec, 6px 6px 0 rgba(250, 128, 154, 0.3);
+            letter-spacing: -0.5px;
+            word-break: break-word;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #962d4d;
+            background: rgba(255, 255, 255, 0.5);
+            display: inline-block;
+            padding: 8px 28px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+            border: 1px solid white;
+            box-shadow: 0 4px 6px #ffb6c180;
+        }
+
+        .photo-grid {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin: 30px 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .photo-placeholder {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(145deg, #ffdae0, #ffb3c6);
+            border-radius: 40px 40px 40px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.4rem;
+            box-shadow: 0 20px 25px -10px rgba(236, 72, 123, 0.5), inset -3px -3px 5px #fca5b1, inset 3px 3px 10px white;
+            border: 2px solid white;
+            transition: 0.2s ease;
+            color: #a52a4d;
+        }
+
+        .photo-placeholder:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .message {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 28px 22px;
+            border-radius: 50px 50px 50px 20px;
+            margin: 30px 0 28px;
+            box-shadow: inset 0 1px 10px white, 0 15px 20px -12px #e68c9c;
+            border: 2px solid white;
+            text-align: left;
+            font-size: 1.3rem;
+            line-height: 1.65;
+            color: #33211c;
+            backdrop-filter: blur(5px);
+        }
+
+        .message p {
+            margin-bottom: 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+
+        .message i {
+            font-size: 1.7rem;
+            margin-right: 10px;
+            color: #db4f78;
+        }
+
+        .signature {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #aa385a;
+            text-align: right;
+            margin-top: 20px;
+            border-top: 3px dashed #ffb0c3;
+            padding-top: 20px;
+            padding-right: 15px;
+            background: linear-gradient(to left, #ffd9e2, transparent);
+            border-radius: 0 0 30px 0;
+        }
+
+        .signature span {
+            background: #fff1f3;
+            padding: 5px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            box-shadow: 0 4px 0 #d66b8a;
+            font-size: 2rem;
+        }
+
+        .button-88 {
+            background: #ff99aa;
+            border: none;
+            border-bottom: 6px solid #b34363;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            padding: 18px 40px;
+            border-radius: 80px;
+            cursor: pointer;
+            box-shadow: 0 18px 20px -12px #c94f6b;
+            transition: all 0.1s ease;
+            margin-top: 25px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            letter-spacing: 1px;
+        }
+
+        .button-88:hover {
+            transform: translateY(3px);
+            border-bottom-width: 3px;
+            background: #ffa5b9;
+            box-shadow: 0 10px 20px -8px #c94f6b;
+        }
+
+        .button-88:active {
+            transform: translateY(8px);
+            border-bottom-width: 1px;
+        }
+
+        .secret-message {
+            background: #fee1e7;
+            border-radius: 40px;
+            padding: 20px;
+            font-size: 1.6rem;
+            color: #8f334f;
+            margin: 30px 0 15px;
+            border: 3px solid white;
+            box-shadow: inset 0 0 0 3px #ffb8c9, 0 15px 20px #fca5b180;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.4s ease;
+            pointer-events: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            word-break: break-word;
+        }
+
+        .secret-message.show {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        footer {
+            margin-top: 35px;
+            font-size: 1.1rem;
+            color: #c05773;
+            opacity: 0.7;
+        }
+
+        /* адаптация */
+        @media (max-width: 500px) {
+            h1 { font-size: 2.2rem; }
+            .subtitle { font-size: 1.2rem; }
+            .photo-placeholder { width: 70px; height: 70px; font-size: 2.5rem; }
+            .message { font-size: 1.1rem; padding: 20px; }
+            .signature { font-size: 1.5rem; }
+            .button-88 { font-size: 1.5rem; padding: 15px 30px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-flowers">
+        <div class="flower flower1">🌷</div>
+        <div class="flower flower2">🌸</div>
+        <div class="flower flower3">🌺</div>
+        <div class="flower flower4">🌹</div>
+        <div class="flower flower5">🌼</div>
+    </div>
+
+    <div class="card">
+        <h1>🌸 С 8 марта, мама! 🌸</h1>
+        <div class="subtitle">самый тёплый праздник весны</div>
+
+        <!-- Имитация фотографий (эмоджи-сюрпризы) -->
+        <div class="photo-grid">
+            <div class="photo-placeholder" title="Мама и Матвей">👩‍👦</div>
+            <div class="photo-placeholder" title="Цветы">💐</div>
+            <div class="photo-placeholder" title="Солнышко">☀️</div>
+            <div class="photo-placeholder" title="Улыбка">😊</div>
+        </div>
+
+        <!-- Основное поздравление с иконками -->
+        <div class="message">
+            <p><i>❤️</i> Мамочка, ты самая невероятная женщина в моей жизни!</p>
+            <p><i>🌷</i> Пусть эта весна подарит тебе море улыбок, тепла и цветов.</p>
+            <p><i>🌸</i> Ты всегда наполняешь дом уютом и заботой. Спасибо за всё!</p>
+            <p><i>💫</i> Оставайся такой же молодой, красивой и счастливой.</p>
+        </div>
+
+        <!-- Подпись от Матвея -->
+        <div class="signature">
+            <span>С любовью, твой Матвей 💝</span>
+        </div>
+
+        <!-- Интерактивная кнопка (javascript) -->
+        <button class="button-88" id="surpriseBtn">
+            <span>🎁</span> Нажми меня <span>🎈</span>
+        </button>
+
+        <!-- Скрытое сообщение, которое появляется по клику -->
+        <div id="secretMsg" class="secret-message">
+            🌟 Мамуля, ты лучше всех на свете! ✨<br>
+            🥰 Пусть каждый день будет сказкой! 🥳
+        </div>
+
+        <footer>
+            💖 8 Марта — день твоей красоты 💖
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // Убедимся, что DOM загружен
+            document.addEventListener('DOMContentLoaded', function() {
+                const btn = document.getElementById('surpriseBtn');
+                const secretDiv = document.getElementById('secretMsg');
+
+                // Массив дополнительных пожеланий (для разнообразия)
+                const bonusMessages = [
+                    "🌷 Будь всегда такой же лучезарной!",
+                    "🌸 Пусть сбываются мечты, мамуль!",
+                    "🌺 Ты — мой главный цветок!",
+                    "💐 С праздником, самая родная!",
+                    "🌞 Пусть настроение будет замечательным!"
+                ];
+
+                btn.addEventListener('click', function() {
+                    // Показываем блок с эффектом
+                    secretDiv.classList.add('show');
+
+                    // Меняем текст внутри блока на случайное пожелание (иногда, для интереса)
+                    // Но оставим и основной текст — можно комбинировать
+                    const randomIndex = Math.floor(Math.random() * bonusMessages.length);
+                    // Можно обновить содержимое, оставив эмоджи и основной текст, но для интерактива 
+                    // сделаем микс: основной текст + случайная строка.
+                    // Но чтобы не перезатереть полностью, иногда будем менять
+                    if (Math.random() > 0.5) {  // 50% шанс небольшого сюрприза
+                        secretDiv.innerHTML = `✨ ${bonusMessages[randomIndex]} ✨<br>❤️ Целую, Матвей ❤️`;
+                    } else {
+                        // вернем изначальный текст (на случай если захотели первоначальный)
+                        secretDiv.innerHTML = '🌟 Мамуля, ты лучше всех на свете! ✨<br>🥰 Пусть каждый день будет сказкой! 🥳';
+                    }
+
+                    // Добавим небольшую анимацию "встряски" для кнопки
+                    btn.style.transform = 'scale(0.95)';
+                    setTimeout(() => btn.style.transform = '', 150);
+
+                    // Через 8 секунд убираем сообщение (но если хочешь оставить навсегда — можно убрать таймер)
+                    // но оставим, чтобы не занимало место вечно, с возможностью нажать снова.
+                    if (window.surpriseTimer) clearTimeout(window.surpriseTimer);
+                    window.surpriseTimer = setTimeout(() => {
+                        secretDiv.classList.remove('show');
+                    }, 6000); // 6 секунд видно
+                });
+
+                // Дополнительно: при двойном клике на карточку появляется еще одно маленькое сердечко (пасхалка)
+                const card = document.querySelector('.card');
+                card.addEventListener('dblclick', function(e) {
+                    // создаём плавающее сердечко
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '💖';
+                    heart.style.position = 'absolute';
+                    heart.style.left = e.clientX - card.getBoundingClientRect().left + 'px';
+                    heart.style.top = e.clientY - card.getBoundingClientRect().top + 'px';
+                    heart.style.fontSize = '2.5rem';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.opacity = '1';
+                    heart.style.transition = 'all 1.5s ease';
+                    heart.style.zIndex = '999';
+                    card.style.position = 'relative';
+                    card.appendChild(heart);
+
+                    // Анимация уплывания
+                    setTimeout(() => {
+                        heart.style.transform = 'translateY(-80px) scale(1.5)';
+                        heart.style.opacity = '0';
+                    }, 10);
+                    setTimeout(() => {
+                        if (heart.parentNode) heart.remove();
+                    }, 1500);
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

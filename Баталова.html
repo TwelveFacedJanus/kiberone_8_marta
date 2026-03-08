@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, мамочка Лейсян!</title>
+    <style>
+        /* Общие сбросы и нежно-фиолетовая гамма */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(145deg, #f3e5ff 0%, #e9d0ff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Контейнер для цветов (фон) */
+        .flowers-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* чтобы не мешать нажатиям */
+            z-index: 0;
+        }
+
+        /* Стили для ромашек (псевдоэлементы и просто элементы) */
+        .daisy {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            opacity: 0.5;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+        }
+
+        .daisy::before, .daisy::after {
+            content: '';
+            position: absolute;
+            background-color: #fff9f0; /* тёплый белый */
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px #f8e0b0; /* легкий желтоватый оттенок */
+        }
+
+        .daisy::before {
+            width: 20px;
+            height: 20px;
+            top: 20px;
+            left: 20px;
+            background-color: #ffe484; /* желтая серединка */
+            box-shadow: 0 0 0 2px #ffd966;
+            z-index: 2;
+        }
+
+        .daisy::after {
+            width: 50px;
+            height: 50px;
+            top: 5px;
+            left: 5px;
+            background: radial-gradient(circle, #ffffff 30%, #fff2d7 80%);
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 4px 10px rgba(210, 180, 255, 0.3);
+        }
+
+        /* лепестки (дополнительные псевдо-лепестки через box-shadow) */
+        .daisy .petal {
+            position: absolute;
+            width: 18px;
+            height: 40px;
+            background: white;
+            border-radius: 40% 60% 60% 40% / 50% 50% 50% 50%;
+            transform-origin: bottom center;
+            top: 10px;
+            left: 21px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+            z-index: 0;
+        }
+
+        /* расположим лепестки вручную через трансформацию */
+        .daisy .petal:nth-child(1) { transform: rotate(0deg) translateY(-10px); }
+        .daisy .petal:nth-child(2) { transform: rotate(45deg) translateY(-10px); }
+        .daisy .petal:nth-child(3) { transform: rotate(90deg) translateY(-10px); }
+        .daisy .petal:nth-child(4) { transform: rotate(135deg) translateY(-10px); }
+        .daisy .petal:nth-child(5) { transform: rotate(180deg) translateY(-10px); }
+        .daisy .petal:nth-child(6) { transform: rotate(225deg) translateY(-10px); }
+        .daisy .petal:nth-child(7) { transform: rotate(270deg) translateY(-10px); }
+        .daisy .petal:nth-child(8) { transform: rotate(315deg) translateY(-10px); }
+
+        /* основная карточка-поздравление */
+        .card {
+            position: relative;
+            z-index: 10;
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 245, 255, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 48px 24px 48px 24px;
+            box-shadow: 0 25px 50px -8px rgba(140, 90, 200, 0.3),
+                        0 0 0 2px rgba(255, 255, 255, 0.5) inset;
+            padding: 40px 30px;
+            border: 1px solid #ffffff88;
+            transition: all 0.3s ease;
+        }
+
+        /* украшение уголков */
+        .corner-flowers {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .small-daisy {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .small-daisy::before {
+            content: '⚘';
+            font-size: 30px;
+            line-height: 1;
+            color: #c1a5f0;
+            filter: drop-shadow(0 2px 4px #d9c0ff);
+        }
+
+        /* заголовок */
+        .title {
+            font-size: 3rem;
+            font-weight: 300;
+            color: #5d3c7b;
+            text-align: center;
+            text-shadow: 2px 2px 10px #f3e5ff;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        .title span {
+            font-weight: 500;
+            color: #7a4b9a;
+            background: linear-gradient(135deg, #f0dbff, #faf0ff);
+            padding: 0 15px;
+            border-radius: 60px;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(170, 120, 220, 0.2);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #6b4c8c;
+            margin-bottom: 30px;
+            border-bottom: 2px dashed #d9b5ff;
+            padding-bottom: 15px;
+            font-style: italic;
+        }
+
+        .name-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .from, .to {
+            background: #f1e2ffcc;
+            border-radius: 60px;
+            padding: 12px 35px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 8px 20px #d5bbe6;
+            font-size: 1.8rem;
+            color: #412e55;
+            border: 1px solid white;
+        }
+
+        .to {
+            background: #ffe6facc;
+            font-weight: bold;
+            color: #702f8a;
+        }
+
+        .heart-daisy {
+            font-size: 2.4rem;
+            filter: drop-shadow(0 2px 5px #d9a3ff);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        /* основное послание */
+        .message {
+            background: #f9efffdd;
+            padding: 30px 25px;
+            border-radius: 40px 10px 40px 10px;
+            margin: 30px 0;
+            border: 2px solid #fff5ff;
+            box-shadow: 0 10px 25px #cdb0e6;
+            font-size: 1.5rem;
+            line-height: 1.5;
+            color: #392b47;
+            text-align: center;
+            word-break: break-word;
+        }
+
+        .message p {
+            margin-bottom: 15px;
+        }
+
+        .message i {
+            color: #834e9e;
+            font-size: 1.8rem;
+            display: block;
+            margin-top: 15px;
+        }
+
+        .message .daisy-sign {
+            font-size: 2rem;
+            display: inline-block;
+            margin: 0 5px;
+            transform: rotate(5deg);
+            filter: drop-shadow(0 2px 5px #e1b5ff);
+        }
+
+        /* кнопка или маленький сюрприз */
+        .flower-btn {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn-daisy {
+            background: #b894e6;
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            padding: 15px 40px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 0 #764c9e, 0 6px 25px #dec3ff;
+            transition: 0.1s ease;
+            font-weight: 600;
+            letter-spacing: 1px;
+            backdrop-filter: blur(5px);
+            background: rgba(180, 130, 230, 0.8);
+            border: 1px solid white;
+        }
+
+        .btn-daisy:hover {
+            transform: translateY(4px);
+            box-shadow: 0 6px 0 #764c9e, 0 10px 25px #e2c4ff;
+        }
+
+        .btn-daisy:active {
+            transform: translateY(8px);
+            box-shadow: 0 2px 0 #764c9e, 0 8px 20px #d2b0fc;
+        }
+
+        /* подвал с маленькими ромашками */
+        .footer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            font-size: 2.2rem;
+            opacity: 0.8;
+            color: #8f6db3;
+        }
+
+        /* рандомное размещение ромашек на фоне */
+        .daisy-1 { top: 5%; left: 2%; transform: rotate(-10deg); }
+        .daisy-2 { top: 15%; right: 3%; transform: rotate(20deg) scale(1.2); }
+        .daisy-3 { bottom: 12%; left: 8%; transform: rotate(-5deg) scale(0.9); }
+        .daisy-4 { bottom: 25%; right: 10%; transform: rotate(40deg) scale(1.4); opacity: 0.4; }
+        .daisy-5 { top: 30%; left: 20%; transform: rotate(70deg) scale(0.7); opacity: 0.3; }
+        .daisy-6 { top: 70%; right: 15%; transform: rotate(-20deg) scale(1.1); }
+        .daisy-7 { bottom: 5%; right: 25%; transform: rotate(15deg) scale(1.3); }
+        .daisy-8 { top: 45%; left: 5%; transform: rotate(-45deg) scale(0.8); }
+
+        /* адаптация */
+        @media (max-width: 550px) {
+            .title { font-size: 2.2rem; }
+            .subtitle { font-size: 1.4rem; }
+            .from, .to { font-size: 1.3rem; padding: 8px 20px; }
+            .message { font-size: 1.2rem; }
+            .card { padding: 25px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Фиолетовый фон с множеством ромашек (фиксированные позиции) -->
+    <div class="flowers-bg">
+        <!-- Каждая ромашка — блок .daisy с восемью лепестками .petal -->
+        <div class="daisy daisy-1">
+            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        </div>
+        <div class="daisy daisy-2">
+            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        </div>
+        <div class="daisy daisy-3">
+            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        </div>
+        <div class="daisy daisy-4">
+            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        </div>
+        <div class="daisy daisy-5">
+            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        </div>
+        <div class="daisy daisy-6">
+            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        </div>
+        <div class="daisy daisy-7">
+            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        </div>
+        <div class="daisy daisy-8">
+            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        </div>
+    </div>
+
+    <!-- Основная открытка -->
+    <div class="card">
+        <div class="corner-flowers">
+            <span class="small-daisy"></span>
+            <span class="small-daisy"></span>
+            <span class="small-daisy"></span>
+        </div>
+        
+        <div class="title">
+            <span>🌸 8 марта 🌸</span>
+        </div>
+        <div class="subtitle">
+            💐 Праздник весны и красоты 💐
+        </div>
+
+        <!-- Имена с ромашкой-сердечком -->
+        <div class="name-row">
+            <div class="from">Виолетта</div>
+            <div class="heart-daisy">🌼❤️🌼</div>
+            <div class="to">Лейсян</div>
+        </div>
+
+        <!-- Тёплые слова маме -->
+        <div class="message">
+            <p>
+                <span class="daisy-sign">🌼</span> Мамочка Лейсян, родная! <span class="daisy-sign">🌼</span>
+            </p>
+            <p>
+                С 8 Марта! Ты — самый нежный и любимый человек в моей жизни. 
+                Пусть каждый день дарит тебе улыбки, словно лепестки ромашек, 
+                а сердце всегда согревает тепло.
+            </p>
+            <p>
+                Спасибо тебе за заботу, ласку и бесконечную доброту. 
+                Оставайся такой же красивой, лучезарной и счастливой! 
+            </p>
+            <i>— Твоя доченька Виолетта.</i>
+        </div>
+
+        <!-- Кнопка для сюрприза (при нажатии появляются ещё ромашки) -->
+        <div class="flower-btn">
+            <button class="btn-daisy" id="daisySurpriseBtn">🌼 Нажми, чтобы добавить ромашек 🌼</button>
+        </div>
+
+        <!-- Декоративный подвал с ромашками и именем -->
+        <div class="footer">
+            <span>🌱</span>
+            <span>🌼</span>
+            <span>🌱</span>
+            <span>🌼</span>
+            <span>🌱</span>
+        </div>
+    </div>
+
+    <!-- Небольшой скрипт для оживления: по клику появляются летящие ромашки -->
+    <script>
+        (function() {
+            const btn = document.getElementById('daisySurpriseBtn');
+            if (!btn) return;
+
+            // функция для создания всплывающих ромашек
+            function createFloatingDaisy() {
+                const daisy = document.createElement('div');
+                daisy.innerHTML = '🌼';
+                daisy.style.position = 'fixed';
+                daisy.style.left = Math.random() * 100 + '%';
+                daisy.style.top = (window.innerHeight - 50) + 'px'; // старт снизу
+                daisy.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                daisy.style.color = '#f9f2ff';
+                daisy.style.textShadow = '0 0 10px #b380e6, 2px 2px 10px #c38eff';
+                daisy.style.pointerEvents = 'none';
+                daisy.style.zIndex = 9999;
+                daisy.style.opacity = 0.8;
+                daisy.style.transition = 'transform 3s ease-out, opacity 3s';
+                daisy.style.willChange = 'transform, opacity';
+                daisy.style.filter = 'drop-shadow(0 5px 15px #b87ce6)';
+                document.body.appendChild(daisy);
+
+                // анимация вверх и вращение
+                const moveUp = Math.random() * 200 + 100; // на сколько пикселей вверх
+                const rotate = Math.random() * 360;
+                const delay = Math.random() * 0.5;
+
+                setTimeout(() => {
+                    daisy.style.transform = `translateY(-${window.innerHeight * 0.7}px) rotate(${rotate}deg) scale(1.5)`;
+                    daisy.style.opacity = '0';
+                }, delay * 1000);
+
+                // удалить после завершения
+                setTimeout(() => {
+                    daisy.remove();
+                }, 4000);
+            }
+
+            btn.addEventListener('click', () => {
+                // запускаем несколько ромашек
+                for (let i = 0; i < 8; i++) {
+                    setTimeout(createFloatingDaisy, i * 120);
+                }
+                // меняем текст на кнопке
+                btn.textContent = '🌼🌼 Ромашки летят! 🌼🌼';
+                setTimeout(() => {
+                    btn.textContent = '🌼 Нажми, чтобы добавить ромашек 🌼';
+                }, 2000);
+            });
+        })();
+    </script>
+
+    <!-- Дополнительный декоративный штрих: ещё пару ромашек через простой CSS (без лепестков) но у нас уже есть, добавим символы в левый верхний угол прямо в body -->
+    <div style="position: fixed; top: 10px; left: 10px; font-size: 40px; opacity: 0.15; z-index: 1; pointer-events: none;">🌼🌼🌼</div>
+    <div style="position: fixed; bottom: 10px; right: 10px; font-size: 50px; opacity: 0.2; z-index: 1; pointer-events: none;">🌼🌼</div>
+</body>
+</html>

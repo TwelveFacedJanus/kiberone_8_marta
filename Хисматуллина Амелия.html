@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, мама Анастасия! 💐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #b3e0ff 0%, #d4f0ff 60%, #e6f7ff 100%);
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            position: relative;
+            overflow-x: hidden;
+            /* Небесно-голубая гамма: от мягкой лазури до почти прозрачной дымки */
+        }
+
+        /* Контейнер открытки — полупрозрачный, нежный */
+        .card {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border-radius: 48px 24px 48px 24px;
+            box-shadow: 0 20px 40px rgba(80, 140, 200, 0.3), 0 8px 20px rgba(0, 160, 255, 0.2), inset 0 0 0 2px rgba(255, 255, 255, 0.7);
+            padding: 40px 30px;
+            position: relative;
+            z-index: 10;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+        }
+
+        /* Заголовок — имя мамы с облачной тенью */
+        .title {
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: #0a4d6e;
+            text-align: center;
+            line-height: 1.2;
+            letter-spacing: 2px;
+            text-shadow: 4px 4px 10px rgba(255, 255, 255, 0.8), 2px 2px 0 #b5e4ff;
+            margin-bottom: 10px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        .title span {
+            font-weight: 700;
+            color: #02547d;
+            background: linear-gradient(120deg, #ffffff, #c1e4ff);
+            padding: 0 16px 0 12px;
+            border-radius: 100px;
+            display: inline-block;
+            box-shadow: 0 6px 0 #a0cce0;
+            transform: rotate(-0.5deg);
+            font-style: italic;
+            border: 1px solid white;
+        }
+
+        .greeting {
+            font-size: 1.7rem;
+            text-align: center;
+            color: #0f5e83;
+            margin-bottom: 24px;
+            border-bottom: 2px dashed #9dc9f0;
+            padding-bottom: 18px;
+            font-weight: 300;
+            word-spacing: 6px;
+        }
+
+        .greeting i {
+            font-style: normal;
+            background: #ddf0ff;
+            padding: 5px 16px;
+            border-radius: 40px;
+        }
+
+        /* Основной текст */
+        .message {
+            font-size: 1.3rem;
+            color: #024d70;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 28px 22px;
+            border-radius: 40px 12px 40px 12px;
+            line-height: 1.6;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            box-shadow: inset 0 0 20px #c2e3ff, 0 8px 12px rgba(50, 100, 150, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            font-weight: 450;
+        }
+
+        .message p {
+            margin: 12px 0;
+        }
+
+        .message p:first-child {
+            margin-top: 0;
+        }
+
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Красивая подпись */
+        .signature {
+            font-size: 1.8rem;
+            text-align: right;
+            color: #02547d;
+            font-family: 'Brush Script MT', cursive;
+            padding-right: 20px;
+            text-shadow: 2px 2px 0 #b9dcff;
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .signature:before {
+            content: "🌸";
+            font-size: 2.2rem;
+            opacity: 0.8;
+            margin-right: 12px;
+            filter: drop-shadow(0 4px 4px #a4c6f0);
+        }
+
+        /* БАБОЧКИ — анимированные, порхающие, небесно-голубых оттенков */
+        .butterfly {
+            position: absolute;
+            width: 60px;
+            height: 50px;
+            z-index: 40;
+            pointer-events: none;
+            filter: drop-shadow(0 6px 12px rgba(110, 180, 255, 0.5));
+            opacity: 0.8;
+            animation: flutter 7s infinite ease-in-out;
+        }
+
+        /* Крылья бабочки — всё в голубых тонах с бирюзовыми и белыми акцентами */
+        .butterfly::before,
+        .butterfly::after {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 45px;
+            background: radial-gradient(circle at 30% 30%, #c2e5ff, #7bc5ff);
+            border-radius: 70% 30% 60% 40% / 50% 40% 60% 50%;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.7), 0 8px 12px rgba(0, 100, 200, 0.2);
+            top: 0;
+        }
+
+        .butterfly::before {
+            left: 5px;
+            transform: rotate(-15deg);
+            background: linear-gradient(145deg, #ade4ff, #6eb5ff);
+            border-radius: 80% 20% 70% 30% / 40% 60% 40% 60%;
+        }
+
+        .butterfly::after {
+            right: 5px;
+            transform: rotate(15deg);
+            background: linear-gradient(45deg, #d3f0ff, #87cefa);
+            border-radius: 30% 70% 20% 80% / 60% 40% 60% 40%;
+        }
+
+        /* тело бабочки */
+        .butterfly-body {
+            position: absolute;
+            width: 8px;
+            height: 32px;
+            background: #41644a;
+            background: linear-gradient(to bottom, #3b2e1e, #6d8f9b);
+            border-radius: 40%;
+            left: 26px;
+            top: 8px;
+            z-index: 5;
+            box-shadow: 0 0 4px #b1d6ff;
+        }
+
+        /* маленькие усики */
+        .butterfly-body::before,
+        .butterfly-body::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 1.5px;
+            background: #4d707a;
+            top: 4px;
+            border-radius: 2px;
+        }
+
+        .butterfly-body::before {
+            left: -10px;
+            transform: rotate(-25deg);
+        }
+
+        .butterfly-body::after {
+            right: -10px;
+            transform: rotate(25deg);
+        }
+
+        /* РАЗНЫЕ РАЗМЕРЫ, ПОЗИЦИИ И ЗАДЕРЖКИ АНИМАЦИИ */
+        .b1 { top: 5%; left: 3%; width: 70px; animation-delay: 0s; }
+        .b2 { top: 15%; right: 2%; width: 85px; animation-delay: 1.2s; opacity: 0.9; }
+        .b3 { bottom: 12%; left: 8%; width: 55px; animation-delay: 2.5s; }
+        .b4 { bottom: 25%; right: 10%; width: 90px; animation-delay: 0.8s; }
+        .b5 { top: 40%; left: 20%; width: 60px; animation-delay: 3.7s; }
+        .b6 { top: 70%; right: 18%; width: 75px; animation-delay: 0.3s; }
+        .b7 { bottom: 5%; left: 20%; width: 65px; animation-delay: 2s; }
+        .b8 { top: 80%; left: 5%; width: 50px; animation-delay: 4s; }
+        .b9 { top: 20%; left: 40%; width: 95px; animation-delay: 1.8s; }
+        .b10 { bottom: 40%; right: 5%; width: 60px; animation-delay: 2.9s; }
+
+        /* Крупные бабочки в переднем плане */
+        .b11 { bottom: 8%; right: 15%; width: 80px; animation-delay: 0.1s; z-index: 50; }
+        .b12 { top: 8%; left: 28%; width: 100px; animation-delay: 2.2s; z-index: 45; }
+
+        @keyframes flutter {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            25% { transform: translate(12px, -18px) rotate(4deg) scale(1.02); }
+            40% { transform: translate(4px, -26px) rotate(-2deg) scale(0.98); }
+            60% { transform: translate(-10px, -10px) rotate(-6deg) scale(1.01); }
+            80% { transform: translate(-18px, 6px) rotate(2deg) scale(1); }
+            100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+        }
+
+        /* Дополнительные маленькие бабочки-капли (узор) */
+        .butterfly-mini {
+            position: absolute;
+            width: 30px;
+            height: 25px;
+            opacity: 0.3;
+            animation: miniDrift 14s infinite alternate;
+            pointer-events: none;
+        }
+        .butterfly-mini::before,
+        .butterfly-mini::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 20px;
+            background: #b9dcff;
+            border-radius: 60% 40% 50% 50%;
+            box-shadow: 0 0 0 1px #ffffff;
+        }
+        .butterfly-mini::before { left: 0; transform: rotate(-20deg); }
+        .butterfly-mini::after { right: 0; transform: rotate(20deg); }
+        .butterfly-mini span { display: none; } /* тело не обязательно */
+
+        .mini1 { top: 60%; left: 12%; }
+        .mini2 { top: 33%; right: 22%; }
+        .mini3 { bottom: 20%; left: 45%; }
+        .mini4 { top: 78%; right: 35%; }
+        .mini5 { top: 45%; left: 78%; }
+
+        @keyframes miniDrift {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+            100% { transform: translateY(-30px) rotate(20deg); opacity: 0.5; }
+        }
+
+        /* Солнечные зайчики / цветы абстрактные */
+        .floral {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .f1 { top: -40px; left: -40px; background: radial-gradient(circle, #ffffff80 0%, transparent 75%); }
+        .f2 { bottom: -30px; right: -20px; width: 240px; height: 240px; background: radial-gradient(circle, #e2f3ff80 10%, transparent 80%); }
+
+        /* Адаптация под мобильные */
+        @media (max-width: 600px) {
+            .card { padding: 25px 18px; }
+            .title { font-size: 2.2rem; }
+            .greeting { font-size: 1.4rem; }
+            .message { font-size: 1.1rem; padding: 18px; }
+            .butterfly { opacity: 0.6; }
+        }
+
+        /* Чтобы бабочки не перекрывали текст слишком сильно, но это и не нужно */
+    </style>
+</head>
+<body>
+    <!-- Небесно-голубой фон, бабочки парят вокруг -->
+
+    <!-- БАБОЧКИ (основные) -->
+    <div class="butterfly b1"><div class="butterfly-body"></div></div>
+    <div class="butterfly b2"><div class="butterfly-body"></div></div>
+    <div class="butterfly b3"><div class="butterfly-body"></div></div>
+    <div class="butterfly b4"><div class="butterfly-body"></div></div>
+    <div class="butterfly b5"><div class="butterfly-body"></div></div>
+    <div class="butterfly b6"><div class="butterfly-body"></div></div>
+    <div class="butterfly b7"><div class="butterfly-body"></div></div>
+    <div class="butterfly b8"><div class="butterfly-body"></div></div>
+    <div class="butterfly b9"><div class="butterfly-body"></div></div>
+    <div class="butterfly b10"><div class="butterfly-body"></div></div>
+    <div class="butterfly b11"><div class="butterfly-body"></div></div>
+    <div class="butterfly b12"><div class="butterfly-body"></div></div>
+
+    <!-- Мини-бабочки (полупрозрачный рой) -->
+    <div class="butterfly-mini mini1"><span></span></div>
+    <div class="butterfly-mini mini2"><span></span></div>
+    <div class="butterfly-mini mini3"><span></span></div>
+    <div class="butterfly-mini mini4"><span></span></div>
+    <div class="butterfly-mini mini5"><span></span></div>
+
+    <!-- Абстрактные светлые пятна (floral) -->
+    <div class="floral f1"></div>
+    <div class="floral f2"></div>
+
+    <!-- ОСНОВНАЯ ОТКРЫТКА -->
+    <main class="card">
+        <div class="title">
+            <span>Анастасия</span>
+        </div>
+        <div class="greeting">
+            <i>С 8 марта, мамочка!</i>
+        </div>
+        <div class="message">
+            <p>💙 Пусть каждый день будет таким же ясным и нежным,</p>
+            <p>как это весеннее небо. 🦋 Пусть лёгкость бабочек</p>
+            <p>наполняет сердце радостью, а вокруг порхают</p>
+            <p>только счастливые мгновения.</p>
+            <p>🌼 Спасибо за твою заботу, тепло и бесконечную</p>
+            <p>доброту. Ты — мой свет и вдохновение.</p>
+        </div>
+        <div class="signature">
+            с любовью, твоя дочка 💙
+        </div>
+    </main>
+
+    <!-- Ещё несколько бабочек, чтобы летали прямо над открыткой (дополнительно) -->
+    <div style="position: absolute; top: 20%; left: 80%; width: 70px; height: 60px; pointer-events: none; z-index: 30; animation: flutter 8s infinite alternate-reverse;">
+        <div style="position: relative; width: 100%; height: 100%;">
+            <div style="position: absolute; width: 35px; height: 45px; background: #b1dcff; left: 5px; top: 0; border-radius: 70% 30% 50% 50%; transform: rotate(-12deg); box-shadow: 0 0 0 2px white;"></div>
+            <div style="position: absolute; width: 35px; height: 45px; background: #c5e6ff; right: 5px; top: 0; border-radius: 30% 70% 50% 50%; transform: rotate(12deg); box-shadow: 0 0 0 2px white;"></div>
+            <div style="position: absolute; width: 8px; height: 28px; background: #4a6b7c; left: 31px; top: 8px; border-radius: 20%;"></div>
+        </div>
+    </div>
+    <!-- последний штрих: маленькая бабочка прямо внизу слева -->
+    <div style="position: absolute; bottom: 2%; left: 2%; width: 45px; height: 40px; background: transparent; animation: flutter 9s infinite; filter: drop-shadow(0 0 6px #aad0ff);">
+        <div style="position: relative; width: 100%; height: 100%;">
+            <div style="position: absolute; width: 22px; height: 30px; background: #aad0ff; left: 2px; top: 0; border-radius: 70% 30% 60% 40%; transform: rotate(-10deg); border: 1px solid white;"></div>
+            <div style="position: absolute; width: 22px; height: 30px; background: #bde3ff; right: 2px; top: 0; border-radius: 30% 70% 40% 60%; transform: rotate(10deg); border: 1px solid white;"></div>
+        </div>
+    </div>
+</body>
+</html>

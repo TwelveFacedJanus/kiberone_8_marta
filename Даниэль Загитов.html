@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>С 8 Марта, мама Гульнара!</title>
+  <style>
+    /* СБРОС И БАЗОВЫЕ СТИЛИ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(145deg, #fbc2c2 0%, #f8e0b0 100%);
+      font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ОСНОВНАЯ ОТКРЫТКА */
+    .card {
+      max-width: 700px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 60px 60px 40px 40px;
+      box-shadow: 0 25px 40px rgba(210, 80, 120, 0.3),
+                  0 0 0 2px #fff9 inset,
+                  0 0 0 5px #ffb6c19c inset;
+      padding: 40px 30px 50px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      border: 2px solid #ffeef2;
+      animation: card-appear 1.4s ease-out;
+    }
+
+    @keyframes card-appear {
+      0% { opacity: 0; transform: scale(0.85) translateY(30px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* ЗАГОЛОВОК С ИМЕНАМИ */
+    h1 {
+      font-size: 3.3rem;
+      font-weight: 800;
+      color: #982b4c;
+      text-shadow: 3px 3px 0 #ffd9df, 6px 6px 0 rgba(255, 220, 240, 0.7);
+      letter-spacing: 2px;
+      word-break: break-word;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .names {
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, #c2436b, #ec7a9c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .sub {
+      font-size: 1.7rem;
+      color: #791f3b;
+      background: #fff2d7c7;
+      display: inline-block;
+      padding: 8px 35px;
+      border-radius: 60px;
+      backdrop-filter: blur(4px);
+      margin: 15px 0 20px;
+      border: 2px dotted #ffa5b9;
+      font-style: italic;
+    }
+
+    /* ТЕКСТ ПОЗДРАВЛЕНИЯ */
+    .message {
+      background: #ffffffcf;
+      border-radius: 80px 20px 80px 20px;
+      padding: 30px 25px;
+      margin: 25px 0 30px;
+      box-shadow: 0 10px 30px #ffb6c170;
+      border: 3px solid white;
+      font-size: 1.4rem;
+      color: #402020;
+      line-height: 1.7;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .message p {
+      margin-bottom: 15px;
+    }
+
+    .message p:last-child {
+      margin-bottom: 0;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: #b34163;
+    }
+
+    /* ПОДПИСЬ */
+    .signature {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #872043;
+      background: #ffeeb8b3;
+      display: inline-block;
+      padding: 8px 40px;
+      border-radius: 100px;
+      border: 2px solid white;
+      box-shadow: 0 6px 0 #d36f8b;
+      margin-top: 15px;
+    }
+
+    /* КОНТЕЙНЕР ДЛЯ ЦВЕТОЧКОВ (CSS-АНИМАЦИЯ) */
+    .flowers-container {
+      position: relative;
+      width: 100%;
+      height: 130px;
+      margin: 25px 0 5px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px 30px;
+    }
+
+    /* ОДИН ЦВЕТОЧЕК (стилизация + анимация) */
+    .flower {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .flower:hover {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 8px gold);
+    }
+
+    /* Бутон (лепестки) */
+    .blossom {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      animation: sway 3s infinite ease-in-out;
+      transform-origin: center bottom;
+    }
+
+    /* общий стиль лепестка */
+    .petal {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: #ff9eb5;
+      border-radius: 80% 0 80% 0;
+      transform-origin: center;
+      box-shadow: 0 4px 8px #d6347170, 0 0 0 2px #fff9 inset;
+      transition: all 0.3s;
+    }
+
+    /* расположение лепестков (крест-накрест) */
+    .petal-1 { transform: rotate(45deg); top: 0; left: 15px; }
+    .petal-2 { transform: rotate(135deg); top: 15px; left: 30px; }
+    .petal-3 { transform: rotate(225deg); top: 30px; left: 15px; }
+    .petal-4 { transform: rotate(315deg); top: 15px; left: 0; }
+
+    /* сердцевинка */
+    .center {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: #feee55;
+      border-radius: 50%;
+      top: 17px;
+      left: 17px;
+      box-shadow: 0 0 0 3px #ffecbb, 0 0 15px #ffbf00;
+      z-index: 5;
+      animation: pulse 2s infinite alternate;
+    }
+
+    /* стебель и листики */
+    .stem {
+      width: 8px;
+      height: 45px;
+      background: #6b8c42;
+      border-radius: 20px;
+      margin-top: -5px;
+      box-shadow: 0 8px 0 #55802e;
+      position: relative;
+      z-index: 1;
+    }
+
+    .leaf {
+      width: 22px;
+      height: 12px;
+      background: #7faa5d;
+      border-radius: 80% 0 60% 20%;
+      position: relative;
+      top: -8px;
+      box-shadow: 0 4px 0 #4f7a2f;
+    }
+
+    .leaf-left {
+      transform: rotate(-25deg);
+      left: -15px;
+    }
+
+    .leaf-right {
+      transform: rotate(65deg);
+      left: 0px;
+      top: -22px;
+    }
+
+    /* вариации цветов для разнообразия */
+    .flower2 .petal { background: #fadadd; }
+    .flower2 .center { background: #ffb6d1; box-shadow: 0 0 0 3px #ffe4f2; }
+
+    .flower3 .petal { background: #ffd966; }
+    .flower3 .center { background: #fa8072; }
+
+    .flower4 .petal { background: #c1e1d6; }
+    .flower4 .center { background: #ffe15e; }
+
+    /* анимация покачивания */
+    @keyframes sway {
+      0% { transform: rotate(0deg) translateY(0px); }
+      25% { transform: rotate(4deg) translateY(-4px); }
+      50% { transform: rotate(0deg) translateY(0px); }
+      75% { transform: rotate(-4deg) translateY(-4px); }
+      100% { transform: rotate(0deg) translateY(0px); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.9; }
+      100% { transform: scale(1.15); opacity: 1; background: #ffdd55; }
+    }
+
+    /* ДОПОЛНИТЕЛЬНЫЕ ЦВЕТЫ НА ФОНЕ (абсолютные) — анимация летящих цветочков (JS/Canvas) */
+    #background-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* кнопка-сюрприз */
+    .surprise-btn {
+      background: #dd5588;
+      border: none;
+      color: white;
+      font-size: 1.3rem;
+      font-weight: bold;
+      padding: 14px 32px;
+      border-radius: 50px;
+      box-shadow: 0 10px 0 #912f55, 0 4px 20px #ffa5c3;
+      cursor: pointer;
+      transition: 0.07s linear;
+      margin: 20px 0 5px;
+      border: 2px solid #fff9;
+      letter-spacing: 1px;
+    }
+
+    .surprise-btn:active {
+      transform: translateY(7px);
+      box-shadow: 0 3px 0 #912f55, 0 4px 18px #ffa5c3;
+    }
+
+    /* маленькие сердечки */
+    .heart {
+      display: inline-block;
+      animation: float 2s infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* адаптация */
+    @media (max-width: 450px) {
+      h1 { font-size: 2.5rem; }
+      .names { font-size: 1.7rem; }
+      .message { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Холст для анимированных частиц (лепестков/цветочков) на фоне -->
+  <canvas id="background-canvas"></canvas>
+
+  <!-- Главная открытка -->
+  <div class="card">
+    <h1>🌸 8 Марта 🌸</h1>
+    <div class="names">
+      <span class="heart">💗</span> мама Гульнара <span class="heart">💗</span>
+    </div>
+    <div class="sub">от Даниэля</div>
+
+    <!-- Цветочки CSS (интерактивные, качаются) -->
+    <div class="flowers-container">
+      <!-- цветок 1 (розовый) -->
+      <div class="flower flower1" title="С 8 Марта!">
+        <div class="blossom">
+          <div class="petal petal-1"></div>
+          <div class="petal petal-2"></div>
+          <div class="petal petal-3"></div>
+          <div class="petal petal-4"></div>
+          <div class="center"></div>
+        </div>
+        <div class="stem">
+          <div class="leaf leaf-left"></div>
+          <div class="leaf leaf-right"></div>
+        </div>
+      </div>
+
+      <!-- цветок 2 (нежно-розовый) -->
+      <div class="flower flower2" title="Любимой маме">
+        <div class="blossom">
+          <div class="petal petal-1"></div>
+          <div class="petal petal-2"></div>
+          <div class="petal petal-3"></div>
+          <div class="petal petal-4"></div>
+          <div class="center"></div>
+        </div>
+        <div class="stem">
+          <div class="leaf leaf-left"></div>
+          <div class="leaf leaf-right"></div>
+        </div>
+      </div>
+
+      <!-- цветок 3 (жёлто-лососевый) -->
+      <div class="flower flower3" title="Ты лучше всех!">
+        <div class="blossom">
+          <div class="petal petal-1"></div>
+          <div class="petal petal-2"></div>
+          <div class="petal petal-3"></div>
+          <div class="petal petal-4"></div>
+          <div class="center"></div>
+        </div>
+        <div class="stem">
+          <div class="leaf leaf-left"></div>
+          <div class="leaf leaf-right"></div>
+        </div>
+      </div>
+
+      <!-- цветок 4 (мятный) -->
+      <div class="flower flower4" title="Счастья и весны!">
+        <div class="blossom">
+          <div class="petal petal-1"></div>
+          <div class="petal petal-2"></div>
+          <div class="petal petal-3"></div>
+          <div class="petal petal-4"></div>
+          <div class="center"></div>
+        </div>
+        <div class="stem">
+          <div class="leaf leaf-left"></div>
+          <div class="leaf leaf-right"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Тёплые слова -->
+    <div class="message">
+      <p>💐 Дорогая мама Гульнара! 💐</p>
+      <p>С Международным женским днём!<br>Ты — мой свет и вдохновение.</p>
+      <p>Пусть каждый день дарит улыбки,<br>аромат цветов и тепло!</p>
+      <p>С любовью, твой Даниэль ✨</p>
+    </div>
+
+    <!-- Подпись + сюрприз кнопка -->
+    <div class="signature">
+      Даниэль 🤍
+    </div>
+    
+    <button class="surprise-btn" id="surpriseButton">
+      🎁 Нажми для сюрприза 🎁
+    </button>
+  </div>
+
+  <script>
+    (function() {
+      // ========== ЧАСТЬ 1: КАНВАС С ЛЕТАЮЩИМИ ЦВЕТОЧКАМИ (анимация) ==========
+      const canvas = document.getElementById('background-canvas');
+      const ctx = canvas.getContext('2d');
+      let width, height;
+      let particles = [];
+
+      // Настройка размера канваса
+      function resizeCanvas() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+      }
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      // Класс частицы-цветочка
+      class FlowerParticle {
+        constructor() {
+          this.reset();
+        }
+        reset() {
+          // Случайное положение (за краями экрана или внутри)
+          this.x = Math.random() * width;
+          this.y = Math.random() * height - height; // начинаем чуть выше
+          this.size = 12 + Math.floor(Math.random() * 20); // 12-32 px
+          this.speedY = 0.5 + Math.random() * 2.2; // скорость падения/подъёма
+          this.speedX = (Math.random() - 0.5) * 0.8; // небольшое смещение по x
+          this.rotation = Math.random() * Math.PI * 2;
+          this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+          // Цвет лепестков (нежные оттенки)
+          const hue = [320, 350, 30, 10, 290][Math.floor(Math.random() * 5)]; // розовые, персиковые, сиреневые
+          this.petalColor = `hsl(${hue}, 80%, 75%)`;
+          this.centerColor = `hsl(${Math.random() * 60 + 40}, 90%, 65%)`; // жёлто-оранжевый
+          this.opacity = 0.5 + Math.random() * 0.4;
+        }
+
+        update() {
+          // движение вверх (эффект лёгкого ветра)
+          this.y -= this.speedY;
+          this.x += this.speedX;
+          this.rotation += this.rotationSpeed;
+
+          // если улетел за верхнюю границу, возрождаем внизу
+          if (this.y + this.size < 0) {
+            this.y = height + this.size;
+            this.x = Math.random() * width;
+          }
+          // если слишком низко (маловероятно, но на всякий случай)
+          if (this.y - this.size > height) {
+            this.y = -this.size;
+          }
+          // за границы по x (с возвратом)
+          if (this.x + this.size < 0) this.x = width + this.size;
+          if (this.x - this.size > width) this.x = -this.size;
+        }
+
+        draw(ctx) {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.rotation);
+          ctx.globalAlpha = this.opacity;
+
+          // рисуем 4 лепестка (маленький крестик)
+          const petalW = this.size * 0.7;
+          const petalH = this.size * 0.5;
+          ctx.fillStyle = this.petalColor;
+          ctx.shadowColor = '#ffb6c1';
+          ctx.shadowBlur = 8;
+
+          // лепесток 1 (вверх)
+          ctx.save();
+          ctx.rotate(0);
+          ctx.beginPath();
+          ctx.ellipse(0, -this.size * 0.35, petalW * 0.5, petalH * 0.5, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+
+          // лепесток 2 (вправо)
+          ctx.save();
+          ctx.rotate(Math.PI / 2);
+          ctx.beginPath();
+          ctx.ellipse(0, -this.size * 0.35, petalW * 0.5, petalH * 0.5, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+
+          // лепесток 3 (вниз)
+          ctx.save();
+          ctx.rotate(Math.PI);
+          ctx.beginPath();
+          ctx.ellipse(0, -this.size * 0.35, petalW * 0.5, petalH * 0.5, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+
+          // лепесток 4 (влево)
+          ctx.save();
+          ctx.rotate(3 * Math.PI / 2);
+          ctx.beginPath();
+          ctx.ellipse(0, -this.size * 0.35, petalW * 0.5, petalH * 0.5, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+
+          // сердцевина
+          ctx.shadowBlur = 12;
+          ctx.beginPath();
+          ctx.arc(0, 0, this.size * 0.3, 0, 2 * Math.PI);
+          ctx.fillStyle = this.centerColor;
+          ctx.fill();
+
+          ctx.restore();
+        }
+      }
+
+      // инициализация частиц
+      function initParticles(count = 18) {
+        particles = [];
+        for (let i = 0; i < count; i++) {
+          particles.push(new FlowerParticle());
+        }
+      }
+      initParticles(22);
+
+      // анимация канваса
+      function animateCanvas() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.update();
+          p.draw(ctx);
+        });
+        requestAnimationFrame(animateCanvas);
+      }
+      animateCanvas();
+
+      // ========== ЧАСТЬ 2: СЮРПРИЗ ПО КНОПКЕ ==========
+      const surpriseBtn = document.getElementById('surpriseButton');
+      surpriseBtn.addEventListener('click', function() {
+        // Визуальное конфетти из частиц (добавим новые и ускорим существующие)
+        for (let i = 0; i < 6; i++) {
+          let newParticle = new FlowerParticle();
+          newParticle.y = height / 2 + (Math.random() - 0.5) * 150;
+          newParticle.x = width / 2 + (Math.random() - 0.5) * 250;
+          newParticle.speedY = 1.5 + Math.random() * 3;  // быстрее вверх
+          newParticle.speedX = (Math.random() - 0.5) * 2.5;
+          newParticle.opacity = 0.9;
+          particles.push(newParticle);
+        }
+        // добавим сердечек через алерт? нет, лучше всплывающее поздравление (стилизованное)
+        alert('🌸 С 8 Марта, мамочка Гульнара! 🌸\nТы самая чудесная! С любовью, Даниэль.');
+
+        // дополнительно — меняем фон открытки на более яркий на пару секунд
+        document.querySelector('.card').style.transition = 'background 0.5s';
+        document.querySelector('.card').style.background = 'rgba(255, 240, 245, 0.9)';
+        setTimeout(() => {
+          document.querySelector('.card').style.background = 'rgba(255, 255, 255, 0.7)';
+        }, 600);
+      });
+
+      // ========== ЧАСТЬ 3: МИКРО-АНИМАЦИИ ПРИ НАВЕДЕНИИ ==========
+      // добавим лёгкое покачивание цветам (уже есть в CSS)
+      // но дополнительно звук мы добавлять не будем, чтобы без разрешений
+      // просто при нажатии на цветочек — эффект
+
+      const flowers = document.querySelectorAll('.flower');
+      flowers.forEach((flower, index) => {
+        flower.addEventListener('click', function(e) {
+          // создать "вспышку" на канвасе рядом с цветком
+          for (let i = 0; i < 3; i++) {
+            let p = new FlowerParticle();
+            // координаты клика примерно
+            const rect = flower.getBoundingClientRect();
+            p.x = rect.left + rect.width / 2 + (Math.random() - 0.5) * 60;
+            p.y = rect.top + rect.height / 2 + (Math.random() - 0.5) * 60;
+            p.speedY = 1 + Math.random() * 2;
+            p.opacity = 0.9;
+            particles.push(p);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

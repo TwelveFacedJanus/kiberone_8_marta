@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Татьяна — с 8 марта 💐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 30% 30%, #fff9f0, #fae6d1);
+            font-family: 'Georgia', 'Times New Roman', 'Playfair Display', serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* —— декоративные золотые цветы и элементы —— */
+        .flower-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .flower-bg span {
+            position: absolute;
+            background: rgba(212, 175, 55, 0.15); /* золото с прозрачностью */
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(2px);
+        }
+
+        /* цветочные пятна */
+        .flower-1 { width: 180px; height: 180px; top: 3%; left: -30px; }
+        .flower-2 { width: 250px; height: 250px; bottom: 0; right: -50px; background: rgba(255, 215, 0, 0.1); }
+        .flower-3 { width: 120px; height: 120px; top: 40%; right: 10%; background: rgba(218, 165, 32, 0.2); }
+        .flower-4 { width: 200px; height: 200px; bottom: 15%; left: 5%; background: rgba(255, 223, 0, 0.1); }
+
+        /* маленькие блестки */
+        .glitter {
+            position: absolute;
+            color: rgba(255, 215, 0, 0.5);
+            font-size: 24px;
+            user-select: none;
+            z-index: 2;
+            transform: rotate(10deg);
+        }
+        .glitter::before { content: "✦"; }
+        .g1 { top: 12%; left: 18%; }
+        .g2 { bottom: 20%; right: 15%; transform: rotate(-5deg); }
+        .g3 { top: 55%; left: 8%; font-size: 32px; }
+        .g4 { top: 70%; right: 25%; font-size: 28px; }
+
+        /* —— основная карточка —— */
+        .card {
+            position: relative;
+            z-index: 20;
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 250, 240, 0.7); /* нежный фарфор */
+            backdrop-filter: blur(10px);
+            border-radius: 48px 48px 48px 48px;
+            box-shadow: 
+                0 25px 50px -8px rgba(0,0,0,0.15),
+                0 0 0 1px rgba(212, 175, 55, 0.4) inset,
+                0 0 30px rgba(255, 215, 0, 0.3);
+            padding: 45px 35px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        /* декоративный золотой венок вверху */
+        .wreath {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            font-size: 28px;
+            color: #b8860b;
+            margin-bottom: 10px;
+            text-shadow: 0 0 8px #ffd700, 0 0 12px #f0e68c;
+            letter-spacing: 12px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 400;
+            text-align: center;
+            color: #5a3e1b;
+            margin-bottom: 0.3rem;
+            text-shadow: 2px 2px 0 #f8e0b0, 4px 4px 0 rgba(212, 175, 55, 0.2);
+            font-family: 'Playfair Display', 'Georgia', serif;
+            line-height: 1.2;
+        }
+
+        .sub {
+            text-align: center;
+            font-size: 1.7rem;
+            letter-spacing: 4px;
+            color: #856f44;
+            margin-bottom: 30px;
+            border-bottom: 2px dashed #d4af37;
+            border-top: 2px dashed #d4af37;
+            padding: 12px 0;
+            font-style: italic;
+            word-spacing: 8px;
+        }
+
+        /* имя мамы — особо золото */
+        .mom-name {
+            font-size: 4.2rem;
+            font-weight: 700;
+            color: #7d5d2a;
+            text-shadow: 0 0 10px #ffd700, 0 0 20px #f1c40f, 2px 2px 0 #fff8e7;
+            margin: 10px 0 5px;
+            line-height: 1.2;
+	    text-align: center;
+        }
+
+        .mom-name span {
+            display: inline-block;
+            transform: scale(1.02);
+            background: linear-gradient(145deg, #cf9f4a, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .from-max {
+            font-size: 2.2rem;
+            color: #917c5a;
+            margin-bottom: 30px;
+            font-style: italic;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        .from-max::before, .from-max::after {
+            content: "🌼";
+            font-size: 2rem;
+            opacity: 0.8;
+        }
+        .from-max::after {
+            content: "🌷";
+        }
+
+        /* центральный образ — золотая ветвь/цветок */
+        .flower-center {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 4rem;
+            filter: drop-shadow(0 8px 6px rgba(172, 132, 42, 0.4));
+            margin: 15px 0 20px;
+        }
+        .flower-center span {
+            transform: rotate(5deg);
+        }
+
+        /* стихи и поздравление */
+        .poetry {
+            background: rgba(255, 255, 240, 0.7);
+            padding: 35px 25px;
+            border-radius: 60px 20px 60px 20px;
+            border-left: 6px solid #e9c062;
+            border-right: 6px solid #e9c062;
+            margin: 25px 0 30px;
+            box-shadow: 0 10px 30px -5px rgba(187, 143, 0, 0.3);
+            font-size: 1.5rem;
+            line-height: 2.1rem;
+            color: #3a2e1b;
+            text-align: center;
+            font-style: italic;
+            word-spacing: 2px;
+        }
+
+        .poetry p {
+            margin: 20px 0;
+        }
+
+        .poetry strong {
+            color: #a4741b;
+            font-weight: 600;
+            text-shadow: 0 0 6px #ffe282;
+        }
+
+        .signature {
+            font-size: 2rem;
+            font-weight: normal;
+            color: #6b4f1f;
+            text-align: right;
+            margin-top: 25px;
+            border-top: 1px solid #d4af37;
+            padding-top: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+        .signature span {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 3rem;
+            color: #b8860b;
+            text-shadow: 2px 2px 2px #ffe4b5;
+        }
+
+        /* золотые кнопки-цветочки (интерактив) */
+        .flower-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0 10px;
+        }
+        .btn-flower {
+            background: none;
+            border: 2px solid #d4af37;
+            border-radius: 50%;
+            width: 65px;
+            height: 65px;
+            font-size: 32px;
+            cursor: pointer;
+            color: #b8860b;
+            background: rgba(255, 250, 210, 0.7);
+            backdrop-filter: blur(4px);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px 0 #f1cf7a;
+        }
+        .btn-flower:hover {
+            transform: scale(1.15) rotate(5deg);
+            background: #fef7d2;
+            border-color: #ffb347;
+            box-shadow: 0 0 25px #ffd966;
+        }
+
+        /* сообщение при клике */
+        #clickMessage {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #775e2e;
+            min-height: 3rem;
+            margin: 15px 0 -10px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* совсем маленькие золотые искры */
+        .tiny-sparkle {
+            position: absolute;
+            background: gold;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            opacity: 0.5;
+            box-shadow: 0 0 12px gold;
+        }
+
+        /* адаптация */
+        @media (max-width: 550px) {
+            h1 { font-size: 2.4rem; }
+            .mom-name { font-size: 3.2rem; }
+            .sub { font-size: 1.3rem; }
+            .poetry { font-size: 1.2rem; padding: 20px; }
+            .card { padding: 25px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- золотой фон с цветочными пятнами -->
+    <div class="flower-bg">
+        <span class="flower-1"></span>
+        <span class="flower-2"></span>
+        <span class="flower-3"></span>
+        <span class="flower-4"></span>
+    </div>
+    <div class="glitter g1"></div>
+    <div class="glitter g2"></div>
+    <div class="glitter g3"></div>
+    <div class="glitter g4"></div>
+
+    <!-- центральная карточка -->
+    <div class="card">
+        <div class="wreath">✧ ✿ ✧</div>
+        <h1>С 8 марта,</h1>
+        <div class="mom-name"><span>ТАТЬЯНА</span></div>
+        <div class="from-max">от Максима</div>
+
+        <div class="flower-center">
+            <span>🌻</span> <span>🌷</span> <span>🌼</span> <span>🌹</span> <span>🌸</span>
+        </div>
+
+        <!-- стихотворное поздравление (нежное, золотое) -->
+        <div class="poetry">
+            <p>
+                💐 <strong>Мамочка Таня</strong>, с днём весны!<br>
+                Ты — свет в окне, ты — блеск луны,<br>
+                Ты — золото среди цветов,<br>
+                Тепло твоих нежнейших слов.
+            </p>
+            <p>
+                Пусть этот день подарит <strong>радость</strong>,<br>
+                Улыбок нежную <strong>сладость</strong>,<br>
+                Тюльпаны, розы и мимозы —<br>
+                Как драгоценные подарки от мороза.
+            </p>
+            <p>
+                Сияй, как самый лучший слиток,<br>
+                Храни от бед и от ошибок.<br>
+                Я рядом, твой Максим, с тобой,<br>
+                Ты — мой покой, ты — свет земной ❤️
+            </p>
+        </div>
+
+        <!-- интерактивные золотые цветы-кнопки -->
+        <div class="flower-buttons">
+            <button class="btn-flower" id="flower1" title="Нежность">🌺</button>
+            <button class="btn-flower" id="flower2" title="Любовь">🌼</button>
+            <button class="btn-flower" id="flower3" title="Красота">🌷</button>
+        </div>
+        <div id="clickMessage">✦ нажми на любой цветочек ✦</div>
+
+        <!-- подпись золотом -->
+        <div class="signature">
+            <span>с любовью, Максим</span>
+            <span style="font-size:2.5rem;">✨</span>
+        </div>
+    </div>
+
+    <!-- мелкие динамические искры (небольшой js) -->
+    <script>
+        (function() {
+            // именные приветствия для кнопок
+            const messageBox = document.getElementById('clickMessage');
+            const momName = 'Татьяна';
+
+            function showMessage(text) {
+                if (messageBox) {
+                    messageBox.style.opacity = '0.8';
+                    messageBox.innerText = text;
+                    // золотой всплеск
+                    messageBox.style.transition = '0.2s';
+                    messageBox.style.color = '#b8860b';
+                    messageBox.style.textShadow = '0 0 10px gold';
+                    setTimeout(() => {
+                        messageBox.style.color = '#775e2e';
+                        messageBox.style.textShadow = 'none';
+                    }, 300);
+                }
+            }
+
+            const btn1 = document.getElementById('flower1');
+            const btn2 = document.getElementById('flower2');
+            const btn3 = document.getElementById('flower3');
+
+            if (btn1) {
+                btn1.addEventListener('click', () => showMessage('🌹 Нежная Татьяна, ты прекрасна! 🌹'));
+            }
+            if (btn2) {
+                btn2.addEventListener('click', () => showMessage('🌸 Пусть сбудутся все мечты, мама! 🌸'));
+            }
+            if (btn3) {
+                btn3.addEventListener('click', () => showMessage('🌼 С 8 марта, золотая! Целую, Максим. 🌼'));
+            }
+
+            // дополнительные мелкие искры (эффект драгоценностей)
+            function addSparkle() {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('tiny-sparkle');
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.background = `rgba(255, ${160 + Math.floor(Math.random()*60)}, 0, 0.8)`;
+                sparkle.style.width = Math.random() * 6 + 3 + 'px';
+                sparkle.style.height = sparkle.style.width;
+                document.body.appendChild(sparkle);
+                setTimeout(() => { sparkle.remove(); }, 2000);
+            }
+
+            // каждые 1.5 сек одна искра (ненавязчиво)
+            setInterval(addSparkle, 1500);
+
+            // приветствие при загрузке
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    if (messageBox) messageBox.innerText = '💖 Для самой лучшей мамы на свете 💖';
+                }, 300);
+            });
+
+            // добавим золотые цветочки на поля (фон дополнительно)
+            const goldLeaf = document.createElement('div');
+            goldLeaf.className = 'glitter g5';
+            goldLeaf.style.position = 'absolute';
+            goldLeaf.style.bottom = '5%';
+            goldLeaf.style.left = '3%';
+            goldLeaf.style.fontSize = '36px';
+            goldLeaf.style.color = 'rgba(218,165,32,0.2)';
+            goldLeaf.style.transform = 'rotate(-15deg)';
+            goldLeaf.innerHTML = '⚘';
+            document.body.appendChild(goldLeaf);
+        })();
+    </script>
+
+    <!-- дополнительный элемент "золотая пыльца" в виде стикера -->
+    <div style="position: fixed; bottom: 15px; right: 15px; background: rgba(255,215,0,0.3); border-radius: 30px; padding: 5px 18px; font-size: 1.3rem; color: #6b4f1f; z-index: 99; backdrop-filter: blur(5px); border: 1px solid #d4af37; box-shadow: 0 0 20px #ffd966;">
+        🌷 Максим → Татьяна 💫
+    </div>
+</body>
+</html>

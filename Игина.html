@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, мамочка!</title>
+    <style>
+        /* Сбрасываем отступы и задаем шрифт */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, #fff0f5 0%, #ffd9e8 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Основной контейнер с полупрозрачным фоном */
+        .card {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 50px 50px 40px 40px;
+            box-shadow: 0 20px 50px rgba(255, 105, 180, 0.25);
+            padding: 40px 30px 50px 30px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            position: relative;
+            z-index: 10;
+            margin: 20px 0;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #b3406c;
+            text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.7); }
+            50% { text-shadow: 5px 5px 10px #ff9eb5, 3px 3px 0 white; }
+        }
+
+        .subtitle {
+            font-size: 2.2rem;
+            color: #d4648c;
+            margin-bottom: 30px;
+            font-style: italic;
+            background: rgba(255, 240, 245, 0.5);
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            border: 2px solid white;
+            box-shadow: 0 5px 15px rgba(255, 182, 193, 0.3);
+        }
+
+        .subtitle span {
+            color: #b0306e;
+            font-weight: bold;
+            display: inline-block;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Контейнер для розочек */
+        .roses {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 30px 0 40px 0;
+            flex-wrap: wrap;
+        }
+
+        /* Стили одной розы */
+        .rose {
+            width: 90px;
+            height: 90px;
+            position: relative;
+            filter: drop-shadow(0 8px 12px rgba(255, 120, 160, 0.3));
+            animation: roseFloat 3s ease-in-out infinite;
+        }
+
+        .rose:nth-child(2) { animation-delay: 0.5s; }
+        .rose:nth-child(3) { animation-delay: 1s; }
+        .rose:nth-child(4) { animation-delay: 1.5s; }
+        .rose:nth-child(5) { animation-delay: 2s; }
+
+        @keyframes roseFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .rose::before,
+        .rose::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .rose::before {
+            width: 55px;
+            height: 55px;
+            background: #ffb6c1;
+            top: 10px;
+            left: 18px;
+            box-shadow: 
+                -22px 12px 0 #ffa07a,
+                22px 12px 0 #ffb3c6,
+                -12px -12px 0 #ffc0cb,
+                12px -12px 0 #ffb6c1;
+            border-radius: 60% 40% 60% 40%;
+            transform: rotate(45deg);
+        }
+
+        .rose::after {
+            width: 28px;
+            height: 28px;
+            background: #ff4d6d;
+            top: 25px;
+            left: 32px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 5px #ffe4e1;
+        }
+
+        .rose2::before {
+            background: #ffb3c6;
+            box-shadow: 
+                -22px 12px 0 #ffa07a,
+                22px 12px 0 #ffb3c6,
+                -12px -12px 0 #ffc0cb,
+                12px -12px 0 #ffb3c6;
+        }
+        .rose2::after {
+            background: #c44569;
+        }
+
+        .rose3::before {
+            background: #ffc0cb;
+            box-shadow: 
+                -22px 12px 0 #ffb3c6,
+                22px 12px 0 #ffa07a,
+                -12px -12px 0 #ffb6c1,
+                12px -12px 0 #ffb3c6;
+        }
+        .rose3::after {
+            background: #b34160;
+        }
+
+        /* Контейнер для текста */
+        .message-container {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 3px solid white;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
+        }
+
+        .message {
+            font-size: 1.3rem;
+            color: #7f4b5e;
+            line-height: 1.8;
+            text-align: left;
+            padding: 0 15px;
+        }
+
+        .message p {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .message p::before {
+            content: '🌹';
+            font-size: 1.8rem;
+            animation: spin 4s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+
+        .message strong {
+            color: #b3406c;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .message em {
+            color: #d4648c;
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+
+        .message .heart {
+            color: #ff4d6d;
+            font-size: 1.8rem;
+            animation: heartbeat 1s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        /* Стихи */
+        .poem {
+            font-size: 1.2rem;
+            color: #8b5f6e;
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(255, 240, 245, 0.5);
+            border-radius: 40px;
+            border: 2px dashed #ffb3c6;
+            line-height: 2;
+            font-style: italic;
+        }
+
+        .poem span {
+            display: block;
+            margin: 10px 0;
+            font-size: 1.3rem;
+        }
+
+        .poem span:first-child {
+            margin-top: 0;
+        }
+
+        .poem span:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Подпись Лизы */
+        .signature {
+            font-size: 2.5rem;
+            color: #cc6b8e;
+            margin-top: 40px;
+            font-family: 'Brush Script MT', cursive;
+            text-shadow: 3px 3px 0 rgba(255,255,255,0.7);
+            border-top: 3px solid #ffb3c6;
+            padding-top: 25px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .signature::before,
+        .signature::after {
+            content: '🌹';
+            position: absolute;
+            font-size: 2rem;
+            top: -15px;
+        }
+
+        .signature::before {
+            left: -40px;
+            transform: rotate(-15deg);
+        }
+
+        .signature::after {
+            right: -40px;
+            transform: rotate(15deg);
+        }
+
+        /* Дополнительные маленькие розы (фон) */
+        .bg-rose {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.2;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+            color: #ffa5b9;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        .bg-rose:nth-child(1) { top: 2%; left: 2%; animation-delay: 0s; font-size: 3rem; }
+        .bg-rose:nth-child(2) { bottom: 5%; right: 3%; animation-delay: 1s; font-size: 4rem; }
+        .bg-rose:nth-child(3) { top: 10%; right: 5%; animation-delay: 2.5s; font-size: 3.5rem; }
+        .bg-rose:nth-child(4) { bottom: 15%; left: 4%; animation-delay: 1.8s; font-size: 4.5rem; }
+        .bg-rose:nth-child(5) { top: 30%; left: 1%; animation-delay: 0.5s; font-size: 3rem; }
+        .bg-rose:nth-child(6) { bottom: 25%; right: 1%; animation-delay: 3s; font-size: 4rem; }
+        .bg-rose:nth-child(7) { top: 50%; left: 5%; animation-delay: 2s; font-size: 3.8rem; }
+        .bg-rose:nth-child(8) { bottom: 40%; right: 5%; animation-delay: 1.2s; font-size: 4.2rem; }
+
+        @media (max-width: 500px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.8rem; }
+            .message p::before { font-size: 1.4rem; }
+            .signature { font-size: 2rem; }
+            .signature::before,
+            .signature::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Фоновые розочки -->
+    <div class="bg-rose">🌹</div>
+    <div class="bg-rose">🌷</div>
+    <div class="bg-rose">🌸</div>
+    <div class="bg-rose">🌺</div>
+    <div class="bg-rose">🌹</div>
+    <div class="bg-rose">🌷</div>
+    <div class="bg-rose">🌸</div>
+    <div class="bg-rose">🌺</div>
+
+    <div class="card">
+        <h1>С 8 марта!</h1>
+        <div class="subtitle">Мамулечка <span>❤️</span></div>
+
+        <!-- Букет из роз -->
+        <div class="roses">
+            <div class="rose"></div>
+            <div class="rose rose2"></div>
+            <div class="rose rose3"></div>
+            <div class="rose"></div>
+            <div class="rose rose2"></div>
+        </div>
+
+        <!-- Красивый текст -->
+        <div class="message-container">
+            <div class="message">
+                <p>
+                    <strong>Мамочка, любимая, родная!</strong>
+                </p>
+                <p>
+                    С 8 Марта тебя, самая прекрасная женщина в моей жизни! 
+                    Ты — мое солнышко, которое согревает меня каждый день <span class="heart">❤️</span>
+                </p>
+                <p>
+                    <em>Твои руки</em> такие нежные и заботливые, 
+                    <em>твои глаза</em> сияют добротой, 
+                    а <em>твоя улыбка</em> делает этот мир ярче!
+                </p>
+                <p>
+                    Спасибо тебе за бессонные ночи, за теплые объятия, 
+                    за вкусные завтраки и за то, что ты всегда рядом 
+                    <span class="heart">💝</span>
+                </p>
+                <p>
+                    Ты — мой ангел-хранитель, моя поддержка и опора. 
+                    Я так благодарна судьбе, что у меня есть такая мама!
+                </p>
+            </div>
+        </div>
+
+        <!-- Стихи -->
+        <div class="poem">
+            <span>🌸 Мамочка, с праздником весны! 🌸</span>
+            <span>Ты лучше всех на свете,</span>
+            <span>Теплом и лаской согреваешь,</span>
+            <span>Как солнышко в рассвете.</span>
+            <span>💐 Желаю счастья и любви, 💐</span>
+            <span>Улыбок, вдохновения,</span>
+            <span>Пусть исполняются мечты,</span>
+            <span>Как в доброй, старой сказке!</span>
+        </div>
+
+        <!-- Подпись -->
+        <div class="signature">
+            Твоя Лиза 💗
+        </div>
+    </div>
+
+</body>
+</html>

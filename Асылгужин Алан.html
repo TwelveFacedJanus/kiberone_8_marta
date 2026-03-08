@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, мама Зульфия и тётя Гузель 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #ffd9e8 0%, #ffb6c1 100%);
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* розовые цветы по всему фону */
+        body::before {
+            content: "🌸🌷🌹🌺🌸🌷🌹🌺🌸🌷";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            font-size: 60px;
+            color: rgba(255, 200, 220, 0.4);
+            text-align: center;
+            line-height: 2;
+            letter-spacing: 30px;
+            white-space: nowrap;
+            pointer-events: none;
+            animation: floatBackground 25s linear infinite;
+            z-index: 0;
+            transform: rotate(-5deg);
+        }
+
+        @keyframes floatBackground {
+            0% { transform: translateX(-10%) rotate(-5deg); }
+            50% { transform: translateX(15%) rotate(-3deg); }
+            100% { transform: translateX(-10%) rotate(-5deg); }
+        }
+
+        .card {
+            max-width: 750px;
+            width: 100%;
+            background: rgba(255, 240, 245, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 70px 20px 70px 20px;
+            box-shadow: 0 25px 40px rgba(255, 105, 150, 0.3),
+                        0 0 0 3px #fff0f5 inset,
+                        0 0 0 8px #ffb7c5 inset;
+            padding: 45px 35px 50px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.02) translateY(-5px);
+            box-shadow: 0 35px 50px #ff9eb5, 0 0 0 3px #fff0f5 inset, 0 0 0 8px #ffa5b9 inset;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #b3405a;
+            text-shadow: 3px 3px 0 #ffc0d0, 5px 5px 0 rgba(255, 150, 180, 0.5);
+            margin-bottom: 25px;
+            line-height: 1.2;
+            word-break: break-word;
+        }
+
+        /* ИСПРАВЛЕНО: теперь имена ОЧЕНЬ ЗАМЕТНЫЕ */
+        .names-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 20px 0 30px;
+            background: #ffd9e6;
+            padding: 30px 20px;
+            border-radius: 90px 20px 90px 20px;
+            border: 5px solid white;
+            box-shadow: 0 15px 0 #d96f8b, 0 20px 30px #ffb0c3;
+        }
+
+        .name-block {
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            padding: 20px 15px;
+            border-radius: 60px 15px 60px 15px;
+            background: linear-gradient(135deg, #ff4d6d, #ff1a4f);
+            color: white;
+            text-shadow: 4px 4px 0 #a1203a, 6px 6px 0 rgba(0,0,0,0.2);
+            box-shadow: 0 10px 0 #9f2b48, 0 10px 25px rgba(255,20,80,0.5);
+            border: 3px solid #fff9fc;
+            transform: rotate(-0.5deg);
+        }
+
+        .name-block:last-child {
+            background: linear-gradient(135deg, #ff6b8b, #ff3366);
+        }
+
+        .name-block span {
+            display: inline-block;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); text-shadow: 0 0 15px gold; }
+            100% { transform: scale(1); }
+        }
+
+        .flower-row {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            font-size: 4rem;
+            margin: 30px 0 25px;
+            filter: drop-shadow(0 12px 8px #ff80a0);
+        }
+
+        .flower-row span {
+            display: inline-block;
+            animation: dance 3s infinite ease-in-out;
+            transform-origin: bottom center;
+        }
+
+        .flower-row span:nth-child(2) { animation-delay: 0.2s; }
+        .flower-row span:nth-child(3) { animation-delay: 0.5s; }
+        .flower-row span:nth-child(4) { animation-delay: 0.1s; }
+        .flower-row span:nth-child(5) { animation-delay: 0.7s; }
+        .flower-row span:nth-child(6) { animation-delay: 0.3s; }
+
+        @keyframes dance {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(12deg) scale(1.1); }
+            50% { transform: rotate(-8deg) scale(1.05); }
+            75% { transform: rotate(5deg) scale(1.02); }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+
+        .message-box {
+            background: #ffe4ed;
+            border-radius: 70px 15px 70px 15px;
+            padding: 30px 25px;
+            margin: 25px 0 20px;
+            box-shadow: 0 12px 0 #e77497, 0 20px 30px #fec7d3;
+            border: 3px dotted #ff98b5;
+        }
+
+        .message-box p {
+            font-size: 2rem;
+            color: #902d4e;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .message-box p:first-child {
+            font-size: 2.5rem;
+            color: #c1315c;
+            font-weight: 700;
+        }
+
+        .message-box p i {
+            color: #c95f7c;
+            font-size: 1.9rem;
+        }
+
+        .signature {
+            font-size: 2.2rem;
+            color: #ba4c6a;
+            margin: 25px 0 15px;
+            font-style: italic;
+            background: #ffdae6;
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 50px 10px 50px 10px;
+            border: 3px solid white;
+            font-weight: 600;
+        }
+
+        .btn {
+            background: #ff7a9e;
+            border: none;
+            color: white;
+            font-size: 2.2rem;
+            font-weight: bold;
+            padding: 20px 50px;
+            border-radius: 80px 15px 80px 15px;
+            box-shadow: 0 12px 0 #b94767, 0 15px 30px #ffa7bc;
+            cursor: pointer;
+            transition: 0.08s linear;
+            margin: 25px 0 15px;
+            border: 4px solid #fff3f7;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .btn:active {
+            transform: translateY(7px);
+            box-shadow: 0 5px 0 #b94767, 0 15px 30px #ffa7bc;
+        }
+
+        .surprise {
+            background: #ffd3e0;
+            padding: 30px;
+            border-radius: 80px 15px 80px 15px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin: 20px 0 0;
+            border: 5px solid white;
+            font-size: 2.5rem;
+            color: #a13757;
+            box-shadow: 0 12px 0 #e07797;
+            animation: pop 0.5s cubic-bezier(0.2, 1, 0.3, 1.2);
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0.1) rotate(-10deg); opacity: 0; }
+            80% { transform: scale(1.1); }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+
+        .surprise.show {
+            display: flex;
+        }
+
+        .surprise span {
+            font-size: 3.5rem;
+        }
+
+        .surprise-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: #ffb7cd;
+            padding: 15px 30px;
+            border-radius: 40px;
+            color: #a01040;
+        }
+
+        .footer {
+            margin-top: 35px;
+            color: #d96a89;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 5px white;
+        }
+
+        @media (max-width: 550px) {
+            h1 { font-size: 2.5rem; }
+            .name-block { font-size: 2rem; padding: 15px 10px; }
+            .flower-row { font-size: 2.8rem; gap: 15px; }
+            .message-box p { font-size: 1.6rem; }
+            .btn { font-size: 1.6rem; padding: 15px 25px; }
+            .card { padding: 25px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🌺 С 8 марта! 🌺</h1>
+        
+        <!-- ИСПРАВЛЕНО: имена теперь очень крупные и яркие -->
+        <div class="names-container">
+            <div class="name-block">
+                <span>💗</span> МАМА ЗУЛЬФИЯ <span>💗</span>
+            </div>
+            <div class="name-block">
+                <span>💗</span> ТЁТЯ ГУЗЕЛЬ <span>💗</span>
+            </div>
+        </div>
+
+        <div class="flower-row">
+            <span>🌷</span>
+            <span>🌹</span>
+            <span>🌸</span>
+            <span>🌺</span>
+            <span>🌼</span>
+            <span>🌷</span>
+        </div>
+
+        <div class="message-box">
+            <p>💕 Самые родные и любимые! 💕</p>
+            <p>Мама Зульфия и тётя Гузель,</p>
+            <p>💐 от всей души поздравляю вас с 8 марта! 💐</p>
+            <p><i>Пусть ваши глаза сияют радостью,</i></p>
+            <p><i>а сердце наполняется теплом и нежностью.</i></p>
+            <p>🌸 Вы самые прекрасные женщины на свете! 🌸</p>
+        </div>
+
+        <div class="signature">
+            💖 с любовью и благодарностью 💖
+        </div>
+
+        <button class="btn" id="flowerBtn">🌷 нажми для сюрприза 🌷</button>
+
+        <div id="surpriseBlock" class="surprise">
+            <span>💝</span>
+            <span class="surprise-text">Зульфия + Гузель</span>
+            <span>💝</span>
+            <span>🌹🌹🌹</span>
+            <span>✨</span>
+            <span style="font-size:2.5rem; width:100%;">Вы — наше вдохновение!</span>
+            <span>💐💐💐</span>
+        </div>
+
+        <div class="footer">
+            🌸 8 марта 2025 🌸
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const btn = document.getElementById('flowerBtn');
+            const surprise = document.getElementById('surpriseBlock');
+
+            function revealSurprise() {
+                if (surprise.classList.contains('show')) {
+                    surprise.classList.remove('show');
+                    void surprise.offsetWidth;
+                }
+                surprise.classList.add('show');
+                
+                btn.style.transform = 'scale(0.95)';
+                setTimeout(() => btn.style.transform = '', 100);
+
+                // добавим мерцание цветочкам
+                const flowers = document.querySelector('.flower-row');
+                flowers.style.animation = 'none';
+                setTimeout(() => flowers.style.animation = '', 10);
+            }
+
+            btn.addEventListener('click', revealSurprise);
+        })();
+    </script>
+</body>
+</html>

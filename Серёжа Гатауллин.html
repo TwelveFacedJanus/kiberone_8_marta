@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Маме Альбине от Серёжи 💐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #fbc2c2 0%, #f8e0b0 100%);
+            font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+            padding: 16px;
+        }
+
+        /* основной конверт-открытка */
+        .card {
+            max-width: 620px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
+            background: linear-gradient(135deg, #fff9f0 0%, #fff0f5 100%);
+            border-radius: 48px 48px 48px 12px;
+            box-shadow: 0 30px 45px -20px rgba(180, 80, 120, 0.5),
+                        0 10px 25px -8px rgba(0,0,0,0.2),
+                        inset 0 -3px 8px rgba(255,220,240,0.7);
+            padding: 30px 30px 40px 30px;
+            border: 2px solid rgba(255, 245, 235, 0.9);
+            transition: 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* декоративные цветочные элементы (фон) */
+        .card::before {
+            content: "🌸🌼🌷";
+            font-size: 110px;
+            position: absolute;
+            bottom: -20px;
+            right: -25px;
+            opacity: 0.12;
+            transform: rotate(10deg);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .card::after {
+            content: "✧✧✧";
+            font-size: 60px;
+            color: #ffb7c5;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            opacity: 0.25;
+            transform: rotate(-15deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* шапка с мимозой и тюльпанами */
+        .flower-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .flower-left, .flower-right {
+            font-size: 2.8rem;
+            line-height: 1;
+            filter: drop-shadow(2px 6px 10px rgba(240, 128, 128, 0.3));
+            background: rgba(255,255,240,0.3);
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        .flower-left {
+            transform: scaleX(-1);
+        }
+
+        .title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(130deg, #b34262, #d4769a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 200, 220, 0.8);
+            font-family: 'Trebuchet MS', 'Lucida Sans', cursive;
+        }
+
+        /* основное имя мамы */
+        .for-mom {
+            text-align: center;
+            font-size: 2.7rem;
+            font-weight: 800;
+            color: #942f4c;
+            line-height: 1.2;
+            margin: 5px 0 0;
+            text-shadow: 2px 2px 0 #fff3d6, 4px 4px 0 rgba(250, 180, 200, 0.5);
+            z-index: 2;
+            position: relative;
+        }
+
+        .for-mom span {
+            display: inline-block;
+            background: #fff1e6;
+            padding: 0 18px;
+            border-radius: 60px;
+            border: 2px solid #ffbcd6;
+            box-shadow: 0 5px 0 #e3a1b5;
+            transform: rotate(-0.5deg);
+            font-size: 2.2rem;
+        }
+
+        .subname {
+            font-size: 1.8rem;
+            color: #b35f7a;
+            margin-top: -10px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .subname strong {
+            font-weight: 700;
+            color: #b33b5e;
+            background: #fceed7;
+            padding: 3px 12px;
+            border-radius: 30px;
+            font-size: 2rem;
+        }
+
+        .message {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 75px 75px 75px 25px;
+            padding: 28px 22px;
+            margin: 25px 0 20px;
+            border: 2px dashed #ffafc0;
+            border-right: 4px solid #fda5b4;
+            border-bottom: 4px solid #fda5b4;
+            box-shadow: inset 0 2px 15px #ffeef2, 0 15px 20px -10px #e7adad;
+            position: relative;
+            z-index: 3;
+        }
+
+        .message p {
+            font-size: 1.6rem;
+            line-height: 1.45;
+            color: #2f1e25;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+
+        .emoji-big {
+            font-size: 2.6rem;
+            background: #fff3d3;
+            border-radius: 50%;
+            width: 54px;
+            height: 54px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px #fecfcf;
+            flex-shrink: 0;
+        }
+
+        .signature-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-top: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .signature-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 2rem;
+            background: #fee3cd;
+            padding: 10px 22px 10px 35px;
+            border-radius: 100px 20px 20px 100px;
+            border: 2px solid white;
+            box-shadow: 0 7px 0 #cc9aa8;
+        }
+
+        .signature-line .name {
+            font-weight: 800;
+            font-size: 2.3rem;
+            color: #752e46;
+            letter-spacing: 1px;
+        }
+
+        .signature-line .heart {
+            color: #d43f6b;
+            font-size: 2.8rem;
+            filter: drop-shadow(0 2px 3px crimson);
+            margin-left: 5px;
+        }
+
+        .date-march {
+            margin-top: 12px;
+            font-size: 1.8rem;
+            background: rgba(255,240,200,0.8);
+            padding: 6px 22px;
+            border-radius: 40px;
+            font-weight: 500;
+            border: 1px solid #ffbf7f;
+            color: #90465c;
+            box-shadow: 0 4px 0 #e2a1aa;
+        }
+
+        .date-march i {
+            font-style: normal;
+            font-weight: 700;
+            background: #ffb4a2;
+            color: #4d1e2b;
+            padding: 2px 12px;
+            border-radius: 30px;
+            margin: 0 4px;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 1.3rem;
+            color: #9f6b7c;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .footer-note span {
+            background: #fffdf5;
+            padding: 6px 14px;
+            border-radius: 60px;
+            border: 1px solid #fac0cb;
+        }
+
+        /* маленькие цветочки летают */
+        .floating-flowers {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-flowers i {
+            position: absolute;
+            display: inline-block;
+            font-size: 1.6rem;
+            opacity: 0.5;
+            animation: float 7s infinite ease-in-out;
+            color: #faa0b5;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(12deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Адаптация под экраны */
+        @media (max-width: 500px) {
+            .card { padding: 20px; }
+            .title { font-size: 1.8rem; }
+            .for-mom span { font-size: 1.8rem; }
+            .message p { font-size: 1.3rem; }
+            .emoji-big { width: 44px; height: 44px; font-size: 2rem; }
+            .signature-line .name { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+
+        <!-- парящие цветочки для объёма -->
+        <div class="floating-flowers">
+            <i style="top: 10%; left: 5%; animation-delay: 0s;">🌷</i>
+            <i style="top: 70%; left: 85%; animation-delay: 2s;">🌼</i>
+            <i style="top: 40%; left: 15%; animation-delay: 1s;">🌸</i>
+            <i style="top: 80%; left: 30%; animation-delay: 3s;">🌺</i>
+            <i style="top: 20%; left: 75%; animation-delay: 2.5s;">🌹</i>
+        </div>
+
+        <!-- верхний декор -->
+        <div class="flower-row">
+            <span class="flower-left">🌷🌷🌷</span>
+            <div class="title">С 8 Марта!</div>
+            <span class="flower-right">🌷🌷🌷</span>
+        </div>
+
+        <!-- имя мамы с любовью -->
+        <div class="for-mom">
+            <span>🌹 Альбина 🌹</span>
+        </div>
+        <div class="subname">
+            <strong>❤ от сына ❤</strong>
+        </div>
+
+        <!-- основное поздравление (слова Серёжи) -->
+        <div class="message">
+            <p>
+                <span class="emoji-big">💐</span>
+                <span><strong>Мамочка Альбина!</strong> С весенним праздником!</span>
+            </p>
+            <p>
+                <span class="emoji-big">🌞</span>
+                <span>Ты самая добрая, нежная и красивая. Спасибо за твою заботу и тепло.</span>
+            </p>
+            <p>
+                <span class="emoji-big">🍃</span>
+                <span>Пусть каждый день дарит улыбки, цветы и приятные сюрпризы. Здоровья, счастья и вдохновения!</span>
+            </p>
+            <p>
+                <span class="emoji-big">🐞</span>
+                <span>Оставайся такой же молодой и лучезарной. Я тебя очень люблю!</span>
+            </p>
+        </div>
+
+        <!-- подпись сына -->
+        <div class="signature-block">
+            <div class="signature-line">
+                <span class="name">Серёжа</span>
+                <span class="heart">❤️</span>
+                <span style="font-size:2rem;">🤵</span>
+            </div>
+            <div class="date-march">
+                <i>8 марта</i> 2026
+            </div>
+        </div>
+
+        <!-- маленькие комплименты внизу -->
+        <div class="footer-note">
+            <span>🌸 нежности</span>
+            <span>🌼 тепла</span>
+            <span>🌷 весеннего настроения</span>
+        </div>
+
+        <!-- дополнительная эмблемка сына (секретик) -->
+        <div style="position: absolute; bottom: 12px; left: 20px; opacity: 0.4; font-size: 2rem; z-index: 0;">✨С✨</div>
+    </div>
+
+    <!-- простой сценарий для интерактивного намёка (необязательно, но пусть будет тёплое приветствие) -->
+    <script>
+        (function() {
+            // маленький сюрприз: при клике на имя мамы появляется сообщение
+            const momName = document.querySelector('.for-mov span'); // ошибочно, исправим
+            const realMomElement = document.querySelector('.for-mom span');
+            if (realMomElement) {
+                realMomElement.addEventListener('click', function() {
+                    alert('💌 Серёжа обнимает маму Альбину! С 8 Марта! 💖');
+                });
+            }
+            // также при клике на подпись
+            const signBlock = document.querySelector('.signature-line');
+            if (signBlock) {
+                signBlock.addEventListener('click', function() {
+                    alert('✨ Твой Серёжа ❤️ Целую! ✨');
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

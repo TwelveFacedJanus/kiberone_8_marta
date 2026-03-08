@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, Гульнара! 💐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(145deg, #f8f0ff 0%, #e6d9ff 70%, #d4c4ff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Главный контейнер – нежное стекло */
+        .card {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 245, 255, 0.55);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 60px 60px 60px 60px;
+            box-shadow: 0 25px 50px -8px rgba(120, 80, 180, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+            padding: 35px 25px 45px 25px;
+            border: 2px solid rgba(210, 190, 255, 0.5);
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        /* Внутренняя обводка для нежности */
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border-radius: 50px;
+            border: 2px dashed rgba(175, 140, 255, 0.35);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Контент поверх всего */
+        .content {
+            position: relative;
+            z-index: 15;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 3.2rem;
+            font-weight: 400;
+            color: #4a2c5f;
+            text-shadow: 3px 3px 10px rgba(255, 220, 255, 0.7), 0 0 5px #ffffff;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        .title span {
+            background: linear-gradient(135deg, #8b6eb0, #5f3e8a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            color: #6d4f8f;
+            margin: 10px 0 20px 0;
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.3);
+            display: inline-block;
+            padding: 8px 35px;
+            border-radius: 60px;
+            backdrop-filter: blur(5px);
+            border: 1px solid #ffffffb3;
+        }
+
+        .name {
+            font-size: 3rem;
+            font-weight: 600;
+            color: #502e7a;
+            margin: 5px 0 20px;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 10px 30px;
+            display: inline-block;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            border: 1px solid white;
+        }
+
+        .name small {
+            font-size: 1.8rem;
+            color: #9873b9;
+        }
+
+        /* КОНВЕРТ - СЮРПРИЗ */
+        .surprise-container {
+            margin: 30px auto 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .envelope {
+            width: 200px;
+            height: 150px;
+            background: #dcc9ff;
+            position: relative;
+            border-radius: 20px 20px 15px 15px;
+            box-shadow: 0 15px 25px rgba(106, 66, 155, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: 3px solid white;
+        }
+
+        .envelope:hover {
+            transform: scale(1.05);
+        }
+
+        .envelope__flap {
+            position: absolute;
+            top: -30px;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: #c7aeff;
+            clip-path: polygon(0% 0%, 50% 70%, 100% 0%);
+            border-radius: 15px 15px 0 0;
+            border-bottom: 3px solid white;
+            transition: all 0.6s ease;
+            transform-origin: top;
+            z-index: 20;
+        }
+
+        .envelope.open .envelope__flap {
+            transform: rotateX(180deg);
+            top: -10px;
+        }
+
+        .envelope__heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3.5rem;
+            filter: drop-shadow(0 5px 8px #b385ff);
+            animation: pulse 1.8s infinite;
+            z-index: 15;
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .click-hint {
+            font-size: 1.2rem;
+            color: #5e3d82;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 8px 25px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            font-style: italic;
+            border: 2px dotted #a07ddb;
+        }
+
+        /* Скрытое сообщение (появляется после клика) */
+        .hidden-message {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.8s ease, opacity 0.8s ease, margin 0.6s ease;
+            background: rgba(255, 240, 255, 0.9);
+            border-radius: 40px;
+            padding: 0 20px;
+            margin-top: 0;
+            border: 2px solid white;
+            box-shadow: 0 10px 30px #d6beff;
+            width: 100%;
+        }
+
+        .hidden-message.show {
+            max-height: 400px;
+            opacity: 1;
+            padding: 25px 20px;
+            margin-top: 20px;
+        }
+
+        .hidden-message p {
+            font-size: 1.5rem;
+            color: #3d295a;
+            line-height: 1.6;
+        }
+
+        .hidden-message span {
+            display: block;
+            margin-top: 15px;
+            font-size: 1.8rem;
+            color: #7646b1;
+            font-weight: bold;
+        }
+
+        /* Анимация конфетти (появляется при сюрпризе) */
+        .confetti {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 20px;
+            background: #d9b0ff;
+            opacity: 0.7;
+            animation: fall 4s linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        /* флора и бабочки (прежний слой) */
+        .floral-butterfly {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .flower {
+            position: absolute;
+            width: 65px;
+            height: 65px;
+            opacity: 0.7;
+            filter: drop-shadow(0 8px 12px rgba(120, 60, 190, 0.25));
+            animation: floatFlower 6s ease-in-out infinite;
+        }
+
+        .flower1 { top: 3%; left: 2%; width: 85px; height: 85px; }
+        .flower2 { bottom: 1%; right: 3%; width: 100px; height: 100px; animation-delay: 1.2s; }
+        .flower3 { top: 15%; right: 8%; width: 60px; height: 60px; animation-delay: 2.5s; }
+        .flower4 { bottom: 12%; left: 5%; width: 75px; height: 75px; animation-delay: 0.8s; }
+        .flower5 { top: 25%; left: 20%; width: 55px; height: 55px; animation-delay: 3s; }
+        .flower6 { bottom: 25%; right: 15%; width: 90px; height: 90px; animation-delay: 1.8s; }
+
+        .flower svg { width: 100%; height: 100%; }
+
+        .butterfly {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0.8;
+            filter: drop-shadow(0 4px 8px #a388cf);
+            animation: butterflyFlight 10s infinite alternate ease-in-out;
+        }
+
+        .butterfly1 { top: 10%; left: 15%; width: 45px; height: 45px; animation-duration: 14s; }
+        .butterfly2 { bottom: 20%; left: 30%; width: 60px; height: 60px; animation-duration: 16s; animation-delay: 2s; }
+        .butterfly3 { top: 30%; right: 18%; width: 40px; height: 40px; animation-duration: 12s; animation-delay: 1s; }
+        .butterfly4 { bottom: 10%; right: 25%; width: 55px; height: 55px; animation-duration: 18s; animation-delay: 0.5s; }
+        .butterfly5 { top: 70%; left: 8%; width: 38px; height: 38px; animation-duration: 15s; animation-delay: 2.2s; }
+        .butterfly6 { top: 45%; right: 5%; width: 48px; height: 48px; animation-duration: 13s; animation-delay: 0.2s; }
+
+        .butterfly svg { width: 100%; height: 100%; }
+
+        @keyframes floatFlower {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes butterflyFlight {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            25% { transform: translate(8px, -12px) rotate(5deg) scale(1.02); }
+            50% { transform: translate(-6px, 15px) rotate(-3deg) scale(0.98); }
+            75% { transform: translate(10px, 5px) rotate(7deg) scale(1.02); }
+            100% { transform: translate(-5px, -8px) rotate(-2deg) scale(1); }
+        }
+
+        .glitter {
+            position: absolute;
+            background: radial-gradient(circle, #ffffff 10%, #d9c0ff 70%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            opacity: 0.6;
+            z-index: 8;
+            pointer-events: none;
+            box-shadow: 0 0 10px #f2e6ff;
+        }
+        .g1 { top: 20%; left: 45%; width: 12px; height: 12px; background: #c8aaff; }
+        .g2 { top: 70%; left: 80%; width: 7px; height: 7px; background: #ffffff; }
+        .g3 { top: 50%; left: 12%; width: 9px; height: 9px; background: #dbb9ff; }
+        .g4 { top: 85%; left: 60%; width: 6px; height: 6px; background: #b794f4; }
+        .g5 { top: 15%; left: 88%; width: 10px; height: 10px; background: #ecd6ff; }
+
+        .signature {
+            margin-top: 30px;
+            font-size: 1.7rem;
+            color: #634182;
+            border-top: 2px dotted #c6adff;
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .signature span {
+            background: #f2e3ff;
+            padding: 8px 25px;
+            border-radius: 40px;
+            font-weight: 500;
+            border: 2px solid white;
+        }
+
+        @media (max-width: 600px) {
+            .title { font-size: 2.4rem; }
+            .name { font-size: 2.4rem; }
+            .hidden-message p { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Фоновые цветы и бабочки (как в первом варианте) -->
+    <div class="floral-butterfly">
+        <div class="flower flower1"><svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.9"><circle cx="50" cy="50" r="14" fill="#9F7AEA" stroke="#4C1E7F" stroke-width="2"/><path d="M50 12 L55 30 L50 28 L45 30 L50 12" fill="#B794F4" stroke="#553C9A" stroke-width="1.5"/><path d="M82 35 L68 46 L70 40 L64 38 L82 35" fill="#9F7AEA" stroke="#44337A" stroke-width="1.5"/><path d="M88 68 L70 64 L76 62 L72 56 L88 68" fill="#B794F4" stroke="#553C9A" stroke-width="1.5"/><path d="M62 88 L56 72 L62 74 L64 68 L62 88" fill="#9F7AEA" stroke="#44337A" stroke-width="1.5"/><path d="M25 82 L32 66 L36 72 L42 68 L25 82" fill="#B794F4" stroke="#553C9A" stroke-width="1.5"/><path d="M12 50 L28 45 L25 51 L31 55 L12 50" fill="#9F7AEA" stroke="#44337A" stroke-width="1.5"/><circle cx="50" cy="50" r="8" fill="#E9D8FD" stroke="#2C1A4A" stroke-width="2"/></g></svg></div>
+        <div class="flower flower2"><svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.85"><circle cx="50" cy="50" r="16" fill="#6B46C1" stroke="#2C1A4A" stroke-width="2.5"/><path d="M50 5 L58 30 L50 27 L42 30 L50 5" fill="#805AD5" stroke="#322659" stroke-width="2"/><path d="M90 40 L70 46 L76 40 L68 35 L90 40" fill="#9F7AEA" stroke="#44337A" stroke-width="2"/><path d="M95 75 L72 68 L80 66 L74 58 L95 75" fill="#805AD5" stroke="#322659" stroke-width="2"/><path d="M65 95 L57 72 L65 76 L71 68 L65 95" fill="#9F7AEA" stroke="#44337A" stroke-width="2"/><path d="M20 88 L32 66 L40 74 L48 66 L20 88" fill="#805AD5" stroke="#322659" stroke-width="2"/><path d="M5 50 L26 44 L18 50 L26 56 L5 50" fill="#9F7AEA" stroke="#44337A" stroke-width="2"/><circle cx="50" cy="50" r="10" fill="#E0C9FF" stroke="#1F103F" stroke-width="2.5"/></g></svg></div>
+        <div class="flower flower3"><svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.9"><circle cx="50" cy="50" r="12" fill="#7F5AF0" stroke="#3A2769" stroke-width="2"/><path d="M50 18 L54 34 L50 32 L46 34 L50 18" fill="#A384E0" stroke="#4C2A8A" stroke-width="1.5"/><path d="M80 38 L67 48 L72 42 L64 40 L80 38" fill="#7F5AF0" stroke="#392A60" stroke-width="1.5"/><path d="M84 70 L68 64 L74 62 L68 56 L84 70" fill="#A384E0" stroke="#4C2A8A" stroke-width="1.5"/><path d="M58 84 L52 68 L58 70 L62 64 L58 84" fill="#7F5AF0" stroke="#392A60" stroke-width="1.5"/><path d="M28 78 L36 64 L42 70 L48 64 L28 78" fill="#A384E0" stroke="#4C2A8A" stroke-width="1.5"/><path d="M16 48 L32 44 L26 50 L34 54 L16 48" fill="#7F5AF0" stroke="#392A60" stroke-width="1.5"/><circle cx="50" cy="50" r="7" fill="#EAD7FF" stroke="#281B4A" stroke-width="2"/></g></svg></div>
+        <div class="flower flower4"><svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.95"><circle cx="50" cy="50" r="14" fill="#8B6FC6" stroke="#3A285C" stroke-width="2"/><path d="M50 10 L56 30 L50 27 L44 30 L50 10" fill="#B194E0" stroke="#4F377A" stroke-width="2"/><path d="M83 30 L68 42 L74 37 L65 35 L83 30" fill="#8B6FC6" stroke="#392A60" stroke-width="2"/><path d="M90 64 L70 60 L78 58 L72 51 L90 64" fill="#B194E0" stroke="#4F377A" stroke-width="2"/><path d="M64 88 L58 70 L64 72 L68 65 L64 88" fill="#8B6FC6" stroke="#392A60" stroke-width="2"/><path d="M26 82 L34 66 L40 72 L46 66 L26 82" fill="#B194E0" stroke="#4F377A" stroke-width="2"/><path d="M10 48 L26 44 L20 50 L28 55 L10 48" fill="#8B6FC6" stroke="#392A60" stroke-width="2"/><circle cx="50" cy="50" r="9" fill="#F0E2FF" stroke="#24183F" stroke-width="2"/></g></svg></div>
+        <div class="flower flower5"><svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.8"><circle cx="50" cy="50" r="11" fill="#A184D1" stroke="#362960" stroke-width="2"/><path d="M50 14 L54 28 L50 26 L46 28 L50 14" fill="#C4ABF0" stroke="#4D3980" stroke-width="1.5"/><path d="M78 38 L67 46 L72 41 L64 39 L78 38" fill="#A184D1" stroke="#443479" stroke-width="1.5"/><path d="M82 68 L68 62 L74 60 L68 54 L82 68" fill="#C4ABF0" stroke="#4D3980" stroke-width="1.5"/><path d="M58 82 L52 68 L58 70 L62 64 L58 82" fill="#A184D1" stroke="#443479" stroke-width="1.5"/><path d="M26 76 L34 62 L40 68 L46 62 L26 76" fill="#C4ABF0" stroke="#4D3980" stroke-width="1.5"/><path d="M16 48 L30 44 L24 50 L32 54 L16 48" fill="#A184D1" stroke="#443479" stroke-width="1.5"/><circle cx="50" cy="50" r="6" fill="#F0E0FF" stroke="#221944" stroke-width="1.8"/></g></svg></div>
+        <div class="flower flower6"><svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.9"><circle cx="50" cy="50" r="15" fill="#6C4FAA" stroke="#32225C" stroke-width="2.5"/><path d="M50 6 L57 28 L50 25 L43 28 L50 6" fill="#9578D4" stroke="#412F6E" stroke-width="2"/><path d="M88 34 L70 42 L77 38 L68 34 L88 34" fill="#6C4FAA" stroke="#34275A" stroke-width="2"/><path d="M94 70 L72 64 L80 62 L73 55 L94 70" fill="#9578D4" stroke="#412F6E" stroke-width="2"/><path d="M66 92 L59 72 L66 76 L72 68 L66 92" fill="#6C4FAA" stroke="#34275A" stroke-width="2"/><path d="M22 86 L33 66 L42 74 L51 66 L22 86" fill="#9578D4" stroke="#412F6E" stroke-width="2"/><path d="M6 50 L26 44 L18 50 L26 56 L6 50" fill="#6C4FAA" stroke="#34275A" stroke-width="2"/><circle cx="50" cy="50" r="9" fill="#E3CEFF" stroke="#1C1139" stroke-width="2.5"/></g></svg></div>
+
+        <div class="butterfly butterfly1"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 20 C20 10 10 15 10 25 C10 35 20 38 30 30 C40 38 50 35 50 25 C50 15 40 10 30 20 Z" fill="#B48DFF" stroke="#4C2791" stroke-width="2"/><path d="M20 35 Q25 45 30 45 Q35 45 40 35" fill="#956ED6" stroke="#3A266B" stroke-width="2"/><circle cx="27" cy="27" r="2" fill="#F2E3FF"/><circle cx="33" cy="27" r="2" fill="#F2E3FF"/></svg></div>
+        <div class="butterfly butterfly2"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 18 C18 8 8 18 12 28 C16 38 26 38 30 30 C34 38 44 38 48 28 C52 18 42 8 30 18 Z" fill="#AA8CE0" stroke="#352B5F" stroke-width="2.2"/><path d="M20 38 Q25 48 30 48 Q35 48 40 38" fill="#815FC0" stroke="#302458" stroke-width="2"/><circle cx="26" cy="26" r="2.2" fill="#FFF2FF"/><circle cx="34" cy="26" r="2.2" fill="#FFF2FF"/></svg></div>
+        <div class="butterfly butterfly3"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 22 C22 12 10 16 12 26 C14 36 24 40 30 32 C36 40 46 36 48 26 C50 16 38 12 30 22 Z" fill="#C7ADFF" stroke="#423573" stroke-width="2"/><path d="M22 38 Q26 48 30 48 Q34 48 38 38" fill="#977BD4" stroke="#342755" stroke-width="2"/><circle cx="26" cy="26" r="2" fill="#F6EEFF"/><circle cx="34" cy="26" r="2" fill="#F6EEFF"/></svg></div>
+        <div class="butterfly butterfly4"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 20 C22 8 8 14 10 25 C12 36 24 40 30 31 C36 40 48 36 50 25 C52 14 38 8 30 20 Z" fill="#8F6CD0" stroke="#3A2A62" stroke-width="2.3"/><path d="M21 38 Q26 48 30 48 Q35 48 39 38" fill="#684BAF" stroke="#2A1F47" stroke-width="2"/><circle cx="26" cy="26" r="2.3" fill="#F2E2FF"/><circle cx="34" cy="26" r="2.3" fill="#F2E2FF"/></svg></div>
+        <div class="butterfly butterfly5"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 18 C20 6 6 12 8 24 C10 36 22 42 30 32 C38 42 50 36 52 24 C54 12 40 6 30 18 Z" fill="#B69AFF" stroke="#342A5A" stroke-width="2"/><path d="M21 38 Q26 49 30 49 Q35 49 39 38" fill="#866BC2" stroke="#302553" stroke-width="2"/><circle cx="26" cy="26" r="2.2" fill="#F7EAFF"/><circle cx="34" cy="26" r="2.2" fill="#F7EAFF"/></svg></div>
+        <div class="butterfly butterfly6"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 20 C22 10 10 14 12 24 C14 34 24 38 30 30 C36 38 46 34 48 24 C50 14 38 10 30 20 Z" fill="#A585E3" stroke="#3C2F67" stroke-width="2"/><path d="M22 36 Q27 46 30 46 Q34 46 38 36" fill="#765AC2" stroke="#312756" stroke-width="2"/><circle cx="27" cy="26" r="2" fill="#F5EAFF"/><circle cx="33" cy="26" r="2" fill="#F5EAFF"/></svg></div>
+        <div class="glitter g1"></div><div class="glitter g2"></div><div class="glitter g3"></div><div class="glitter g4"></div><div class="glitter g5"></div>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="card">
+        <div class="content">
+            <div class="title">🌸 С <span>8 Марта</span> 🌸</div>
+            <div class="subtitle">дорогая мама</div>
+            <div class="name">Гульнара <small>💜</small></div>
+
+            <!-- СЮРПРИЗ БЛОК -->
+            <div class="surprise-container">
+                <div class="envelope" id="envelope">
+                    <div class="envelope__flap"></div>
+                    <div class="envelope__heart">💌</div>
+                </div>
+                <div class="click-hint">✨ Нажми на конверт — будет сюрприз! ✨</div>
+                <div class="hidden-message" id="hiddenMessage">
+                    <p>🌟 СЮРПРИЗ! 🌟<br><br>
+                    Мамочка Гульнара, для тебя всегда самое красивое!<br>
+                    💜 Пусть счастье порхает, как эти бабочки,<br>
+                    а радость расцветает синими цветами!<br>
+                    ✨ Ты — мое вдохновение! ✨</p>
+                    <span>❤️ Люблю тебя! Дамир</span>
+                </div>
+            </div>
+
+            <div class="signature">
+                <span>С любовью, твой сын Дамир ✨</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Конфетти (создаётся динамически) -->
+    <div class="confetti" id="confettiContainer" style="display: none;"></div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        const hiddenMessage = document.getElementById('hiddenMessage');
+        const confettiContainer = document.getElementById('confettiContainer');
+        let isOpen = false;
+
+        // функция для создания конфетти
+        function createConfetti() {
+            confettiContainer.style.display = 'block';
+            for (let i = 0; i < 50; i++) {
+                const piece = document.createElement('div');
+                piece.classList.add('confetti-piece');
+                // случайные оттенки фиолетового/синего
+                const colors = ['#c9abff', '#a881f7', '#dab6ff', '#b692fc', '#e3c9ff', '#9f7aea'];
+                piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.animationDuration = (Math.random() * 2 + 2) + 's'; // 2-4s
+                piece.style.width = (Math.random() * 8 + 5) + 'px';
+                piece.style.height = (Math.random() * 15 + 10) + 'px';
+                piece.style.opacity = Math.random() * 0.6 + 0.3;
+                confettiContainer.appendChild(piece);
+
+                // удаляем через 5 секунд
+                setTimeout(() => {
+                    piece.remove();
+                }, 5000);
+            }
+            // скрываем контейнер через 5 сек, если пусто
+            setTimeout(() => {
+                if (confettiContainer.children.length === 0) {
+                    confettiContainer.style.display = 'none';
+                }
+            }, 5000);
+        }
+
+        envelope.addEventListener('click', () => {
+            if (!isOpen) {
+                envelope.classList.add('open');
+                hiddenMessage.classList.add('show');
+                createConfetti();
+
+                // меняем текст hint (по желанию)
+                document.querySelector('.click-hint').innerText = '💜 Сюрприз открыт! 💜';
+                isOpen = true;
+            } else {
+                // можно повторно не открывать, но пусть будет эффект
+                // создадим ещё немного конфетти
+                createConfetti();
+            }
+        });
+
+        // Дополнительно: можно добавить изменение текста поздравления в основном блоке (необязательно)
+        // Но так как "текст меняется" — он меняется в скрытом сообщении, а также при клике можно менять что-то ещё
+        // добавим изменение title? по желанию можно.
+        // Например, добавим маленькую смену цвета имени после клика (но это не обязательно)
+    </script>
+</body>
+</html>

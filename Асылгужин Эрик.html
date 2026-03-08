@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Эрик · С 8 марта, мама Рушана ✨</title>
+  <style>
+    /* ===== СБРОС И БАЗОВЫЕ НАСТРОЙКИ ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(145deg, #f0f5ff 0%, #ffffff 70%, #e6f0fa 100%);
+      font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      position: relative;
+      color: #1e2b45;
+    }
+
+    /* полупрозрачные цветы на фоне (очень бледно, для нежности) */
+    body::before {
+      content: "🌸🌼🌷";
+      font-size: 7rem;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      opacity: 0.07;
+      transform: rotate(-10deg);
+      white-space: nowrap;
+      pointer-events: none;
+      color: #9bb6d0;
+    }
+
+    body::after {
+      content: "🌿✨🌿";
+      font-size: 6rem;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      opacity: 0.05;
+      transform: rotate(5deg);
+      pointer-events: none;
+      color: #6f8faf;
+    }
+
+    /* ===== ОСНОВНАЯ КАРТОЧКА ===== */
+    .card {
+      max-width: 700px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: 48px 48px 48px 48px;
+      box-shadow: 
+        0 30px 50px -20px rgba(0, 40, 80, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.9) inset,
+        0 0 0 2px rgba(212, 175, 55, 0.25);
+      padding: 2.8rem 2.5rem;
+      position: relative;
+      z-index: 10;
+      transition: 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    /* золотистый акцент по левому краю */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      bottom: 30px;
+      width: 4px;
+      background: linear-gradient(180deg, #e9c891, #c9a550, #e9c891);
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+    }
+
+    /* ===== ЗОЛОТЫЕ ЭЛЕМЕНТЫ ===== */
+    .gold-text {
+      background: linear-gradient(135deg, #be9b45, #e6cf87, #b58d3a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 600;
+      display: inline-block;
+      text-shadow: 0 2px 5px rgba(212, 175, 55, 0.15);
+    }
+
+    h1 .gold-text {
+      font-weight: 700;
+    }
+
+    /* линия-разделитель с золотом */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .divider-line {
+      height: 2px;
+      flex: 1;
+      background: linear-gradient(90deg, transparent, #d8bf6e, #c1a245, #d8bf6e, transparent);
+    }
+
+    .divider-icon {
+      font-size: 1.8rem;
+      color: #b5944b;
+      filter: drop-shadow(0 2px 4px #ead6a0);
+    }
+
+    /* ===== ТИПОГРАФИКА ===== */
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      color: #13273e;
+      margin-bottom: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.25rem 0.75rem;
+    }
+
+    h1 span:first-child {
+      font-weight: 300;
+      color: #4a6382;
+    }
+
+    .subhead {
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: #2b4a6e;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .subhead .gold-text {
+      font-weight: 400;
+      font-size: 1.8rem;
+    }
+
+    /* имя мамы — крупно и нежно */
+    .mama-name {
+      font-size: 3.5rem;
+      font-weight: 600;
+      color: #163a5c;
+      margin: 0.2rem 0 0.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .mama-name::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 70%;
+      height: 3px;
+      background: linear-gradient(90deg, #dbbf74, #b18b40, #ecdba0);
+      border-radius: 3px;
+    }
+
+    /* =----- СИНЯЯ ГАММА И ДЕТАЛИ ----- */
+    .blue-message {
+      background: rgba(207, 225, 245, 0.5);
+      border-radius: 38px 38px 38px 8px;
+      padding: 1.8rem 2rem;
+      margin: 2rem 0 1.8rem;
+      border-left: 8px solid #779fcb;
+      box-shadow: 0 10px 20px -12px #1e3f60;
+      backdrop-filter: blur(2px);
+      color: #102c40;
+      font-size: 1.25rem;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    .blue-message p {
+      margin-bottom: 0.8rem;
+    }
+
+    .blue-message p:last-child {
+      margin-bottom: 0;
+    }
+
+    .blue-message i {
+      color: #35648d;
+      font-style: italic;
+    }
+
+    .signature {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: #1f344b;
+    }
+
+    .signature strong {
+      font-weight: 600;
+      color: #14283e;
+      background: rgba(255,255,240,0.7);
+      padding: 0.2rem 1rem 0.2rem 1.2rem;
+      border-radius: 40px;
+      border: 1px solid #eddcaa;
+      font-size: 2rem;
+    }
+
+    /* цветочно-золотые иконки */
+    .flower-gold {
+      display: inline-flex;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .flower-gold span {
+      font-size: 2rem;
+      filter: drop-shadow(0 3px 3px rgba(182, 150, 60, 0.4));
+    }
+
+    /* кнопка-сюрприз (просто красиво) */
+    .btn-gold {
+      background: linear-gradient(115deg, #f7f1db, #f5e7c1);
+      border: 1.5px solid #cbb16a;
+      color: #2b4b6e;
+      padding: 0.75rem 2.2rem;
+      border-radius: 60px;
+      font-size: 1.25rem;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(170, 145, 60, 0.2);
+      backdrop-filter: blur(10px);
+      transition: 0.2s;
+      cursor: default;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .btn-gold span {
+      font-size: 1.8rem;
+      color: #b4872e;
+    }
+
+    .btn-gold:hover {
+      transform: scale(1.02);
+      background: linear-gradient(115deg, #faf3df, #f8e8bc);
+      border-color: #dbb045;
+      box-shadow: 0 8px 18px rgba(184, 146, 40, 0.35);
+    }
+
+    /* золотые блики */
+    .glow-dot {
+      display: flex;
+      gap: 0.4rem;
+      margin: 1rem 0 0.5rem;
+    }
+    .glow-dot i {
+      width: 10px;
+      height: 10px;
+      background: #e9c576;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #f3d68e;
+    }
+
+    /* адаптация */
+    @media (max-width: 500px) {
+      .card {
+        padding: 2rem 1.5rem;
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+      .mama-name {
+        font-size: 2.7rem;
+      }
+      .subhead {
+        font-size: 1.2rem;
+      }
+      .blue-message {
+        padding: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- небольшой золотой декор (точки) -->
+    <div class="glow-dot">
+      <i></i><i></i><i></i><i></i><i style="background: #b5944b; width: 16px;"></i>
+    </div>
+
+    <!-- шапка с именем Эрик и мама Рушана (золото + белый + синий) -->
+    <h1>
+      <span>Эрик,</span>
+      <span class="gold-text">с любовью</span>
+    </h1>
+    <div class="subhead">
+      <span>для самой лучшей мамы</span>
+      <span class="gold-text">✨</span>
+    </div>
+
+    <!-- крупное имя мамы с синим оттенком -->
+    <div class="mama-name">Рушана</div>
+
+    <!-- золотистый разделитель с цветами -->
+    <div class="divider">
+      <span class="divider-line"></span>
+      <span class="divider-icon">🌼🌷</span>
+      <span class="divider-line"></span>
+    </div>
+
+    <!-- нежный синий блок с поздравлением (текст от Эрика) -->
+    <div class="blue-message">
+      <p>🌿 Дорогая мама Рушана!</p>
+      <p>С 8 Марта! Пусть этот день утонет в <span class="gold-text">золотистых</span> лучах солнца, а небо будет такого же глубокого и чистого <strong>синего цвета</strong>, как твои добрые глаза. Спасибо тебе за тепло, заботу и бесконечную нежность.</p>
+      <p>🌸 Желаю тебе весеннего настроения, море цветов, улыбок и исполнения самых заветных желаний. Ты самая прекрасная мама на свете!</p>
+      <p style="margin-top: 1.2rem;"><i>— Твой сын Эрик</i> 💙</p>
+    </div>
+
+    <!-- элегантный блок с золотом и цветами, имя ещё раз -->
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+      <div class="flower-gold">
+        <span>🌹</span><span>✨</span><span>🌷</span><span>🌟</span><span>🌺</span>
+      </div>
+      <div class="signature">
+        <span style="font-size: 1.3rem;">с 8 марта,</span>
+        <strong>Рушана</strong>
+      </div>
+    </div>
+
+    <!-- "кнопка" просто для украшения — золотистая и синяя, как общая гамма -->
+    <div style="text-align: right; margin-top: 2rem;">
+      <span class="btn-gold">
+        <span>💛</span> #1 мама <span>💙</span>
+      </span>
+    </div>
+
+    <!-- маленькие блёстки внизу (имитация золотых искр) -->
+    <div style="display: flex; justify-content: center; gap: 0.8rem; margin-top: 1.2rem; opacity: 0.7;">
+      <span style="color: #c2a051;">✧</span>
+      <span style="color: #9cb2d0;">✧</span>
+      <span style="color: #e4c87b;">✧</span>
+      <span style="color: #7899c7;">✧</span>
+      <span style="color: #dbb458;">✧</span>
+    </div>
+
+    <!-- дополнительный полупрозрачный декор с именем Эрик (внутри карточки) -->
+    <div style="position: absolute; bottom: 15px; right: 25px; opacity: 0.1; font-size: 4rem; font-weight: bold; color: #284b6b; pointer-events: none; z-index: -1;">Р</div>
+  </div>
+</body>
+</html>

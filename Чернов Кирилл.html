@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, мама Альбина!</title>
+    <style>
+        /* Сброс и базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fff9f7 0%, #fdeff2 100%);
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            margin: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Основной контейнер открытки */
+        .card {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 48px 48px 48px 48px;
+            box-shadow: 0 25px 45px -12px rgba(255, 140, 170, 0.35),
+                        0 2px 10px 0 rgba(250, 200, 210, 0.3);
+            padding: 40px 30px 50px 30px;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 220, 230, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        /* Нежные цветочки на фоне (общий слой) */
+        .flower-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Стили для каждого цветочка (позиции рандомны, но в рамках кода — гармонично разбросаны) */
+        .flower {
+            position: absolute;
+            opacity: 0.4;
+            filter: drop-shadow(0 4px 6px rgba(255, 180, 200, 0.2));
+            animation: floatFlower 12s infinite alternate ease-in-out;
+        }
+
+        .flower1 { top: 5%; left: 2%; width: 110px; animation-delay: 0s; }
+        .flower2 { top: 70%; left: 85%; width: 150px; animation-delay: 1.5s; opacity: 0.35; }
+        .flower3 { top: 15%; right: 3%; width: 90px; animation-delay: 2s; }
+        .flower4 { bottom: 8%; left: 12%; width: 130px; animation-delay: 0.7s; }
+        .flower5 { top: 40%; left: 78%; width: 100px; animation-delay: 2.2s; opacity: 0.5; }
+        .flower6 { bottom: 20%; right: 10%; width: 140px; animation-delay: 1s; }
+        .flower7 { top: 80%; left: 30%; width: 80px; animation-delay: 2.8s; opacity: 0.3; }
+
+        @keyframes floatFlower {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Верхний декор (мелкие цветы) */
+        .tiny-flowers {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tiny {
+            font-size: 2.2rem;
+            line-height: 1;
+            filter: drop-shadow(0 4px 6px #ffc1cc);
+            animation: sparkle 3s infinite alternate;
+        }
+
+        @keyframes sparkle {
+            0% { opacity: 0.6; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* Заголовок с именем */
+        .title {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .greeting {
+            font-size: 2.4rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #9f6b7c;
+            background: rgba(255, 245, 240, 0.7);
+            display: inline-block;
+            padding: 0 30px 8px 30px;
+            border-radius: 60px;
+            font-family: 'Georgia', serif;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 2px 8px rgba(255, 200, 210, 0.4);
+            margin-bottom: 8px;
+        }
+
+        .name-mom {
+            font-size: 4.2rem;
+            font-weight: 600;
+            color: #d45e7a;
+            text-shadow: 0 2px 10px #ffb6c190, 2px 4px 8px #ffe2e8;
+            line-height: 1.2;
+            word-break: break-word;
+            font-family: 'Brush Script MT', 'Dancing Script', cursive;
+            transform: rotate(-0.5deg);
+            margin-top: 10px;
+        }
+
+        .accent-heart {
+            color: #f97a9a;
+            font-size: 3rem;
+            line-height: 0.8;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* Основной текст */
+        .message {
+            text-align: center;
+            background: rgba(255, 250, 245, 0.7);
+            padding: 30px 20px;
+            border-radius: 60px 60px 40px 40px;
+            backdrop-filter: blur(4px);
+            border: 1px solid #ffe7ed;
+            margin: 20px 0 30px 0;
+            box-shadow: inset 0 0 30px #ffeef2, 0 10px 20px -10px #ffbfd0;
+        }
+
+        .message p {
+            font-size: 1.6rem;
+            color: #724f5b;
+            margin-bottom: 20px;
+            font-weight: 400;
+            line-height: 1.6;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+
+        .signature {
+            font-size: 2.2rem;
+            font-weight: 500;
+            color: #b35270;
+            margin-top: 20px;
+            font-family: 'Dancing Script', cursive;
+            border-top: 2px dotted #feadba;
+            padding-top: 24px;
+            display: inline-block;
+        }
+
+        .signature span {
+            background: #ffeaee;
+            padding: 6px 25px;
+            border-radius: 40px;
+            display: inline-block;
+            box-shadow: 0 6px 0 #fec7d3;
+            transform: rotate(-1deg);
+        }
+
+        .from-kira {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px 0 10px;
+        }
+
+        .from-kira .name {
+            font-size: 3rem;
+            font-weight: 600;
+            background: linear-gradient(145deg, #f598a4, #d96b8a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px #ffbfd5;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Букетик снизу */
+        .flower-bouquet {
+            display: flex;
+            justify-content: center;
+            gap: 12px 24px;
+            flex-wrap: wrap;
+            margin-top: 35px;
+            font-size: 2.8rem;
+            filter: drop-shadow(0 8px 12px #ffcfda);
+        }
+
+        /* Кнопка-сюрприз (для интерактива) */
+        .surprise-btn {
+            background: none;
+            border: 2px solid #fec5d2;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            color: #b14f6b;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 245, 240, 0.5);
+            cursor: pointer;
+            transition: 0.4s;
+            display: block;
+            margin: 30px auto 0;
+            font-weight: 500;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px #ffd9e3;
+        }
+
+        .surprise-btn:hover {
+            background-color: #ffe2eb;
+            border-color: #ffa5bc;
+            transform: scale(1.05);
+            box-shadow: 0 8px 18px #ffb0c8;
+        }
+
+        /* Скрытое сообщение (появляется при клике) */
+        #surprise-message {
+            max-width: 80%;
+            margin: 20px auto 0;
+            background: #fff4f7f2;
+            border-radius: 100px;
+            padding: 16px 18px;
+            color: #ad4e6b;
+            font-size: 1.4rem;
+            border: 2px solid #ffc1cf;
+            backdrop-filter: blur(4px);
+            transition: 0.3s;
+            display: none;
+            text-align: center;
+            font-family: 'Georgia', serif;
+        }
+
+        #surprise-message.show {
+            display: block;
+        }
+
+        /* Адаптация для маленьких экранов */
+        @media (max-width: 500px) {
+            .card { padding: 25px 15px; }
+            .greeting { font-size: 1.8rem; }
+            .name-mom { font-size: 3.2rem; }
+            .message p { font-size: 1.3rem; }
+            .signature { font-size: 1.8rem; }
+        }
+
+        /* Дополнительные милые детали */
+        .dotted-line {
+            width: 120px;
+            height: 2px;
+            background: repeating-linear-gradient(90deg, #ffb3c6, #ffb3c6 8px, transparent 8px, transparent 16px);
+            margin: 15px auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Слой с крупными нежными цветочками (фоновые) -->
+    <div class="flower-bg">
+        <svg class="flower flower1" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.5">
+                <circle cx="50" cy="40" r="12" fill="#FFDBE5"/>
+                <circle cx="35" cy="55" r="10" fill="#FFC1D0"/>
+                <circle cx="65" cy="55" r="10" fill="#FFC1D0"/>
+                <circle cx="42" cy="70" r="9" fill="#FFB7C9"/>
+                <circle cx="58" cy="70" r="9" fill="#FFB7C9"/>
+                <circle cx="50" cy="80" r="14" fill="#FFA5BB"/>
+                <circle cx="50" cy="25" r="8" fill="#FFD9E4"/>
+            </g>
+        </svg>
+        <svg class="flower flower2" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.5">
+                <circle cx="50" cy="40" r="15" fill="#FCD5E3"/>
+                <circle cx="30" cy="52" r="12" fill="#FCCBDC"/>
+                <circle cx="70" cy="52" r="12" fill="#FCCBDC"/>
+                <circle cx="42" cy="72" r="10" fill="#FEB6CF"/>
+                <circle cx="58" cy="72" r="10" fill="#FEB6CF"/>
+                <circle cx="50" cy="85" r="12" fill="#FDA1BF"/>
+            </g>
+        </svg>
+        <svg class="flower flower3" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="30" r="10" fill="#FFD9E4"/>
+            <circle cx="25" cy="45" r="8" fill="#FFC8D8"/>
+            <circle cx="55" cy="45" r="8" fill="#FFC8D8"/>
+            <circle cx="40" cy="55" r="12" fill="#FFB0C7"/>
+        </svg>
+        <svg class="flower flower4" viewBox="0 0 90 90" fill="none">
+            <circle cx="45" cy="30" r="12" fill="#FEDAE8"/>
+            <circle cx="25" cy="48" r="10" fill="#FEC8DB"/>
+            <circle cx="65" cy="48" r="10" fill="#FEC8DB"/>
+            <circle cx="45" cy="62" r="14" fill="#FEB3CD"/>
+        </svg>
+        <svg class="flower flower5" viewBox="0 0 70 70" fill="none">
+            <circle cx="35" cy="25" r="9" fill="#FFE2ED"/>
+            <circle cx="20" cy="38" r="8" fill="#FFD0E0"/>
+            <circle cx="50" cy="38" r="8" fill="#FFD0E0"/>
+            <circle cx="35" cy="48" r="11" fill="#FFB9D2"/>
+        </svg>
+        <svg class="flower flower6" viewBox="0 0 120 120" fill="none">
+            <circle cx="60" cy="45" r="15" fill="#FFD9E4"/>
+            <circle cx="35" cy="65" r="13" fill="#FFC4D8"/>
+            <circle cx="85" cy="65" r="13" fill="#FFC4D8"/>
+            <circle cx="52" cy="85" r="12" fill="#FFB2CB"/>
+            <circle cx="68" cy="85" r="12" fill="#FFB2CB"/>
+            <circle cx="60" cy="100" r="18" fill="#FF9FBF"/>
+        </svg>
+        <svg class="flower flower7" viewBox="0 0 80 80" fill="none">
+            <circle cx="40" cy="30" r="10" fill="#FFE0EC"/>
+            <circle cx="24" cy="45" r="8" fill="#FFCFE0"/>
+            <circle cx="56" cy="45" r="8" fill="#FFCFE0"/>
+            <circle cx="40" cy="55" r="12" fill="#FFB9D4"/>
+        </svg>
+    </div>
+
+    <!-- Главная открытка -->
+    <div class="card">
+        <!-- совсем мелкие цветочки -->
+        <div class="tiny-flowers">
+            <span class="tiny">🌷</span>
+            <span class="tiny">🌼</span>
+            <span class="tiny">🌸</span>
+            <span class="tiny">🌺</span>
+            <span class="tiny">🌹</span>
+        </div>
+
+        <!-- Заголовок с именем мамы -->
+        <div class="title">
+            <div class="greeting">С 8 Марта,</div>
+            <div class="name-mom">
+                <span class="accent-heart">❤️</span> Альбина! <span class="accent-heart">❤️</span>
+            </div>
+        </div>
+
+        <!-- Нежное сообщение -->
+        <div class="message">
+            <p>
+                🌷 Мамочка, с праздником весны! <br>
+                Пусть каждый день дарит тебе нежность, улыбки и тепло.
+            </p>
+            <div class="dotted-line"></div>
+            <p style="font-size:1.4rem; color:#9b5f72;">
+                Ты самый родной и любимый человек. <br> Спасибо за твою заботу и свет.
+            </p>
+        </div>
+
+        <!-- Подпись от Кирилла -->
+        <div class="from-kira">
+            <span style="font-size:2rem;">💐</span>
+            <span class="name">Твой сын Кирилл</span>
+            <span style="font-size:2rem;">💐</span>
+        </div>
+
+        <!-- Нижний букет (доп цветы) -->
+        <div class="flower-bouquet">
+            <span>🌷</span>
+            <span>🌷</span>
+            <span>🌸</span>
+            <span>🌼</span>
+            <span>🌷</span>
+            <span>🌸</span>
+        </div>
+
+        <!-- Кнопка для ещё одного тёплого сюрприза -->
+        <button class="surprise-btn" id="surpriseBtn">💗 нажми для нежности 💗</button>
+        <div id="surprise-message">
+            🌟 Альбина, ты самая прекрасная мама на свете! 
+            Пусть весна цветёт в твоём сердце каждый день. Целую, Кирилл 🌟
+        </div>
+    </div>
+
+    <!-- Небольшой скрипт для кнопки -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('surpriseBtn');
+            const msg = document.getElementById('surprise-message');
+            
+            btn.addEventListener('click', function() {
+                msg.classList.toggle('show');
+                
+                // Изменим текст кнопки на пару секунд для интерактива
+                if (msg.classList.contains('show')) {
+                    btn.textContent = '💕 спрятать нежность 💕';
+                } else {
+                    btn.textContent = '💗 нажми для нежности 💗';
+                }
+                
+                // небольшая анимация для букета
+                const bouquet = document.querySelector('.flower-bouquet');
+                bouquet.style.transform = 'scale(1.05)';
+                setTimeout(() => bouquet.style.transform = 'scale(1)', 200);
+            });
+        });
+    </script>
+</body>
+</html>

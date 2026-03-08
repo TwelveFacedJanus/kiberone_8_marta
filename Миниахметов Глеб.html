@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта от Глеба ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #ffd1dc;  /* нежно-розовый базовый фон */
+            background-image: 
+                radial-gradient(circle at 20% 30%, #ffb6c1 3%, transparent 3.5%),
+                radial-gradient(circle at 80% 70%, #ffa5b9 4%, transparent 4.5%),
+                radial-gradient(circle at 40% 80%, #ffc0cb 5%, transparent 5.5%),
+                radial-gradient(circle at 90% 20%, #ff9eb5 6%, transparent 6.5%),
+                linear-gradient(145deg, #ffd9e6 0%, #ffe4ec 100%);
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* падающие сердечки и розы (очень нежно) */
+        .floating-item {
+            position: absolute;
+            pointer-events: none;
+            font-size: 2rem;
+            user-select: none;
+            z-index: 5;
+            opacity: 0.45;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0.2;
+            }
+        }
+
+        /* основная открытка */
+        .card {
+            position: relative;
+            z-index: 20;
+            max-width: 950px;
+            width: 100%;
+            background: rgba(255, 245, 248, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 70px 25px 70px 25px;
+            box-shadow: 0 30px 50px rgba(200, 80, 120, 0.35), 0 0 0 4px #ffc0d5 inset, 0 0 0 8px #ffeef2 inset;
+            padding: 40px 30px 45px;
+            text-align: center;
+            border: 2px solid #ff98b5;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #ac355b;
+            text-shadow: 0 5px 0 #ffb0c3, 0 10px 20px rgba(255, 100, 150, 0.3);
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+            word-break: break-word;
+        }
+
+        .sub-header {
+            font-size: 2.2rem;
+            color: #c5476a;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .sub-header span {
+            filter: drop-shadow(0 4px 6px #faaac0);
+        }
+
+        .name-block {
+            background: #ffd9e4;
+            padding: 20px 30px;
+            border-radius: 100px 20px 100px 20px;
+            display: inline-block;
+            margin: 20px 0 25px;
+            border: 3px solid white;
+            box-shadow: 0 10px 0 #d46b89;
+        }
+
+        .name-block h2 {
+            font-size: 3rem;
+            color: #9e2d50;
+            line-height: 1.3;
+        }
+
+        .name-block h2 span {
+            font-size: 3.2rem;
+            background: #ffa5c0;
+            padding: 0 15px;
+            border-radius: 80px;
+            color: white;
+            text-shadow: 0 2px 0 #b54366;
+        }
+
+        .roses-divider {
+            font-size: 3rem;
+            letter-spacing: 15px;
+            margin: 15px 0 5px;
+            filter: drop-shadow(0 6px 8px #faa6bb);
+        }
+
+        .roses-divider span {
+            display: inline-block;
+            transition: transform 0.3s;
+            cursor: default;
+        }
+
+        .roses-divider span:hover {
+            transform: scale(1.3) rotate(5deg);
+        }
+
+        /* список любимых */
+        .recipients {
+            background: rgba(255, 200, 220, 0.6);
+            border-radius: 110px 20px 110px 20px;
+            padding: 30px 20px;
+            margin: 25px 0;
+            border: 3px dashed #ff7f9f;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 30px 40px;
+        }
+
+        .recipient-item {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #831d42;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 60px 10px 60px 10px;
+            box-shadow: 0 8px 0 #eea5b8;
+            transition: all 0.2s;
+            border: 3px solid #ffb7cc;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .recipient-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 13px 0 #eea5b8;
+        }
+
+        .heart-icon {
+            color: #ff3b6f;
+            font-size: 2.4rem;
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); text-shadow: 0 0 15px red; }
+        }
+
+        .message-main {
+            background: #ffffffc4;
+            border-radius: 80px 15px 80px 15px;
+            padding: 35px 30px;
+            margin: 30px 0 25px;
+            border-left: 12px solid #ff88aa;
+            border-right: 12px solid #ffa7c1;
+            font-size: 1.7rem;
+            line-height: 1.6;
+            color: #511f31;
+            font-weight: 500;
+            box-shadow: 0 15px 30px #ffb8cf;
+        }
+
+        .message-main p {
+            margin-bottom: 18px;
+        }
+
+        .message-main .big-heart {
+            font-size: 3rem;
+            color: #ff4d6d;
+        }
+
+        /* кнопка-розочка */
+        .rose-button {
+            background: linear-gradient(145deg, #ff80a5, #ffa5bc);
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            padding: 25px 50px;
+            border-radius: 70px 15px 70px 15px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 15px 0 #b34465, 0 15px 30px #ff90af;
+            transition: all 0.1s ease;
+            margin: 20px 0 30px;
+            border: 4px solid #fff3f5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .rose-button:active {
+            transform: translateY(10px);
+            box-shadow: 0 5px 0 #b34465, 0 15px 30px #ff90af;
+        }
+
+        .rose-button span {
+            font-size: 3rem;
+            filter: drop-shadow(0 4px 2px #b32e5a);
+        }
+
+        /* контейнер для сюрприза */
+        .surprise-area {
+            background: #fee3ea;
+            border-radius: 60px 10px 60px 10px;
+            padding: 25px;
+            margin: 30px 0 20px;
+            font-size: 2rem;
+            color: #aa264e;
+            border: 6px double #ffa0bb;
+            transition: all 0.4s;
+            min-height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 2rem;
+            color: #cc4970;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .footer .heart-beat {
+            animation: heartbeat 1.4s infinite;
+            font-size: 2.8rem;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.3); color: #ff1a4f; }
+            35% { transform: scale(1.1); }
+            45% { transform: scale(1.3); }
+            55% { transform: scale(1); }
+        }
+
+        /* для адаптации */
+        @media (max-width: 650px) {
+            h1 { font-size: 3rem; }
+            .sub-header { font-size: 1.6rem; }
+            .name-block h2 { font-size: 2.2rem; }
+            .recipient-item { font-size: 1.5rem; padding: 10px 15px; }
+            .message-main { font-size: 1.3rem; }
+            .rose-button { font-size: 1.8rem; padding: 15px 30px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- анимированные сердечки и розы (фоновые) -->
+    <div id="floating-container"></div>
+
+    <div class="card">
+        <h1>🌹 С 8 МАРТА! 🌹</h1>
+        <div class="sub-header">
+            <span>❤️❤️❤️</span>  ПРАЗДНИК ВЕСНЫ  <span>❤️❤️❤️</span>
+        </div>
+
+        <!-- имя отправителя Глеб крупно -->
+        <div class="name-block">
+            <h2>от <span>Глеба</span> ❤️</h2>
+        </div>
+
+        <!-- розочки декоративные -->
+        <div class="roses-divider">
+            <span>🌹</span><span>🥀</span><span>🌹</span><span>🌷</span><span>🌹</span><span>🥀</span><span>🌹</span>
+        </div>
+
+        <!-- мои любимые (мама, бабушка, тётя, прабабушка) -->
+        <div class="recipients">
+            <div class="recipient-item"><span class="heart-icon">❤️</span> МАМА <span class="heart-icon">❤️</span></div>
+            <div class="recipient-item"><span class="heart-icon">❤️</span> БАБУШКА <span class="heart-icon">❤️</span></div>
+            <div class="recipient-item"><span class="heart-icon">❤️</span> ТЁТЯ <span class="heart-icon">❤️</span></div>
+            <div class="recipient-item"><span class="heart-icon">❤️</span> ПРАБАБУШКА <span class="heart-icon">❤️</span></div>
+        </div>
+
+        <!-- главное поздравление с именами -->
+        <div class="message-main" id="greetingText">
+            <p>💗 Дорогие мои: <strong>мамочка, бабушка, тётя и прабабушка!</strong> 💗</p>
+            <p>Поздравляю вас с 8 Марта!<br>
+            🌷 Желаю вам огромного счастья, крепкого здоровья, весеннего настроения и море цветов.<br>
+            🥰 Вы самые лучшие, я вас очень люблю!</p>
+            <p class="big-heart">❤️ 🌹 ❤️</p>
+        </div>
+
+        <!-- кнопка с розой и сердечком -->
+        <button class="rose-button" id="surpriseBtn">
+            <span>🌹</span> НАЖМИ МЕНЯ <span>❤️</span>
+        </button>
+
+        <!-- область сюрприза -->
+        <div id="surpriseBlock" class="surprise-area">
+            💖 Здесь появится розовый сюрприз 💖
+        </div>
+
+        <!-- подвал с сердечками -->
+        <div class="footer">
+            <span>🌹</span>
+            <span class="heart-beat">❤️</span>
+            <span>С любовью, Глеб</span>
+            <span class="heart-beat">❤️</span>
+            <span>🌹</span>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // --- создаём плавающие сердечки и розы (много-много) ---
+            const floatingContainer = document.getElementById('floating-container');
+            const symbols = ['❤️', '🧡', '💖', '💗', '💘', '🌹', '🥀', '🌷', '🌸', '💐', '❤️', '🌹', '❤️', '🌹', '💕'];
+            
+            for (let i = 0; i < 35; i++) {
+                const floatDiv = document.createElement('div');
+                floatDiv.className = 'floating-item';
+                const randomSym = symbols[Math.floor(Math.random() * symbols.length)];
+                floatDiv.textContent = randomSym;
+                
+                // случайные размеры и длительность
+                const size = 1.2 + Math.random() * 2.5;
+                floatDiv.style.fontSize = size + 'rem';
+                floatDiv.style.left = Math.random() * 100 + '%';
+                floatDiv.style.top = -10 + Math.random() * 10 + 'vh'; // старт чуть выше экрана
+                floatDiv.style.animationDuration = 6 + Math.random() * 15 + 's';
+                floatDiv.style.animationDelay = Math.random() * 8 + 's';
+                floatDiv.style.opacity = 0.3 + Math.random() * 0.5;
+                
+                floatingContainer.appendChild(floatDiv);
+            }
+
+            // --- сюрприз при клике (розочки и тёплые слова для мамы, бабушки, тёти, прабабушки) ---
+            const surpriseBtn = document.getElementById('surpriseBtn');
+            const surpriseBlock = document.getElementById('surpriseBlock');
+            
+            // коллекция персональных пожеланий для каждой
+            const messagesForRecipients = [
+                '🌹 Мамуля, ты самая лучшая на свете! С 8 Марта! 🌹',
+                '🌷 Бабушка, спасибо за тепло и заботу! Обнимаю крепко! 🌷',
+                '🌸 Тётя, ты прекрасна! Желаю радости и цветов! 🌸',
+                '💖 Прабабушка, здоровья и улыбок! Ты наша гордость! 💖',
+                '❤️ Всем вам, мои дорогие, море счастья и весеннего тепла! ❤️',
+                '🥀 Пусть каждый день будет таким же прекрасным, как вы! 🥀',
+                '💐 Пусть исполняются самые заветные мечты! 💐',
+                '🌺 Вы — мои любимые женщины! Целую! 🌺'
+            ];
+
+            // дополнительные розочки
+            const roseEmoji = ['🌹', '🥀', '🌷', '🌸', '🌺', '💐', '❤️', '🧡'];
+
+            let clickCount = 0;
+
+            surpriseBtn.addEventListener('click', function() {
+                clickCount++;
+
+                // случайное сообщение
+                const randomMsg = messagesForRecipients[Math.floor(Math.random() * messagesForRecipients.length)];
+                
+                // создаём красивый вывод с тонной розочек и сердечек
+                let rosesString = '';
+                for (let i = 0; i < 5 + clickCount; i++) {
+                    rosesString += roseEmoji[Math.floor(Math.random() * roseEmoji.length)];
+                }
+
+                // если нажатий больше 3, добавляем особенно много любви
+                let extra = '';
+                if (clickCount >= 3) {
+                    extra = '<br>💞 💞 💞';
+                }
+                if (clickCount >= 5) {
+                    extra = extra + '<br>🎉 ВЫ ЛУЧШИЕ!!! 🎉';
+                }
+
+                surpriseBlock.innerHTML = `<div style="font-size: 2.2rem; line-height:1.5">${rosesString}<br><span style="background:#ffd0db; padding:10px 25px; border-radius:60px; display:inline-block; margin:10px 0">${randomMsg}</span><br>${rosesString} ${extra}</div>`;
+                
+                // меняем немного текст основного поздравления после нескольких нажатий (персонализация)
+                if (clickCount === 2) {
+                    document.getElementById('greetingText').innerHTML = `<p>💗 Мои любимые: <strong>мама, бабушка, тётя и прабабушка</strong>! 💗</p>
+                    <p>Вы — мои самые родные люди! Спасибо, что вы у меня есть!<br>
+                    🌷 Целую и обнимаю каждую!</p>
+                    <p class="big-heart">🌹 🌹 🌹</p>`;
+                }
+                if (clickCount === 4) {
+                    // добавим розочек в текст
+                    const msg = document.querySelector('.message-main p:nth-child(2)');
+                    if (msg) {
+                        msg.innerHTML = '❤️ Желаю вам океан любви, море подарков и нежности! ❤️';
+                    }
+                }
+
+                // эффект на кнопку - меняем текст
+                if (clickCount === 1) {
+                    surpriseBtn.innerHTML = '<span>🥀</span> ЕЩЁ РОЗОЧКА <span>❤️</span>';
+                } else if (clickCount === 3) {
+                    surpriseBtn.innerHTML = '<span>💐</span> СЮРПРИЗ <span>💐</span>';
+                } else if (clickCount === 6) {
+                    surpriseBtn.innerHTML = '<span>❤️</span> БЕСКОНЕЧНОСТЬ <span>❤️</span>';
+                }
+
+                // добавляем прыгающие сердечки рядом с именами (эффект на список)
+                const recipients = document.querySelectorAll('.recipient-item');
+                recipients.forEach((item, index) => {
+                    item.style.transition = 'all 0.1s';
+                    item.style.transform = 'scale(1.05)';
+                    setTimeout(() => {
+                        item.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            });
+
+            // Начальное состояние сюрприза (не пустое)
+            surpriseBlock.innerHTML = '🌹 🌹 🌹 <br> Жми на розовую кнопку! 🌹 🌹 🌹';
+
+            // Добавим еще эффект при загрузке — красивое сообщение в консоль, но необязательно
+            console.log('Сайт для мамы, бабушки, тёти и прабабушки от Глеба ❤️');
+        })();
+    </script>
+</body>
+</html>

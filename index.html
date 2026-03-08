@@ -14,7 +14,7 @@
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
@@ -32,7 +32,7 @@
         
         .buttons-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 15px;
             margin-top: 20px;
         }
@@ -41,16 +41,17 @@
             background: linear-gradient(45deg, #4CAF50, #45a049);
             color: white;
             border: none;
-            padding: 15px 20px;
+            padding: 15px 10px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             transition: all 0.3s ease;
             text-decoration: none;
             display: block;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            word-break: break-word;
         }
         
         .student-button:hover {
@@ -68,41 +69,135 @@
     <div class="container">
         <h1>Поздравление детей от KIBEROne</h1>
         
-        <div class="buttons-grid">
-            <a href="Баязитова.html" class="student-button">Баязитова</a>
-            <a href="Бурганова.html" class="student-button">Бурганова</a>
-            <a href="Бурнаева.html" class="student-button">Бурнаева</a>
-            <a href="Вахитов Аскар.html" class="student-button">Вахитов Аскар</a>
-            <a href="Вахитов.html" class="student-button">Вахитов</a>
-            <a href="Гусев.html" class="student-button">Гусев</a>
-            <a href="Дмитриев.html" class="student-button">Дмитриев</a>
-            <a href="Дмитриева.html" class="student-button">Дмитриева</a>
-            <a href="Дойникова.html" class="student-button">Дойникова</a>
-            <a href="ИВАНОВ.html" class="student-button">Иванов</a>
-            <a href="Иванов_Андрей.html" class="student-button">Иванов Андрей</a>
-            <a href="Кабиров.html" class="student-button">Кабиров</a>
-            <a href="Кадикова.html" class="student-button">Кадикова</a>
-            <a href="Кадымова.html" class="student-button">Кадымова</a>
-            <a href="Калмыкова.html" class="student-button">Калмыкова</a>
-            <a href="Камалов.html" class="student-button">Камалов</a>
-            <a href="Караськин.html" class="student-button">Караськин</a>
-            <a href="Костриков.html" class="student-button">Костриков</a>
-            <a href="Котлев.html" class="student-button">Котлев</a>
-            <a href="Кунакбаев Рамазан.Html" class="student-button">Кунакбаев Рамазан</a>
-            <a href="Кунакбаев.html" class="student-button">Кунакбаев</a>
-            <a href="Лосев Дима.html" class="student-button">Лосев Дима</a>
-            <a href="Лысенко.html" class="student-button">Лысенко</a>
-            <a href="Максимов.html" class="student-button">Максимов</a>
-            <a href="максимов макс.html" class="student-button">Максимов Макс</a>
-            <a href="Молчанов.html" class="student-button">Молчанов</a>
-            <a href="Муратов.html" class="student-button">Муратов</a>
-            <a href="муртазин.html" class="student-button">Муртазин</a>
-            <a href="НаздрачёвНикита.html" class="student-button">Наздрачёв Никита</a>
-            <a href="Неткачев даниил.html" class="student-button">Неткачев Даниил</a>
-            <a href="Усманова.html" class="student-button">Усманова</a>
-            <a href="Успенский.html" class="student-button">Успенский</a>
-            <a href="Утяганов.html" class="student-button">Утяганов</a>
+        <div class="buttons-grid" id="buttonsContainer">
+            <!-- Кнопки будут добавлены сюда с помощью JavaScript -->
         </div>
     </div>
+
+    <script>
+        // Полный список всех учеников на основе предоставленных скриншотов
+        const students = [
+            // Из первого скриншота (Снимок экрана 2026-03-08 в 18.53.04.png)
+            { name: "Абзалилов Давид", file: "Абзалилов Давид.html" },
+            { name: "Алексеев", file: "Алексеев.html" },
+            { name: "Асылгужин Эрик", file: "Асылгужин Эрик.html" },
+            { name: "Батаев", file: "Батаев.html" },
+            { name: "Баталова", file: "Баталова.html" },
+            { name: "Баязитова", file: "Баязитова.html" },
+            { name: "Богдан Ковригин", file: "Богдан Ковригин.html" },
+            { name: "Бурганова", file: "Бурганова.html" },
+            { name: "Бурнаева", file: "Бурнаева.html" },
+            { name: "Бурчак Кирилл", file: "Бурчак Кирилл.html" },
+            { name: "Вахитов Аскар", file: "Вахитов Аскар.html" },
+            { name: "Вахитов", file: "Вахитов.html" },
+            { name: "Гибадуллин", file: "Гибадуллин.html" },
+            { name: "Гоголь Александр", file: "Гоголь Александр.html" },
+            { name: "Горшков", file: "Горшков.html" },
+            { name: "Гусев", file: "Гусев.html" },
+            { name: "Даниэль Загитов", file: "Даниэль Загитов.html" },
+            { name: "Дмитриев", file: "Дмитриев.html" },
+            { name: "Дмитриева", file: "Дмитриева.html" },
+            { name: "Дойникова", file: "Дойникова.html" },
+            { name: "Ермолаев", file: "Ермолаев.html" },
+            { name: "Жмакин Матвей", file: "Жмакин Матвей.html" },
+            { name: "Зайниев", file: "Зайниев.html" },
+            { name: "Захарова", file: "Захарова.html" },
+            { name: "Иванов Максим", file: "Иванов Максим.html" },
+            { name: "Иванов Андрей", file: "Иванов Андрей.html" },
+            { name: "ИВАНОВ", file: "ИВАНОВ.html" },
+            { name: "Игина", file: "Игина.html" },
+            { name: "Кабиров", file: "Кабиров.html" },
+            { name: "Кагиров", file: "Кагиров.html" },
+            { name: "Кадикова", file: "Кадикова.html" },
+            { name: "Кадымова", file: "Кадымова.html" },
+            { name: "Калмыкова", file: "Калмыкова.html" },
+            { name: "Камалов", file: "Камалов.html" },
+            { name: "Караськин", file: "Караськин.html" },
+            { name: "Кислицин Алексей", file: "Кислицин Алексей.html" },
+            { name: "Кокурин Иван", file: "Кокурин Иван.html" },
+            { name: "Комлев Саша", file: "Комлев Саша.html" },
+            { name: "Костин", file: "Костин.html" },
+            { name: "Костриков", file: "Костриков.html" },
+            { name: "Котлев", file: "Котлев.html" },
+            { name: "Кунакбаев Рамазан", file: "Кунакбаев Рамазан.html" },
+            { name: "Кунакбаев", file: "Кунакбаев.html" },
+            
+            // Из второго скриншота (Снимок экрана 2026-03-08 в 18.53.35.png)
+            { name: "Лосев Дима", file: "Лосев Дима.html" },
+            { name: "Лысенко Максим", file: "Лысенко Максим.html" },
+            { name: "Лысенко", file: "Лысенко.html" },
+            { name: "Максимов Макс", file: "максимов макс.html" },
+            { name: "Максимов", file: "Максимов.html" },
+            { name: "Малахов", file: "Малахов.html" },
+            { name: "Миниахметов Глеб", file: "Миниахметов Глеб.html" },
+            { name: "Михайлов Артем", file: "МихайловАртем.html" },
+            { name: "Мишин Максим", file: "мишин максим.html" },
+            { name: "Молчанов", file: "Молчанов.html" },
+            { name: "Муратов", file: "Муратов.html" },
+            { name: "Муртазин", file: "муртазин.html" },
+            { name: "Наздрачёв Никита", file: "НаздрачёвНикита.html" },
+            { name: "Насыров", file: "Насыров.html" },
+            { name: "Невструев Андрей", file: "невструев андрей.html" },
+            { name: "Неткачев Даниил", file: "Неткачев даниил.html" },
+            { name: "Плакучев", file: "Плакучев.html" },
+            { name: "Подшивалов", file: "Подшивалов.html" },
+            { name: "Пучкин Лев", file: "Пучкин Лев.html" },
+            { name: "Савченко", file: "Савченко.html" },
+            { name: "Сазонов", file: "Сазонов.html" },
+            { name: "Сайфуллин", file: "Сайфуллин.html" },
+            { name: "Саркисян Арсения", file: "Саркисян Арсения.html" },
+            { name: "Сарычев", file: "Сарычев.html" },
+            { name: "Серёжа Гатауллин", file: "Серёжа Гатауллин.html" },
+            { name: "Сидоров Степан", file: "Сидоров Степан.html" },
+            { name: "Тедеев Алихан", file: "Тедеев Алихан.html" },
+            { name: "Усманова", file: "Усманова.html" },
+            { name: "Успенский", file: "Успенский.html" },
+            { name: "Утяганов", file: "Утяганов.html" },
+            { name: "Фазылов Артем", file: "Фазылов Артем.html" },
+            { name: "Фаткуллина", file: "Фаткуллина.html" },
+            { name: "Федосеенко Саша", file: "Федосеенко Саша.html" },
+            { name: "Федькин", file: "федькин.html" },
+            { name: "Хисматуллина Амелия", file: "Хисматуллина Амелия.html" },
+            { name: "Чернов Дима", file: "Чернов Дима.html" },
+            { name: "Чернов Кирилл", file: "Чернов Кирилл.html" },
+            { name: "Шайхлисламов", file: "Шайхлисламов.html" },
+            { name: "Шарафутдинов 2", file: "шарафутдинов 2.html" },
+            { name: "Шарафутдинов", file: "Шарафутдинов.html" }
+        ];
+
+        // Функция для удаления дубликатов по имени
+        function getUniqueStudents(studentsArray) {
+            const unique = {};
+            studentsArray.forEach(student => {
+                // Используем имя как ключ для уникальности
+                // Если есть несколько файлов с одинаковым именем, берем последний
+                unique[student.name] = student;
+            });
+            return Object.values(unique);
+        }
+
+        // Функция для сортировки по имени
+        function sortStudents(studentsArray) {
+            return studentsArray.sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+        }
+
+        // Получаем уникальный и отсортированный список
+        const uniqueStudents = sortStudents(getUniqueStudents(students));
+
+        // Находим контейнер для кнопок
+        const container = document.getElementById('buttonsContainer');
+
+        // Создаем и добавляем кнопки на страницу
+        uniqueStudents.forEach(student => {
+            const button = document.createElement('a');
+            button.href = student.file;
+            button.className = 'student-button';
+            button.textContent = student.name;
+            container.appendChild(button);
+        });
+
+        // Выведем в консоль количество уникальных учеников для проверки
+        console.log(`Всего уникальных учеников: ${uniqueStudents.length}`);
+    </script>
 </body>
 </html>

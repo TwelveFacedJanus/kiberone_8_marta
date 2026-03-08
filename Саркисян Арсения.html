@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, мама Юлия 💐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: #f9e6f5;  /* светло-пурпурная база */
+            background: radial-gradient(circle at 10% 30%, #f9d4ed, #f9e6f5 70%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Очень нежные полупрозрачные сердечки и цветочки на фоне */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" opacity="0.2"><path fill="%23d9a3c7" d="M20 30 Q 25 25 30 30 Q 30 20 20 15 Q 10 20 10 30 Q 15 25 20 30 Z"/><circle cx="20" cy="18" r="6" fill="%23f5b0d5"/><circle cx="28" cy="22" r="3" fill="%23f5c3e0"/></svg>')
+                , url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" opacity="0.15"><path fill="%23b3a0cc" d="M15 8 L18 15 L25 15 L20 20 L22 27 L15 23 L8 27 L10 20 L5 15 L12 15 Z"/></svg>');
+            background-repeat: repeat;
+            background-size: 100px 100px, 120px 120px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Основная карточка — очень нежная, с пурпурным отливом */
+        .card {
+            position: relative;
+            z-index: 20;
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 245, 250, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 70px 20px 70px 20px;
+            box-shadow: 0 30px 40px -10px rgba(140, 80, 120, 0.3), 
+                        0 0 0 6px #ffe4f5 inset, 
+                        0 0 0 12px #fbc3e6 inset;
+            padding: 45px 40px;
+            border: 2px solid #fad1ea;
+        }
+
+        /* Имя мамы — крупно и нежно */
+        .name-block {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .for-mom {
+            font-size: 2.2rem;
+            letter-spacing: 4px;
+            color: #a05a8b;
+            background: #ffe9f9b3;
+            display: inline-block;
+            padding: 0.4rem 2rem;
+            border-radius: 50px;
+            backdrop-filter: blur(2px);
+            border: 1px solid #e5b2d4;
+            box-shadow: 0 4px 10px #ebc0df;
+            font-weight: 300;
+        }
+
+        .mom-name {
+            font-size: 5.5rem;
+            font-weight: 800;
+            color: #8b4e76;
+            text-shadow: 3px 3px 0 #ffdbef, 5px 5px 0 rgba(230, 170, 210, 0.5);
+            line-height: 1.2;
+            word-break: break-word;
+        }
+
+        .mom-name span {
+            display: inline-block;
+            transform: scale(1.1);
+            margin: 0 8px;
+        }
+
+        /* Блок с цветами и сердцами */
+        .flower-heart-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px 30px;
+            margin: 30px 0 20px;
+        }
+
+        .flower-bunch {
+            display: flex;
+            gap: 10px;
+            filter: drop-shadow(0 8px 10px #ddbbd1);
+        }
+
+        /* нежные пурпурные тюльпаны */
+        .flower {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .petals {
+            display: flex;
+            gap: 4px;
+            align-items: flex-end;
+        }
+
+        .petal {
+            width: 28px;
+            height: 48px;
+            background: #e6b0d2;   /* базовый нежно-пурпурный */
+            background: linear-gradient(145deg, #f2c1df, #da9ec6);
+            border-radius: 50% 50% 30% 30%;
+            transform: rotate(-3deg);
+            border: 2px solid #fff2fb;
+            box-shadow: 0 0 0 2px #fbd8f0 inset;
+        }
+
+        .petal:nth-child(2) {
+            height: 58px;
+            width: 32px;
+            background: linear-gradient(145deg, #f5badd, #cf90bb);
+            transform: rotate(0deg);
+            z-index: 2;
+            margin-bottom: -5px;
+        }
+
+        .petal:nth-child(3) {
+            transform: rotate(3deg);
+        }
+
+        .stem {
+            width: 10px;
+            height: 70px;
+            background: linear-gradient(90deg, #99bb88, #7fa36f);
+            border-radius: 20px;
+            margin-top: -5px;
+            border: 1px solid #5f8252;
+        }
+
+        .leaf {
+            width: 22px;
+            height: 10px;
+            background: #a6c89b;
+            border-radius: 80% 0 50% 20%;
+            transform: rotate(30deg) translateX(6px) translateY(-10px);
+            box-shadow: -1px -1px 5px #6d8f60;
+        }
+
+        /* вариация более светлая */
+        .flower.light .petal {
+            background: linear-gradient(145deg, #f8d0e8, #e3aacd);
+        }
+        .flower.light .petal:nth-child(2) {
+            background: linear-gradient(145deg, #fbc9e8, #da9ec9);
+        }
+
+        /* вариация с лавандовым оттенком */
+        .flower.lavender .petal {
+            background: linear-gradient(145deg, #d9c0e3, #be9bd0);
+        }
+        .flower.lavender .petal:nth-child(2) {
+            background: linear-gradient(145deg, #d4b0e0, #b287c2);
+        }
+
+        .heart-deco {
+            display: flex;
+            gap: 15px;
+            font-size: 3.2rem;
+            filter: drop-shadow(0 5px 5px #f1a9d2);
+            animation: softPulse 3s infinite ease-in-out;
+        }
+
+        @keyframes softPulse {
+            0% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.08); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.9; }
+        }
+
+        /* романтичное сообщение */
+        .message {
+            background: #fff1f9e5;
+            backdrop-filter: blur(3px);
+            border-radius: 80px 10px 80px 10px;
+            padding: 35px 30px;
+            margin: 30px 0 30px;
+            border: 3px dotted #eebfdf;
+            box-shadow: 0 15px 25px #eac0dd;
+            font-size: 1.6rem;
+            line-height: 1.7;
+            color: #653b55;
+            text-align: center;
+            font-weight: 450;
+        }
+
+        .message i {
+            font-family: 'Georgia', serif;
+            color: #944d7a;
+            font-size: 1.8rem;
+        }
+
+        .message p:first-child {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: #a34f84;
+        }
+
+        .signature {
+            margin-top: 30px;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #b35f94;
+            text-shadow: 0 2px 10px #ffe6f6;
+        }
+
+        /* кнопка, ради которой всё задумано */
+        .button-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0 15px;
+        }
+
+        .love-button {
+            background: #f5c6e2;
+            border: 5px solid white;
+            padding: 20px 55px;
+            border-radius: 120px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #792d62;
+            cursor: pointer;
+            box-shadow: 0 10px 0 #ac6f95, 0 15px 25px #dfb0cf;
+            transition: all 0.1s cubic-bezier(0.2, 1.6, 0.5, 1);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            line-height: 1.2;
+            letter-spacing: 2px;
+            border: 3px solid #ffeef8;
+            outline: none;
+        }
+
+        .love-button:active {
+            transform: translateY(10px);
+            box-shadow: 0 5px 0 #ac6f95, 0 18px 25px #dfb0cf;
+        }
+
+        /* маленькие сердечки вокруг */
+        .floating-hearts {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            font-size: 2.2rem;
+            color: #d481b5;
+            margin-top: 25px;
+            opacity: 0.8;
+            flex-wrap: wrap;
+        }
+
+        .floating-hearts span {
+            animation: float 4s infinite;
+        }
+
+        .floating-hearts span:nth-child(2) { animation-delay: -1s; }
+        .floating-hearts span:nth-child(3) { animation-delay: -2s; }
+        .floating-hearts span:nth-child(4) { animation-delay: -3s; }
+        .floating-hearts span:nth-child(5) { animation-delay: -0.5s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* адаптивность */
+        @media (max-width: 650px) {
+            .mom-name {
+                font-size: 4rem;
+            }
+            .card {
+                padding: 30px 20px;
+            }
+            .message {
+                font-size: 1.3rem;
+            }
+            .love-button {
+                font-size: 1.6rem;
+                padding: 15px 35px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .mom-name {
+                font-size: 3rem;
+            }
+            .for-mom {
+                font-size: 1.5rem;
+            }
+            .heart-deco {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* очень лёгкий блеск */
+        .sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #fff0fc;
+            border-radius: 50%;
+            opacity: 0.3;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- крошечные декоративные sparkles (необязательно, но мило) -->
+    <div class="sparkle" style="top: 15%; left: 8%;"></div>
+    <div class="sparkle" style="top: 70%; right: 5%; width: 15px; height: 15px; opacity: 0.2;"></div>
+    <div class="sparkle" style="bottom: 10%; left: 20%;"></div>
+
+    <div class="card">
+        <!-- заголовок с именем -->
+        <div class="name-block">
+            <div class="for-mom">для самой лучшей мамы</div>
+            <div class="mom-name">
+                <span>🌸</span> Юлия <span>🌸</span>
+            </div>
+        </div>
+
+        <!-- цветы и сердца (декоративный ряд) -->
+        <div class="flower-heart-row">
+            <div class="flower-bunch">
+                <div class="flower">
+                    <div class="petals">
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                    </div>
+                    <div class="stem"></div>
+                    <div class="leaf"></div>
+                </div>
+                <div class="flower light">
+                    <div class="petals">
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                    </div>
+                    <div class="stem"></div>
+                    <div class="leaf" style="transform: rotate(-25deg) translateX(-8px) translateY(-6px);"></div>
+                </div>
+                <div class="flower lavender">
+                    <div class="petals">
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                    </div>
+                    <div class="stem"></div>
+                    <div class="leaf"></div>
+                </div>
+            </div>
+            <div class="heart-deco">
+                <span>❤️</span>
+                <span>🧡</span>
+                <span>💗</span>
+                <span>💖</span>
+                <span>💕</span>
+            </div>
+        </div>
+
+        <!-- душевное поздравление для мамы Юлии -->
+        <div class="message">
+            <p>🌷 Мамочка Юлия, с 8 Марта! 🌷</p>
+            <i>
+                Ты — самый родной и светлый человек в моей жизни.<br>
+                Пусть каждый твой день будет согрет любовью,<br>
+                нежностью и заботой. Спасибо тебе за всё!
+            </i>
+            <div class="signature">
+                💐 Твоя любящая дочь 💐
+            </div>
+        </div>
+
+        <!-- КНОПКА с самым главным сообщением -->
+        <div class="button-wrapper">
+            <button class="love-button" id="loveMessageBtn">
+                ❤️ Нажми меня ❤️
+            </button>
+        </div>
+
+        <!-- летающие сердечки для настроения -->
+        <div class="floating-hearts">
+            <span>💜</span>
+            <span>💛</span>
+            <span>💚</span>
+            <span>💙</span>
+            <span>🤍</span>
+            <span>💗</span>
+            <span>🧡</span>
+        </div>
+
+        <!-- дополнительный стих внизу (совсем легкий) -->
+        <div style="text-align: center; margin-top: 30px; color: #a55b8a; font-size: 1.2rem; border-top: 2px solid #ffdbef; padding-top: 20px;">
+            🌹 С любовью, нежностью и бесконечной благодарностью. 🌹
+        </div>
+    </div>
+
+    <!-- Скрипт для кнопки с персональным сообщением о любви к маме Юлии -->
+    <script>
+        (function() {
+            const button = document.getElementById('loveMessageBtn');
+            
+            // Трогательное сообщение, которое вы хотели
+            const loveMessage = "Мамочка Юлия! ❤️\nЯ тебя очень сильно люблю! Ты самый дорогой человек в моей жизни. Спасибо за твою заботу, тепло и поддержку. С 8 марта, родная! 🌷🌸💐";
+
+            button.addEventListener('click', function() {
+                alert(loveMessage);
+            });
+
+            // маленькая дополнительная нежность: при наведении кнопка чуть светится
+            button.addEventListener('mouseenter', function() {
+                button.style.backgroundColor = '#fdd9f0';
+                button.style.transition = '0.2s';
+            });
+            button.addEventListener('mouseleave', function() {
+                button.style.backgroundColor = '#f5c6e2';
+            });
+
+            // Также при двойном клике на карточку будет сюрприз (не обязательно, но пусть будет)
+            const card = document.querySelector('.card');
+            card.addEventListener('dblclick', function() {
+                // меняем фон карточки на чуть более насыщенный пурпурный на мгновение
+                card.style.backgroundColor = '#fde3f4cc';
+                setTimeout(() => {
+                    card.style.backgroundColor = 'rgba(255, 245, 250, 0.8)';
+                }, 300);
+            });
+
+            // добавим сердечку на фоне движение за мышкой? легкое перемещение цветов
+            const flowers = document.querySelectorAll('.flower');
+            document.addEventListener('mousemove', function(e) {
+                const moveX = (e.clientX / window.innerWidth - 0.5) * 10;
+                const moveY = (e.clientY / window.innerHeight - 0.5) * 8;
+                flowers.forEach((f, index) => {
+                    f.style.transform = `translate(${moveX * (index*0.5)}px, ${moveY * (index*0.3)}px)`;
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

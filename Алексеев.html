@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, мама Альфия! от Даши</title>
+    <style>
+        /* БАЗОВЫЕ СБРОСЫ И ШРИФТЫ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(145deg, #fef9e7 0%, #fef3d9 50%, #fde9c5 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ДЕКОРАТИВНЫЙ ФОН С РОЗАМИ */
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-rose {
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.1;
+            filter: drop-shadow(0 0 15px #ffd966);
+        }
+
+        .bg-rose:nth-child(1) { top: -20px; left: -40px; transform: rotate(-20deg); }
+        .bg-rose:nth-child(2) { bottom: -30px; right: -30px; transform: rotate(25deg); font-size: 180px; }
+        .bg-rose:nth-child(3) { top: 30%; right: 5%; transform: rotate(10deg); font-size: 100px; }
+        .bg-rose:nth-child(4) { bottom: 15%; left: 2%; transform: rotate(-15deg); font-size: 140px; }
+        .bg-rose:nth-child(5) { top: 10%; left: 20%; transform: rotate(5deg); font-size: 90px; }
+
+        /* ОСНОВНОЙ КОНТЕЙНЕР */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* ГЛАВНАЯ КАРТОЧКА */
+        .main-card {
+            background: rgba(255, 250, 235, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 60px 60px 40px 40px;
+            box-shadow: 0 30px 50px rgba(255, 180, 40, 0.25),
+                        0 15px 30px rgba(255, 200, 100, 0.4),
+                        inset 0 2px 10px rgba(255, 255, 220, 0.8);
+            border: 3px solid #ffe6a6;
+            padding: 35px 30px;
+            transition: transform 0.3s;
+        }
+
+        .main-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* ШАПКА С ИМЕНАМИ */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .roses-line {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .roses-line span {
+            font-size: 3.2rem;
+            filter: drop-shadow(0 8px 12px #f7b32b);
+            animation: dance 3s infinite alternate;
+        }
+
+        .roses-line span:nth-child(2) { animation-delay: 0.2s; }
+        .roses-line span:nth-child(3) { animation-delay: 0.5s; }
+        .roses-line span:nth-child(4) { animation-delay: 0.8s; }
+        .roses-line span:nth-child(5) { animation-delay: 1.1s; }
+        .roses-line span:nth-child(6) { animation-delay: 1.4s; }
+        .roses-line span:nth-child(7) { animation-delay: 1.7s; }
+
+        @keyframes dance {
+            0% { transform: rotate(0deg) translateY(0); }
+            100% { transform: rotate(8deg) translateY(-12px); }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: #b65c2e;
+            text-shadow: 5px 5px 0 #ffe68f, 7px 7px 0 rgba(255, 200, 100, 0.5);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .mother-name {
+            font-size: 5rem;
+            background: linear-gradient(45deg, #d68c3c, #b45f2a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+            padding: 0 15px;
+        }
+
+        .daughter-sign {
+            font-size: 2rem;
+            font-weight: 500;
+            color: #a55428;
+            background: rgba(255, 235, 160, 0.7);
+            padding: 12px 30px;
+            border-radius: 60px;
+            display: inline-block;
+            border: 2px solid #ffc489;
+            box-shadow: 0 6px 0 #e09d54;
+        }
+
+        /* ОСНОВНОЙ КОНТЕНТ */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ЛЕВАЯ КОЛОНКА - ПОЗДРАВЛЕНИЕ */
+        .greeting-block {
+            background: rgba(255, 245, 210, 0.6);
+            border-radius: 50px;
+            padding: 35px 25px;
+            border: 3px solid #ffd791;
+            box-shadow: inset 0 0 30px #fff3b8, 0 15px 25px rgba(230, 150, 0, 0.2);
+        }
+
+        .greeting-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #8b4513;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .greeting-title span {
+            font-size: 2.5rem;
+            background: #fecb69;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .greeting-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #5a3a22;
+            margin-bottom: 30px;
+        }
+
+        .greeting-text p {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .greeting-text p i {
+            font-size: 1.8rem;
+            min-width: 40px;
+        }
+
+        /* ПРАВАЯ КОЛОНКА - ХАРАКТЕРИСТИКИ */
+        .features-block {
+            background: rgba(255, 240, 190, 0.6);
+            border-radius: 50px;
+            padding: 35px 25px;
+            border: 3px solid #fec26b;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: rgba(255, 255, 200, 0.5);
+            border-radius: 40px;
+            transition: transform 0.2s;
+        }
+
+        .feature-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 170, 0.7);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            background: #fecb69;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #fff0b5;
+            box-shadow: 0 8px 0 #b45f2a;
+        }
+
+        .feature-text h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #8b4513;
+            margin-bottom: 5px;
+        }
+
+        .feature-text p {
+            font-size: 1.1rem;
+            color: #5a3a22;
+        }
+
+        /* ГАЛЕРЕЯ РОЗ */
+        .roses-gallery {
+            background: rgba(255, 235, 170, 0.5);
+            border-radius: 50px;
+            padding: 35px;
+            margin: 20px 0;
+            border: 3px solid #fec26b;
+        }
+
+        .gallery-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #b1560f;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 210, 0.7);
+            border-radius: 40px;
+            border: 2px solid #ffbc6e;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            background: #fff2b0;
+            box-shadow: 0 15px 25px #feba5a;
+        }
+
+        .gallery-item .rose-emoji {
+            font-size: 4rem;
+            margin-bottom: 10px;
+        }
+
+        .gallery-item p {
+            font-size: 1.1rem;
+            color: #783f04;
+            font-weight: 600;
+        }
+
+        /* ИНТЕРАКТИВНЫЙ БЛОК */
+        .interactive-block {
+            background: linear-gradient(135deg, #ffd89a, #fecb7e);
+            border-radius: 60px;
+            padding: 40px;
+            margin: 30px 0;
+            border: 4px solid #fff0b5;
+            box-shadow: 0 20px 30px rgba(200, 120, 20, 0.4);
+        }
+
+        .interactive-title {
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: #5e2e10;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .surprise-btn {
+            background: #febf5e;
+            border: none;
+            color: #422b0e;
+            font-size: 1.8rem;
+            font-weight: 600;
+            padding: 20px 40px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 0 #aa5f1e, 0 15px 25px #b26819;
+            transition: all 0.1s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 2px solid #fff0aa;
+        }
+
+        .surprise-btn:active {
+            transform: translateY(8px);
+            box-shadow: 0 5px 0 #aa5f1e, 0 10px 20px #b26819;
+        }
+
+        .surprise-btn.secondary {
+            background: #feda5a;
+            box-shadow: 0 10px 0 #b45f2a, 0 15px 25px #b26819;
+        }
+
+        .surprise-display {
+            background: #fffcdb;
+            border-radius: 50px;
+            padding: 35px;
+            text-align: center;
+            border: 4px solid #fec26b;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .surprise-emoji {
+            font-size: 4rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 20px #ffbf00); }
+        }
+
+        .surprise-message {
+            font-size: 1.6rem;
+            color: #75471c;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* ПОДПИСЬ */
+        .footer {
+            text-align: right;
+            margin-top: 30px;
+        }
+
+        .final-signature {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #954f20;
+            background: rgba(255, 235, 140, 0.7);
+            padding: 15px 40px;
+            border-radius: 60px;
+            display: inline-block;
+            border: 3px solid #fec26b;
+            box-shadow: 0 8px 0 #b45f1e;
+        }
+
+        /* АДАПТАЦИЯ */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 3rem;
+            }
+            .mother-name {
+                font-size: 3.5rem;
+            }
+            .roses-line span {
+                font-size: 2.5rem;
+            }
+            .surprise-btn {
+                font-size: 1.4rem;
+                padding: 15px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Фоновые розы -->
+    <div class="bg-decoration">
+        <div class="bg-rose">🌹</div>
+        <div class="bg-rose">🌹</div>
+        <div class="bg-rose">🌹</div>
+        <div class="bg-rose">🌹</div>
+        <div class="bg-rose">🌹</div>
+    </div>
+
+    <div class="container">
+        <!-- ГЛАВНАЯ КАРТОЧКА -->
+        <div class="main-card">
+            <!-- ШАПКА -->
+            <div class="header">
+                <div class="roses-line">
+                    <span>🌹</span>
+                    <span>🌼</span>
+                    <span>🌹</span>
+                    <span>🌻</span>
+                    <span>🌹</span>
+                    <span>🌸</span>
+                    <span>🌹</span>
+                </div>
+                <h1>С 8 Марта, <span class="mother-name">Альфия</span>!</h1>
+                <div class="daughter-sign">от твоей доченьки Даши 💛</div>
+            </div>
+
+            <!-- ОСНОВНОЙ КОНТЕНТ - СЕТКА -->
+            <div class="content-grid">
+                <!-- ЛЕВАЯ КОЛОНКА - ПОЗДРАВЛЕНИЕ -->
+                <div class="greeting-block">
+                    <div class="greeting-title">
+                        <span>💌</span>
+                        <span>Мамочке с любовью</span>
+                    </div>
+                    <div class="greeting-text">
+                        <p><i>🌹</i> Родная моя мамочка Альфия!</p>
+                        <p><i>💛</i> Ты у меня самая лучшая, самая добрая и самая красивая.</p>
+                        <p><i>🌼</i> Твой любимый желтый цвет — это цвет солнца, тепла и радости. Пусть твоя жизнь всегда будет такой же яркой!</p>
+                        <p><i>🌹</i> Я знаю, как ты любишь розы, поэтому сегодня они цветут для тебя повсюду.</p>
+                        <p><i>✨</i> Спасибо за твою заботу, поддержку и бесконечную любовь. Ты — мой главный человек!</p>
+                    </div>
+                </div>
+
+                <!-- ПРАВАЯ КОЛОНКА - ФАКТЫ О МАМЕ -->
+                <div class="features-block">
+                    <div class="greeting-title">
+                        <span>🌟</span>
+                        <span>Почему мама лучшая</span>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">🌹</div>
+                        <div class="feature-text">
+                            <h3>Любит розы</h3>
+                            <p>Самые красивые цветы в мире — как ты, мамочка</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">💛</div>
+                        <div class="feature-text">
+                            <h3>Любимый цвет — желтый</h3>
+                            <p>Цвет солнца, тепла и позитива, как твой характер</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">👑</div>
+                        <div class="feature-text">
+                            <h3>Самая красивая</h3>
+                            <p>Красивее тебя нет никого на свете</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">💝</div>
+                        <div class="feature-text">
+                            <h3>Самая добрая</h3>
+                            <p>Твое сердце полно любви и заботы</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ГАЛЕРЕЯ РОЗ (для мамы, которая любит розы) -->
+            <div class="roses-gallery">
+                <div class="gallery-title">🌹 Желтые розы для тебя, мама 🌹</div>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <div class="rose-emoji">🌹</div>
+                        <p>Желтая роза</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="rose-emoji">🌼</div>
+                        <p>Солнечный цветок</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="rose-emoji">🌻</div>
+                        <p>Подсолнух</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="rose-emoji">🌹💛</div>
+                        <p>Золотая роза</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ИНТЕРАКТИВНЫЙ БЛОК (сюрпризы) -->
+        <div class="interactive-block">
+            <div class="interactive-title">✨ Сюрпризы для мамы Альфии ✨</div>
+            
+            <div class="button-container">
+                <button class="surprise-btn" id="wishBtn">
+                    <span>🌹</span> Получить пожелание <span>🌹</span>
+                </button>
+                <button class="surprise-btn secondary" id="flowerBtn">
+                    <span>💛</span> Подарить розу <span>💛</span>
+                </button>
+            </div>
+
+            <div class="surprise-display" id="surpriseDisplay">
+                <div class="surprise-emoji" id="displayEmoji">🌹💛</div>
+                <div class="surprise-message" id="displayMessage">Нажми на кнопку, чтобы получить сюрприз!</div>
+            </div>
+        </div>
+
+        <!-- ПОДПИСЬ -->
+        <div class="footer">
+            <div class="final-signature">
+                С любовью, твоя Даша 💐
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Данные для персонализации
+            const motherName = "Альфия";
+            const daughterName = "Даша";
+            
+            // Коллекция пожеланий (все с желтым цветом и розами)
+            const wishes = [
+                "🌹 Пусть каждый день дарит тебе море желтых роз и океан счастья!",
+                "💛 Желаю тебе, мамочка, чтобы жизнь была такой же яркой и теплой, как твой любимый желтый цвет!",
+                "🌼 Пусть в твоем сердце всегда цветет весна, а в доме пахнет розами!",
+                "🌻 Ты достойна только самого лучшего. С 8 Марта, моя золотая!",
+                "✨ Оставайся такой же красивой, молодой и энергичной!",
+                "🌹 Желтые розы — символ радости. Желаю тебе радости каждый день!",
+                "💐 Спасибо, что ты есть. Ты — мое вдохновение и поддержка!",
+                "🍯 Пусть жизнь будет сладкой, как мед, и красивой, как розы!",
+                "🌟 Желаю здоровья, счастья и исполнения всех мечтаний!",
+                "🌹🌹🌹 Пусть вокруг тебя всегда будут только любящие люди!"
+            ];
+
+            // Коллекция роз (разные вариации)
+            const roses = [
+                "🌹", "🌹💛", "🌹🌼", "🌹🌻", "🌹✨", "💛🌹", "🌹🌸", "🌺🌹", "🌹🌹", "🌹💐"
+            ];
+
+            // Элементы
+            const wishBtn = document.getElementById('wishBtn');
+            const flowerBtn = document.getElementById('flowerBtn');
+            const displayEmoji = document.getElementById('displayEmoji');
+            const displayMessage = document.getElementById('displayMessage');
+
+            // Функция для случайного элемента из массива
+            function randomItem(arr) {
+                return arr[Math.floor(Math.random() * arr.length)];
+            }
+
+            // Обработчик для кнопки пожеланий
+            wishBtn.addEventListener('click', function() {
+                const wish = randomItem(wishes);
+                const rose = randomItem(roses);
+                
+                displayEmoji.textContent = rose + ' ✨ ' + rose;
+                displayMessage.textContent = wish;
+                
+                // Анимация
+                displayEmoji.style.transform = 'scale(1.2)';
+                setTimeout(() => displayEmoji.style.transform = 'scale(1)', 200);
+            });
+
+            // Обработчик для кнопки "Подарить розу"
+            flowerBtn.addEventListener('click', function() {
+                const rose = randomItem(roses);
+                const messages = [
+                    "Это тебе, мамочка! Самая красивая роза 🌹",
+                    "Желтая роза для самой лучшей мамы 💛",
+                    "Пусть эта роза принесет тебе счастье!",
+                    "Ты достойна миллиона таких роз!",
+                    "С любовью от Даши 💐"
+                ];
+                
+                displayEmoji.textContent = rose + ' 💛 ' + rose;
+                displayMessage.textContent = randomItem(messages);
+                
+                // Анимация
+                displayEmoji.style.transform = 'scale(1.3)';
+                setTimeout(() => displayEmoji.style.transform = 'scale(1)', 200);
+            });
+
+            // Небольшой сюрприз при загрузке
+            setTimeout(() => {
+                displayEmoji.textContent = "🌹💛🌹";
+                displayMessage.textContent = "С 8 Марта, мамочка Альфия! Я тебя очень люблю! 💛";
+            }, 500);
+        })();
+    </script>
+</body>
+</html>

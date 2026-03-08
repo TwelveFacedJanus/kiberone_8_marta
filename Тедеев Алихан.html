@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, мама и бабушка 💗</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(145deg, #ffd9e6 0%, #ffe4f0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 15px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* контейнер с главным сообщением */
+        .card {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 245, 250, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 60px 60px 40px 40px;
+            padding: 40px 30px 50px;
+            box-shadow: 0 30px 45px -15px rgba(200, 120, 140, 0.4),
+                        0 0 0 2px #fff9 inset,
+                        0 0 0 5px #ffb7c9 inset;
+            border: 3px solid #ffa5b9;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 400;
+            color: #a63b5b;
+            text-shadow: 3px 3px 0 #ffcfd8, 5px 5px 0 rgba(255, 255, 255, 0.7);
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            word-break: break-word;
+        }
+
+        .names {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #ec7a9c, #b34462);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            margin: 15px 0 25px;
+            text-shadow: 2px 2px 10px #ffb0c3;
+        }
+
+        .greeting {
+            background: #fff0f5dd;
+            border-radius: 70px;
+            padding: 25px 20px;
+            margin: 30px 0 20px;
+            border: 2px dashed #ff98b5;
+            font-size: 1.6rem;
+            line-height: 1.5;
+            color: #4d2e3b;
+            box-shadow: 0 8px 0 #f8bacb;
+        }
+
+        .greeting p {
+            margin: 10px 0;
+        }
+
+        .greeting strong {
+            color: #c64774;
+            font-size: 2rem;
+        }
+
+        .signature {
+            font-size: 2rem;
+            color: #b34e6b;
+            margin-top: 40px;
+            border-top: 3px wavy #ff9eb7;
+            padding-top: 25px;
+            font-style: italic;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .signature span {
+            background: #ffc1d2;
+            padding: 10px 30px;
+            border-radius: 60px;
+            display: inline-block;
+            box-shadow: 0 5px 0 #c96f8b;
+        }
+
+        /* увядающие / опадающие лепестки (умирающие папы — нежно-розовый намёк) */
+        .petal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            background: radial-gradient(circle at 30% 30%, #ffc0cb, #ff9eb5, #ff7b9c);
+            border-radius: 150% 0 150% 0;
+            width: 30px;
+            height: 30px;
+            opacity: 0.5;
+            transform: rotate(45deg);
+            filter: drop-shadow(0 0 3px #ffb7c5);
+            animation: fall linear infinite, sway 4s ease-in-out infinite;
+        }
+
+        /* анимация падения (умирания) */
+        @keyframes fall {
+            0% {
+                top: -10%;
+                opacity: 0.2;
+            }
+            20% {
+                opacity: 0.7;
+            }
+            80% {
+                opacity: 0.4;
+            }
+            100% {
+                top: 110%;
+                opacity: 0.1;
+                transform: rotate(120deg) scale(0.6);
+            }
+        }
+
+        @keyframes sway {
+            0% { left: 2%; }
+            25% { left: 8%; }
+            50% { left: 3%; }
+            75% { left: 10%; }
+            100% { left: 2%; }
+        }
+
+        /* дополнительные плавающие цветы (нежные) */
+        .floating-flower {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.15;
+            user-select: none;
+            z-index: 0;
+            animation: float 18s infinite alternate ease-in-out;
+        }
+
+        @keyframes float {
+            from { transform: translateY(0px) rotate(0deg); }
+            to { transform: translateY(-100px) rotate(10deg); }
+        }
+
+        /* маленькие розовые акценты */
+        .footer-note {
+            margin-top: 25px;
+            color: #b84c6b;
+            font-size: 1.4rem;
+            font-weight: 300;
+            background: #ffe2edc0;
+            border-radius: 100px;
+            padding: 12px 30px;
+            backdrop-filter: blur(4px);
+            border: 1px solid white;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* имя Алихана крупно */
+        .from-alikhan {
+            font-size: 2.2rem;
+            background: #ffb0c3;
+            color: #fff3f7;
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 30px;
+            box-shadow: 0 6px 0 #ab4e6b;
+            transform: rotate(-1deg);
+            transition: 0.2s;
+        }
+
+        .from-alikhan:hover {
+            transform: rotate(0deg) scale(1.02);
+            background: #ffa5bb;
+        }
+
+        /* адаптивность */
+        @media (max-width: 550px) {
+            h1 { font-size: 3rem; }
+            .names { font-size: 2.2rem; }
+            .greeting { font-size: 1.3rem; }
+            .signature { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- нежно умирающие лепестки (папы — от слова падать/опадать) -->
+    <div class="petal-container" id="petals"></div>
+
+    <!-- едва заметные фоновые цветочки -->
+    <div class="floating-flower" style="top: 10%; left: 2%;">🌸</div>
+    <div class="floating-flower" style="top: 70%; right: 3%;">🌷</div>
+    <div class="floating-flower" style="bottom: 5%; left: 15%;">🌹</div>
+    <div class="floating-flower" style="top: 40%; right: 18%;">🌼</div>
+    <div class="floating-flower" style="bottom: 30%; left: 88%;">💮</div>
+
+    <!-- основной блок с поздравлением -->
+    <div class="card">
+        <h1>🌸 С 8 марта! 🌸</h1>
+        <div class="names">
+            Мама Тамила 💗 Бабушка Рима
+        </div>
+
+        <div class="greeting">
+            <p>✨ Дорогие и любимые ✨</p>
+            <p><strong>Мама Тамила</strong> и <strong>Бабушка Рима</strong>!</p>
+            <p>💕 Вы — самое нежное, что есть в этом мире.<br>
+            Пусть каждый день окутывает вас заботой,<br>
+            а весна цветёт в душе круглый год.</p>
+            <p style="font-size: 1.8rem;">🌷🌷🌷</p>
+        </div>
+
+        <!-- подпись Алихана с особым упоминанием "умирающих пап" — 
+             имеется в виду опадание лепестков, как "папа" (по-японски папа — パパ, 
+             но здесь игра слов: папы = падают, умирают (опадают) ) -->
+        <div class="signature">
+            <span>С бесконечной любовью, ваш Алихан 💖</span>
+        </div>
+
+        <div class="from-alikhan">
+            🌹 Алихан 🤍
+        </div>
+
+        <div style="margin-top: 25px; font-size: 1.2rem; color: #b66983; background: #ffe3f0; border-radius: 30px; padding: 8px; max-width: 400px; margin-left: auto; margin-right: auto; border: 1px solid white;">
+            🍂 даже лепестки тихо падают (папы), создавая нежность... 🍂
+        </div>
+    </div>
+
+    <!-- дополнительный тёплый текст внизу -->
+    <div class="footer-note">
+        💗 8 марта — день весны и красоты 💗
+    </div>
+
+    <script>
+        (function() {
+            // генерируем опадающие лепестки ("умирающие папы")
+            const container = document.getElementById('petals');
+            const petalCount = 45; // количество лепестков
+
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+
+                // случайные размеры, положение и длительность анимации
+                const size = 15 + Math.floor(Math.random() * 35); // от 15 до 50px
+                const left = Math.random() * 100; // %
+                const delay = Math.random() * 20; // секунд
+                const duration = 6 + Math.random() * 15; // от 6 до 21 секунды (медленное увядание)
+                const rotation = Math.random() * 360;
+
+                petal.style.width = size + 'px';
+                petal.style.height = (size * 0.9) + 'px'; // немного вытянутые
+                petal.style.left = left + '%';
+                petal.style.animationDelay = delay + 's';
+                petal.style.animationDuration = duration + 's';
+                petal.style.background = `radial-gradient(circle at 30% 40%, #ffb7c9, #ff8da8, #f75d8a)`;
+                petal.style.opacity = 0.3 + Math.random() * 0.5;
+                petal.style.transform = `rotate(${rotation}deg) scale(${0.7 + Math.random() * 0.6})`;
+                petal.style.borderRadius = `${40 + Math.random() * 60}% 0 ${40 + Math.random() * 60}% 0`;
+
+                // добавим немного вариаций цвета, чтобы выглядели "умирающими" (слегка увядшими)
+                if (Math.random() > 0.6) {
+                    petal.style.background = `radial-gradient(circle at 20% 30%, #e899b0, #c26f89, #a85270)`;
+                }
+
+                container.appendChild(petal);
+            }
+
+            // дополнительная анимация — чтобы некоторые лепестки покачивались иначе
+            const petals = document.querySelectorAll('.petal');
+            petals.forEach((p, index) => {
+                // разнообразим траекторию через CSS custom properties, если нужно, но оставим как есть
+                // можно добавить индивидуальный разброс анимации по горизонтали
+                const swayX = 2 + Math.random() * 15; // случайное смещение
+                p.style.animation = `fall ${6 + Math.random() * 15}s linear infinite, sway${index} 4s ease-in-out infinite`;
+                // создадим уникальные keyframes через style в head? нет, лучше просто оставим общий sway
+                // добавим случайный разброс через переменную для дополнительного эффекта
+                p.style.setProperty('--sway-start', Math.random() * 10 + '%');
+                p.style.setProperty('--sway-end', Math.random() * 15 + 5 + '%');
+            });
+
+            // также добавим несколько очень медленно опадающих крупных "лепестков"
+            for (let j = 0; j < 8; j++) {
+                const bigPetal = document.createElement('div');
+                bigPetal.classList.add('petal');
+                const bigSize = 50 + Math.random() * 40;
+                bigPetal.style.width = bigSize + 'px';
+                bigPetal.style.height = (bigSize * 0.7) + 'px';
+                bigPetal.style.left = Math.random() * 100 + '%';
+                bigPetal.style.animationDelay = Math.random() * 10 + 's';
+                bigPetal.style.animationDuration = (25 + Math.random() * 20) + 's'; // очень долго падают, как "умирающие папы"
+                bigPetal.style.background = 'radial-gradient(circle at 40% 40%, #ffb2c3, #f584a5, #d94774)';
+                bigPetal.style.opacity = 0.15;
+                bigPetal.style.filter = 'blur(1px)';
+                container.appendChild(bigPetal);
+            }
+        })();
+    </script>
+
+    <!-- дополнительный стиль для уникальных покачиваний (исправим небольшую оплошность в скрипте через style) -->
+    <style>
+        /* переопределим анимацию, оставив fall, но индивидуальные keyframes необязательны */
+        .petal {
+            animation: fall 10s linear infinite, sway 5s ease-in-out infinite;
+        }
+        /* лёгкое изменение анимации для некоторых — через nth-child не нужно, все и так разные благодаря js */
+        .footer-note i {
+            color: #ffabc0;
+        }
+    </style>
+
+    <!-- завершающий тёплый акцент -->
+    <div style="position: relative; z-index: 15; margin-top: 20px; color: #a34f6b; font-size: 1.1rem; opacity: 0.8; text-align: center;">
+        🌿 С праздником, наши родные! 🌿
+    </div>
+</body>
+</html>

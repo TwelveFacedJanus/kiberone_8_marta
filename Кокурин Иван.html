@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, мама Гузель!</title>
+    <style>
+        /* СБРОС И БАЗОВЫЕ СТИЛИ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 16px;
+            /* ОСНОВНОЙ ЗЕЛЁНЫЙ ФОН */
+            background: linear-gradient(145deg, #2e7d32 0%, #1b5e20 70%, #0a3f0e 100%);
+            position: relative;
+            overflow-x: hidden;
+            animation: breathe 10s infinite ease-in-out;
+        }
+
+        /* Анимация для мягкого "дыхания" фона */
+        @keyframes breathe {
+            0% { background: linear-gradient(145deg, #2e7d32, #1b5e20, #0a3f0e); }
+            50% { background: linear-gradient(145deg, #3c8c40, #2e7d32, #1b5e20); }
+            100% { background: linear-gradient(145deg, #2e7d32, #1b5e20, #0a3f0e); }
+        }
+
+        /* КОНТЕЙНЕР ДЛЯ ЦВЕТОЧКОВ (фон) */
+        .flower-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* Стили для цветочков (псевдоэлементы и элементы) */
+        .flower {
+            position: absolute;
+            opacity: 0.5;
+            animation: floatFlower 12s infinite alternate ease-in-out;
+        }
+
+        .flower::before, .flower::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        /* Разные вариации цветов */
+        .flower-1 { width: 40px; height: 40px; top: 10%; left: 5%; }
+        .flower-1::before { width: 20px; height: 20px; background: #ffb74d; top: 10px; left: 10px; box-shadow: 0 0 0 4px #fff9c4; }
+        .flower-1::after { width: 10px; height: 10px; background: #ffeb3b; top: 15px; left: 15px; }
+
+        .flower-2 { width: 60px; height: 60px; bottom: 15%; right: 8%; }
+        .flower-2::before { width: 25px; height: 25px; background: #f06292; top: 17px; left: 17px; box-shadow: 0 0 0 6px #f8bbd0; }
+        .flower-2::after { width: 12px; height: 12px; background: #ec407a; top: 23px; left: 23px; }
+
+        .flower-3 { width: 50px; height: 50px; top: 60%; left: 15%; }
+        .flower-3::before { width: 30px; height: 30px; background: #ba68c8; top: 10px; left: 10px; box-shadow: 0 0 0 8px #e1bee7; }
+        .flower-3::after { width: 14px; height: 14px; background: #8e24aa; top: 18px; left: 18px; }
+
+        .flower-4 { width: 70px; height: 70px; top: 20%; right: 20%; }
+        .flower-4::before { width: 35px; height: 35px; background: #4fc3f7; top: 17px; left: 17px; box-shadow: 0 0 0 10px #b3e5fc; }
+        .flower-4::after { width: 16px; height: 16px; background: #0288d1; top: 26px; left: 26px; }
+
+        .flower-5 { width: 45px; height: 45px; bottom: 30%; left: 25%; }
+        .flower-5::before { width: 28px; height: 28px; background: #ff8a65; top: 8px; left: 8px; box-shadow: 0 0 0 6px #ffccbc; }
+        .flower-5::after { width: 12px; height: 12px; background: #f4511e; top: 16px; left: 16px; }
+
+        /* Анимации для цветов */
+        @keyframes floatFlower {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        /* ОСНОВНАЯ КАРТОЧКА-ОТКРЫТКА */
+        .card {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 48px 16px 48px 16px;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3), 0 0 0 4px #f9e076, 0 0 0 8px #fbc02d;
+            max-width: 650px;
+            width: 100%;
+            padding: 40px 32px;
+            text-align: center;
+            animation: cardAppear 1.2s ease-out, cardGlow 3s infinite alternate;
+        }
+
+        @keyframes cardAppear {
+            0% { opacity: 0; transform: scale(0.7) translateY(100px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes cardGlow {
+            0% { box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3), 0 0 0 4px #f9e076, 0 0 0 8px #fbc02d; }
+            100% { box-shadow: 0 30px 60px rgba(255, 215, 0, 0.6), 0 0 0 6px #fff3b0, 0 0 0 12px #f9a825; }
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1b3b1b;
+            text-shadow: 2px 2px 0 #f9e076, 4px 4px 0 #c2185b;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+            animation: textPop 1.4s ease-out;
+        }
+
+        .sub-header {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #c2185b;
+            background: rgba(255, 249, 196, 0.7);
+            display: inline-block;
+            padding: 8px 32px;
+            border-radius: 60px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 0 #7b1fa2;
+            transform: rotate(-1deg);
+        }
+
+        .message {
+            font-size: 1.5rem;
+            color: #1f3a1f;
+            background: rgba(255, 255, 240, 0.6);
+            padding: 24px;
+            border-radius: 40px 12px 40px 12px;
+            margin: 24px 0;
+            border: 3px dashed #7b1fa2;
+            line-height: 1.5;
+            box-shadow: inset 0 0 15px #c8e6c9;
+        }
+
+        .name-vanya {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0d3d0d;
+            background: #ffe082;
+            padding: 8px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 8px 0 16px;
+            border: 4px solid #f06292;
+            transform: scale(1.02);
+            box-shadow: 0 8px 0 #b71c1c;
+        }
+
+        /* КНОПКА-СЮРПРИЗ */
+        .surprise-btn {
+            background: #f06292;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            padding: 16px 40px;
+            border-radius: 40px;
+            cursor: pointer;
+            box-shadow: 0 10px 0 #b71c1c, 0 5px 20px rgba(255,105,180,0.6);
+            transition: 0.1s linear;
+            margin: 24px 0 16px;
+            border: 2px solid #ffeb3b;
+        }
+
+        .surprise-btn:active {
+            transform: translateY(8px);
+            box-shadow: 0 2px 0 #b71c1c, 0 5px 15px rgba(255,105,180,0.8);
+        }
+
+        .surprise-message {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #880e4f;
+            background: #fff9c4;
+            padding: 20px;
+            border-radius: 50px;
+            opacity: 0;
+            transition: 0.4s;
+            margin-top: 10px;
+            border: 5px dotted #f06292;
+        }
+
+        .surprise-message.show {
+            opacity: 1;
+            animation: bounce 0.8s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% { transform: scale(1) translateY(0); }
+            100% { transform: scale(1.1) translateY(-10px); background: #f3e5f5; }
+        }
+
+        /* Стили для маленьких дополнительных цветочков (генерируемые JS) */
+        .dynamic-flower {
+            position: absolute;
+            pointer-events: none;
+            z-index: 5;
+            font-size: 24px;
+            animation: fallAndSpin 6s linear forwards;
+        }
+
+        @keyframes fallAndSpin {
+            0% { transform: translateY(-20vh) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
+        }
+
+        footer {
+            font-size: 1.2rem;
+            color: #fef9e7;
+            background: #2c5a2c;
+            padding: 8px;
+            border-radius: 30px;
+            margin-top: 24px;
+            border: 2px solid gold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Слой с цветочками (фон) -->
+    <div class="flower-bg">
+        <div class="flower flower-1"></div>
+        <div class="flower flower-2"></div>
+        <div class="flower flower-3"></div>
+        <div class="flower flower-4"></div>
+        <div class="flower flower-5"></div>
+    </div>
+
+    <!-- Главная открытка -->
+    <div class="card">
+        <h1>🌸 8 Марта 🌸</h1>
+        <div class="sub-header">Мамочка Гузель!</div>
+        <div class="message">
+            С праздником весны, радости и цветов! <br>
+            Ты самая лучшая, добрая и красивая мама на свете!
+        </div>
+        <div class="name-vanya">От Вани 💚</div>
+
+        <!-- Кнопка для сюрприза -->
+        <button class="surprise-btn" id="surpriseBtn">🌷 Нажми меня 🌷</button>
+        <div id="surpriseMessage" class="surprise-message">🌺🌼🌻 С 8 Марта, мама! 🌻🌼🌺</div>
+
+        <footer>С любовью и нежностью</footer>
+    </div>
+
+    <script>
+        (function() {
+            // Ожидаем загрузки страницы
+            document.addEventListener('DOMContentLoaded', function() {
+                // Кнопка сюрприза
+                const btn = document.getElementById('surpriseBtn');
+                const msgDiv = document.getElementById('surpriseMessage');
+
+                // Функция для создания падающих цветочков
+                function createFallingFlower() {
+                    const flowerEl = document.createElement('div');
+                    flowerEl.classList.add('dynamic-flower');
+                    
+                    // Набор символов цветов
+                    const flowers = ['🌸', '🌼', '🌻', '🌺', '🌸', '🌷', '🌹', '💐', '🌿', '🌸'];
+                    flowerEl.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                    
+                    // Случайный размер
+                    const size = Math.floor(Math.random() * 30) + 20; // от 20px до 50px
+                    flowerEl.style.fontSize = size + 'px';
+                    
+                    // Случайная позиция слева
+                    flowerEl.style.left = Math.random() * 100 + '%';
+                    
+                    // Случайная задержка анимации, чтобы падали не все сразу
+                    flowerEl.style.animationDelay = Math.random() * 5 + 's';
+                    
+                    // Длительность анимации (чтобы было разнообразие)
+                    flowerEl.style.animationDuration = (Math.random() * 4 + 4) + 's'; // от 4 до 8 секунд
+                    
+                    // Добавляем на страницу (в body, чтобы быть поверх фона, но под карточкой?)
+                    // Поместим прямо в body, но чтобы не перекрывать карточку, добавим z-index ниже карточки (у карточки z-index 10)
+                    flowerEl.style.zIndex = 5; 
+                    document.body.appendChild(flowerEl);
+                    
+                    // Удаляем цветочек после завершения анимации, чтобы не засорять DOM
+                    setTimeout(() => {
+                        if (flowerEl.parentNode) {
+                            flowerEl.parentNode.removeChild(flowerEl);
+                        }
+                    }, 10000); // максимум 10 секунд, но можно слушать событие animationend
+                    
+                    // Более правильный способ удаления
+                    flowerEl.addEventListener('animationend', function() {
+                        if (flowerEl.parentNode) {
+                            flowerEl.parentNode.removeChild(flowerEl);
+                        }
+                    });
+                }
+
+                // При клике на кнопку показываем сообщение и создаём кучу цветов
+                btn.addEventListener('click', function() {
+                    // Показываем поздравление
+                    msgDiv.classList.add('show');
+                    
+                    // Запускаем "цветочный дождь"
+                    for (let i = 0; i < 25; i++) {  // создадим 25 цветочков
+                        setTimeout(createFallingFlower, i * 100); // с небольшой задержкой для каскада
+                    }
+                    
+                    // Можно вибро-эффект (не обязательно)
+                });
+
+                // Дополнительно: при наведении на кнопку тоже чуть-чуть радости (создадим 5 цветочков)
+                btn.addEventListener('mouseenter', function() {
+                    for (let i = 0; i < 6; i++) {
+                        setTimeout(createFallingFlower, i * 70);
+                    }
+                });
+
+                // Небольшой сюрприз сразу при загрузке страницы (сделаем дождик из 10 цветочков через секунду)
+                setTimeout(() => {
+                    for (let i = 0; i < 12; i++) {
+                        setTimeout(createFallingFlower, i * 120);
+                    }
+                }, 700);
+            });
+        })();
+    </script>
+</body>
+</html>

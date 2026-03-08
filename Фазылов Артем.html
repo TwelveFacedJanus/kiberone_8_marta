@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, мама Эльза!</title>
+    <style>
+        /* Сброс отступов и базовые настройки */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Градиент неба — мягкий рассвет */
+            background: linear-gradient(145deg, #fbc2eb 0%, #a6c1ee 100%);
+            padding: 16px;
+            position: relative;
+            /* Чтобы псевдоэлемент с машиной был позади */
+        }
+
+        /* Основной контейнер открытки */
+        .card {
+            max-width: 760px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(3px);
+            border-radius: 60px 60px 40px 40px;
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2), 0 0 0 2px #fff8e7 inset, 0 0 0 5px #f9a8d4 inset;
+            padding: 40px 30px 50px 30px;
+            position: relative;
+            z-index: 10;
+            /* Текст поверх авто */
+            border: 1px solid rgba(255, 215, 215, 0.6);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+        }
+
+        /* Заголовок с именем */
+        .title {
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            color: #b34180;
+            text-shadow: 3px 3px 0 #ffd9e8, 5px 5px 0 rgba(255, 200, 220, 0.7);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            word-break: break-word;
+        }
+
+        .sub-title {
+            font-size: 2rem;
+            text-align: center;
+            color: #6b3b5c;
+            background: rgba(255, 240, 245, 0.7);
+            display: inline-block;
+            padding: 0.3rem 2rem;
+            border-radius: 60px;
+            margin: 0 auto 25px;
+            backdrop-filter: blur(2px);
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(255, 200, 200, 0.5);
+            border: 1px solid white;
+        }
+
+        /* Имя мамы и отправителя — особо выделим */
+        .name-highlight {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 20px 0 25px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .name-highlight span {
+            background: #fff0f7;
+            padding: 12px 30px;
+            border-radius: 50px;
+            box-shadow: 0 8px 0 #d47a9e;
+            border: 2px solid white;
+            color: #a63462;
+        }
+
+        /* Основной текст поздравления */
+        .message {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            padding: 30px 25px;
+            border-radius: 80px 20px 80px 20px;
+            font-size: 1.5rem;
+            line-height: 1.5;
+            color: #2d1b2b;
+            text-align: center;
+            margin: 25px 0 25px;
+            border: 2px dashed #ffa0c5;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .message i {
+            font-style: italic;
+            color: #c7156c;
+        }
+
+        /* Рисуем ВАЗ-2115 с цветами на заднем плане */
+        .background-car {
+            position: fixed; /* На всю страницу фоном */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Позади .card (z-index 10) */
+            pointer-events: none; /* чтобы не мешала кликать */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.3; /* Полупрозрачная, чтобы текст читался */
+            mix-blend-mode: multiply; /* Мягкое смешивание */
+        }
+
+        /* SVG машины, набитой цветами */
+        .car-svg {
+            width: 95%;
+            max-width: 1000px;
+            height: auto;
+            filter: drop-shadow(0 0 15px #ffb6c1);
+        }
+
+        /* Маленькие цветочки по краям для украшения (дополнительно) */
+        .flower-corner {
+            position: fixed;
+            font-size: 3rem;
+            z-index: 5;
+            pointer-events: none;
+            opacity: 0.6;
+            transform: rotate(10deg);
+        }
+
+        .fc1 { top: 20px; left: 20px; }
+        .fc2 { bottom: 20px; right: 20px; transform: rotate(-10deg); }
+        .fc3 { top: 20px; right: 20px; transform: rotate(20deg); }
+        .fc4 { bottom: 20px; left: 20px; transform: rotate(-15deg); }
+
+        /* Адаптация для маленьких экранов */
+        @media (max-width: 600px) {
+            .title {
+                font-size: 2.2rem;
+            }
+            .sub-title {
+                font-size: 1.5rem;
+            }
+            .name-highlight span {
+                font-size: 1.5rem;
+                padding: 8px 20px;
+            }
+            .message {
+                font-size: 1.2rem;
+                padding: 20px;
+            }
+            .background-car {
+                opacity: 0.25; 
+            }
+        }
+
+        /* Эльза и Артём — именной блок */
+        .signature {
+            text-align: right;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #953e6b;
+            margin-top: 30px;
+            padding-right: 20px;
+            border-right: 8px solid #ffbcd6;
+        }
+        .signature span {
+            background: #ffe2f0;
+            padding: 8px 25px;
+            border-radius: 40px 8px 40px 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Фоновое изображение ВАЗ 2115 с цветами (SVG) -->
+    <div class="background-car">
+        <svg class="car-svg" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Тень и основа кузова ВАЗ-2115 (седанообразный силуэт) -->
+            <g filter="url(#glow)">
+                <!-- Кузов: основной цвет нежно-голубой, но через прозрачность будет казаться пастельным -->
+                <path d="M130 250 L200 180 L250 150 L320 140 L400 140 L480 150 L550 180 L620 240 L640 270 L620 300 L550 290 L500 280 L450 280 L300 280 L200 280 L140 290 L120 270 L130 250Z" fill="#c1d9ff" stroke="#a0b5e0" stroke-width="4" stroke-dasharray="6 6" opacity="0.9"/>
+                <!-- Окна -->
+                <path d="M270 160 L330 155 L380 165 L400 185 L380 210 L330 215 L280 205 L260 185 L270 160Z" fill="#e5f0ff" stroke="#7f8fb2" stroke-width="2" opacity="0.95"/>
+                <path d="M400 165 L450 170 L480 190 L460 215 L430 220 L400 215 L380 200 L400 165Z" fill="#e5f0ff" stroke="#7f8fb2" stroke-width="2" opacity="0.95"/>
+                <!-- Колёса -->
+                <circle cx="230" cy="285" r="35" fill="#3f3f4a" stroke="#2b2b33" stroke-width="4"/>
+                <circle cx="230" cy="285" r="18" fill="#7a7a8a" stroke="#4f4f5e" stroke-width="2"/>
+                <circle cx="550" cy="285" r="38" fill="#3f3f4a" stroke="#2b2b33" stroke-width="4"/>
+                <circle cx="550" cy="285" r="20" fill="#7a7a8a" stroke="#4f4f5e" stroke-width="2"/>
+                <!-- Фары и детали -->
+                <circle cx="150" cy="240" r="12" fill="#fff9cf" stroke="#f7d95c" stroke-width="2"/>
+                <circle cx="640" cy="260" r="10" fill="#fff2b5" stroke="#e0b83e" stroke-width="2"/>
+                <!-- ЦВЕТЫ, которые набиты в машину (кузов и салон) -->
+                <!-- Цветы разных форм и цветов -->
+                <!-- Розы в районе заднего сиденья -->
+                <circle cx="330" cy="200" r="15" fill="#ff8eb5" stroke="#d44c7a" stroke-width="2"/>
+                <circle cx="350" cy="185" r="12" fill="#ffb3c6" stroke="#ff6f9e" stroke-width="2"/>
+                <circle cx="370" cy="200" r="14" fill="#ff9ecb" stroke="#d46f9a" stroke-width="2"/>
+                <!-- Ромашки на капоте -->
+                <circle cx="480" cy="180" r="16" fill="#ffe5b4" stroke="#f0b87b" stroke-width="2"/>
+                <circle cx="495" cy="165" r="8" fill="#ffffff" stroke="#ed9a4a" stroke-width="2"/>
+                <circle cx="460" cy="165" r="10" fill="#fff0d0" stroke="#f0b87b" stroke-width="2"/>
+                <!-- Тюльпаны и зелень на крыше -->
+                <ellipse cx="300" cy="120" rx="12" ry="20" fill="#ff6f91" stroke="#c13e62" stroke-width="2" transform="rotate(-15 300 120)"/>
+                <ellipse cx="340" cy="115" rx="14" ry="22" fill="#ff9fbb" stroke="#c64f75" stroke-width="2" transform="rotate(5 340 115)"/>
+                <ellipse cx="390" cy="118" rx="12" ry="24" fill="#ffb3d1" stroke="#c45a82" stroke-width="2" transform="rotate(-10 390 118)"/>
+                <!-- Много листьев/мелких цветов вокруг колёс -->
+                <circle cx="200" cy="260" r="10" fill="#f5a7c1" stroke="#c45a82" stroke-width="2"/>
+                <circle cx="185" cy="280" r="8" fill="#f5d1e6" stroke="#bd6b96" stroke-width="2"/>
+                <circle cx="215" cy="300" r="9" fill="#f5b0cb" stroke="#ce719b" stroke-width="2"/>
+                <circle cx="570" cy="250" r="12" fill="#f5c6d9" stroke="#d47aa3" stroke-width="2"/>
+                <circle cx="600" cy="270" r="9" fill="#ffc1d6" stroke="#dc8bb2" stroke-width="2"/>
+                <circle cx="590" cy="230" r="14" fill="#ffb7cf" stroke="#d47aa3" stroke-width="2"/>
+                <!-- Цветы прямо из багажника (валиком) -->
+                <ellipse cx="420" cy="270" rx="25" ry="15" fill="#f9acbc" stroke="#cf7197" stroke-width="2" transform="rotate(10 420 270)"/>
+                <ellipse cx="450" cy="255" rx="20" ry="12" fill="#fdbfd6" stroke="#d47aa3" stroke-width="2" transform="rotate(-5 450 255)"/>
+                <!-- Стебельки (линии) -->
+                <path d="M340 140 L335 100 L345 80" stroke="#6da56d" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.9"/>
+                <path d="M380 145 L390 110 L400 90" stroke="#7fb17f" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.9"/>
+                <path d="M300 150 L290 120 L280 100" stroke="#86b386" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.9"/>
+                <path d="M450 190 L470 150 L480 130" stroke="#a0cfa0" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.8"/>
+            </g>
+            <defs>
+                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+                    <feMerge>
+                        <feMergeNode in="offsetblur" />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+            </defs>
+            <!-- Дополнительные цветочные тычинки для яркости -->
+            <circle cx="330" cy="200" r="5" fill="#ffeb55" stroke="none" opacity="0.7"/>
+            <circle cx="480" cy="180" r="4" fill="#f7d002" stroke="none" opacity="0.8"/>
+        </svg>
+    </div>
+
+    <!-- Декоративные цветочки по углам (псевдо-лепестки) -->
+    <div class="flower-corner fc1">🌷🌸🌺</div>
+    <div class="flower-corner fc2">🌹🌼🌻</div>
+    <div class="flower-corner fc3">🌸🌷💐</div>
+    <div class="flower-corner fc4">🌺🌼🌹</div>
+
+    <!-- Основная открытка -->
+    <main class="card">
+        <div class="title">🌷 С 8 Марта! 🌷</div>
+        <div class="sub-title">мамочка</div>
+
+        <!-- ИМЕНА: Эльза и Артём крупно -->
+        <div class="name-highlight">
+            <span>💗 Эльза 💗</span>
+            <span>✨ от Артёма ✨</span>
+        </div>
+
+        <!-- Тёплые слова -->
+        <div class="message">
+            <i>Дорогая мама Эльза!</i><br>
+            🌼 Пусть каждый день дарит тебе<br>
+            улыбки, тепло и цветочные поля.<br>
+            Ты самая чудесная мама на свете!<br>
+            🌸 Счастья, здоровья и вдохновения 🌸
+        </div>
+
+        <!-- Подпись с именем (ещё раз для акцента) -->
+        <div class="signature">
+            <span>Твой сын Артём ❤️</span>
+        </div>
+
+        <!-- Маленький PS про машину с цветами (шутливо) -->
+        <div style="text-align: center; margin-top: 20px; color: #7b4b6a; font-size: 1.2rem; background: rgba(255,240,245,0.7); padding: 10px; border-radius: 40px; border: 1px solid white;">
+            🚗💐 Видишь, какая ВАЗ-2115 стоит с цветами? Это тебе! 💐🚗
+        </div>
+    </main>
+
+    <!-- Дополнительный layer для усиления присутствия цветов (мелкие точки) -->
+    <div style="position: fixed; top:0; left:0; width:100%; height:100%; pointer-events: none; z-index:2; opacity:0.1; background: radial-gradient(circle at 10% 30%, #ffb6c1 1px, transparent 1px), radial-gradient(circle at 90% 70%, #ffb6c1 2px, transparent 2px); background-size: 60px 60px;"></div>
+</body>
+</html>

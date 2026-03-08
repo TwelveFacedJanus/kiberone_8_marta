@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта, мама Евгения!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fbe9f0 0%, #f8dbe7 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            margin: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Декоративные цветы на фоне (розы и тюльпаны) */
+        .floral-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .flower {
+            position: absolute;
+            opacity: 0.35;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: drop-shadow(0 4px 8px rgba(231, 120, 160, 0.15));
+        }
+
+        .flower.rose1 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23e8436e" d="M50 30c-8-12-24-10-28 2-3 8 2 18 12 22-6 4-12 12-8 22 4 10 18 14 30 8 12 6 26 2 30-8 4-10-2-18-8-22 10-4 15-14 12-22-4-12-20-14-28-2-2-12-12-20-24-20s-22 8-24 20z"/></svg>'); width: 100px; height: 100px; }
+        .flower.rose2 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23d6406c" d="M50 30c-8-12-24-10-28 2-3 8 2 18 12 22-6 4-12 12-8 22 4 10 18 14 30 8 12 6 26 2 30-8 4-10-2-18-8-22 10-4 15-14 12-22-4-12-20-14-28-2-2-12-12-20-24-20s-22 8-24 20z"/></svg>'); width: 130px; height: 130px; }
+        .flower.tulip1 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23f78fb3" d="M52 30c2-10-4-20-14-20s-16 10-14 20c-8 2-14 8-14 16 0 12 10 18 22 18h12c12 0 22-6 22-18 0-8-6-14-14-16z"/><rect x="44" y="48" width="12" height="30" fill="%236a994e" rx="6"/></svg>'); width: 90px; height: 120px; }
+        .flower.tulip2 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ffa5c3" d="M52 30c2-10-4-20-14-20s-16 10-14 20c-8 2-14 8-14 16 0 12 10 18 22 18h12c12 0 22-6 22-18 0-8-6-14-14-16z"/><rect x="44" y="48" width="12" height="30" fill="%23588f3a" rx="6"/></svg>'); width: 110px; height: 140px; }
+
+        /* основной контейнер */
+        .card {
+            position: relative;
+            z-index: 10;
+            max-width: 720px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 56px 24px 56px 24px;
+            box-shadow: 0 30px 50px rgba(190, 80, 120, 0.25), 0 10px 25px rgba(0,0,0,0.1);
+            padding: 40px 32px 48px 32px;
+            border: 2px solid rgba(255, 220, 235, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        /* шапка с именем */
+        .header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .header h1 {
+            font-size: 3.2rem;
+            font-weight: 600;
+            background: linear-gradient(130deg, #b3415c, #d45e7a, #c0395b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            text-shadow: 0 5px 15px rgba(220, 90, 130, 0.3);
+            margin-bottom: 8px;
+        }
+
+        .header h2 {
+            font-size: 2rem;
+            color: #982c4f;
+            font-weight: 400;
+            border-bottom: 2px dashed #eda3c3;
+            padding-bottom: 12px;
+            display: inline-block;
+        }
+
+        /* любимые цветы (иконки) */
+        .fav-flowers {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 25px 0 20px;
+        }
+
+        .fav-flowers span {
+            font-size: 3rem;
+            filter: drop-shadow(0 8px 12px #dd8aa5);
+            background: rgba(255,240,245,0.5);
+            padding: 8px 22px;
+            border-radius: 80px;
+            backdrop-filter: blur(4px);
+            border: 1px solid #ffc1d0;
+        }
+
+        /* стихи и поздравление */
+        .poem {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 48px 16px 48px 16px;
+            padding: 32px 24px;
+            margin: 24px 0;
+            border: 1px solid #ffe2ed;
+            box-shadow: inset 0 2px 10px #ffeaf3, 0 10px 20px rgba(200,100,130,0.1);
+        }
+
+        .poem p {
+            font-size: 1.5rem;
+            line-height: 1.4;
+            color: #3f2c34;
+            text-align: center;
+            font-weight: 450;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        .poem .signature {
+            font-size: 1.3rem;
+            text-align: right;
+            margin-top: 20px;
+            color: #a04864;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* кнопка и сюрприз */
+        .surprise-block {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .surprise-btn {
+            background: linear-gradient(115deg, #f5a3c7, #f2bac9);
+            border: none;
+            color: #4f2d38;
+            font-size: 1.8rem;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 60px;
+            box-shadow: 0 12px 0 #b15b7a, 0 8px 25px #e7acc2;
+            cursor: pointer;
+            transition: 0.12s linear;
+            letter-spacing: 2px;
+            border: 2px solid #ffeef4;
+            margin-bottom: 30px;
+        }
+
+        .surprise-btn:active {
+            transform: translateY(8px);
+            box-shadow: 0 4px 0 #b15b7a, 0 8px 20px #e7acc2;
+        }
+
+        /* скрытая цветочная галерея */
+        .flower-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 30px;
+            padding: 20px 10px;
+            background: rgba(255, 215, 230, 0.3);
+            border-radius: 60px 16px 60px 16px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: none;
+            border: 2px dashed #f5b0c3;
+        }
+
+        .flower-gallery.show {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: all;
+        }
+
+        .gallery-item {
+            font-size: 4rem;
+            filter: drop-shadow(2px 8px 12px rgba(175, 70, 110, 0.4));
+            background: rgba(255, 255, 255, 0.4);
+            padding: 8px 16px;
+            border-radius: 50px;
+            backdrop-filter: blur(6px);
+            transition: transform 0.2s;
+        }
+
+        .gallery-item:hover {
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        .gallery-item span {
+            font-size: 1rem;
+            display: block;
+            text-align: center;
+            color: #852f4f;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* маленький текст */
+        .footer-note {
+            text-align: center;
+            margin-top: 30px;
+            color: #ab7083;
+            font-size: 1.2rem;
+            font-weight: 400;
+            text-shadow: 0 2px 5px #ffe2f0;
+        }
+
+        /* адаптация */
+        @media (max-width: 550px) {
+            .card { padding: 30px 16px; }
+            .header h1 { font-size: 2.7rem; }
+            .header h2 { font-size: 1.8rem; }
+            .poem p { font-size: 1.2rem; }
+            .surprise-btn { font-size: 1.5rem; padding: 12px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Розы и тюльпаны плавают на фоне (специально для Евгении) -->
+    <div class="floral-bg">
+        <div class="flower rose1" style="top: 5%; left: 2%;"></div>
+        <div class="flower rose2" style="bottom: 12%; right: 1%; transform: rotate(15deg);"></div>
+        <div class="flower tulip1" style="top: 18%; right: 5%; transform: rotate(-10deg);"></div>
+        <div class="flower tulip2" style="bottom: 25%; left: 6%; transform: rotate(20deg);"></div>
+        <div class="flower rose1" style="top: 40%; left: 12%; opacity: 0.25; width: 140px; height: 140px;"></div>
+        <div class="flower tulip1" style="bottom: 40%; right: 12%; opacity: 0.3; transform: rotate(5deg);"></div>
+        <div class="flower rose2" style="top: 70%; left: 20%; width: 90px; height: 90px;"></div>
+        <div class="flower tulip2" style="top: 85%; right: 18%;"></div>
+    </div>
+
+    <main class="card">
+        <div class="header">
+            <h1>С 8 марта,</h1>
+            <h2>мама Евгения!</h2>
+        </div>
+
+        <!-- Любимые цветы мамы (розы + тюльпаны) -->
+        <div class="fav-flowers">
+            <span>🌹</span>
+            <span>🌷</span>
+        </div>
+
+        <!-- Тёплое поздравление -->
+        <div class="poem">
+            <p>
+                🌸 Пусть этот день, такой прекрасный,<br>
+                Подарит радость, свет и счастье.<br>
+                Для самой лучшей, самой ясной —<br>
+                Моей любимой, нежной мамы.
+            </p>
+            <p>
+                🌷 Тюльпаны, розы — для тебя,<br>
+                Цветут они тебя любя.<br>
+                Желаю, чтобы каждый день<br>
+                Уходят грусть и тень.
+            </p>
+            <p>
+                💐 Здоровья, сил, улыбок, смеха,<br>
+                Во всём удачи и успеха.<br>
+                Ты — мой пример и вдохновенье,<br>
+                Прими любовь и поздравленья!
+            </p>
+            <div class="signature">— с любовью, твой ребёнок ❤️</div>
+        </div>
+
+        <!-- Кнопка-сюрприз с букетом (розы и тюльпаны) -->
+        <div class="surprise-block">
+            <button class="surprise-btn" id="surpriseBtn">🌸 Букет в подарок 🌸</button>
+
+            <!-- Скрытая галерея (появляется по клику) -->
+            <div id="flowerGallery" class="flower-gallery">
+                <div class="gallery-item">🌹<span>роза</span></div>
+                <div class="gallery-item">🌷<span>тюльпан</span></div>
+                <div class="gallery-item">🌹<span>роза</span></div>
+                <div class="gallery-item">🌷<span>тюльпан</span></div>
+                <div class="gallery-item">🌹<span>роза</span></div>
+                <div class="gallery-item">🌷<span>тюльпан</span></div>
+                <div class="gallery-item">🌹<span>роза</span></div>
+                <div class="gallery-item">🌷<span>тюльпан</span></div>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            🌷 для Евгении с любовью, розы и тюльпаны 🌹
+        </div>
+    </main>
+
+    <script>
+        (function() {
+            // Дорогая мама Евгения, этот скрипт дарит вам цветочный сюрприз!
+            const button = document.getElementById('surpriseBtn');
+            const gallery = document.getElementById('flowerGallery');
+
+            // Запоминаем, показывали ли уже галерею (для разнообразия можно каждый раз добавлять эффект)
+            let isGalleryShown = false;
+
+            button.addEventListener('click', function() {
+                if (!gallery.classList.contains('show')) {
+                    // Показываем галерею с букетом из роз и тюльпанов
+                    gallery.classList.add('show');
+                    button.textContent = '🌹🌷 Ещё букет! 🌷🌹';
+
+                    // Дополнительное микро-поздравление в консоль (приятный бонус)
+                    console.log('🌺 С 8 марта, мама Евгения! Пусть розы и тюльпаны цветут для вас всегда! 🌺');
+
+                    // Создаём летающие сердечки/цветочки как мини-сюрприз (эффект радости)
+                    createFloatingConfetti('🌹');
+                    setTimeout(() => createFloatingConfetti('🌷'), 150);
+                    setTimeout(() => createFloatingConfetti('🌸'), 300);
+                } else {
+                    // Если галерея уже открыта, можно добавить ещё цветов или просто переключить
+                    // но для разнообразия добавим анимацию к существующим цветам и покажем новые иконки
+                    const items = document.querySelectorAll('.gallery-item');
+                    items.forEach(item => {
+                        item.style.transform = 'scale(1.2) rotate(3deg)';
+                        setTimeout(() => item.style.transform = '', 200);
+                    });
+
+                    // Дополнительный сюрприз — всплывающие розочки
+                    createFloatingConfetti('🌹');
+                    createFloatingConfetti('🌷');
+                    createFloatingConfetti('🌹');
+                }
+                // Маленькая радость: меняем фон кнопки на время
+                button.style.background = 'linear-gradient(115deg, #fbc1d5, #ffb3c6)';
+                setTimeout(() => button.style.background = '', 200);
+            });
+
+            // Функция для создания временных парящих эмодзи (цветов)
+            function createFloatingConfetti(emoji) {
+                for (let i = 0; i < 6; i++) {
+                    const span = document.createElement('span');
+                    span.textContent = emoji;
+                    span.style.position = 'fixed';
+                    span.style.left = Math.random() * 100 + '%';
+                    span.style.top = Math.random() * 100 + '%';
+                    span.style.fontSize = (Math.random() * 30 + 24) + 'px';
+                    span.style.pointerEvents = 'none';
+                    span.style.zIndex = '9999';
+                    span.style.opacity = '0.8';
+                    span.style.filter = 'drop-shadow(0 10px 15px #d47e9f)';
+                    span.style.transition = 'all 2s ease-out';
+                    span.style.transform = 'translateY(0) rotate(0deg)';
+                    document.body.appendChild(span);
+
+                    // Анимация полёта вверх с вращением
+                    setTimeout(() => {
+                        span.style.transform = `translateY(-${window.innerHeight * 0.7}px) rotate(${Math.random() * 60 - 30}deg)`;
+                        span.style.opacity = '0';
+                    }, 20);
+
+                    // Удаляем из DOM после завершения анимации
+                    setTimeout(() => {
+                        if (span.parentNode) span.remove();
+                    }, 2200);
+                }
+            }
+
+            // Если мама захочет ещё раз нажать — пусть радуется. Уже открытая галерея остаётся,
+            // а по клику добавляем floating цветочки (выше) и меняем текст.
+            // Также при первом показе можем добавить "секретное" сообщение.
+            if (!isGalleryShown) {
+                // можно ничего не делать, но просто отметим
+            }
+
+            // На всякий случай аккуратный ресайз (чтобы confetti не ломал вёрстку)
+            window.addEventListener('resize', () => {
+                // ничего не делаем, просто игнорируем старые span, они сами исчезнут
+            });
+
+            // Инициализируем несколько плавающих цветов на фоне дополнительно (но они уже есть в CSS)
+            // Для пущего эффекта добавим ещё одно движение мышкой? Не обязательно.
+            // Но можно сделать лёгкое свечение имени.
+            const nameTitle = document.querySelector('.header h1');
+            if (nameTitle) {
+                nameTitle.addEventListener('mouseenter', () => {
+                    nameTitle.style.textShadow = '0 0 25px #f9acbc';
+                });
+                nameTitle.addEventListener('mouseleave', () => {
+                    nameTitle.style.textShadow = '0 5px 15px rgba(220, 90, 130, 0.3)';
+                });
+            }
+        })();
+    </script>
+
+    <!-- Примечание: все стили и скрипты внутри одного файла. С 8 марта! -->
+</body>
+</html>
